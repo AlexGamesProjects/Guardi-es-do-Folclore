@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardiões do Folclore</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Eczar:wght@500;600;700;800&family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<style>
+/* Layout: barra de recursos no topo; à esquerda o medalhão do herói com atributos; à direita o salão do jogo com abas.
+   Visual: noite na mata, painéis de madeira escura com filetes de latão, ilustrações emolduradas como quadros. */
+:root{
+  --noite:#0a1613; --casca:#10221d; --casca-2:#163028; --casca-3:#1d3b31; --borda:#2a4a3e;
+  --latao:#d6a24a; --latao-2:#f1cb78; --brasa:#e2602d; --jade:#3fae7f; --lua:#8fc0d4; --sangue:#c8423a;
+  --texto:#efe7d4; --texto-2:#a5b7ab; --tinta:#140d08;
+  --f-display:'Eczar','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --f-body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--noite)}
+body{color:var(--texto);font-family:var(--f-body);font-size:15px;line-height:1.45;font-variant-numeric:tabular-nums;
+  background-image:radial-gradient(ellipse 50% 40% at 85% -5%,rgba(143,192,212,.13),transparent 70%),radial-gradient(ellipse 45% 35% at 0% 100%,rgba(226,96,45,.09),transparent 70%);background-attachment:fixed}
+button{font:inherit;color:inherit}
+img{display:block}
+:focus-visible{outline:2px solid var(--latao-2);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:14px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+
+/* ---------- Topo ---------- */
+.topo{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo b{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3.4vw,32px);color:var(--latao-2);letter-spacing:.01em;text-shadow:0 2px 0 var(--tinta),0 0 24px rgba(214,162,74,.25)}
+.logo span{font-size:11px;font-weight:700;font-stretch:78%;text-transform:uppercase;letter-spacing:.22em;color:var(--texto-2);margin-top:4px}
+.recursos{display:flex;gap:8px;flex-wrap:wrap}
+.rec{display:flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--casca-2),var(--casca));border:1px solid var(--borda);border-radius:10px;padding:6px 10px;min-width:0}
+.rec svg.ic{width:22px;height:22px;flex:none}
+.rec-txt{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.rec-txt b{font-size:15px;font-weight:800}
+.rec-txt small{font-size:11px;color:var(--texto-2);white-space:nowrap}
+.rec-barra{width:88px;height:6px;border-radius:3px;background:var(--noite);overflow:hidden;margin-top:3px}
+.rec-barra i{display:block;height:100%;transition:width .5s ease}
+.mais{border:1px solid var(--borda);background:var(--casca-3);border-radius:7px;width:26px;height:26px;display:grid;place-items:center;cursor:pointer;font-weight:800;padding:0;flex:none}
+.mais:hover{border-color:var(--latao);color:var(--latao-2)}
+
+/* ---------- Estrutura ---------- */
+.jogo{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:920px){.jogo{grid-template-columns:1fr}}
+.painel{background:linear-gradient(180deg,var(--casca-2),var(--casca));border:1px solid var(--borda);border-radius:12px;box-shadow:inset 0 1px 0 rgba(241,203,120,.07),0 12px 30px rgba(0,0,0,.3);min-width:0}
+.rotulo{font-size:11px;font-weight:700;font-stretch:78%;text-transform:uppercase;letter-spacing:.16em;color:var(--texto-2)}
+
+/* ---------- Herói lateral ---------- */
+.heroi{padding:18px 16px;display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:920px){.heroi{position:static}}
+.heroi-topo{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.medalhao{width:132px;height:132px;border-radius:50%;padding:5px;background:conic-gradient(from 200deg,var(--latao),var(--latao-2),var(--latao),#8b6326,var(--latao));box-shadow:0 0 0 1px var(--tinta),0 8px 24px rgba(0,0,0,.5);position:relative}
+.medalhao-in{width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 35%,#2f6150,#10261f 70%);border:2px solid var(--tinta)}
+.medalhao-in svg{width:100%;height:100%}
+.nivel-badge{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);background:var(--tinta);border:2px solid var(--latao);color:var(--latao-2);font-family:var(--f-display);font-weight:800;font-size:16px;min-width:40px;height:30px;padding:0 8px;border-radius:15px;display:grid;place-items:center}
+.heroi-nome{font-family:var(--f-display);font-weight:700;font-size:23px;line-height:1.1;margin-top:8px;overflow-wrap:anywhere}
+.titulo-rank{color:var(--latao);font-size:12px;font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.14em}
+.xp{width:100%}
+.barra{height:8px;border-radius:4px;background:var(--noite);border:1px solid var(--borda);overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--latao),var(--latao-2));transition:width .5s ease}
+.xp-num{display:flex;justify-content:space-between;font-size:11.5px;color:var(--texto-2);margin-top:4px}
+.atributos{display:flex;flex-direction:column}
+.attr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--borda)}
+.attr-nome b{display:block;font-size:14px}
+.attr-nome small{display:block;font-size:11.5px;color:var(--texto-2);line-height:1.3}
+.attr-val{font-family:var(--f-display);font-weight:700;font-size:21px;text-align:right;min-width:42px;line-height:1}
+.attr-val small{display:block;font-family:var(--f-body);font-size:10.5px;color:var(--jade);font-weight:700;margin-top:2px}
+.treino{display:flex;align-items:center;gap:4px;border:1px solid var(--borda);background:var(--casca-3);border-radius:8px;padding:5px 7px;cursor:pointer;font-weight:800;font-size:12.5px;min-width:64px;justify-content:center}
+.treino svg{width:14px;height:14px}
+.treino:hover:not(:disabled){border-color:var(--latao);background:#28473b}
+.treino:disabled{opacity:.4;cursor:not-allowed}
+.forca-total{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.forca-total div{background:var(--noite);border:1px solid var(--borda);border-radius:8px;padding:8px 10px}
+.forca-total b{display:block;font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.1}
+.mini-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mslot{aspect-ratio:1;border-radius:8px;border:1px solid var(--borda);background:var(--noite);display:grid;place-items:center;position:relative;max-width:100%}
+.mslot svg{width:52%;height:52%;opacity:.35}
+.mslot.ok{border-color:var(--rar)}
+.mslot.ok svg{opacity:1;color:var(--rar)}
+.r0{--rar:#cbbf9f}.r1{--rar:var(--lua)}.r2{--rar:var(--brasa)}
+
+/* ---------- Abas ---------- */
+.salao{display:flex;flex-direction:column;gap:16px;min-width:0}
+.abas{display:flex;gap:2px;border-bottom:1px solid var(--borda);overflow-x:auto;scrollbar-width:none}
+.abas::-webkit-scrollbar{display:none}
+.aba{display:flex;align-items:center;gap:7px;border:0;background:none;padding:10px 14px 12px;cursor:pointer;font-weight:700;font-stretch:85%;text-transform:uppercase;letter-spacing:.09em;font-size:13px;color:var(--texto-2);position:relative;white-space:nowrap;flex:none}
+.aba svg{width:18px;height:18px}
+.aba:hover{color:var(--texto)}
+.aba[aria-selected="true"]{color:var(--latao-2)}
+.aba[aria-selected="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:3px;border-radius:3px 3px 0 0;background:var(--latao)}
+.aba .ponto{width:8px;height:8px;border-radius:50%;background:var(--brasa);box-shadow:0 0 8px var(--brasa)}
+.sec-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:10px 16px;flex-wrap:wrap}
+.sec-topo h2{font-family:var(--f-display);font-weight:700;font-size:27px;line-height:1.05;margin:0}
+.sec-topo p{margin:4px 0 0;color:var(--texto-2);max-width:62ch}
+
+/* ---------- Botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #8b6326;background:linear-gradient(180deg,var(--latao-2),var(--latao));color:var(--tinta);font-weight:800;font-stretch:85%;text-transform:uppercase;letter-spacing:.07em;font-size:13px;padding:10px 16px;border-radius:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 3px 0 #7a5420;cursor:pointer;transition:transform .08s,box-shadow .08s,filter .15s}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 0 #7a5420}
+.btn:disabled{filter:grayscale(.8) brightness(.7);cursor:not-allowed;transform:none}
+.btn.brasa{background:linear-gradient(180deg,#f07a46,var(--brasa));border-color:#8e3412;color:#fff4e8;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 3px 0 #8e3412}
+.btn.sec{background:var(--casca-3);border-color:var(--borda);color:var(--texto);box-shadow:none}
+.btn.sec:hover{border-color:var(--latao)}
+.btn.peq{padding:6px 10px;font-size:12px}
+.btn svg{width:16px;height:16px;flex:none}
+
+/* ---------- Quadros (ilustrações) ---------- */
+.quadro{position:relative;overflow:hidden;border-radius:8px;border:2px solid var(--latao);outline:1px solid rgba(214,162,74,.35);outline-offset:3px;background:var(--noite);max-width:100%}
+.quadro img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Missões ---------- */
+.missoes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.missao{display:flex;flex-direction:column;padding:12px;gap:12px}
+.missao .quadro{aspect-ratio:4/5}
+.missao .quadro::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,19,0) 45%,rgba(10,22,19,.92) 100%)}
+.sobre{position:absolute;left:12px;right:12px;bottom:10px;z-index:1;display:flex;flex-direction:column;gap:4px}
+.sobre h3{margin:0;font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.15;text-wrap:balance;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.sobre small{color:var(--latao-2);font-size:11.5px;font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.12em}
+.selos{position:absolute;top:10px;left:10px;right:10px;z-index:1;display:flex;gap:6px;flex-wrap:wrap}
+.selo{font-size:10.5px;font-weight:800;font-stretch:78%;text-transform:uppercase;letter-spacing:.12em;padding:3px 8px;border-radius:999px;background:rgba(10,22,19,.82);border:1px solid var(--borda)}
+.selo.luta{background:var(--brasa);border-color:#8e3412;color:#fff4e8}
+.selo.chefe{background:var(--latao);border-color:#8b6326;color:var(--tinta)}
+.dados{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.dados div{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--noite);border-radius:7px;padding:6px 2px}
+.dados dt{font-size:9.5px;font-weight:700;font-stretch:78%;text-transform:uppercase;letter-spacing:.1em;color:var(--texto-2)}
+.dados dd{margin:0;font-weight:800;font-size:14px}
+.missao .btn{width:100%}
+
+.ativa{display:grid;grid-template-columns:minmax(0,1fr);position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--latao);min-height:180px}
+.ativa-fundo{position:absolute;inset:0}
+.ativa-fundo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.ativa-fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,19,.96) 0%,rgba(10,22,19,.85) 45%,rgba(10,22,19,.35) 100%)}
+.ativa-corpo{position:relative;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:560px}
+.ativa h3{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1.1;margin:0;text-wrap:balance}
+.ativa .barra{height:12px}
+.ativa-linha{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cd{font-family:var(--f-display);font-weight:700;font-size:26px;min-width:70px;line-height:1}
+
+/* ---------- Chefes ---------- */
+.atos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.atos{grid-template-columns:1fr}}
+.ato{position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--borda);padding:0;cursor:pointer;text-align:left;min-height:108px;display:flex;background:var(--casca)}
+.ato img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:.55;transition:opacity .2s}
+.ato::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,19,.95),rgba(10,22,19,.5))}
+.ato-txt{position:relative;z-index:1;padding:14px;display:flex;flex-direction:column;gap:2px;justify-content:flex-end}
+.ato-txt b{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.1}
+.ato-txt small{font-size:12px;color:var(--texto-2)}
+.ato[aria-pressed="true"]{border-color:var(--latao);box-shadow:0 0 0 1px var(--latao),0 10px 24px rgba(0,0,0,.4)}
+.ato[aria-pressed="true"] img{opacity:.8}
+.ato:disabled{cursor:not-allowed}
+.ato:disabled img{filter:grayscale(1);opacity:.25}
+.ato-prog{display:flex;gap:3px;margin-top:6px}
+.ato-prog i{width:14px;height:4px;border-radius:2px;background:rgba(255,255,255,.18)}
+.ato-prog i.ok{background:var(--latao)}
+
+.trilha{position:relative;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;align-items:center;padding:18px 14px}
+.trilha::before{content:"";position:absolute;left:30px;right:30px;top:50%;height:3px;background:repeating-linear-gradient(90deg,var(--borda) 0 8px,transparent 8px 14px);transform:translateY(-50%)}
+.no{position:relative;z-index:1;justify-self:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--borda);background:var(--casca);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:17px;cursor:pointer;padding:0}
+.no.ok{background:var(--latao);border-color:var(--latao-2);color:var(--tinta)}
+.no.livre{border-color:var(--brasa);box-shadow:0 0 0 4px rgba(226,96,45,.18);animation:pulsa 2s infinite}
+.no.trava{color:var(--texto-2);opacity:.6}
+.no[aria-current="true"]{outline:2px solid var(--latao-2);outline-offset:4px}
+.no.boss{width:58px;height:58px;overflow:hidden;border-color:var(--latao)}
+.no.boss img{width:100%;height:100%;object-fit:cover}
+.no.boss.trava img{filter:grayscale(1) brightness(.5)}
+@keyframes pulsa{50%{box-shadow:0 0 0 8px rgba(226,96,45,0)}}
+@media (max-width:640px){.trilha{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:16px}.trilha::before{display:none}}
+
+.fase{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;padding:16px}
+@media (max-width:640px){.fase{grid-template-columns:1fr}}
+.fase .quadro{aspect-ratio:3/4}
+.fase h3{font-family:var(--f-display);font-weight:700;font-size:26px;line-height:1.05;margin:4px 0 6px}
+.fase p{margin:0;color:var(--texto-2);max-width:56ch}
+.comparar{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.cmp{display:grid;grid-template-columns:72px minmax(0,1fr) 40px minmax(0,1fr) 40px;gap:8px;align-items:center;font-size:13px}
+.cmp .n{text-align:center;font-weight:800}
+.cmp .b{height:7px;border-radius:4px;background:var(--noite);overflow:hidden}
+.cmp .b i{display:block;height:100%}
+.cmp .b.v i{background:var(--jade);margin-left:auto}
+.cmp .b.e i{background:var(--brasa)}
+.premios{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--noite);border:1px solid var(--borda);border-radius:999px;padding:4px 10px 4px 7px;font-weight:700;font-size:13px}
+.chip svg{width:16px;height:16px}
+.fase-acoes{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.aviso-txt{font-size:13px;color:var(--texto-2)}
+
+/* ---------- Arena ---------- */
+.rivais{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.rival{padding:16px;display:flex;flex-direction:column;gap:12px}
+.rival-topo{display:flex;gap:12px;align-items:center}
+.rival-av{width:64px;height:64px;border-radius:50%;flex:none;overflow:hidden;border:2px solid var(--latao);background:radial-gradient(circle at 50% 35%,#3b4c62,#141d27 70%)}
+.rival-av svg{width:100%;height:100%}
+.rival h3{margin:0;font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.1}
+.risco{font-size:11px;font-weight:800;font-stretch:78%;text-transform:uppercase;letter-spacing:.1em}
+.risco.f{color:var(--jade)}.risco.p{color:var(--latao-2)}.risco.d{color:var(--brasa)}
+.mini-st{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;text-align:center;font-size:10.5px;color:var(--texto-2);font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em}
+.mini-st b{display:block;color:var(--texto);font-size:16px;font-stretch:100%;letter-spacing:0}
+.lista{list-style:none;margin:0;padding:0}
+.lista li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--borda);font-size:14px}
+.v{color:var(--jade);font-weight:800}.d{color:var(--brasa);font-weight:800}
+
+/* ---------- Itens ---------- */
+.itens{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.item{background:linear-gradient(180deg,var(--casca-2),var(--casca));border:1px solid var(--borda);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;min-width:0}
+.item::before{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px var(--rar);opacity:.55;pointer-events:none}
+.item.r2{box-shadow:0 0 22px rgba(226,96,45,.18)}
+.item-topo{display:flex;gap:10px;align-items:center}
+.item-ic{width:42px;height:42px;border-radius:9px;background:var(--noite);border:1px solid var(--rar);display:grid;place-items:center;color:var(--rar);flex:none}
+.item-ic svg{width:24px;height:24px}
+.item-nome{font-weight:800;line-height:1.2}
+.item-rar{font-size:10.5px;font-weight:800;font-stretch:78%;text-transform:uppercase;letter-spacing:.12em;color:var(--rar)}
+.item-st{display:flex;flex-direction:column;gap:2px;font-size:13px}
+.item-st span{display:flex;justify-content:space-between;gap:8px}
+.mais-v{color:var(--jade);font-weight:700}.menos-v{color:var(--brasa);font-weight:700}
+.item-acoes{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:auto}
+.preco{display:flex;align-items:center;gap:5px;font-weight:800;font-size:16px;margin-right:auto}
+.preco svg{width:16px;height:16px}
+.vazio{color:var(--texto-2);font-size:13px;justify-content:center;align-items:center;text-align:center;min-height:120px}
+.equipados{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.campo{display:flex;flex-direction:column;gap:5px;max-width:360px}
+.campo input{font:inherit;font-family:var(--f-display);font-weight:700;font-size:20px;background:var(--noite);color:var(--texto);border:1px solid var(--borda);border-radius:9px;padding:8px 12px}
+
+/* ---------- Bestiário ---------- */
+.bestas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.besta{padding:12px;display:flex;flex-direction:column;gap:10px}
+.besta .quadro{aspect-ratio:3/4}
+.besta h3{margin:0;font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.1}
+.besta p{margin:0;font-size:13.5px;color:var(--texto-2)}
+.besta.oculta .quadro img{filter:brightness(.12) blur(3px)}
+.besta.oculta .quadro::after{content:"?";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:64px;color:var(--latao)}
+
+/* ---------- Combate ---------- */
+.modal{position:fixed;inset:0;z-index:30;background:rgba(4,10,8,.86);display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+[hidden]{display:none!important}
+.combate{position:relative;width:100%;max-width:880px;max-height:100%;overflow:auto;border-radius:14px;border:1px solid var(--latao);background:var(--noite);box-shadow:0 30px 80px rgba(0,0,0,.6);isolation:isolate}
+.cena{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.cena img{width:100%;height:100%;object-fit:cover;filter:blur(14px) brightness(.32) saturate(1.2);transform:scale(1.15)}
+.cena.arena{background:radial-gradient(ellipse at 50% 100%,rgba(214,162,74,.25),transparent 60%),radial-gradient(ellipse at 50% 0%,#1c3a5a,#0a1613 70%)}
+.flash{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(241,203,120,.55),transparent 65%)}
+.flash.on{animation:flash .45s ease-out}
+@keyframes flash{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+.comb-in{padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px}
+.comb-tit{text-align:center}
+.comb-tit h2{margin:2px 0 0;font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.1;text-wrap:balance}
+.placar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:center}
+.pl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pl.r{align-items:flex-end;text-align:right}
+.pl b{font-family:var(--f-display);font-weight:700;font-size:17px;line-height:1.1;overflow-wrap:anywhere}
+.pl small{font-size:11.5px;color:var(--texto-2)}
+.hp{width:100%;height:14px;border-radius:7px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12);overflow:hidden;position:relative}
+.hp i{position:absolute;top:0;bottom:0;left:0;background:linear-gradient(180deg,#6fd09f,#2f9a68);transition:width .35s ease}
+.hp em{position:absolute;top:0;bottom:0;left:0;background:#f4e2a8;transition:width .9s ease .25s}
+.pl.r .hp i,.pl.r .hp em{left:auto;right:0}
+.vs{font-family:var(--f-display);font-weight:800;font-size:28px;color:var(--latao-2);text-shadow:0 0 18px rgba(214,162,74,.6)}
+.palco{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,8vw,90px);align-items:end;padding:6px clamp(4px,4vw,40px);width:100%;max-width:560px;margin:0 auto}
+.palco.tremor{animation:tremor .4s}
+@keyframes tremor{10%,50%,90%{transform:translate(-5px,2px)}30%,70%{transform:translate(5px,-2px)}}
+.lut{position:relative;--dir:-1}
+.lut.r{--dir:1}
+.lut .quadro{aspect-ratio:3/4}
+.emblema{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#2f6150,#0d211b 75%)}
+.emblema.rv{background:radial-gradient(circle at 50% 35%,#3b4c62,#121a24 75%)}
+.emblema svg{width:86%;height:86%}
+.dano{position:absolute;left:50%;top:30%;z-index:4;font-family:var(--f-display);font-weight:800;font-size:30px;color:#fff;text-shadow:0 2px 0 var(--tinta),0 0 12px rgba(0,0,0,.8);white-space:nowrap;pointer-events:none;animation:sobeNum 1s ease-out forwards}
+.dano.crit{font-size:42px;color:var(--latao-2);text-shadow:0 2px 0 var(--tinta),0 0 20px rgba(226,96,45,.9)}
+.dano.crit small{display:block;font-size:14px;letter-spacing:.2em;text-align:center}
+.dano.esq{font-size:22px;color:var(--lua);font-family:var(--f-body);font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+@keyframes sobeNum{0%{opacity:0;transform:translate(-50%,14px) scale(.6)}15%{opacity:1;transform:translate(-50%,0) scale(1.2)}30%{transform:translate(-50%,-6px) scale(1)}100%{opacity:0;transform:translate(-50%,-80px)}}
+.corte{position:absolute;inset:8% 4%;z-index:3;pointer-events:none}
+.corte svg{width:100%;height:100%}
+.corte path{stroke-dasharray:160;stroke-dashoffset:160;animation:corte .5s ease-out forwards}
+@keyframes corte{60%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.atk{animation:atk .5s ease-in-out}
+@keyframes atk{40%{transform:translateX(calc(var(--dir)*-56px)) rotate(calc(var(--dir)*-4deg))}}
+.atkc{animation:atkc .6s ease-in-out;z-index:2}
+@keyframes atkc{25%{transform:translateX(calc(var(--dir)*14px)) scale(.95)}50%{transform:translateX(calc(var(--dir)*-90px)) scale(1.1) rotate(calc(var(--dir)*-6deg))}}
+.leva .quadro{animation:leva .45s ease-out}
+@keyframes leva{25%{transform:translateX(calc(var(--dir)*16px)) rotate(calc(var(--dir)*4deg));filter:brightness(2.2) saturate(0) sepia(1) hue-rotate(-30deg)}}
+.levac .quadro{animation:levac .6s ease-out}
+@keyframes levac{20%{transform:translateX(calc(var(--dir)*30px)) rotate(calc(var(--dir)*8deg)) scale(.94);filter:brightness(2.6) saturate(2) hue-rotate(-20deg)}45%{transform:translateX(calc(var(--dir)*-8px))}}
+.esquiva .quadro{animation:esquiva .5s ease-out}
+@keyframes esquiva{35%{transform:translate(calc(var(--dir)*44px),-10px) skewX(calc(var(--dir)*-8deg));opacity:.45}}
+.caido .quadro{filter:grayscale(1) brightness(.45);transform:rotate(calc(var(--dir)*5deg)) translateY(8px);transition:all .6s}
+.narra{margin:0;text-align:center;min-height:44px;font-size:15px;display:flex;align-items:center;justify-content:center;padding:6px 10px;background:rgba(0,0,0,.4);border-radius:9px;border:1px solid rgba(255,255,255,.08)}
+.narra.crit{color:var(--latao-2);font-weight:800}
+.resultado{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.resultado b{font-family:var(--f-display);font-weight:800;font-size:42px;line-height:1;animation:sobe .5s ease-out}
+.resultado b.v{color:var(--latao-2);text-shadow:0 0 24px rgba(214,162,74,.5)}
+.resultado b.d{color:var(--brasa)}
+.comb-acoes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.simples{max-width:520px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.simples-topo{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center}
+.simples .quadro{aspect-ratio:3/4}
+
+/* ---------- Avisos ---------- */
+.avisos{position:fixed;z-index:40;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.aviso{background:var(--casca-3);border:1px solid var(--borda);color:var(--texto);padding:10px 16px;border-radius:10px;font-weight:700;font-size:14px;max-width:100%;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:sobe .25s ease-out}
+.aviso.ouro{background:linear-gradient(180deg,var(--latao-2),var(--latao));color:var(--tinta);border-color:#8b6326}
+@keyframes sobe{from{transform:translateY(10px);opacity:0}}
+
+.rodape{color:var(--texto-2);font-size:12.5px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--borda);padding-top:14px}
+.linkbtn{background:none;border:0;color:var(--texto-2);text-decoration:underline;cursor:pointer;padding:0;font-size:12.5px}
+.linkbtn.perigo{color:var(--brasa)}
+
+/* SVG do herói */
+.k{stroke:var(--tinta);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.n{fill:none}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topo">
+    <div class="logo"><b>Guardiões do Folclore</b><span>Lendas, missões e duelos do Brasil</span></div>
+    <div class="recursos" id="recursos"></div>
+  </header>
+  <div class="jogo">
+    <aside class="painel heroi" id="heroi" aria-label="Seu guardião"></aside>
+    <div class="salao">
+      <nav class="abas" id="abas" role="tablist" aria-label="Seções"></nav>
+      <main id="tela"></main>
+    </div>
+  </div>
+  <footer class="rodape" id="rodape"></footer>
+</div>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true"></div>
+<div class="avisos" id="avisos" aria-live="polite"></div>
+
+<script>
+(() => {
+'use strict';
+const KEY = 'guardioes-folclore-v2';
+const EN_MAX = 100, EN_MS = 30000;      // +1 de energia a cada 30 s
+const CO_MAX = 5,   CO_MS = 120000;     // +1 de coragem a cada 2 min
+const FEIRA_MS = 600000, MOCHILA = 14, CHEFE_EN = 12, CHEFE_ESPERA = 90000;
+const IMG = id => `assets/${id}.webp`;
+
+/* ---------- Ícones ---------- */
+const IC = {
+  vint:`<svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="#f1cb78" stroke="#7a5420" stroke-width="1.6"/><circle cx="11" cy="11" r="5.2" fill="none" stroke="#7a5420" stroke-width="1.3" opacity=".6"/><path d="M8 7.5 Q11 5.5 13.5 7.5" stroke="#fff" stroke-width="1.2" fill="none" opacity=".6"/></svg>`,
+  muir:`<svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3c4 0 6.8 2.8 6.8 6.5 0 2.4-1.2 4.1-2.6 5.2l1.3 3.4h-2.8L12.2 16h-2.4l-1.5 2.1H5.5l1.3-3.4C5.4 13.6 4.2 11.9 4.2 9.5 4.2 5.8 7 3 11 3z" fill="#3fae7f" stroke="#123b29" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8.3" cy="8.2" r="1.2" fill="#123b29"/><circle cx="13.7" cy="8.2" r="1.2" fill="#123b29"/></svg>`,
+  en:`<svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M12.8 2 4.5 12.4h6l-1.3 7.6 8.3-10.3h-6z" fill="#8fc0d4" stroke="#1b3f4d" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  co:`<svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2c1.2 3.6 5.5 5.4 5.5 10.3a5.5 5.5 0 0 1-11 0c0-2.4 1.2-3.9 2.4-4.9 0 1.8.8 3 2 3.4C9.8 8 9.8 5 11 2z" fill="#e2602d" stroke="#6b2208" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 12c.6 1.5 2 2.2 2 4a2 2 0 0 1-4 0c0-1.2.9-2.2 2-4z" fill="#f1cb78"/></svg>`,
+  honra:`<svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2.2l2.6 5.4 5.9.8-4.3 4.1 1.1 5.8L11 15.5l-5.3 2.8 1.1-5.8-4.3-4.1 5.9-.8z" fill="#efe7d4" stroke="#5c4a2a" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
+  missoes:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h9l3 3v11H4z"/><path d="M7 8h6M7 11h6M7 14h4"/></svg>`,
+  chefes:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 15 4 6l4 4 2-6 2 6 4-4 1 9z"/><path d="M3 17.5h14"/></svg>`,
+  arena:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 16 15 5M13 5h2v2M5 14l-1.5 1.5M16 16 5 5M7 5H5v2M15 14l1.5 1.5"/></svg>`,
+  feira:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8 4.5 3h11L17 8M3 8h14v9H3zM3 8a2.3 2.3 0 0 0 4.7 0 2.3 2.3 0 0 0 4.6 0 2.3 2.3 0 0 0 4.7 0M8 17v-5h4v5"/></svg>`,
+  mochila:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 7a5 5 0 0 1 10 0v10H5zM8 4V2.5h4V4M7.5 11h5v3h-5z"/></svg>`,
+  bestiario:`<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M10 5C8 3.5 5.5 3 3 3.5v12c2.5-.5 5 0 7 1.5 2-1.5 4.5-2 7-1.5v-12C14.5 3 12 3.5 10 5zM10 5v12"/></svg>`
+};
+const SLOT_IC = {
+  cabeca:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 16c3 1.5 15 1.5 18 0M6 15.5c0-5 2.5-9 6-9s6 4 6 9"/></svg>`,
+  corpo:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M8 3 4 6v5l3 1v9h10v-9l3-1V6l-4-3c-1 2-2.5 3-4 3s-3-1-4-3z"/></svg>`,
+  arma:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7L9 22l-3-3zM6 19l-3 2M8 13l3 3"/></svg>`,
+  amuleto:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 3c1 4 4 7 7 7s6-3 7-7"/><path d="M12 10l4 5-4 6-4-6z"/></svg>`
+};
+const heroiSVG = (band='#e2602d') => `<svg viewBox="0 0 64 64" aria-hidden="true">
+  <path class="k" fill="#3f8f6b" d="M14 66 L18 42 Q32 34 46 42 L50 66Z"/>
+  <path class="k n" d="M24 44 L32 52 L40 44"/>
+  <circle cx="32" cy="50" r="2.4" fill="#f1cb78" class="k" style="stroke-width:1.4"/>
+  <path class="k" fill="#a8693f" d="M27 33 h10 v6 q-5 3 -10 0z"/>
+  <ellipse class="k" fill="#c98b5a" cx="32" cy="24" rx="10.5" ry="12"/>
+  <path class="k" fill="#1d140d" d="M21 22 Q20 9 32 9 Q44 9 43 22 Q38 16 32 16 Q26 16 21 22Z"/>
+  <path class="k" fill="${band}" d="M21 19 Q32 13 43 19 L43 22.5 Q32 17 21 22.5Z"/>
+  <path class="k" fill="${band}" d="M42.5 20 L50 17 L48 23 L52 26 L44 24Z"/>
+  <path d="M25 26.5 h4.5 M34.5 26.5 h4.5" stroke="#e2602d" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="27.5" cy="24" r="1.5" fill="#1d140d"/><circle cx="36.5" cy="24" r="1.5" fill="#1d140d"/>
+  <path class="k n" style="stroke-width:1.6" d="M29.5 30 Q32 31.5 34.5 30"/>
+</svg>`;
+
+/* ---------- Dados ---------- */
+const STATS = [
+  ['for','Força','Dano dos seus golpes'],
+  ['fol','Fôlego','Pontos de vida'],
+  ['mal','Malícia','Chance de golpe crítico'],
+  ['gin','Ginga','Esquiva e iniciativa']
+];
+const SLOTS = {cabeca:'Cabeça',corpo:'Corpo',arma:'Arma',amuleto:'Amuleto'};
+const CRI = {
+  saci:{nome:'Saci-Pererê',lvl:1,lugar:'Canavial da fazenda',perf:{for:.9,fol:.85,mal:1.05,gin:1.2},
+    tarefas:['Desatar os nós que o Saci deu na crina dos cavalos','Achar o fumo que o Saci escondeu no paiol','Seguir o redemoinho até a porteira'],
+    lutas:['Tomar o gorro vermelho do Saci','Prender o Saci numa garrafa','Pegar o Saci no meio do redemoinho'],
+    lore:'Moleque de uma perna só, com gorro e short vermelhos e cachimbo na boca. Esconde objetos, dá nós em crinas e some dentro de um redemoinho. Quem tomar seu gorro ganha um desejo.'},
+  curupira:{nome:'Curupira',lvl:1,lugar:'Mata ao crepúsculo',perf:{for:1.05,fol:.95,mal:.95,gin:1.05},
+    tarefas:['Seguir os rastros invertidos do Curupira','Deixar oferendas na beira da trilha','Tirar os caçadores da mata antes da noite'],
+    lutas:['Provar sua coragem ao Curupira','Escapar das armadilhas do Curupira'],
+    lore:'Menino guardião da floresta, de cabelos vermelhos e pés virados para trás. Suas pegadas apontam para o lado oposto, e assim ele confunde quem caça mais do que precisa ou fere a mata.'},
+  negrinho:{nome:'Negrinho do Pastoreio',lvl:1,lugar:'Campos do Sul',aliado:true,
+    tarefas:['Acender uma vela para achar o que se perdeu','Ajudar a reunir a tropilha ao pôr do sol','Guiar o gado de volta pela coxilha'],
+    lutas:[],
+    lore:'Na lenda gaúcha, o menino escravizado e castigado injustamente reaparece livre, montado a cavalo e pastoreando a tropilha. Quem perde alguma coisa acende uma vela e pede a ajuda dele.'},
+  cuca:{nome:'Cuca',lvl:4,lugar:'Casa de taipa',perf:{for:.95,fol:1,mal:1.15,gin:.9},
+    tarefas:['Proteger as crianças da vila até o amanhecer','Fechar as janelas antes da tempestade'],
+    lutas:['Expulsar a Cuca da janela','Quebrar o feitiço do caldeirão da Cuca'],
+    lore:'Bruxa de cabeça de jacaré, olhos amarelos e garras afiadas. Espreita as janelas nas noites de tempestade e prepara poções num caldeirão escondido no brejo.'},
+  iara:{nome:'Iara',lvl:8,lugar:'Igarapé ao luar',perf:{for:.85,fol:.95,mal:1.2,gin:1},
+    tarefas:['Atravessar o rio sem ouvir o canto da Iara','Resgatar o pescador encantado'],
+    lutas:['Resistir ao feitiço da Iara','Enfrentar a Iara nas águas escuras'],
+    lore:'Mãe-d’água dos rios, de longos cabelos negros. Emerge sob o luar e canta. Quem segue a sua voz desce ao fundo do rio e nunca mais volta à margem.'},
+  boto:{nome:'Boto-cor-de-rosa',lvl:11,lugar:'Arraial ribeirinho',perf:{for:.95,fol:.95,mal:1,gin:1.1},
+    tarefas:['Descobrir quem é o moço de chapéu branco','Vigiar a festa até o fim do arraial'],
+    lutas:['Desmascarar o Boto na festa','Seguir o Boto até a beira do rio'],
+    lore:'Nas noites de festa ribeirinha vira um moço elegante, de terno e chapéu brancos. O chapéu esconde o respiro no alto da cabeça. Antes do amanhecer ele volta para o rio.'},
+  boitata:{nome:'Boitatá',lvl:14,lugar:'Cerrado em brasa',perf:{for:1.2,fol:1,mal:.95,gin:.85},
+    tarefas:['Seguir o rastro de fogo pelo cerrado','Apagar as queimadas antes que ele chegue'],
+    lutas:['Desafiar a Cobra de Fogo','Encarar os olhos de brasa do Boitatá'],
+    lore:'Serpente de fogo gigante, de olhos incandescentes. Rasteja pelo campo à noite e cega ou queima quem incendeia a mata.'},
+  mapinguari:{nome:'Mapinguari',lvl:21,lugar:'Floresta funda',perf:{for:1.1,fol:1.25,mal:.85,gin:.8},
+    tarefas:['Seguir o grito do Mapinguari','Guiar os caçadores para fora da floresta'],
+    lutas:['Enfrentar o Mapinguari','Proteger a aldeia da fúria do Mapinguari'],
+    lore:'Gigante peludo da Amazônia, com garras curvas e uma boca enorme na barriga. Seu grito ecoa pela floresta e paralisa quem o escuta.'}
+};
+const ATOS = [
+  {nome:'A Mata Encantada',de:1,ate:10,capa:'cuca',fases:[
+    ['Saci Ligeiro','saci'],['Redemoinho do Saci','saci'],['Rastros Trocados','curupira'],['Gorro Encantado','saci'],['Curupira Enfurecido','curupira'],
+    ['Sombra na Janela','cuca'],['Bando de Sacis','saci'],['Guardião de Cabelos de Fogo','curupira'],['Caldeirão da Cuca','cuca'],['Cuca, a Bruxa do Brejo','cuca']]},
+  {nome:'Rios e Brasas',de:11,ate:20,capa:'boitata',fases:[
+    ['Canto do Igarapé','iara'],['Moço de Chapéu Branco','boto'],['Correnteza Encantada','iara'],['Festa do Boto','boto'],['Fogo-Fátuo','boitata'],
+    ['Iara do Luar','iara'],['Boto Encantado','boto'],['Rastro de Brasa','boitata'],['Rainha das Águas','iara'],['Boitatá, a Cobra de Fogo','boitata']]},
+  {nome:'A Floresta Funda',de:21,ate:30,capa:'mapinguari',fases:[
+    ['Pegadas Gigantes','mapinguari'],['Cuca da Tempestade','cuca'],['Boitatá Ancestral','boitata'],['Grito na Floresta','mapinguari'],['Iara das Profundezas','iara'],
+    ['Curupira Ancião','curupira'],['Boto Sombrio','boto'],['Fúria da Mata','mapinguari'],['Olhos de Brasa','boitata'],['Mapinguari, o Devorador','mapinguari']]}
+];
+// força média de um jogador típico em cada nível (simulação de progressão)
+const CURVA = [12,13,16,19,23,27,30,33,35,38,40,42,44,46,48,49,51,52,53,55,56,57,58,59,60,61,62,63,64,64,65];
+const RANKS = [[1,'Aprendiz da Mata'],[5,'Mateiro'],[10,'Rastreador'],[15,'Benzedor'],[20,'Guardião dos Rios'],[25,'Guardião Ancestral'],[30,'Lenda Viva']];
+const DIF = ['Fácil','Média','Difícil'];
+const PRIM = {cabeca:'gin',corpo:'fol',arma:'for',amuleto:'mal'};
+const NOMES_ITEM = {
+  cabeca:['Chapéu de Couro','Gorro Vermelho','Cocar de Penas','Chapéu de Palha','Lenço de Chita'],
+  corpo:['Gibão de Vaqueiro','Bata de Algodão','Manto de Folhas','Colete de Couro','Poncho de Lã'],
+  arma:['Peixeira','Estilingue','Zarabatana','Cajado de Jatobá','Facão','Arco de Pau-d’arco','Laço Trançado'],
+  amuleto:['Figa de Arruda','Patuá','Fita do Bonfim','Pena de Gavião','Muiraquitã de Barro','Dente de Onça']
+};
+const EPITETOS = ['da Lua Cheia','do Mangue','de Jurema','do Rio Negro','de Aroeira','da Serra','do Cerrado','do Velho Chico','do Pampa'];
+const RAR = [{n:'Comum',m:1},{n:'Rara',m:1.5},{n:'Lendária',m:2.2}];
+const RIV_N = ['Tonho','Zefa','Biu','Rosinha','Chico','Mariá','Dito','Neném','Juca','Iracema','Bento','Lia','Tião','Dora','Quinca','Naná'];
+const RIV_A = ['Ventania','Pé-Ligeiro','do Brejo','Tempestade','da Serra','Mandacaru','Jatobá','Carcará','Trovão','da Vereda'];
+const BANDS = ['#8fc0d4','#e59aa0','#f1cb78','#9b6b43','#7a5fa0','#e2602d','#3fae7f'];
+
+/* ---------- Utilidades ---------- */
+const rnd = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+const rand = (a,b) => a + Math.random()*(b-a);
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = s => { s = Math.max(0,Math.ceil(s)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60), r = s%60; return (h? h+':'+String(m).padStart(2,'0') : m)+':'+String(r).padStart(2,'0'); };
+const $ = id => document.getElementById(id);
+const xpNeed = l => Math.round(60*Math.pow(l,1.45));
+const custoTreino = v => Math.round(8*Math.pow(1.11, v-6));
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const statNome = k => STATS.find(s=>s[0]===k)[1];
+
+/* ---------- Estado ---------- */
+let S;
+function novo(){
+  const now = Date.now();
+  const s = {v:2,nome:'Jaci',lvl:1,xp:0,vint:150,muir:12,energia:EN_MAX,enUpd:now,coragem:CO_MAX,coUpd:now,honra:0,
+    stats:{for:10,fol:10,mal:8,gin:8},equip:{cabeca:null,corpo:null,arma:null,amuleto:null},mochila:[],
+    ofertas:[],ativa:null,feira:[],feiraUpd:0,vitorias:{},vistos:{},duelos:[],rivais:[],tab:'missoes',uid:1,missoes:0,
+    fases:[0,0,0],atoSel:0,faseSel:0,chefeEspera:0};
+  s.equip.arma = {id:s.uid++,slot:'arma',nome:'Estilingue de Goiabeira',rar:0,st:{for:4,gin:1},preco:40};
+  return s;
+}
+function carregar(){ try{ const t = localStorage.getItem(KEY); if(!t) return null; const s = JSON.parse(t); return s && s.v===2 ? s : null; }catch(e){ return null; } }
+function salvar(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+function total(){ const t = {...S.stats}; Object.values(S.equip).forEach(it => { if(it) for(const k in it.st) t[k] += it.st[k]; }); return t; }
+const bonus = k => Object.values(S.equip).reduce((a,it)=>a+(it&&it.st[k]||0),0);
+const pv = (st,lvl) => 40 + st.fol*8 + lvl*12;
+const danoMedio = (st,lvl) => Math.round(st.for*1.7 + lvl*2.5);
+const rank = () => RANKS.filter(r=>S.lvl>=r[0]).pop()[1];
+const poolCri = () => Object.keys(CRI).filter(c => CRI[c].lvl <= S.lvl);
+
+function genMissao(){
+  const c = pick(poolCri()), cr = CRI[c], d = rnd(1,3), luta = !cr.aliado && Math.random() < .6, lv = S.lvl;
+  const mult = [1,1.6,2.4][d-1] * (luta?1.3:1) * (1 + cr.lvl*.02);
+  const frases = luta ? cr.lutas : cr.tarefas;
+  S.vistos[c] = true;
+  return {id:S.uid++, c, luta, d, f:rnd(0,frases.length-1), dur:[20,45,90][d-1], en:[6,10,15][d-1],
+    xp:Math.round((12+lv*5)*mult), vint:Math.round((10+lv*6)*mult)};
+}
+const tituloMissao = m => (m.luta ? CRI[m.c].lutas : CRI[m.c].tarefas)[m.f];
+function genItem(lv, slot, rarMin){
+  slot = slot || pick(Object.keys(SLOTS));
+  const roll = Math.random(); let rar = roll < .06 ? 2 : roll < .32 ? 1 : 0;
+  if(rarMin != null) rar = Math.max(rar, rarMin);
+  const pts = Math.round((4 + lv*1.6) * RAR[rar].m);
+  const prim = PRIM[slot], outros = STATS.map(s=>s[0]).filter(k=>k!==prim);
+  const st = {}; st[prim] = Math.ceil(pts*.6); const o = pick(outros); st[o] = pts - st[prim];
+  const nome = pick(NOMES_ITEM[slot]) + (rar ? ' ' + pick(EPITETOS) : '');
+  return {id:S.uid++, slot, nome, rar, st, preco:Math.round(pts*10*(1+lv*.08))};
+}
+const genFeira = () => [...Object.keys(SLOTS), pick(Object.keys(SLOTS)), pick(Object.keys(SLOTS))].map(s => genItem(S.lvl, s));
+function genRival(){
+  const lv = Math.max(1, S.lvl + rnd(-1,2)), t = total();
+  const f = rand(.78,1.12) * (1 + (lv-S.lvl)*.06), st = {};
+  STATS.forEach(([k]) => st[k] = Math.max(3, Math.round(t[k]*f*rand(.85,1.15))));
+  return {id:S.uid++, nome:pick(RIV_N)+' '+pick(RIV_A), lvl:lv, st, cor:pick(BANDS), honra:Math.max(0, Math.round(S.honra*rand(.6,1.4) + rnd(0,40)))};
+}
+function inimigoFase(a, n){
+  const [nome, c] = ATOS[a].fases[n], ls = ATOS[a].de + n, boss = n === 9;
+  const m = boss ? 1.12 : .8 + .022*(n+1), base = CURVA[ls-1], st = {};
+  STATS.forEach(([k]) => st[k] = Math.round(base*m*CRI[c].perf[k]));
+  return {nome, c, lvl:ls, st, boss};
+}
+function garantir(){
+  while(S.ofertas.length < 3) S.ofertas.push(genMissao());
+  while(S.rivais.length < 3) S.rivais.push(genRival());
+  if(!S.feira.length || Date.now() - S.feiraUpd > FEIRA_MS){ S.feira = genFeira(); S.feiraUpd = Date.now(); }
+}
+function regen(){
+  const now = Date.now();
+  if(S.energia < EN_MAX){ const g = Math.floor((now-S.enUpd)/EN_MS); if(g>0){ S.energia = Math.min(EN_MAX, S.energia+g); S.enUpd += g*EN_MS; } } else S.enUpd = now;
+  if(S.coragem < CO_MAX){ const g = Math.floor((now-S.coUpd)/CO_MS); if(g>0){ S.coragem = Math.min(CO_MAX, S.coragem+g); S.coUpd += g*CO_MS; } } else S.coUpd = now;
+}
+function gastarEnergia(n){ if(S.energia >= EN_MAX) S.enUpd = Date.now(); S.energia -= n; }
+function gastarCoragem(){ if(S.coragem >= CO_MAX) S.coUpd = Date.now(); S.coragem -= 1; }
+function ganharXP(n){
+  S.xp += n;
+  while(S.xp >= xpNeed(S.lvl)){
+    S.xp -= xpNeed(S.lvl); S.lvl++; S.muir += 1; S.energia = EN_MAX; S.enUpd = Date.now();
+    aviso(`Nível ${S.lvl}! Energia cheia e +1 muiraquitã.`, true);
+    Object.values(CRI).forEach(c => { if(c.lvl === S.lvl) aviso(`${c.nome} agora aparece nas missões.`, true); });
+    ATOS.forEach(a => { if(a.de === S.lvl) aviso(`Novo ato de chefes: ${a.nome}.`, true); });
+  }
+  garantir();
+}
+
+/* ---------- Luta ---------- */
+function lutador(o){ const hp = pv(o.st, o.lvl); return {...o, hp, max:hp}; }
+function lutar(A, B){
+  const f = [{...A},{...B}], log = [];
+  let at = (f[0].st.gin + Math.random()*6 >= f[1].st.gin + Math.random()*6) ? 0 : 1;
+  for(let i=0; i<40 && f[0].hp>0 && f[1].hp>0; i++){
+    const a = f[at], d = f[1-at];
+    const esq = clamp(d.st.gin/(d.st.gin + a.st.for + 30)*.55, .03, .35);
+    const cri = clamp(a.st.mal/(a.st.mal + d.st.fol + 30)*.6, .03, .4);
+    const e = {at, dmg:0, crit:false, esq:false};
+    if(Math.random() < esq) e.esq = true;
+    else { let dm = (a.st.for*1.7 + a.lvl*2.5) * rand(.8,1.2); if(Math.random() < cri){ dm *= 2; e.crit = true; } e.dmg = Math.max(1, Math.round(dm)); d.hp = Math.max(0, d.hp - e.dmg); }
+    e.hp = [f[0].hp, f[1].hp]; log.push(e); at = 1-at;
+  }
+  const win = f[1].hp <= 0 || (f[0].hp > 0 && f[0].hp/f[0].max >= f[1].hp/f[1].max);
+  return {win, log, A, B};
+}
+const meuLutador = () => lutador({nome:S.nome, lvl:S.lvl, st:total(), tipo:'heroi'});
+
+/* ---------- Combate animado ---------- */
+let anim = null, velocidade = 1;
+function retrato(F){
+  if(F.tipo === 'heroi') return `<div class="emblema">${heroiSVG()}</div>`;
+  if(F.tipo === 'rival') return `<div class="emblema rv">${heroiSVG(F.cor)}</div>`;
+  return `<img src="${IMG(F.c)}" alt="${esc(F.nome)}">`;
+}
+function premiosHTML(p){ return `<div class="premios" style="justify-content:center">${p.map(x=>`<span class="chip">${x}</span>`).join('')}</div>`; }
+function fecharModal(){ clearTimeout(anim); anim = null; $('modal').hidden = true; $('modal').innerHTML = ''; render(); }
+
+function mostrarLuta(res, titulo, premios, cena){
+  const {A,B,log,win} = res;
+  const pl = (F,i) => `<div class="pl ${i?'r':''}"><b>${esc(F.nome)}</b><small>Nível ${F.lvl} · <span id="hpn${i}">${F.max}</span> / ${F.max} PV</small><div class="hp"><em id="hpg${i}" style="width:100%"></em><i id="hp${i}" style="width:100%"></i></div></div>`;
+  const lut = (F,i) => `<div class="lut ${i?'r':''}" id="f${i}"><div class="quadro">${retrato(F)}</div></div>`;
+  $('modal').innerHTML = `<div class="combate">
+    <div class="cena ${cena?'':'arena'}">${cena?`<img src="${IMG(cena)}" alt="">`:''}</div>
+    <div class="flash" id="flash"></div>
+    <div class="comb-in">
+      <div class="comb-tit"><span class="rotulo">${B.boss?'Chefe':'Combate'}</span><h2>${esc(titulo)}</h2></div>
+      <div class="placar">${pl(A,0)}<span class="vs">VS</span>${pl(B,1)}</div>
+      <div class="palco" id="palco">${lut(A,0)}${lut(B,1)}</div>
+      <p class="narra" id="narra">Os dois se encaram…</p>
+      <div class="resultado" id="fim" hidden><b class="${win?'v':'d'}">${win?'Vitória!':'Derrota'}</b>${premiosHTML(premios)}</div>
+      <div class="comb-acoes">
+        <button class="btn sec peq" data-act="vel" id="btnVel">Velocidade ${velocidade}×</button>
+        <button class="btn sec peq" data-act="pularLuta" id="btnPular">Pular</button>
+        <button class="btn" data-act="fecharModal" id="btnFechar" hidden>Continuar</button>
+      </div>
+    </div></div>`;
+  $('modal').hidden = false;
+  let i = 0;
+  const reiniciar = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+  const flutuar = (lado, html, cls) => { const d = document.createElement('div'); d.className = 'dano ' + (cls||''); d.innerHTML = html; $('f'+lado).appendChild(d); setTimeout(()=>d.remove(), 1100); };
+  const atualizarHP = e => [0,1].forEach(k => { const F = k?B:A, p = e.hp[k]/F.max*100+'%'; $('hp'+k).style.width = p; $('hpg'+k).style.width = p; $('hpn'+k).textContent = e.hp[k]; });
+  const terminar = () => {
+    clearTimeout(anim); anim = null;
+    $((win?'f1':'f0')).classList.add('caido');
+    $('narra').hidden = true; $('fim').hidden = false;
+    $('btnPular').hidden = true; $('btnVel').hidden = true; $('btnFechar').hidden = false; $('btnFechar').focus();
+  };
+  const turno = (animar) => {
+    if(i >= log.length) return terminar();
+    const e = log[i++], atk = e.at, def = 1-e.at, An = atk?B:A, Dn = atk?A:B;
+    const fa = $('f'+atk), fd = $('f'+def), narra = $('narra');
+    narra.className = 'narra' + (e.crit?' crit':'');
+    narra.textContent = e.esq ? `${Dn.nome} esquiva na ginga!` : e.crit ? `Golpe crítico de ${An.nome}!` : `${An.nome} acerta ${Dn.nome}.`;
+    if(!animar){ atualizarHP(e); return; }
+    reiniciar(fa, e.crit ? 'atkc' : 'atk');
+    setTimeout(() => {
+      if(e.esq){ reiniciar(fd,'esquiva'); flutuar(def,'Esquivou!','esq'); return; }
+      atualizarHP(e);
+      if(e.crit){
+        reiniciar(fd,'levac'); reiniciar($('palco'),'tremor'); reiniciar($('flash'),'on');
+        flutuar(def,`<small>Crítico</small>−${e.dmg}`,'crit');
+        const c = document.createElement('div'); c.className = 'corte';
+        c.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M10 15 L90 85" stroke="#f1cb78" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M85 12 L22 92" stroke="#fff4e8" stroke-width="3" stroke-linecap="round" fill="none" style="animation-delay:.08s"/></svg>`;
+        fd.appendChild(c); setTimeout(()=>c.remove(), 700);
+      } else { reiniciar(fd,'leva'); flutuar(def,`−${e.dmg}`); }
+    }, e.crit ? 280 : 200);
+  };
+  const ciclo = () => { if(i >= log.length){ anim = setTimeout(terminar, 500/velocidade); return; } turno(true); anim = setTimeout(ciclo, (log[i-1].crit?1150:850)/velocidade); };
+  acoes.pularLuta = () => { clearTimeout(anim); while(i < log.length) turno(false); terminar(); };
+  acoes.vel = () => { velocidade = velocidade === 1 ? 2 : velocidade === 2 ? 4 : 1; $('btnVel').textContent = `Velocidade ${velocidade}×`; };
+  if(reduz){ acoes.pularLuta(); } else anim = setTimeout(ciclo, 600);
+}
+function mostrarSimples(titulo, c, texto, premios){
+  $('modal').innerHTML = `<div class="combate simples">
+    <div class="cena"><img src="${IMG(c)}" alt=""></div>
+    <div class="simples-topo"><div class="quadro"><img src="${IMG(c)}" alt="${esc(CRI[c].nome)}"></div>
+      <div><span class="rotulo">Missão cumprida</span><h2 style="font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.15;margin:4px 0 6px">${esc(titulo)}</h2><p style="margin:0;color:var(--texto-2)">${texto}</p></div></div>
+    ${premiosHTML(premios)}
+    <div class="comb-acoes"><button class="btn" data-act="fecharModal" id="btnFechar">Continuar</button></div></div>`;
+  $('modal').hidden = false; $('btnFechar').focus();
+}
+
+/* ---------- Avisos ---------- */
+function aviso(msg, ouro){ const d = document.createElement('div'); d.className = 'aviso' + (ouro?' ouro':''); d.textContent = msg; $('avisos').appendChild(d); setTimeout(() => d.remove(), 3400); }
+
+/* ---------- Render: topo e herói ---------- */
+function renderRecursos(){
+  const now = Date.now();
+  const enProx = S.energia >= EN_MAX ? 'Cheia' : `+1 em ${fmt((EN_MS-(now-S.enUpd))/1000)} · cheia em ${fmt(((EN_MAX-S.energia-1)*EN_MS + EN_MS-(now-S.enUpd))/1000)}`;
+  const coProx = S.coragem >= CO_MAX ? 'Cheia' : `+1 em ${fmt((CO_MS-(now-S.coUpd))/1000)}`;
+  $('recursos').innerHTML = `
+    <div class="rec" title="Vinténs">${IC.vint}<div class="rec-txt"><b>${S.vint.toLocaleString('pt-BR')}</b><small>vinténs</small></div></div>
+    <div class="rec" title="Muiraquitãs">${IC.muir}<div class="rec-txt"><b>${S.muir}</b><small>muiraquitãs</small></div></div>
+    <div class="rec" title="Energia para missões e chefes">${IC.en}<div class="rec-txt"><b>${S.energia} / ${EN_MAX}</b><div class="rec-barra"><i style="width:${S.energia}%;background:var(--lua)"></i></div><small>${enProx}</small></div>
+      <button class="mais" data-act="recarregar" aria-label="Recarregar energia por 2 muiraquitãs" title="Recarregar por 2 muiraquitãs">+</button></div>
+    <div class="rec" title="Coragem para duelos">${IC.co}<div class="rec-txt"><b>${S.coragem} / ${CO_MAX}</b><div class="rec-barra"><i style="width:${S.coragem/CO_MAX*100}%;background:var(--brasa)"></i></div><small>${coProx}</small></div></div>`;
+}
+function renderHeroi(){
+  const t = total(), need = xpNeed(S.lvl);
+  $('heroi').innerHTML = `
+    <div class="heroi-topo">
+      <div class="medalhao"><div class="medalhao-in">${heroiSVG()}</div><span class="nivel-badge">${S.lvl}</span></div>
+      <div class="heroi-nome">${esc(S.nome)}</div>
+      <div class="titulo-rank">${rank()}</div>
+      <div class="xp"><div class="barra"><i style="width:${S.xp/need*100}%"></i></div><div class="xp-num"><span>${S.xp} / ${need} XP</span><span>Nível ${S.lvl+1}</span></div></div>
+    </div>
+    <div class="forca-total"><div><span class="rotulo">Vida</span><b>${pv(t,S.lvl)}</b></div><div><span class="rotulo">Dano médio</span><b>${danoMedio(t,S.lvl)}</b></div></div>
+    <div class="atributos"><span class="rotulo" style="margin-bottom:4px">Treinar atributos</span>${STATS.map(([k,n,d]) => { const c = custoTreino(S.stats[k]), b = bonus(k); return `
+      <div class="attr"><div class="attr-nome"><b>${n}</b><small>${d}</small></div>
+        <div class="attr-val">${t[k]}${b?`<small>+${b}</small>`:''}</div>
+        <button class="treino" data-act="treinar" data-id="${k}" ${S.vint<c?'disabled':''} aria-label="Treinar ${n} por ${c} vinténs">${IC.vint}${c}</button></div>`; }).join('')}</div>
+    <div><span class="rotulo">Equipamento</span><div class="mini-slots" style="margin-top:6px">${Object.keys(SLOTS).map(s => { const it = S.equip[s]; return `<div class="mslot ${it?'ok r'+it.rar:''}" title="${it?esc(it.nome):SLOTS[s]+' vazio'}">${SLOT_IC[s]}</div>`; }).join('')}</div></div>`;
+}
+function renderAbas(){
+  const pronto = S.ativa && Date.now() >= S.ativa.fim;
+  const abas = [['missoes','Missões'],['chefes','Chefes'],['arena','Arena'],['feira','Feira'],['mochila','Mochila'],['bestiario','Bestiário']];
+  $('abas').innerHTML = abas.map(([id,n]) => `<button class="aba" role="tab" aria-selected="${S.tab===id}" data-act="tab" data-id="${id}">${IC[id]}${n}${id==='missoes'&&pronto?'<span class="ponto" aria-label="Missão pronta"></span>':''}</button>`).join('');
+}
+
+/* ---------- Telas ---------- */
+function telaMissoes(){
+  const ocupado = !!S.ativa;
+  let h = `<div style="display:flex;flex-direction:column;gap:18px">`;
+  if(S.ativa){
+    const m = S.ativa, c = CRI[m.c], pronto = Date.now() >= m.fim;
+    h += `<section class="ativa"><div class="ativa-fundo"><img src="${IMG(m.c)}" alt=""></div>
+      <div class="ativa-corpo">
+        <span class="rotulo" style="color:var(--latao-2)">${pronto ? 'Missão pronta' : 'Em missão · ' + c.lugar}</span>
+        <h3>${esc(tituloMissao(m))}</h3>
+        <div class="barra"><i data-barra style="width:0%"></i></div>
+        <div class="ativa-linha">
+          <span class="cd" data-cd>${fmt((m.fim-Date.now())/1000)}</span>
+          <button class="btn ${m.luta?'brasa':''}" data-act="concluir" ${pronto?'':'disabled'}>${m.luta?'Lutar agora':'Concluir'}</button>
+          ${pronto?'':`<button class="btn sec" data-act="pular">${IC.muir} Acelerar por 1</button>`}
+        </div></div></section>`;
+  }
+  h += `<div class="sec-topo"><div><h2>Quadro de missões</h2><p>Cada missão leva um tempo e gasta energia. Lutas rendem mais, mas você pode perder. Novas lendas aparecem conforme você sobe de nível.</p></div>
+      <button class="btn sec" data-act="renovarMissoes">${IC.muir} Trocar missões por 1</button></div>
+    <div class="missoes">${S.ofertas.map(m => cartaoMissao(m, ocupado)).join('')}</div></div>`;
+  return h;
+}
+function cartaoMissao(m, ocupado){
+  const c = CRI[m.c], falta = S.energia < m.en;
+  return `<article class="painel missao">
+    <div class="quadro"><img src="${IMG(m.c)}" alt="${esc(c.nome)}" loading="lazy">
+      <div class="selos"><span class="selo ${m.luta?'luta':''}">${m.luta?'Luta':'Tarefa'}</span><span class="selo">${DIF[m.d-1]}</span></div>
+      <div class="sobre"><small>${c.nome} · ${c.lugar}</small><h3>${esc(tituloMissao(m))}</h3></div></div>
+    <dl class="dados">
+      <div><dt>Tempo</dt><dd>${fmt(m.dur)}</dd></div>
+      <div><dt>Energia</dt><dd style="${falta?'color:var(--brasa)':''}">${m.en}</dd></div>
+      <div><dt>XP</dt><dd>${m.xp}</dd></div>
+      <div><dt>Vinténs</dt><dd>${m.vint}</dd></div>
+    </dl>
+    <button class="btn" data-act="partir" data-id="${m.id}" ${ocupado||falta?'disabled':''}>${ocupado?'Em outra missão':falta?'Falta energia':'Partir'}</button>
+  </article>`;
+}
+
+function telaChefes(){
+  const a = S.atoSel, ato = ATOS[a], feitas = S.fases[a];
+  const n = Math.min(S.faseSel, 9), ini = inimigoFase(a, n), t = total();
+  const liberadaAto = S.lvl >= ato.de;
+  const estado = n < feitas ? 'ok' : (n === feitas && liberadaAto && S.lvl >= ini.lvl) ? 'livre' : 'trava';
+  const espera = Math.max(0, S.chefeEspera - Date.now());
+  const maxStat = Math.max(...STATS.map(([k]) => Math.max(t[k], ini.st[k])));
+  const xpR = Math.round(xpNeed(ini.lvl)*(ini.boss?.5:.18)), vR = (40+ini.lvl*25)*(ini.boss?3:1);
+  let motivo = '';
+  if(estado === 'ok') motivo = 'Fase vencida.';
+  else if(!liberadaAto) motivo = `Este ato abre no nível ${ato.de}.`;
+  else if(n > feitas) motivo = `Vença a fase ${feitas+1} primeiro.`;
+  else if(S.lvl < ini.lvl) motivo = `Exige nível ${ini.lvl}.`;
+  return `<div style="display:flex;flex-direction:column;gap:16px">
+    <div class="sec-topo"><div><h2>Torre dos Chefes</h2><p>Três atos de dez fases. Cada fase exige um nível mínimo e só pode ser vencida uma vez. A décima fase de cada ato é o chefe. Cada tentativa gasta ${CHEFE_EN} de energia.</p></div></div>
+    <div class="atos" role="group" aria-label="Atos">${ATOS.map((x,i) => `<button class="ato" aria-pressed="${a===i}" data-act="ato" data-id="${i}" ${S.lvl<x.de?'disabled':''}>
+      <img src="${IMG(x.capa)}" alt=""><span class="ato-txt"><span class="rotulo">Ato ${['I','II','III'][i]} · nível ${x.de}–${x.ate}</span><b>${x.nome}</b>
+      <span class="ato-prog">${Array.from({length:10},(_,k)=>`<i class="${k<S.fases[i]?'ok':''}"></i>`).join('')}</span>
+      ${S.lvl<x.de?`<small>Abre no nível ${x.de}</small>`:''}</span></button>`).join('')}</div>
+    <div class="painel">
+      <div class="trilha">${ato.fases.map((f,k) => { const lv = ato.de+k, st = k<feitas?'ok':(k===feitas&&S.lvl>=lv&&liberadaAto)?'livre':'trava';
+        return k===9 ? `<button class="no boss ${st}" data-act="fase" data-id="${k}" aria-current="${n===k}" aria-label="Chefe: ${esc(f[0])}"><img src="${IMG(f[1])}" alt=""></button>`
+          : `<button class="no ${st}" data-act="fase" data-id="${k}" aria-current="${n===k}" aria-label="Fase ${k+1}: ${esc(f[0])}">${k+1}</button>`; }).join('')}</div>
+      <div class="fase" style="border-top:1px solid var(--borda)">
+        <div class="quadro"><img src="${IMG(ini.c)}" alt="${esc(CRI[ini.c].nome)}">
+          <div class="selos"><span class="selo ${ini.boss?'chefe':'luta'}">${ini.boss?'Chefe':'Fase '+(n+1)}</span></div></div>
+        <div style="min-width:0">
+          <span class="rotulo">Ato ${['I','II','III'][a]} · fase ${n+1} de 10 · nível ${ini.lvl}</span>
+          <h3>${esc(ini.nome)}</h3>
+          <p>${CRI[ini.c].lore}</p>
+          <div class="comparar">
+            <div class="cmp" style="font-size:11px;color:var(--texto-2)"><span></span><span style="text-align:right">Você</span><span></span><span>${esc(CRI[ini.c].nome)}</span><span></span></div>
+            ${STATS.map(([k,nm]) => `<div class="cmp"><span>${nm}</span><span class="b v"><i style="width:${t[k]/maxStat*100}%"></i></span><span class="n">${t[k]}</span><span class="b e"><i style="width:${ini.st[k]/maxStat*100}%"></i></span><span class="n">${ini.st[k]}</span></div>`).join('')}
+          </div>
+          <span class="rotulo">Recompensa da primeira vitória</span>
+          <div class="premios" style="margin-top:6px"><span class="chip">+${xpR} XP</span><span class="chip">${IC.vint}${vR}</span>${ini.boss?`<span class="chip">${IC.muir}+3</span><span class="chip">Item raro ou lendário</span>`:''}</div>
+          <div class="fase-acoes">
+            ${estado==='livre' ? `<button class="btn brasa" data-act="enfrentar" ${espera||S.energia<CHEFE_EN?'disabled':''}>Enfrentar · ${CHEFE_EN} energia</button>
+              ${espera?`<span class="aviso-txt">Recuperando-se da derrota: <b data-espera>${fmt(espera/1000)}</b></span>`:S.energia<CHEFE_EN?`<span class="aviso-txt">Falta energia.</span>`:''}`
+              : `<span class="aviso-txt">${motivo}</span>`}
+          </div>
+        </div></div></div></div>`;
+}
+
+function telaArena(){
+  const t = total(), meu = STATS.reduce((a,[k])=>a+t[k],0);
+  return `<div style="display:flex;flex-direction:column;gap:18px">
+    <div class="sec-topo"><div><h2>Arena da Roda</h2><p>Desafie outros guardiões e ganhe honra. Cada duelo gasta 1 de coragem, que volta sozinha a cada 2 minutos.</p></div>
+      <span class="chip" style="font-size:15px;padding:6px 12px 6px 8px">${IC.honra}${S.honra} de honra</span></div>
+    <div class="rivais">${S.rivais.map(r => { const sum = STATS.reduce((a,[k])=>a+r.st[k],0);
+      const [cls,txt] = sum > meu*1.08 ? ['d','Mais forte'] : sum < meu*.92 ? ['f','Mais fraco'] : ['p','Parelho'];
+      return `<article class="painel rival">
+        <div class="rival-topo"><div class="rival-av">${heroiSVG(r.cor)}</div><div style="min-width:0"><h3>${esc(r.nome)}</h3><span class="aviso-txt">Nível ${r.lvl} · ${r.honra} de honra</span><br><span class="risco ${cls}">${txt}</span></div></div>
+        <div class="mini-st">${STATS.map(([k,n]) => `<div>${n}<b>${r.st[k]}</b></div>`).join('')}</div>
+        <button class="btn brasa" data-act="desafiar" data-id="${r.id}" ${S.coragem<1?'disabled':''}>Desafiar · 1 coragem</button>
+      </article>`; }).join('')}</div>
+    <section class="painel" style="padding:16px"><span class="rotulo">Últimos duelos</span>
+      ${S.duelos.length ? `<ul class="lista" style="margin-top:6px">${S.duelos.map(d => `<li><span>${esc(d.nome)}</span><span class="${d.win?'v':'d'}">${d.win?'Venceu':'Perdeu'} · ${d.win?'+':''}${d.honra} honra</span></li>`).join('')}</ul>` : `<p class="aviso-txt" style="margin:8px 0 0">Nenhum duelo ainda. Os resultados aparecem aqui.</p>`}
+    </section></div>`;
+}
+
+function itemHTML(it, acoes, comparar){
+  let linhas = Object.entries(it.st).map(([k,v]) => `<span><span>${statNome(k)}</span><b class="mais-v">+${v}</b></span>`).join('');
+  if(comparar){
+    const atual = S.equip[it.slot]; const keys = new Set([...Object.keys(it.st), ...Object.keys(atual?atual.st:{})]);
+    const delta = [...keys].map(k => { const d = (it.st[k]||0) - (atual&&atual.st[k]||0); return d ? `<b class="${d>0?'mais-v':'menos-v'}">${d>0?'+':''}${d} ${statNome(k)}</b>` : ''; }).filter(Boolean).join(' · ');
+    linhas += `<span style="margin-top:4px;font-size:12px;color:var(--texto-2);display:block">${atual ? 'Comparado ao equipado: ' + (delta || 'igual') : 'Espaço vazio'}</span>`;
+  }
+  return `<div class="item r${it.rar}">
+    <div class="item-topo"><div class="item-ic">${SLOT_IC[it.slot]}</div><div style="min-width:0"><div class="item-rar">${RAR[it.rar].n} · ${SLOTS[it.slot]}</div><div class="item-nome">${esc(it.nome)}</div></div></div>
+    <div class="item-st">${linhas}</div>
+    ${acoes ? `<div class="item-acoes">${acoes}</div>` : ''}</div>`;
+}
+function telaFeira(){
+  return `<div style="display:flex;flex-direction:column;gap:18px">
+    <div class="sec-topo"><div><h2>Feira do Arraial</h2><p>Mercadorias novas a cada 10 minutos. Próxima troca em <b data-feira>${fmt((FEIRA_MS-(Date.now()-S.feiraUpd))/1000)}</b>.</p></div>
+      <button class="btn sec" data-act="renovarFeira">${IC.muir} Trocar agora por 1</button></div>
+    <div class="itens">${S.feira.length ? S.feira.map(it => itemHTML(it, `<span class="preco">${IC.vint}${it.preco}</span><button class="btn peq" data-act="comprar" data-id="${it.id}" ${S.vint<it.preco?'disabled':''}>Comprar</button>`, true)).join('') : `<div class="item vazio">Você comprou tudo. Volte na próxima troca.</div>`}</div></div>`;
+}
+let confirmarReset = false;
+function telaMochila(){
+  return `<div style="display:flex;flex-direction:column;gap:18px">
+    <div class="sec-topo"><div><h2>Mochila</h2><p>Itens equipados somam atributos ao seu guardião.</p></div>
+      <div class="campo"><label class="rotulo" for="nomeHeroi">Nome do guardião</label><input id="nomeHeroi" maxlength="18" value="${esc(S.nome)}" autocomplete="off"></div></div>
+    <span class="rotulo">Equipado</span>
+    <div class="equipados">${Object.keys(SLOTS).map(s => S.equip[s] ? itemHTML(S.equip[s], `<button class="btn sec peq" data-act="desequipar" data-id="${s}">Guardar</button>`) : `<div class="item vazio"><div class="item-ic" style="--rar:var(--borda)">${SLOT_IC[s]}</div>${SLOTS[s]} vazio</div>`).join('')}</div>
+    <span class="rotulo">Na mochila · ${S.mochila.length} de ${MOCHILA}</span>
+    ${S.mochila.length ? `<div class="itens">${S.mochila.map(it => itemHTML(it, `<button class="btn peq" data-act="equipar" data-id="${it.id}">Equipar</button><button class="btn sec peq" data-act="vender" data-id="${it.id}">Vender · ${Math.round(it.preco*.3)}</button>`, true)).join('')}</div>`
+      : `<p class="aviso-txt" style="margin:0">Itens comprados na Feira ou ganhos em missões e chefes aparecem aqui.</p>`}</div>`;
+}
+function telaBestiario(){
+  return `<div style="display:flex;flex-direction:column;gap:18px">
+    <div class="sec-topo"><div><h2>Bestiário</h2><p>As lendas que você já encontrou. Cada uma é revelada quando aparece pela primeira vez no seu caminho.</p></div></div>
+    <div class="bestas">${Object.entries(CRI).map(([id,c]) => { const visto = S.vistos[id], v = S.vitorias[id]||0;
+      return `<article class="painel besta ${visto?'':'oculta'}"><div class="quadro"><img src="${IMG(id)}" alt="${visto?esc(c.nome):'Lenda desconhecida'}" loading="lazy"></div>
+        <div><span class="rotulo">${visto ? c.lugar + (c.aliado ? ' · aliado' : ' · ' + (v ? v + ' vitória' + (v>1?'s':'') : 'nenhuma vitória')) : 'Aparece a partir do nível ' + c.lvl}</span>
+        <h3>${visto?c.nome:'Lenda desconhecida'}</h3></div>
+        <p>${visto?c.lore:'Continue suas missões para encontrar esta figura.'}</p></article>`; }).join('')}</div></div>`;
+}
+
+function renderTela(){
+  const t = {missoes:telaMissoes, chefes:telaChefes, arena:telaArena, feira:telaFeira, mochila:telaMochila, bestiario:telaBestiario}[S.tab] || telaMissoes;
+  $('tela').innerHTML = t(); contagens();
+}
+function renderRodape(){
+  $('rodape').innerHTML = `<span>O progresso fica salvo neste navegador.</span>` + (confirmarReset
+    ? `<span>Apagar todo o progresso? <button class="linkbtn perigo" data-act="resetOk">Sim, começar de novo</button> · <button class="linkbtn" data-act="resetNao">Cancelar</button></span>`
+    : `<button class="linkbtn" data-act="reset">Começar novo jogo</button>`);
+}
+function render(){ renderRecursos(); renderHeroi(); renderAbas(); renderTela(); renderRodape(); }
+function contagens(){
+  if(S.ativa){
+    const left = Math.max(0, S.ativa.fim - Date.now());
+    document.querySelectorAll('[data-cd]').forEach(el => el.textContent = left ? fmt(left/1000) : 'Pronto');
+    document.querySelectorAll('[data-barra]').forEach(el => el.style.width = (100 - left/(S.ativa.dur*1000)*100) + '%');
+  }
+  const f = document.querySelector('[data-feira]'); if(f) f.textContent = fmt((FEIRA_MS-(Date.now()-S.feiraUpd))/1000);
+  const e = document.querySelector('[data-espera]'); if(e) e.textContent = fmt((S.chefeEspera-Date.now())/1000);
+}
+
+/* ---------- Ações ---------- */
+const acoes = {
+  tab:d => { S.tab = d.id; confirmarReset = false; salvar(); render(); },
+  partir:d => {
+    if(S.ativa) return aviso('Termine a missão atual primeiro.');
+    const i = S.ofertas.findIndex(m => m.id == d.id); if(i<0) return;
+    const m = S.ofertas[i];
+    if(S.energia < m.en) return aviso(`Falta energia: precisa de ${m.en}.`);
+    gastarEnergia(m.en); S.ativa = {...m, fim:Date.now() + m.dur*1000};
+    S.ofertas.splice(i,1); garantir(); salvar(); render();
+  },
+  pular:() => { if(!S.ativa) return; if(S.muir < 1) return aviso('Você não tem muiraquitãs.'); S.muir -= 1; S.ativa.fim = Date.now(); salvar(); render(); },
+  concluir:() => {
+    const m = S.ativa; if(!m || Date.now() < m.fim) return;
+    S.ativa = null; S.missoes++;
+    const c = CRI[m.c], t = total(), premios = [], titulo = tituloMissao(m);
+    const drop = () => { if(Math.random() < .2 && S.mochila.length < MOCHILA){ const it = genItem(S.lvl); S.mochila.push(it); premios.push('Item: ' + esc(it.nome)); } };
+    if(m.luta){
+      const mult = [.78,.95,1.12][m.d-1], st = {};
+      STATS.forEach(([k]) => st[k] = Math.max(3, Math.round(t[k]*mult*c.perf[k]*rand(.9,1.1))));
+      const res = lutar(meuLutador(), lutador({nome:c.nome, lvl:S.lvl, st, c:m.c}));
+      if(res.win){ S.vint += m.vint; premios.push(`${IC.vint}+${m.vint}`, `+${m.xp} XP`); S.vitorias[m.c] = (S.vitorias[m.c]||0)+1; drop(); ganharXP(m.xp); }
+      else { const x = Math.round(m.xp*.3); premios.push(`+${x} XP pela tentativa`); ganharXP(x); }
+      salvar(); render(); mostrarLuta(res, titulo, premios, m.c);
+    } else {
+      S.vint += m.vint; premios.push(`${IC.vint}+${m.vint}`, `+${m.xp} XP`); drop(); ganharXP(m.xp);
+      salvar(); render(); mostrarSimples(titulo, m.c, `${c.nome} · ${c.lugar}`, premios);
+    }
+  },
+  renovarMissoes:() => { if(S.muir < 1) return aviso('Você não tem muiraquitãs.'); S.muir -= 1; S.ofertas = []; garantir(); salvar(); render(); },
+  recarregar:() => {
+    if(S.energia >= EN_MAX) return aviso('Sua energia já está cheia.');
+    if(S.muir < 2) return aviso('Recarregar custa 2 muiraquitãs.');
+    S.muir -= 2; S.energia = EN_MAX; S.enUpd = Date.now(); aviso('Energia recarregada.'); salvar(); render();
+  },
+  treinar:d => { const c = custoTreino(S.stats[d.id]); if(S.vint < c) return; S.vint -= c; S.stats[d.id]++; salvar(); renderRecursos(); renderHeroi(); renderTela(); },
+  equipar:d => { const i = S.mochila.findIndex(x => x.id == d.id); if(i<0) return; const it = S.mochila.splice(i,1)[0], velho = S.equip[it.slot]; S.equip[it.slot] = it; if(velho) S.mochila.push(velho); salvar(); render(); },
+  desequipar:d => { if(S.mochila.length >= MOCHILA) return aviso('Mochila cheia. Venda algo antes.'); S.mochila.push(S.equip[d.id]); S.equip[d.id] = null; salvar(); render(); },
+  vender:d => { const i = S.mochila.findIndex(x => x.id == d.id); if(i<0) return; const it = S.mochila.splice(i,1)[0], v = Math.round(it.preco*.3); S.vint += v; aviso(`Vendido por ${v} vinténs.`); salvar(); render(); },
+  comprar:d => {
+    const i = S.feira.findIndex(x => x.id == d.id); if(i<0) return; const it = S.feira[i];
+    if(S.vint < it.preco) return aviso('Faltam vinténs.');
+    if(!S.equip[it.slot]){ S.vint -= it.preco; S.feira.splice(i,1); S.equip[it.slot] = it; aviso(`${it.nome} equipado.`); }
+    else { if(S.mochila.length >= MOCHILA) return aviso('Mochila cheia. Venda algo antes.'); S.vint -= it.preco; S.feira.splice(i,1); S.mochila.push(it); aviso(`${it.nome} foi para a mochila.`); }
+    salvar(); render();
+  },
+  renovarFeira:() => { if(S.muir < 1) return aviso('Você não tem muiraquitãs.'); S.muir -= 1; S.feira = genFeira(); S.feiraUpd = Date.now(); salvar(); render(); },
+  desafiar:d => {
+    if(S.coragem < 1) return aviso('Sem coragem. Espere ela voltar.');
+    const i = S.rivais.findIndex(r => r.id == d.id); if(i<0) return;
+    const r = S.rivais[i]; gastarCoragem();
+    const res = lutar(meuLutador(), lutador({nome:r.nome, lvl:r.lvl, st:r.st, tipo:'rival', cor:r.cor}));
+    const premios = []; let h;
+    if(res.win){ h = Math.max(5, 10 + (r.lvl-S.lvl)*3); const v = 8 + S.lvl*4, x = 5 + S.lvl*2; S.honra += h; S.vint += v; premios.push(`${IC.honra}+${h} honra`, `${IC.vint}+${v}`, `+${x} XP`); ganharXP(x); }
+    else { h = -Math.min(S.honra, 4); S.honra += h; premios.push(`${IC.honra}${h} honra`); }
+    S.duelos.unshift({nome:r.nome, win:res.win, honra:h}); S.duelos = S.duelos.slice(0,6);
+    S.rivais.splice(i,1); garantir(); salvar(); render();
+    mostrarLuta(res, `Duelo contra ${r.nome}`, premios, null);
+  },
+  ato:d => { S.atoSel = +d.id; S.faseSel = Math.min(S.fases[S.atoSel], 9); salvar(); renderTela(); },
+  fase:d => { S.faseSel = +d.id; salvar(); renderTela(); },
+  enfrentar:() => {
+    const a = S.atoSel, n = S.faseSel, ini = inimigoFase(a, n);
+    if(n !== S.fases[a] || S.lvl < ini.lvl || S.lvl < ATOS[a].de) return;
+    if(Date.now() < S.chefeEspera) return aviso('Você ainda está se recuperando.');
+    if(S.energia < CHEFE_EN) return aviso('Falta energia.');
+    gastarEnergia(CHEFE_EN); S.vistos[ini.c] = true;
+    const res = lutar(meuLutador(), lutador({nome:ini.nome, lvl:ini.lvl, st:ini.st, c:ini.c, boss:ini.boss}));
+    const premios = [];
+    if(res.win){
+      const xp = Math.round(xpNeed(ini.lvl)*(ini.boss?.5:.18)), v = (40+ini.lvl*25)*(ini.boss?3:1);
+      S.vint += v; premios.push(`${IC.vint}+${v}`, `+${xp} XP`);
+      S.vitorias[ini.c] = (S.vitorias[ini.c]||0)+1; S.fases[a] = n+1; S.faseSel = Math.min(n+1, 9);
+      if(ini.boss){
+        S.muir += 3; premios.push(`${IC.muir}+3`);
+        const it = genItem(ini.lvl, null, Math.random()<.5?2:1);
+        if(S.mochila.length < MOCHILA){ S.mochila.push(it); premios.push('Item: ' + esc(it.nome)); } else { S.vint += it.preco; premios.push('Mochila cheia: item vendido'); }
+        aviso(`Ato ${['I','II','III'][a]} concluído!`, true);
+      }
+      ganharXP(xp);
+    } else { S.chefeEspera = Date.now() + CHEFE_ESPERA; premios.push('Treine ou equipe itens melhores e tente de novo'); }
+    salvar(); render(); mostrarLuta(res, ini.nome, premios, ini.c);
+  },
+  fecharModal:() => fecharModal(),
+  pularLuta:() => {}, vel:() => {},
+  reset:() => { confirmarReset = true; renderRodape(); },
+  resetNao:() => { confirmarReset = false; renderRodape(); },
+  resetOk:() => { confirmarReset = false; S = novo(); garantir(); salvar(); render(); aviso('Novo jogo iniciado.'); }
+};
+
+document.addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(!b || b.disabled) return; const f = acoes[b.dataset.act]; if(f) f(b.dataset); });
+document.addEventListener('change', e => { if(e.target.id === 'nomeHeroi'){ S.nome = e.target.value.trim().slice(0,18) || 'Jaci'; salvar(); renderHeroi(); } });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && !$('modal').hidden && !anim) fecharModal(); });
+
+let ultimoPronto = null, ultimaEspera = null, conta = 0;
+function tick(){
+  const enAntes = S.energia;
+  regen();
+  if(Date.now() - S.feiraUpd > FEIRA_MS){ S.feira = genFeira(); S.feiraUpd = Date.now(); if(S.tab === 'feira') renderTela(); }
+  renderRecursos(); contagens();
+  const pronto = !!(S.ativa && Date.now() >= S.ativa.fim);
+  if(pronto !== ultimoPronto){ ultimoPronto = pronto; renderAbas(); if(S.tab === 'missoes') renderTela(); if(pronto) aviso('Missão pronta!', true); }
+  const esperando = Date.now() < S.chefeEspera;
+  if(esperando !== ultimaEspera){ ultimaEspera = esperando; if(S.tab === 'chefes') renderTela(); }
+  if(S.energia !== enAntes && (S.tab === 'missoes' || S.tab === 'chefes') && $('modal').hidden){
+    const precisa = S.tab === 'chefes' ? CHEFE_EN : Math.min(...S.ofertas.map(m=>m.en));
+    if((enAntes < precisa) !== (S.energia < precisa) || S.energia === EN_MAX) renderTela();
+  }
+  if(++conta % 5 === 0) salvar();
+}
+function start(data){
+  S = (data && data.S) || carregar() || novo();
+  garantir(); regen(); ultimoPronto = !!(S.ativa && Date.now() >= S.ativa.fim); ultimaEspera = Date.now() < S.chefeEspera;
+  render(); setInterval(tick, 1000);
+}
+try{ window.claude?.hot?.snapshot?.(() => ({S})); }catch(e){}
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+})();
+</script>
+
+</body>
+</html>
