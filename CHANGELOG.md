@@ -16,6 +16,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ### Alterado
 - Milestones reorganizados por etapa: Fundação, Migração, Arte, Som, Contas e segurança e Lojas.
+- A Release de cada versão passa a ser criada automaticamente quando o número em `VERSAO` muda no `main`, sem precisar enviar a tag à mão.
 
 ## [0.2.0] - 2026-10-15
 
