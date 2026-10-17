@@ -20,4 +20,10 @@ python3 -m http.server 8000
 
 Depois abra http://localhost:8000.
 
-Detalhes do código, fórmulas e próximos passos estão em [CLAUDE.md](CLAUDE.md).
+## Documentação
+- [CHANGELOG.md](CHANGELOG.md): o que mudou em cada versão.
+- [docs/versoes/](docs/versoes/): nota detalhada de cada versão, com decisões e balanceamento.
+- [docs/ROADMAP.md](docs/ROADMAP.md): próximas versões planejadas.
+- [CLAUDE.md](CLAUDE.md): estrutura do código, fórmulas e fluxo de trabalho.
+
+Versão atual: **0.2.0**.

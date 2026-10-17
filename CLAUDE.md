@@ -1,6 +1,23 @@
 # Guardiões do Folclore
 
 Jogo de navegador no estilo Hero Zero com lendas do folclore brasileiro. Projeto "Hero Zero da Shoppe".
+Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
+
+## Fluxo de versões (obrigatório em toda mudança)
+1. **Issue:** toda feature ou correção começa como uma issue, ligada ao milestone da versão (ex.: `v0.3.0`).
+2. **Branch:** saia de `main` com nome `feat/<assunto>` ou `fix/<assunto>`.
+3. **Durante o trabalho:** registre cada mudança em `CHANGELOG.md`, na seção `[Não lançado]`, nas categorias Adicionado, Alterado, Corrigido ou Removido.
+4. **Pull request:** abra o PR para `main` usando o template, com "Closes #N", e espere a revisão da dona do projeto.
+5. **Fechar a versão,** quando o milestone estiver completo:
+   - Escolha o número pelo SemVer: feature nova = MENOR, ajuste = CORREÇÃO.
+   - Atualize `const VERSAO` no `index.html`. Se o formato do save mudar, troque também a `KEY`.
+   - Mova `[Não lançado]` para `[x.y.z] - AAAA-MM-DD` no CHANGELOG e atualize os links no fim do arquivo.
+   - Escreva `docs/versoes/vX.Y.Z.md` com objetivo, o que entrou, números de balanceamento, decisões e pendências.
+   - Atualize `docs/ROADMAP.md`.
+   - Crie e envie a tag `vX.Y.Z`. O workflow `release.yml` cria a Release usando a nota da versão.
+6. **Publicação:** o workflow `pages.yml` publica o `main` no GitHub Pages a cada push.
+
+Commits em português, no imperativo: "Adiciona ato IV", "Corrige recarga da coragem".
 
 ## Como rodar
 - Tudo está em `index.html` (HTML, CSS e JS num arquivo só, sem build).

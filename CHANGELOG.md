@@ -1,0 +1,52 @@
+# Histórico de versões
+
+Todas as mudanças do jogo ficam registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e a numeração segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/):
+
+- **MAIOR** (1.0.0): mudança grande que quebra o save ou muda o jogo por completo.
+- **MENOR** (0.3.0): feature nova, como uma aba, um sistema ou um ato de chefes.
+- **CORREÇÃO** (0.2.1): ajuste de balanceamento, texto ou bug.
+
+Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
+
+## [Não lançado]
+
+Nada ainda.
+
+## [0.2.0] - 2026-10-15
+
+Nota completa: [docs/versoes/v0.2.0.md](docs/versoes/v0.2.0.md)
+
+### Adicionado
+- Ilustrações pintadas de 8 lendas: Saci, Curupira, Iara, Boitatá, Negrinho do Pastoreio, Cuca, Boto e Mapinguari.
+- **Torre dos Chefes**: 3 atos de 10 fases, do nível 1 ao 30, com um chefe ao fim de cada ato (Cuca, Boitatá e Mapinguari).
+- Animações de combate distintas para ataque normal, golpe crítico e esquiva, com controle de velocidade (1×, 2×, 4×) e botão para pular.
+- Contadores de recarga de energia (+1 a cada 30 s) e coragem (+1 a cada 2 min) na barra do topo.
+- Títulos de rank por nível, de Aprendiz da Mata a Lenda Viva.
+- Aba Mochila separada, com comparação de atributos contra o item equipado.
+- Lendas que aparecem por nível: Cuca no 4, Iara no 8, Boto no 11, Boitatá no 14 e Mapinguari no 21.
+- Número da versão no rodapé do jogo.
+
+### Alterado
+- Layout refeito: painel lateral do herói com atributos e equipamento, abas com ícones e visual de madeira escura com detalhes em latão.
+- Missões deixaram de ser separadas por região e passaram a ser liberadas por nível.
+- O Negrinho do Pastoreio aparece só como aliado, em tarefas, nunca como inimigo.
+
+### Removido
+- Desenhos simples em SVG das criaturas, substituídos pelas ilustrações.
+- Mula sem Cabeça, Lobisomem, Corpo-Seco, Caipora, Minhocão e Matinta Perera, que ficam fora até ganharem ilustração.
+
+### Atenção
+- O save da 0.1.0 não é compatível. A chave do save mudou para `guardioes-folclore-v2`.
+
+## [0.1.0] - 2026-10-15
+
+Primeiro protótipo, publicado só como artefato e não versionado no repositório.
+
+### Adicionado
+- Missões com tempo e energia, separadas em 4 regiões (Mata Atlântica, Sertão, Pantanal e Amazônia).
+- Lutas automáticas, treino de atributos (Força, Fôlego, Malícia e Ginga), feira de itens, arena de duelos e bestiário.
+- 12 criaturas desenhadas em SVG no estilo de xilogravura de cordel.
+
+[Não lançado]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.2.0
+[0.1.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.1.0

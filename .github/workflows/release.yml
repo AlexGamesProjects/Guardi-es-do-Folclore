@@ -1,0 +1,25 @@
+name: Criar Release da versão
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Criar Release com a nota da versão
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          NOTA="docs/versoes/${TAG}.md"
+          if [ -f "$NOTA" ]; then
+            gh release create "$TAG" --title "$TAG" --notes-file "$NOTA"
+          else
+            gh release create "$TAG" --title "$TAG" --generate-notes
+          fi

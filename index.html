@@ -336,6 +336,7 @@ img{display:block}
 <script>
 (() => {
 'use strict';
+const VERSAO = '0.2.0';
 const KEY = 'guardioes-folclore-v2';
 const EN_MAX = 100, EN_MS = 30000;      // +1 de energia a cada 30 s
 const CO_MAX = 5,   CO_MS = 120000;     // +1 de coragem a cada 2 min
@@ -809,7 +810,7 @@ function renderTela(){
   $('tela').innerHTML = t(); contagens();
 }
 function renderRodape(){
-  $('rodape').innerHTML = `<span>O progresso fica salvo neste navegador.</span>` + (confirmarReset
+  $('rodape').innerHTML = `<span>Versão ${VERSAO} · O progresso fica salvo neste navegador.</span>` + (confirmarReset
     ? `<span>Apagar todo o progresso? <button class="linkbtn perigo" data-act="resetOk">Sim, começar de novo</button> · <button class="linkbtn" data-act="resetNao">Cancelar</button></span>`
     : `<button class="linkbtn" data-act="reset">Começar novo jogo</button>`);
 }
