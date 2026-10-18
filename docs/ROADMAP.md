@@ -2,7 +2,7 @@
 
 Visão geral das etapas do Guardiões do Folclore, do protótipo às lojas. Cada etapa vira um **milestone** no GitHub, e cada tarefa vira uma **issue** dentro dele.
 
-**Atualizado em:** 17/10/2026
+**Atualizado em:** 18/10/2026
 
 ```mermaid
 flowchart LR
@@ -43,7 +43,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 |---|---|---|---|---|---|
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
-| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Em execução (grupos A e B prontos) | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
+| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Em execução (grupos A, B e C prontos) | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
 | ⚪ | 2. Migração | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Planejado | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
 | ⚪ | 3. Arte | v0.5.0 | Sprites animados do PixelLab, cartas pintadas, herói com opções | Planejado | [v0.5.0 · Arte](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
 | ⚪ | 4. Som | v0.6.0 | Efeitos, ambientes e narração (ElevenLabs), trilha (Suno) | Planejado | [v0.6.0 · Som](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/4) |
@@ -58,10 +58,10 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 - [ ] Projeto Godot em camadas (`core/`, `data/`, `state/`, `app/`, `ui/`)
 - [x] Regras da v0.2 no núcleo, em aritmética inteira, com testes unitários
 - [x] Pacote de regras versionado e validado
-- [ ] Comandos assíncronos e executor local
+- [x] Comandos assíncronos e executor local
 - [ ] Testes de regressão, balanceamento, arquitetura, assíncronos e fumaça
 - [x] CI com relatório de desempenho e limites
-- [ ] Save com migrações, reservas e perfis offline/online
+- [x] Save com migrações, reservas e perfis offline/online
 - [ ] Casca mínima jogável e painel de desempenho, publicados em `/novo/`
 
 ### 2. Migração (v0.4.0)
@@ -101,6 +101,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 18/10/2026 | Fundação, grupo C pronto (PR C): comandos assíncronos, save com integridade e reservas, perfis por modo, inicialização com validação das regras, testes de regressão e de balanceamento (218 testes). Balanceamento calibrado pela simulação: fases 57% de vitória, chefes 29%, 525 missões até o nível 30 (antes 99%, 98% e 433) |
 | 18/10/2026 | Fundação, grupo B pronto (PR #17): núcleo de regras em inteiros com sorteio por semente, pacote de regras com o conteúdo da v0.2, 90 testes. Decisões: constantes de combate no pacote de regras; item do chefe mantém 50% de chance de lendário, como na v0.2 |
 | 18/10/2026 | Fundação, grupo A pronto (PR #14): projeto Godot 4.7.2, CI completa e medições. Primeira medição: download 10,2 MB e carregamento de cerca de 10 s em 4G; limite calibrado para 12 s e otimização registrada na issue #15. Desenvolvimento passa a usar agentes por camada |
 | 17/10/2026 | Especificação da Fundação aprovada (PR #11). Plano de implementação escrito: 14 tarefas em 4 PRs, com Godot 4.7.2, GdUnit4 6.2.1 e gdtoolkit 4.3.4 |
