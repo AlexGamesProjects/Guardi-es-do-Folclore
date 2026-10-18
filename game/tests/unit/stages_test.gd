@@ -55,3 +55,25 @@ func test_stages_never_use_ally_and_levels_follow_act() -> void:
 			var e: Fighter = Stages.enemy(a, n, _rules)
 			assert_bool(_rules.legends[e.legend_id].ally).is_false()
 			assert_int(e.lvl).is_equal(_rules.acts[a].de + n)
+
+
+func _boss_twos(rules: RulesPack, n: int) -> int:
+	var twos: int = 0
+	for i: int in n:
+		if Stages.boss_item_rarity_min(Rng.new(Rng.derive_seed(31, i)), rules) == 2:
+			twos += 1
+	return twos
+
+
+func test_boss_item_rarity_is_about_half_legendary() -> void:
+	assert_int(_boss_twos(_rules, 2000) * 10000 / 2000).is_between(4500, 5500)
+
+
+func test_boss_item_rarity_extremes() -> void:
+	var never: RulesPack = RulesLoader.load_dir("res://data/packs/base").pack
+	never.balance.stage["boss_legendary_bp"] = 0
+	assert_int(_boss_twos(never, 200)).is_equal(0)
+	assert_int(Stages.boss_item_rarity_min(Rng.new(1), never)).is_equal(1)
+	var always: RulesPack = RulesLoader.load_dir("res://data/packs/base").pack
+	always.balance.stage["boss_legendary_bp"] = 10000
+	assert_int(_boss_twos(always, 200)).is_equal(200)

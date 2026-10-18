@@ -74,6 +74,7 @@ const BALANCE_SPEC: Dictionary = {
 		"boss_vint_mult": "pos",
 		"boss_muir": "nonneg",
 		"boss_rarity_min": "nonneg",
+		"boss_legendary_bp": "nonneg",
 	},
 	"item":
 	{
@@ -611,6 +612,10 @@ static func _check_balance_relations(errors: PackedStringArray, d: Dictionary) -
 		if _is_int(rare) and _is_int(legendary):
 			if int(legendary) > int(rare) or int(rare) > BP_FULL:
 				_err(errors, file, "item.rare_bp", "deve ficar entre legendary_bp e %d" % BP_FULL)
+	if d.get("stage") is Dictionary:
+		var boss_bp: Variant = (d["stage"] as Dictionary).get("boss_legendary_bp")
+		if _is_int(boss_bp) and int(boss_bp) > BP_FULL:
+			_err(errors, file, "stage.boss_legendary_bp", "deve ficar entre 0 e %d" % BP_FULL)
 	if d.get("mission") is Dictionary:
 		var mission: Dictionary = d["mission"]
 		if (

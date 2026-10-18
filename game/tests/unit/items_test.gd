@@ -94,3 +94,8 @@ func test_generation_is_deterministic() -> void:
 	var a: Dictionary = Items.generate(9, "", 0, 5, Rng.new(42), _rules)
 	var b: Dictionary = Items.generate(9, "", 0, 5, Rng.new(42), _rules)
 	assert_dict(a).is_equal(b)
+
+
+func test_rarity_min_above_last_is_clamped() -> void:
+	var it: Dictionary = Items.generate(5, "arma", 9, 1, Rng.new(4), _rules)
+	assert_int(it["rar"]).is_equal(2)

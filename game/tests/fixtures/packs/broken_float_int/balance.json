@@ -46,7 +46,8 @@
     "vint_lvl": 25,
     "boss_vint_mult": 3,
     "boss_muir": 3,
-    "boss_rarity_min": 1
+    "boss_rarity_min": 1,
+    "boss_legendary_bp": 5000
   },
   "item": {
     "pts_base": 4,

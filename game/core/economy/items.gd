@@ -17,7 +17,8 @@ static func generate(
 	if chosen == "":
 		var slots: Array = primary.keys()
 		chosen = str(rng.pick(slots))
-	var rar: int = maxi(_roll_rarity(rng, cfg), rarity_min)
+	var floor_rar: int = clampi(rarity_min, 0, rules.rarities.size() - 1)
+	var rar: int = maxi(_roll_rarity(rng, cfg), floor_rar)
 	var mult_pm: int = rules.rarities[rar].mult_pm
 	var raw: int = int(cfg["pts_base"]) * _PM + lvl * int(cfg["pts_lvl_pm"])
 	var pts: int = IntMath.div_round(raw * mult_pm, _PM2)

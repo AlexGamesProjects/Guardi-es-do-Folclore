@@ -48,3 +48,12 @@ static func reward(act: int, n: int, rules: RulesPack) -> Dictionary:
 		"muir": muir,
 		"item_rarity_min": rarity_min,
 	}
+
+
+## Raridade mínima do item do chefe: lendária (2) com chance `boss_legendary_bp`,
+## senão `boss_rarity_min`.
+static func boss_item_rarity_min(rng: Rng, rules: RulesPack) -> int:
+	var cfg: Dictionary = rules.balance.stage
+	if rng.roll_bp(int(cfg["boss_legendary_bp"])):
+		return 2
+	return int(cfg["boss_rarity_min"])
