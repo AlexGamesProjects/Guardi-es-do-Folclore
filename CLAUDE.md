@@ -22,6 +22,19 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
 
 Commits em português, no imperativo: "Adiciona ato IV", "Corrige recarga da coragem".
 
+## Agentes por camada
+O Claude principal é o **líder do jogo**: coordena o trabalho, decide regras e balanceamento, despacha tarefas e confere cada entrega. A implementação fica com agentes especializados, definidos em `.claude/agents/`:
+
+| Agente | Camada |
+|---|---|
+| `infra-ci` | `tools/`, `.github/`, `project.godot`, export e publicação |
+| `nucleo-regras` | `game/core/`, `game/data/` e seus testes |
+| `estado-app` | `game/state/`, `game/app/`, save e inicialização |
+| `interface` | `game/ui/` e painel de desempenho |
+| `revisor` | Revisão independente de cada tarefa (somente leitura) |
+
+Cada tarefa do plano vai para o agente da camada dela e passa pelo `revisor` antes da próxima. Um agente que precisar mexer fora da própria camada para e avisa o líder.
+
 ## Como rodar
 - Tudo está em `index.html` (HTML, CSS e JS num arquivo só, sem build).
 - As ilustrações ficam em `assets/*.webp` (640×860, convertidas das artes originais).
