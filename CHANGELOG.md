@@ -11,12 +11,16 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Projeto Godot 4.7.2 em `game/`, com GdUnit4 6.2.1 e tipagem obrigatória. O jogo HTML v0.2 foi para `legacy-web/` e continua publicado na raiz do site.
+- CI a cada PR: lint, checagem de tipos, testes, export web sem threads, verificação de segredos e medições de download e carregamento, com relatório automático no PR.
+- Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
 - Roadmap visual com as 6 etapas, status e diário de avanços (`docs/ROADMAP.md`).
 - Plano de implementação da Fundação, em 14 tarefas (`docs/superpowers/plans/2026-10-17-fundacao-godot.md`).
 
 ### Alterado
 - Milestones reorganizados por etapa: Fundação, Migração, Arte, Som, Contas e segurança e Lojas.
+- Limite de carregamento calibrado de 5 s para 12 s com a primeira medição real (10,2 MB em 4G levam cerca de 10 s); redução do export registrada na issue #15.
 - A Release de cada versão passa a ser criada automaticamente quando o número em `VERSAO` muda no `main`, sem precisar enviar a tag à mão.
 
 ## [0.2.0] - 2026-10-15
