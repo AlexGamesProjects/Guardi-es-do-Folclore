@@ -41,6 +41,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 
 | | Etapa | Versão | Objetivo | Status | Milestone |
 |---|---|---|---|---|---|
+| 18/10/2026 | Especificação da v0.4.0 escrita: todas as telas com abas no rodapé, criação do guardião com origem regional (save versão 2), lutas em pixel art do PixelLab (adiantadas da etapa 3, começando pelo piloto do herói e do Saci) e o Godot na raiz do site. Tempos reais e economia ficam para a v0.4.1 |
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
 | 🟢 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Concluído | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |

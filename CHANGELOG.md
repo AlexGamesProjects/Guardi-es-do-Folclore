@@ -10,6 +10,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Adicionado
+- Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
+
 ### Corrigido
 - O teste da versão aceita qualquer número no formato X.Y.Z ou X.Y.Z-dev. Antes ele exigia `0.3.0-dev` e quebrou a CI depois do lançamento.
 
