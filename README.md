@@ -11,14 +11,29 @@ O jogo tem:
 - feira de itens;
 - bestiário ilustrado.
 
+## Estrutura
+- `game/`: o jogo novo, em Godot 4.7.2 (em construção).
+- `legacy-web/`: a v0.2 em HTML, publicada no GitHub Pages.
+- `tools/`: scripts de ambiente e testes.
+
 ## Rodar localmente
 
+A v0.2 (HTML):
+
 ```bash
-python3 -m http.server 8000
-# ou: npx serve .
+python3 -m http.server -d legacy-web 8000
+# ou: npx serve legacy-web
 ```
 
 Depois abra http://localhost:8000.
+
+O jogo em Godot:
+
+```bash
+tools/setup_godot.sh        # instala o Godot 4.7.2 e os templates de export
+godot --path game           # abre o jogo
+tools/run_tests.sh          # roda os testes (GdUnit4, sem tela)
+```
 
 ## Documentação
 - [CHANGELOG.md](CHANGELOG.md): o que mudou em cada versão.
@@ -26,4 +41,4 @@ Depois abra http://localhost:8000.
 - [docs/ROADMAP.md](docs/ROADMAP.md): próximas versões planejadas.
 - [CLAUDE.md](CLAUDE.md): estrutura do código, fórmulas e fluxo de trabalho.
 
-Versão atual: **0.2.0**.
+Versão publicada: **0.2.0** (v0.3.0 em desenvolvimento).

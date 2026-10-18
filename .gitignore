@@ -2,3 +2,6 @@
 node_modules/
 *.log
 .superpowers/
+game/reports/
+game/.godot/
+build/

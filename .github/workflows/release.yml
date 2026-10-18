@@ -1,11 +1,12 @@
 name: Criar Release da versão
 
-# Quando um merge no main traz um número novo em `const VERSAO` (index.html),
+# Quando um merge no main traz um número novo em `config/version` (game/project.godot),
 # este workflow cria a tag vX.Y.Z e a Release com a nota de docs/versoes/vX.Y.Z.md.
+# Versões que não são X.Y.Z exato (como "0.3.0-dev") não criam nada.
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'docs/versoes/**', '.github/workflows/release.yml']
+    paths: ['game/project.godot', 'docs/versoes/**', '.github/workflows/release.yml']
   workflow_dispatch:
 
 permissions:
@@ -19,10 +20,15 @@ jobs:
       - name: Ler versão do jogo
         id: v
         run: |
-          V=$(grep -oP "const VERSAO = '\K[0-9]+\.[0-9]+\.[0-9]+" index.html)
+          V=$(grep -oP '^config/version="\K[0-9]+\.[0-9]+\.[0-9]+(?=")' game/project.godot || true)
+          if [ -z "$V" ]; then
+            echo "Versão em game/project.godot não é X.Y.Z exato. Nada a fazer."
+            exit 0
+          fi
           echo "tag=v$V" >> "$GITHUB_OUTPUT"
           echo "Versão encontrada: v$V"
       - name: Criar tag e Release se ainda não existirem
+        if: steps.v.outputs.tag != ''
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.v.outputs.tag }}
