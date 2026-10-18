@@ -102,3 +102,7 @@ Sufixos: `_pm` = por mil (1000 = 1×), `_bp` = pontos-base (10000 = 100%), `_x10
 - Separar o código em módulos (dados, combate, UI) se o projeto crescer.
 - Backend e contas, para salvar o progresso entre aparelhos e ter ranking real na Arena.
 - Ajustar os tempos das missões (hoje são de 20 s a 1:30, para testes).
+
+## Working preferences
+- Responda sempre em português (pt-BR).
+- Economize tokens: respostas curtas, poucos agentes e revisão independente só onde o risco justifica.
