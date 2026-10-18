@@ -126,11 +126,113 @@ func test_hp_never_negative_and_matches_winner() -> void:
 
 func test_strong_beats_weak_mostly() -> void:
 	var bp: int = _wins_bp(40, 15, 200)
-	print("forte x fraco: %d bp de vitoria em 200 sementes" % bp)
-	assert_bool(bp > 9500).is_true()
+	(
+		assert_bool(bp > 9500)
+		. override_failure_message("forte x fraco: %d bp em 200 sementes" % bp)
+		. is_true()
+	)
 
 
 func test_equal_fighters_near_half() -> void:
 	var bp: int = _wins_bp(25, 25, 2000)
-	print("iguais: %d bp de vitoria em 2000 sementes" % bp)
-	assert_bool(bp >= 4500 and bp <= 5500).is_true()
+	(
+		assert_bool(bp >= 4500 and bp <= 5500)
+		. override_failure_message("iguais: %d bp em 2000 sementes" % bp)
+		. is_true()
+	)
+
+
+## Configuração com variação de dano fixa em 1000 pm (sem sorte no dano) e esquiva e crítico
+## no piso de 1 bp (praticamente nunca acontecem; os testes conferem os tipos de evento).
+func _fixed_cfg(turns: int, lvl_x10: int = 25) -> Defs.CombatDef:
+	return (
+		Defs
+		. CombatDef
+		. from_dict(
+			{
+				"hp_base": 40,
+				"hp_per_fol": 8,
+				"hp_per_lvl": 12,
+				"dmg_for_x10": 17,
+				"dmg_lvl_x10": lvl_x10,
+				"dmg_var_min_pm": 1000,
+				"dmg_var_max_pm": 1000,
+				"dodge_num": 5500,
+				"dodge_min_bp": 1,
+				"dodge_max_bp": 1,
+				"crit_num": 6000,
+				"crit_min_bp": 1,
+				"crit_max_bp": 1,
+				"crit_mult": 2,
+				"chance_pad": 30,
+				"initiative_roll_max": 5,
+				"max_turns": turns,
+			}
+		)
+	)
+
+
+## Lutador de nível 1 com fol 10 (vida máxima 40 + 80 + 12 = 132). `gin` decide a iniciativa:
+## com 50 contra 0 ele sempre começa, pois o sorteio de iniciativa vai de 0 a 5.
+func _duelist(strength: int, gin: int) -> Fighter:
+	return Fighter.make("D", 1, {"for": strength, "fol": 10, "mal": 10, "gin": gin})
+
+
+func _assert_only_plain_hits(r: CombatResult) -> void:
+	for i: int in r.events.size() - 1:
+		(
+			assert_str(r.events[i]["type"])
+			. override_failure_message("a semente fixa deveria dar só golpes normais")
+			. is_equal("golpe")
+		)
+
+
+func test_turn_cutoff_decides_by_cross_product() -> void:
+	# 3 golpes por luta e ninguém morre. Dano de for 10: (195*1000+5000)/10000 = 20;
+	# dano de for 20: (365*1000+5000)/10000 = 37. Vida máxima de ambos: 132.
+	var cfg: Defs.CombatDef = _fixed_cfg(3)
+	# a começa e golpeia duas vezes (20+20), b uma (37): hp_a 95, hp_b 92 -> 95*132 >= 92*132.
+	var win: CombatResult = Combat.simulate(_duelist(10, 50), _duelist(20, 0), Rng.new(1), cfg)
+	_assert_only_plain_hits(win)
+	assert_int(win.events.size()).is_equal(4)
+	assert_array(win.hp_final).is_equal(PackedInt32Array([95, 92]))
+	assert_bool(win.win).is_true()
+	assert_int(win.events[3]["vencedor"]).is_equal(0)
+	# b começa e golpeia duas vezes (74), a uma (20): hp_a 58, hp_b 112 -> a perde pelo corte.
+	var loss: CombatResult = Combat.simulate(_duelist(10, 0), _duelist(20, 50), Rng.new(1), cfg)
+	_assert_only_plain_hits(loss)
+	assert_int(loss.events.size()).is_equal(4)
+	assert_array(loss.hp_final).is_equal(PackedInt32Array([58, 112]))
+	assert_bool(loss.win).is_false()
+	assert_int(loss.events[3]["vencedor"]).is_equal(1)
+
+
+func test_exact_cross_product_tie_goes_to_a() -> void:
+	# 2 golpes por luta, dano 20 para os dois: hp 112 x 112, produto cruzado igual -> a vence,
+	# comece ele ou não.
+	var cfg: Defs.CombatDef = _fixed_cfg(2)
+	var a_first: CombatResult = Combat.simulate(_duelist(10, 50), _duelist(10, 0), Rng.new(1), cfg)
+	_assert_only_plain_hits(a_first)
+	assert_array(a_first.hp_final).is_equal(PackedInt32Array([112, 112]))
+	assert_bool(a_first.win).is_true()
+	var b_first: CombatResult = Combat.simulate(_duelist(10, 0), _duelist(10, 50), Rng.new(1), cfg)
+	_assert_only_plain_hits(b_first)
+	assert_array(b_first.hp_final).is_equal(PackedInt32Array([112, 112]))
+	assert_bool(b_first.win).is_true()
+	assert_int(b_first.events[2]["vencedor"]).is_equal(0)
+
+
+func test_damage_rounding_is_half_up() -> void:
+	# for 10, nível 1: base x10 = 170 + 25 = 195 -> 195*1000/10000 = 19,5 -> arredonda para 20
+	# (truncar daria 19).
+	var up: CombatResult = Combat.simulate(
+		_duelist(10, 50), _duelist(10, 0), Rng.new(1), _fixed_cfg(1)
+	)
+	_assert_only_plain_hits(up)
+	assert_int(up.events[0]["dano"]).is_equal(20)
+	# Com dmg_lvl_x10 = 24: base x10 = 194 -> 19,4 -> 19 (o arredondamento também desce).
+	var down: CombatResult = Combat.simulate(
+		_duelist(10, 50), _duelist(10, 0), Rng.new(1), _fixed_cfg(1, 24)
+	)
+	_assert_only_plain_hits(down)
+	assert_int(down.events[0]["dano"]).is_equal(19)

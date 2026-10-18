@@ -1,5 +1,10 @@
 extends SceneTree
 ## Mede 10 mil lutas (atributos 40) e acrescenta `fights_10k_ms` ao metrics.json.
+##
+## Fica em tools/ (e não em game/) porque é uma ferramenta de CI e não faz parte do jogo exportado.
+## Por isso NÃO é coberto por gdformat, gdlint nem tools/check_scripts.sh, que só olham game/;
+## formate e lint à mão: gdformat tools/bench.gd && (cd game && gdlint ../tools/bench.gd).
+##
 ## Uso (da raiz do repositório):
 ##   godot --headless --path game -s ../tools/bench.gd -- --metrics="$PWD/metrics.json"
 ## Com --path, o Godot passa a trabalhar dentro de game/; por isso o caminho deve ser absoluto.
