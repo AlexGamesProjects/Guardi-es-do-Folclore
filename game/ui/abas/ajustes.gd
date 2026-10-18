@@ -1,7 +1,7 @@
 extends AbaBase
 ## Ajustes: velocidade da luta, painel de desempenho, diagnóstico, versão clássica e versão.
 
-const LINK_V02: String = "../v02/"
+const LINK_V02: String = "v02/"
 
 
 func _montar(corpo: VBoxContainer) -> void:
