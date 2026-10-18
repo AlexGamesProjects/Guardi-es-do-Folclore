@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 GameService="*res://app/game_service.gd"
 Boot="*res://app/boot.gd"
+PerfOverlay="*res://app/perf_overlay.gd"
 
 [debug]
 
