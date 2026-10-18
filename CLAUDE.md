@@ -17,6 +17,8 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
    - Crie e envie a tag `vX.Y.Z`. O workflow `release.yml` cria a Release usando a nota da versão.
 6. **Publicação:** o workflow `pages.yml` publica o `main` no GitHub Pages a cada push.
 
+**Diário de avanços:** a cada decisão importante ou entrega, acrescente uma linha no topo do "Diário de avanços" em `docs/ROADMAP.md` e atualize o status das etapas.
+
 Commits em português, no imperativo: "Adiciona ato IV", "Corrige recarga da coragem".
 
 ## Como rodar
