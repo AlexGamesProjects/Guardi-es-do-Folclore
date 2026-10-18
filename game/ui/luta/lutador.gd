@@ -64,7 +64,9 @@ func preparar(nome: String, lvl: int, hp: int, textura: Texture2D, sprite_id: St
 	_sprite = null
 	var frames: SpriteFrames = SpriteLib.frames(sprite_id)
 	if frames != null:
-		_retrato.modulate = Color(0.45, 0.4, 0.38) if textura != null else Color.WHITE
+		for filho: Node in _retrato.get_children():
+			if filho is TextureRect:
+				(filho as TextureRect).modulate = Color(0.5, 0.45, 0.42)
 		var palco := Control.new()
 		palco.name = "Palco"
 		palco.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -73,7 +75,7 @@ func preparar(nome: String, lvl: int, hp: int, textura: Texture2D, sprite_id: St
 		_sprite.name = "Sprite"
 		_sprite.sprite_frames = frames
 		_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		_sprite.scale = Vector2(3, 3)
+		_sprite.scale = Vector2(4, 4)
 		_sprite.position = _retrato.custom_minimum_size / 2
 		palco.add_child(_sprite)
 	animar("parado")
@@ -105,7 +107,10 @@ func animar(acao: String) -> void:
 			tw.tween_property(_retrato, "modulate:a", 0.5, 0.08)
 			tw.tween_property(_retrato, "modulate:a", 1.0, 0.16)
 		"derrota":
-			tw.tween_property(_retrato, "modulate:a", 0.15, 0.4)
+			if _sprite == null:
+				tw.tween_property(_retrato, "modulate:a", 0.15, 0.4)
+			else:
+				tw.kill()
 		_:
 			tw.kill()
 
