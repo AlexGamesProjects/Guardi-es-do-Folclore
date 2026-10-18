@@ -15,6 +15,10 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Textos de erro por contexto (feira, mochila, arena).
 - Aba Missões: 3 ofertas com lenda, dificuldade, energia e recompensa; missão em andamento com tempo restante, acelerar, concluir e renovar.
 - Aba Torre dos Chefes: 3 atos de 10 fases, com cadeado por nível e espera depois de perder para um chefe.
+- Aba Arena: rivais, desafio com coragem, honra e últimos duelos.
+- Feira e Mochila: itens com cor de raridade e comparação com o equipado; comprar, equipar, desequipar, vender e renovar a feira.
+- Aba Mais com Mochila, Bestiário e Ajustes (velocidade da luta, painel de desempenho, diagnóstico e versão clássica).
+- Bestiário com as 8 pinturas da v0.2 como cartas; a lenda fica desconhecida até ser enfrentada. A carta também aparece na luta.
 - Luta animada por cima da aba: carta da lenda, vida, narração, ataque, crítico com tremor e flash, esquiva e derrota; velocidade 1×/2×/4× e Pular.
 - Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
 
