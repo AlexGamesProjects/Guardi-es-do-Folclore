@@ -4,7 +4,6 @@ const FIXTURE: String = "res://tests/fixtures/saves/v1_example.json"
 
 
 func _step_1_to_2(env: Dictionary) -> Dictionary:
-	# Passo de exemplo, só do teste: acrescenta um campo e muda a honra.
 	var st: Dictionary = env["state"]
 	st["campo_novo"] = "oi"
 	st["honra"] = int(st["honra"]) + 10
@@ -48,27 +47,12 @@ func test_missing_step_is_corrupt() -> void:
 
 func test_steps_chain_in_order() -> void:
 	var log: Array[int] = []
-	var m := SaveMigrations.new(
-		{
-			1:
-			func(e: Dictionary) -> Dictionary:
-				# Passo de exemplo, só do teste: acrescenta um campo e muda a honra.
-
-				# O original não é alterado.
-
-				log.append(1)
-				return e,
-			2:
-			func(e: Dictionary) -> Dictionary:
-				# Passo de exemplo, só do teste: acrescenta um campo e muda a honra.
-
-				# O original não é alterado.
-
-				log.append(2)
-				return e,
-		},
-		3
-	)
+	var m := SaveMigrations.new({1: _logging_step.bind(log, 1), 2: _logging_step.bind(log, 2)}, 3)
 	var out: Dictionary = m.migrate({"save_version": 1, "state": {}})
 	assert_array(log).is_equal([1, 2])
 	assert_int(out["save_version"]).is_equal(3)
+
+
+func _logging_step(env: Dictionary, log: Array[int], n: int) -> Dictionary:
+	log.append(n)
+	return env

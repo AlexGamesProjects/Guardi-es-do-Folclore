@@ -106,3 +106,12 @@ func test_mode_edit_without_rehash_is_corrupt() -> void:
 	assert_str(edited).is_not_equal(text)
 	var res: Dictionary = SaveCodec.decode(edited, SaveMigrations.new())
 	assert_str(res["error"]).is_equal("CORROMPIDO")
+
+
+func test_future_version_is_checked_before_hash() -> void:
+	# Um save futuro pode usar outro esquema de hash: continua sendo VERSAO_FUTURA, não lixo.
+	var env: Dictionary = JSON.parse_string(SaveCodec.encode(_rich_state(), "rv"))
+	env["save_version"] = SaveCodec.SAVE_VERSION + 1
+	env["hash"] = "hash-de-outro-esquema"
+	var res: Dictionary = SaveCodec.decode(JSON.stringify(env, "", true), SaveMigrations.new())
+	assert_str(res["error"]).is_equal("VERSAO_FUTURA")

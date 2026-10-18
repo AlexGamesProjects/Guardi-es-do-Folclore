@@ -25,17 +25,18 @@ static func decode(text: String, migrations: SaveMigrations) -> Dictionary:
 		return _fail("CORROMPIDO")
 	# O JSON do Godot só tem `float`: volta tudo a `int` antes de conferir o hash.
 	var env: Dictionary = Defs.normalize(json.data)
-	var stored: Variant = env.get("hash")
-	if not stored is String:
-		return _fail("CORROMPIDO")
-	env.erase("hash")
-	if _hash_of(env) != stored:
-		return _fail("CORROMPIDO")
-	if not env.get("save_version") is int or not env.get("state") is Dictionary:
+	# A versão vem antes do hash: um save futuro pode usar outro esquema de hash e não é lixo.
+	if not env.get("save_version") is int:
 		return _fail("CORROMPIDO")
 	var version: int = env["save_version"]
 	if version > migrations.target():
 		return _fail("VERSAO_FUTURA")
+	var stored: Variant = env.get("hash")
+	if not stored is String:
+		return _fail("CORROMPIDO")
+	env.erase("hash")
+	if _hash_of(env) != stored or not env.get("state") is Dictionary:
+		return _fail("CORROMPIDO")
 	if version < 1:
 		return _fail("CORROMPIDO")
 	env = migrations.migrate(env)

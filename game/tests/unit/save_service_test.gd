@@ -164,3 +164,39 @@ func test_list_profiles_uses_backup_when_main_corrupt() -> void:
 
 func test_list_profiles_empty_when_no_folder() -> void:
 	assert_int(_svc.list_profiles().size()).is_equal(0)
+
+
+func test_load_with_unsafe_id_starts_fresh_without_touching_disk() -> void:
+	_svc.save(_state("x", "offline", 5), "rv")
+	var outside: String = "%s/../x.json" % _root
+	var res: Dictionary = _svc.load("../x", "offline", _fresh("../x", "offline"))
+	assert_str(res["warning"]).is_equal("SAVE_RECRIADO")
+	assert_int((res["state"] as GameState).honra).is_equal(0)
+	assert_bool(_io.exists(outside)).is_false()
+	assert_bool(_io.exists(_p("x", "json"))).is_true()
+
+
+func test_id_with_trailing_newline_is_rejected() -> void:
+	assert_bool(_svc.save(_state("abc\n", "offline"), "rv")).is_false()
+	var res: Dictionary = _svc.load("abc\n", "offline")
+	assert_str(res["warning"]).is_equal("SAVE_RECRIADO")
+
+
+func test_final_rename_failure_rolls_back_and_keeps_previous_save() -> void:
+	_svc.save(_state("p1", "offline", 1), "rv")
+	_svc.save(_state("p1", "offline", 2), "rv")
+	var before_main: String = _io.read(_p("p1", "json"))
+	var svc := SaveService.new(TmpRenameFailsIO.new(), _root)
+	assert_bool(svc.save(_state("p1", "offline", 3), "rv")).is_false()
+	assert_str(_io.read(_p("p1", "json"))).is_equal(before_main)
+	assert_bool(_io.exists(_p("p1", "tmp"))).is_false()
+	assert_int(_svc.load("p1", "offline")["state"].honra).is_equal(2)
+
+
+class TmpRenameFailsIO:
+	extends FileIO
+
+	func rename(from: String, to: String) -> bool:
+		if from.ends_with(".tmp"):
+			return false
+		return super.rename(from, to)

@@ -3,7 +3,7 @@ extends RefCounted
 ## Grava e lê os perfis em `<root>/<id>.json`, com duas cópias de reserva (`.bak1`, `.bak2`).
 ## A gravação vai primeiro para `<id>.tmp` e só então troca o arquivo; se falhar, o anterior fica.
 
-const _ID_PATTERN: String = "^[A-Za-z0-9_-]{1,64}$"
+const _ID_PATTERN: String = "^[A-Za-z0-9_-]{1,64}\\z"
 const _COPIES: PackedStringArray = ["json", "bak1", "bak2"]
 
 var _io: FileIO
@@ -53,6 +53,8 @@ func save(state: GameState, rules_version: String) -> bool:
 ## Sem nenhuma cópia boa, `fresh` (Callable() -> GameState) cria o perfil novo; o id e o modo
 ## pedidos valem sempre. Cópias de versão futura são postas de lado (`.futuro`), não apagadas.
 func load(profile_id: String, mode: String, fresh: Callable = Callable()) -> Dictionary:
+	if not _valid_id(profile_id):
+		return {"state": _fresh_state(fresh, profile_id, mode), "warning": "SAVE_RECRIADO"}
 	var found: GameState = null
 	var warning: String = ""
 	for ext: String in _COPIES:
@@ -68,6 +70,10 @@ func load(profile_id: String, mode: String, fresh: Callable = Callable()) -> Dic
 			warning = "" if ext == "json" else "RESERVA_USADA"
 	if found != null:
 		return {"state": found, "warning": warning}
+	return {"state": _fresh_state(fresh, profile_id, mode), "warning": "SAVE_RECRIADO"}
+
+
+func _fresh_state(fresh: Callable, profile_id: String, mode: String) -> GameState:
 	var state: GameState = null
 	if fresh.is_valid():
 		state = fresh.call() as GameState
@@ -75,7 +81,7 @@ func load(profile_id: String, mode: String, fresh: Callable = Callable()) -> Dic
 		state = GameState.new()
 	state.profile_id = profile_id
 	state.mode = mode
-	return {"state": state, "warning": "SAVE_RECRIADO"}
+	return state
 
 
 ## Um item `{id, mode, nome, lvl}` por perfil, na ordem do id, lido da primeira cópia boa.

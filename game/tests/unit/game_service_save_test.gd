@@ -120,3 +120,32 @@ func test_without_save_service_nothing_is_written() -> void:
 	await _svc.send("treinar", {"stat": "for"})
 	_svc.notification(Node.NOTIFICATION_APPLICATION_PAUSED)
 	assert_bool(_io.exists("%s/p1.json" % _root)).is_false()
+
+
+func test_rename_failure_emits_warning_and_keeps_previous_save() -> void:
+	_setup()
+	await _svc.send("treinar", {"stat": "for"})
+	var before_main: String = _io.read("%s/p1.json" % _root)
+	var codes: Array[String] = []
+	_svc.warning.connect(func(c: String) -> void: codes.append(c))
+	_svc.call(
+		"setup",
+		_rules,
+		LocalExecutor.new(_rules),
+		_clock,
+		Fx.game(_rules),
+		SaveService.new(_RenameFails.new(), _root)
+	)
+	_clock.advance(2000)
+	await _svc.send("treinar", {"stat": "for"})
+	assert_array(codes).is_equal(["SAVE_FALHOU"])
+	assert_str(_io.read("%s/p1.json" % _root)).is_equal(before_main)
+
+
+class _RenameFails:
+	extends FileIO
+
+	func rename(from: String, to: String) -> bool:
+		if from.ends_with(".tmp"):
+			return false
+		return super.rename(from, to)
