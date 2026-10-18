@@ -45,6 +45,12 @@ func get_state() -> GameState:
 	return _state
 
 
+## Pacote de regras em uso, só leitura (as telas consultam dados e custos).
+## Devolve null antes do `setup`.
+func get_rules() -> RulesPack:
+	return _rules
+
+
 ## Versão das regras em uso, ou "" antes do `setup`.
 func get_rules_version() -> String:
 	if _rules == null:

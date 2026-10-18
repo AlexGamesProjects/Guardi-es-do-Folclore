@@ -4,7 +4,8 @@ extends Control
 ## de desempenho com 5 toques em até 2 s.
 ## Avisa `GF_READY` uma única vez, depois do primeiro quadro desenhado (a CI procura essa linha).
 
-const DIAGNOSTICO_SCENE: String = "res://ui/diagnostico.tscn"
+const JOGO_SCENE: String = "res://ui/jogo.tscn"
+const CRIACAO_SCENE: String = "res://ui/criacao.tscn"
 const TAPS_TO_TOGGLE: int = 5
 const TAP_WINDOW_MS: int = 2000
 
@@ -53,7 +54,16 @@ func _on_warning(code: String) -> void:
 
 
 func _on_solo_pressed() -> void:
-	get_tree().change_scene_to_file(DIAGNOSTICO_SCENE)
+	get_tree().change_scene_to_file(destino_solo())
+
+
+## Perfil sem origem passa pela criação do guardião; os outros vão direto ao jogo.
+func destino_solo() -> String:
+	var service: Node = get_node_or_null("/root/GameService")
+	var state: GameState = null if service == null else service.call("get_state")
+	if state != null and state.origem == "":
+		return CRIACAO_SCENE
+	return JOGO_SCENE
 
 
 func _on_versao_pressed() -> void:

@@ -11,13 +11,25 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Tela de criação do guardião na primeira abertura: nome e origem, com o bônus visível. Perfis antigos ("legado") vão direto ao jogo.
+- Criação do guardião: comando `criar_guardiao` com nome e origem (Mata Atlântica +2 Ginga, Sertão +2 Fôlego, Amazônia +2 Malícia, Pampa +2 Força), uma vez só. As origens ficam em `balance.json` e são validadas ao carregar.
+- Casca do jogo no Godot (`ui/jogo.tscn`): topo fixo com herói, nível, XP, vinténs, muiraquitãs, energia e coragem; rodapé com as abas Missões, Torre, Arena, Feira e Mais; painel de treino ao tocar no herói; avisos e erros num Toast comum.
+- Textos de erro por contexto (feira, mochila, arena).
+- Aba Missões: 3 ofertas com lenda, dificuldade, energia e recompensa; missão em andamento com tempo restante, acelerar, concluir e renovar.
+- Aba Torre dos Chefes: 3 atos de 10 fases, com cadeado por nível e espera depois de perder para um chefe.
+- Aba Arena: rivais, desafio com coragem, honra e últimos duelos.
+- Feira e Mochila: itens com cor de raridade e comparação com o equipado; comprar, equipar, desequipar, vender e renovar a feira.
+- Aba Mais com Mochila, Bestiário e Ajustes (velocidade da luta, painel de desempenho, diagnóstico e versão clássica).
+- Bestiário com as 8 pinturas da v0.2 como cartas; a lenda fica desconhecida até ser enfrentada. A carta também aparece na luta.
+- Luta animada por cima da aba: carta da lenda, vida, narração, ataque, crítico com tremor e flash, esquiva e derrota; velocidade 1×/2×/4× e Pular.
 - Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
+
+### Alterado
+- Save do Godot na versão 2: o guardião ganha o campo `origem`. A migração 1→2 marca os perfis antigos como "legado", que não passam pela criação.
+- A versão em desenvolvimento passa a ser `0.4.0-dev`.
 
 ### Corrigido
 - O teste da versão aceita qualquer número no formato X.Y.Z ou X.Y.Z-dev. Antes ele exigia `0.3.0-dev` e quebrou a CI depois do lançamento.
-
-### Alterado
-- A versão em desenvolvimento passa a ser `0.4.0-dev`.
 
 ## [0.3.0] - 2026-10-18
 

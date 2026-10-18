@@ -460,6 +460,29 @@ static func _check_stage(
 # ---------- balance.json ----------
 
 
+## `origens`: ao menos uma; cada uma com `nome` e um único atributo com bônus inteiro > 0.
+static func _check_origens(errors: PackedStringArray, d: Dictionary) -> void:
+	var file: String = "balance.json"
+	var origens: Variant = d.get("origens")
+	if not origens is Dictionary or (origens as Dictionary).is_empty():
+		_err(errors, file, "origens", "precisa ter ao menos uma origem")
+		return
+	for id: Variant in origens:
+		var info: Variant = origens[id]
+		var path: String = "origens.%s" % str(id)
+		if not info is Dictionary or not str((info as Dictionary).get("nome", "")) != "":
+			_err(errors, file, path, "precisa de nome")
+			continue
+		var bonus: int = 0
+		for k: String in Defs.STAT_KEYS:
+			if (info as Dictionary).has(k):
+				if not _is_int(info[k]) or int(info[k]) <= 0:
+					_err(errors, file, path + "." + k, "bônus precisa ser inteiro maior que zero")
+				bonus += 1
+		if bonus != 1:
+			_err(errors, file, path, "precisa de exatamente um atributo com bônus")
+
+
 static func _check_balance(errors: PackedStringArray, data: Variant) -> void:
 	var file: String = "balance.json"
 	var root: Variant = _root(errors, file, data)
@@ -470,6 +493,7 @@ static func _check_balance(errors: PackedStringArray, data: Variant) -> void:
 	_check_table(errors, d, "xp_table", XP_TABLE_SIZE)
 	_check_table(errors, d, "train_cost", TRAIN_COST_SIZE)
 	_check_ranks(errors, d)
+	_check_origens(errors, d)
 	_check_balance_relations(errors, d)
 
 

@@ -2,7 +2,7 @@ class_name SaveMigrations
 extends RefCounted
 ## Migrações do save, um passo por versão. `steps` mapeia `from_version: int` a um
 ## `Callable(envelope: Dictionary) -> Dictionary` que devolve o envelope já na versão seguinte.
-## A tabela de produção começa vazia: a versão 1 é a primeira.
+## Sem `steps`, usa a tabela de produção (`PRODUCAO`).
 
 var _steps: Dictionary = {}
 var _target: int = 0
@@ -10,8 +10,17 @@ var _target: int = 0
 
 ## `target_version` negativo significa `SaveCodec.SAVE_VERSION`. Só os testes usam outro valor.
 func _init(steps: Dictionary = {}, target_version: int = -1) -> void:
-	_steps = steps
+	_steps = steps if not steps.is_empty() else {1: SaveMigrations.v1_para_v2}
 	_target = target_version
+
+
+## 1→2 (v0.4.0): o guardião ganha `origem`; perfis antigos ficam "legado" e pulam a criação.
+static func v1_para_v2(env: Dictionary) -> Dictionary:
+	var out: Dictionary = env.duplicate(true)
+	var st: Variant = out.get("state")
+	if st is Dictionary:
+		(st as Dictionary)["origem"] = "legado"
+	return out
 
 
 func target() -> int:
