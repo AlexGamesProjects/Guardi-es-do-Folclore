@@ -43,7 +43,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 |---|---|---|---|---|---|
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
-| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Especificação em revisão | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
+| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Plano em revisão | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
 | ⚪ | 2. Migração | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Planejado | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
 | ⚪ | 3. Arte | v0.5.0 | Sprites animados do PixelLab, cartas pintadas, herói com opções | Planejado | [v0.5.0 · Arte](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
 | ⚪ | 4. Som | v0.6.0 | Efeitos, ambientes e narração (ElevenLabs), trilha (Suno) | Planejado | [v0.6.0 · Som](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/4) |
@@ -53,8 +53,8 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 ## O que entra em cada etapa
 
 ### 1. Fundação (v0.3.0) · [especificação](superpowers/specs/2026-10-17-fundacao-godot-design.md)
-- [ ] Especificação aprovada ([#9](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/9))
-- [ ] Plano de implementação
+- [x] Especificação aprovada ([#9](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/9))
+- [ ] Plano de implementação ([plano](superpowers/plans/2026-10-17-fundacao-godot.md), em revisão)
 - [ ] Projeto Godot em camadas (`core/`, `data/`, `state/`, `app/`, `ui/`)
 - [ ] Regras da v0.2 no núcleo, em aritmética inteira, com testes unitários
 - [ ] Pacote de regras versionado e validado
@@ -101,6 +101,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 17/10/2026 | Especificação da Fundação aprovada (PR #11). Plano de implementação escrito: 14 tarefas em 4 PRs, com Godot 4.7.2, GdUnit4 6.2.1 e gdtoolkit 4.3.4 |
 | 17/10/2026 | Especificação da Fundação escrita. Milestones reorganizados em 6 etapas. Decididos: Godot 4 com GDScript, núcleo puro em camadas, regras versionadas, comandos assíncronos, perfis offline/online separados, segurança do online adiada para a etapa 5 |
 | 17/10/2026 | Ferramentas conectadas: ElevenLabs (vozes e efeitos) e PixelLab (pelo app desktop). Suno fica em trabalho conjunto. Estilo visual misto: pixel art no combate, pinturas como cartas |
 | 17/10/2026 | Repositório no GitHub com changelog, notas de versão, templates de issue e PR e publicação automática |
