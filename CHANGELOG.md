@@ -11,6 +11,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Tela de criação do guardião na primeira abertura: nome e origem, com o bônus visível. Perfis antigos ("legado") vão direto ao jogo.
 - Criação do guardião: comando `criar_guardiao` com nome e origem (Mata Atlântica +2 Ginga, Sertão +2 Fôlego, Amazônia +2 Malícia, Pampa +2 Força), uma vez só. As origens ficam em `balance.json` e são validadas ao carregar.
 - Casca do jogo no Godot (`ui/jogo.tscn`): topo fixo com herói, nível, XP, vinténs, muiraquitãs, energia e coragem; rodapé com as abas Missões, Torre, Arena, Feira e Mais; painel de treino ao tocar no herói; avisos e erros num Toast comum.
 - Textos de erro por contexto (feira, mochila, arena).
