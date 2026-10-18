@@ -13,6 +13,7 @@ var _retrato: Control
 var _nome: Label
 var _barra: ProgressBar
 var _pv: Label
+var _sprite: AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -38,8 +39,9 @@ func _ready() -> void:
 	add_child(_pv)
 
 
-## Prepara o lado: nome, nível, vida e retrato (`textura` pode ser null).
-func preparar(nome: String, lvl: int, hp: int, textura: Texture2D) -> void:
+## Prepara o lado: nome, nível, vida e retrato. Com sprite (`sprite_id` em SpriteLib) mostra a
+## pixel art animada sobre a carta; sem sprite, mostra a carta (`textura`) ou a inicial.
+func preparar(nome: String, lvl: int, hp: int, textura: Texture2D, sprite_id: String = "") -> void:
 	_nome.text = "%s · nível %d" % [nome, lvl]
 	_barra.max_value = maxi(1, hp)
 	vida(hp)
@@ -59,6 +61,21 @@ func preparar(nome: String, lvl: int, hp: int, textura: Texture2D) -> void:
 		inicial.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		inicial.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		_retrato.add_child(inicial)
+	_sprite = null
+	var frames: SpriteFrames = SpriteLib.frames(sprite_id)
+	if frames != null:
+		_retrato.modulate = Color(0.45, 0.4, 0.38) if textura != null else Color.WHITE
+		var palco := Control.new()
+		palco.name = "Palco"
+		palco.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_retrato.add_child(palco)
+		_sprite = AnimatedSprite2D.new()
+		_sprite.name = "Sprite"
+		_sprite.sprite_frames = frames
+		_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		_sprite.scale = Vector2(3, 3)
+		_sprite.position = _retrato.custom_minimum_size / 2
+		palco.add_child(_sprite)
 	animar("parado")
 
 
@@ -72,6 +89,7 @@ func animar(acao: String) -> void:
 	if not ACOES.has(acao):
 		return
 	historico.append(acao)
+	_tocar_sprite(acao)
 	if not is_inside_tree():
 		return
 	var tw: Tween = create_tween()
@@ -90,3 +108,19 @@ func animar(acao: String) -> void:
 			tw.tween_property(_retrato, "modulate:a", 0.15, 0.4)
 		_:
 			tw.kill()
+
+
+func _tocar_sprite(acao: String) -> void:
+	if _sprite == null:
+		return
+	var nome: String = "ataque" if acao == "critico" else acao
+	if _sprite.sprite_frames.has_animation(nome):
+		_sprite.play(nome)
+		if nome != "parado" and nome != "derrota" and _sprite.sprite_frames.has_animation("parado"):
+			if not _sprite.animation_finished.is_connected(_voltar_parado):
+				_sprite.animation_finished.connect(_voltar_parado)
+
+
+func _voltar_parado() -> void:
+	if _sprite != null and str(_sprite.animation) != "derrota":
+		_sprite.play("parado")

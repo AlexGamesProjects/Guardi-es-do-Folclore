@@ -140,9 +140,11 @@ func _aplicar(ev: Dictionary, animado: bool = true) -> void:
 			var h: Dictionary = ev["heroi"]
 			var i: Dictionary = ev["inimigo"]
 			_nomes = [str(h["nome"]), str(i["nome"])]
-			heroi.preparar(_nomes[0], int(h["lvl"]), int(h["hp"]), null)
+			heroi.preparar(_nomes[0], int(h["lvl"]), int(h["hp"]), null, "heroi")
 			var carta: Texture2D = CartaLib.textura(str(i.get("legend_id", "")))
-			inimigo.preparar(_nomes[1], int(i["lvl"]), int(i["hp"]), carta)
+			inimigo.preparar(
+				_nomes[1], int(i["lvl"]), int(i["hp"]), carta, str(i.get("legend_id", ""))
+			)
 			_narracao.text = "%s enfrenta %s" % [_nomes[0], _nomes[1]]
 		"golpe", "critico":
 			var a: int = int(ev["atacante"])
