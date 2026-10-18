@@ -18,14 +18,14 @@ static func load_dir(path: String) -> RulesLoadResult:
 	for file_name: String in FILES:
 		var full: String = "%s/%s" % [path.trim_suffix("/"), file_name]
 		if not FileAccess.file_exists(full):
-			result.errors.append("%s: arquivo não encontrado (%s)" % [file_name, full])
+			result.errors.append("%s: (raiz): arquivo não encontrado (%s)" % [file_name, full])
 			continue
 		var json := JSON.new()
 		var parse_error: int = json.parse(FileAccess.get_file_as_string(full))
 		if parse_error != OK:
 			result.errors.append(
 				(
-					"%s: JSON inválido na linha %d: %s"
+					"%s: (raiz): JSON inválido na linha %d: %s"
 					% [file_name, json.get_error_line(), json.get_error_message()]
 				)
 			)

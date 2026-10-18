@@ -154,7 +154,7 @@ func test_broken_fixtures_fail_with_expected_error() -> void:
 			. is_true()
 		)
 		checked += 1
-	assert_int(checked).is_equal(6)
+	assert_int(checked).is_equal(10)
 
 
 func test_errors_accumulate_instead_of_stopping_at_first() -> void:
@@ -170,4 +170,4 @@ func test_errors_accumulate_instead_of_stopping_at_first() -> void:
 func test_missing_directory_reports_missing_files() -> void:
 	var result: RulesLoadResult = RulesLoader.load_dir("res://data/packs/nao_existe")
 	assert_bool(result.ok).is_false()
-	assert_str("\n".join(result.errors)).contains("manifest.json: arquivo não encontrado")
+	assert_str("\n".join(result.errors)).contains("manifest.json: (raiz): arquivo não encontrado")

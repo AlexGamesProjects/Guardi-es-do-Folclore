@@ -1,0 +1,1 @@
+balance.json: en_max: deve ser um número inteiro (recebido 1.5)

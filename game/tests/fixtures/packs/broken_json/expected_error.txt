@@ -1,1 +1,1 @@
-legends.json: JSON inválido
+legends.json: (raiz): JSON inválido

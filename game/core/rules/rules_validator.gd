@@ -137,11 +137,11 @@ static func _show(v: Variant) -> String:
 	return str(v)
 
 
-static func _root(errors: PackedStringArray, file: String, data: Variant) -> Dictionary:
+static func _root(errors: PackedStringArray, file: String, data: Variant) -> Variant:
 	if data is Dictionary:
 		return data
 	_err(errors, file, "(raiz)", "deve ser um objeto")
-	return {}
+	return null
 
 
 ## Devolve a lista em `d[key]`, ou vazia (com erro) se faltar ou não for lista.
@@ -212,9 +212,10 @@ static func _need_int(
 
 static func _check_manifest(errors: PackedStringArray, data: Variant) -> void:
 	var file: String = "manifest.json"
-	var d: Dictionary = _root(errors, file, data)
-	if d.is_empty():
+	var root: Variant = _root(errors, file, data)
+	if root == null:
 		return
+	var d: Dictionary = root
 	if not d.has("schema_version"):
 		_err(errors, file, "schema_version", "campo ausente")
 	elif not _is_int(d["schema_version"]):
@@ -236,7 +237,10 @@ static func _check_manifest(errors: PackedStringArray, data: Variant) -> void:
 static func _check_legends(errors: PackedStringArray, data: Variant) -> Dictionary:
 	var file: String = "legends.json"
 	var info: Dictionary = {}
-	var d: Dictionary = _root(errors, file, data)
+	var root: Variant = _root(errors, file, data)
+	if root == null:
+		return info
+	var d: Dictionary = root
 	var legends: Array = _list(errors, file, "", d, "legends")
 	for i: int in legends.size():
 		var path: String = "legends[%d]" % i
@@ -326,7 +330,10 @@ static func _check_phrases(
 
 static func _check_acts(errors: PackedStringArray, data: Variant, legend_info: Dictionary) -> void:
 	var file: String = "acts.json"
-	var d: Dictionary = _root(errors, file, data)
+	var root: Variant = _root(errors, file, data)
+	if root == null:
+		return
+	var d: Dictionary = root
 	var acts: Array = _list(errors, file, "", d, "acts")
 	if acts.is_empty() and d.has("acts"):
 		_err(errors, file, "acts", "não pode ser vazia")
@@ -407,9 +414,10 @@ static func _check_stage(
 
 static func _check_balance(errors: PackedStringArray, data: Variant) -> void:
 	var file: String = "balance.json"
-	var d: Dictionary = _root(errors, file, data)
-	if d.is_empty():
+	var root: Variant = _root(errors, file, data)
+	if root == null:
 		return
+	var d: Dictionary = root
 	_check_spec(errors, file, "", d, BALANCE_SPEC)
 	_check_table(errors, d, "xp_table", XP_TABLE_SIZE)
 	_check_table(errors, d, "train_cost", TRAIN_COST_SIZE)
@@ -584,7 +592,10 @@ static func _check_balance_relations(errors: PackedStringArray, d: Dictionary) -
 
 static func _check_items(errors: PackedStringArray, data: Variant) -> void:
 	var file: String = "items.json"
-	var d: Dictionary = _root(errors, file, data)
+	var root: Variant = _root(errors, file, data)
+	if root == null:
+		return
+	var d: Dictionary = root
 	if not d.has("item_names"):
 		_err(errors, file, "item_names", "campo ausente")
 	elif not d["item_names"] is Dictionary:
@@ -614,7 +625,10 @@ static func _check_items(errors: PackedStringArray, data: Variant) -> void:
 
 static func _check_rivals(errors: PackedStringArray, data: Variant) -> void:
 	var file: String = "rivals.json"
-	var d: Dictionary = _root(errors, file, data)
+	var root: Variant = _root(errors, file, data)
+	if root == null:
+		return
+	var d: Dictionary = root
 	for key: String in ["first", "last"]:
 		if d.has(key):
 			_check_str_list(errors, file, key, d[key], false)
