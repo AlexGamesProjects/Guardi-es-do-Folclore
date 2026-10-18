@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/negrinho.webp-e3b1cfd90d7c1d502562b51b5e328f1
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
