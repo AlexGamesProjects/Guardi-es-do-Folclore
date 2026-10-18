@@ -9,6 +9,8 @@ const TAP_WINDOW_MS: int = 2000
 
 static var _ready_announced: bool = false
 
+## Fonte do instante dos toques, em ms. Os testes trocam por um relógio de mentira.
+var ticks_ms: Callable = Time.get_ticks_msec
 var _taps: Array[int] = []
 
 @onready var _solo: Button = %JornadaSolo
@@ -42,7 +44,7 @@ func _on_solo_pressed() -> void:
 
 
 func _on_versao_pressed() -> void:
-	var now: int = Time.get_ticks_msec()
+	var now: int = int(ticks_ms.call())
 	_taps.append(now)
 	while not _taps.is_empty() and now - _taps[0] > TAP_WINDOW_MS:
 		_taps.pop_front()

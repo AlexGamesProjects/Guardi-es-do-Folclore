@@ -115,7 +115,8 @@ func test_badge_shows_offline() -> void:
 
 
 func test_buttons_disabled_while_busy() -> void:
-	_setup(500)
+	# 800 ms de atraso: folga dos dois lados da checagem em 400 ms (indicador sai em 300 ms).
+	_setup(800)
 	var runner: GdUnitSceneRunner = scene_runner("res://ui/diagnostico.tscn")
 	await runner.simulate_frames(2)
 	var names: Array[String] = ["TreinarForca", "MissaoRapida", "EnfrentarFase", "SalvarNome"]
@@ -163,6 +164,26 @@ func test_five_taps_toggle_overlay() -> void:
 	for i: int in 5:
 		versao.pressed.emit()
 	assert_bool(_overlay().call("is_open")).is_false()
+
+
+func test_taps_outside_window_do_not_toggle_overlay() -> void:
+	_setup()
+	var runner: GdUnitSceneRunner = scene_runner("res://ui/menu.tscn")
+	await runner.simulate_frames(2)
+	var now: Array[int] = [50_000]
+	runner.set_property("ticks_ms", func() -> int: return now[0])
+	var versao: Button = runner.find_child("Versao") as Button
+	for i: int in 4:
+		versao.pressed.emit()
+	# O quinto toque chega 2,1 s depois dos quatro primeiros: fora da janela de 2 s.
+	now[0] += 2100
+	versao.pressed.emit()
+	assert_bool(_overlay().call("is_open")).is_false()
+	# A janela recomeça no toque atrasado: mais 4 dentro dela completam os 5.
+	for i: int in 4:
+		now[0] += 100
+		versao.pressed.emit()
+	assert_bool(_overlay().call("is_open")).is_true()
 
 
 func test_fight_lines_from_events() -> void:

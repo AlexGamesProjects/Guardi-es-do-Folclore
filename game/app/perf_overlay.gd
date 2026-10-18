@@ -84,7 +84,7 @@ func _refresh() -> void:
 		rules_version = str(service.call("get_rules_version"))
 	var lines: PackedStringArray = [
 		"FPS %d (mín. %d)" % [roundi(fps), roundi(worst_fps)],
-		"Quadro %.1f ms" % frame_ms,
+		"Quadro %.1f ms" % frame_ms if _frames > 0 else "Quadro —",
 		"Memória %.1f MB" % mem_mb if mem_mb > 0.0 else "Memória indisponível nesta build",
 		"Modo %s" % mode,
 		"Save v%d · Regras %s" % [SaveCodec.SAVE_VERSION, rules_version if rules_version else "—"],
