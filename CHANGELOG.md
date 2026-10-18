@@ -13,6 +13,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ### Adicionado
 - Projeto Godot 4.7.2 em `game/`, com GdUnit4 6.2.1 e tipagem obrigatória. O jogo HTML v0.2 foi para `legacy-web/` e continua publicado na raiz do site.
 - CI a cada PR: lint, checagem de tipos, testes, export web sem threads, verificação de segredos e medições de download e carregamento, com relatório automático no PR.
+- Núcleo de regras em `game/core/`, só com números inteiros e sorteio por semente: combate, progressão, energia e coragem, itens com raridades, missões, fases da Torre dos Chefes e rivais. Um teste de arquitetura impede que o núcleo dependa de tela, relógio ou sorteio sem semente.
+- Pacote de regras versionado em `game/data/packs/base/` com todo o conteúdo da v0.2 e as constantes de balanceamento e de combate, validado ao carregar.
+- Benchmark de 10 mil lutas no relatório de desempenho do PR (cerca de 0,44 s; limite de 2 s).
 - Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
 - Roadmap visual com as 6 etapas, status e diário de avanços (`docs/ROADMAP.md`).
