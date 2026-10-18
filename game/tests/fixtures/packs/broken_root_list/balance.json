@@ -34,7 +34,25 @@
     "xp_base": 12,
     "xp_lvl": 5,
     "vint_base": 10,
-    "vint_lvl": 6
+    "vint_lvl": 6,
+    "offers": 3,
+    "drop_bp": 2000,
+    "defeat_xp_pm": 300,
+    "skip_muir": 1,
+    "reroll_muir": 1
+  },
+  "progress": {"levelup_muir": 1},
+  "arena": {
+    "win_honra_min": 5,
+    "win_honra_base": 10,
+    "win_honra_lvl": 3,
+    "win_vint_base": 8,
+    "win_vint_lvl": 4,
+    "win_xp_base": 5,
+    "win_xp_lvl": 2,
+    "loss_honra_max": 4,
+    "history": 6,
+    "coragem": 1
   },
   "stage": {
     "mult_base_pm": 800,
@@ -58,6 +76,8 @@
     "rare_bp": 2600,
     "legendary_bp": 600,
     "shop_size": 6,
+    "sell_pm": 300,
+    "reroll_muir": 1,
     "primary": {"cabeca": "gin", "corpo": "fol", "arma": "for", "amuleto": "mal"}
   },
   "rival": {

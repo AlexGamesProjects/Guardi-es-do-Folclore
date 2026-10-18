@@ -47,14 +47,14 @@ func test_mission_fields() -> void:
 
 
 func test_mission_rewards_exact() -> void:
-	# xp = (12 + lvl*5) * dif * luta * (1 + legend.lvl*0,02), arredondado.
+	# xp = (12 + lvl*4) * dif * luta * (1 + legend.lvl*0,02), arredondado.
 	for s: int in 100:
 		var m: Dictionary = Missions.generate(10, 1, Rng.new(s), _rules)
 		var legend: Defs.LegendDef = _rules.legends[m["c"]]
 		var dif: int = _rules.balance.mission["dif_pm"][m["d"]]
 		var luta: int = 1300 if m["luta"] else 1000
 		var mult_pm: int = dif * luta / 1000 * (1000 + legend.lvl * 20) / 1000
-		var expected_xp: int = (62 * mult_pm + 500) / 1000
+		var expected_xp: int = (52 * mult_pm + 500) / 1000
 		assert_int(m["xp"]).is_equal(expected_xp)
 		var expected_vint: int = (70 * mult_pm + 500) / 1000
 		assert_int(m["vint"]).is_equal(expected_vint)

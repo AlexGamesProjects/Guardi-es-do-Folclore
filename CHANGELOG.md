@@ -15,13 +15,21 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - CI a cada PR: lint, checagem de tipos, testes, export web sem threads, verificação de segredos e medições de download e carregamento, com relatório automático no PR.
 - Núcleo de regras em `game/core/`, só com números inteiros e sorteio por semente: combate, progressão, energia e coragem, itens com raridades, missões, fases da Torre dos Chefes e rivais. Um teste de arquitetura impede que o núcleo dependa de tela, relógio ou sorteio sem semente.
 - Pacote de regras versionado em `game/data/packs/base/` com todo o conteúdo da v0.2 e as constantes de balanceamento e de combate, validado ao carregar.
+- Estado do jogo, comandos e handlers em `game/state/`: `GameState`, `Command`, `CommandResult` e `CommandRouter`, que aplica cada jogada (missões, treino, Torre dos Chefes, feira, mochila, Arena e nome) sobre um clone e deixa o estado original intacto em caso de erro. Os números dos handlers (chance de item, venda, custos em muiraquitã, honra da Arena) vêm do `balance.json`.
+- Comandos assíncronos com `await GameService.send(tipo, params)`: um executor local roda as regras, recusa um segundo comando enquanto o primeiro não termina (toque duplo) e deriva a semente de cada jogada do perfil, o que deixa a partida reproduzível.
+- Save com integridade: JSON canônico com SHA-256, gravação em arquivo temporário seguida de troca, duas cópias de reserva, migrações por versão e perfis separados por modo (offline e online). O jogo grava 2 s depois da última mudança e também ao pausar ou perder o foco, e avisa quando a gravação falha ou quando o save precisou ser recriado.
+- Inicialização (`Boot`): valida o pacote de regras e mostra a lista de erros se ele estiver quebrado, cria o perfil offline "solo" uma única vez e abre o menu.
 - Benchmark de 10 mil lutas no relatório de desempenho do PR (cerca de 0,44 s; limite de 2 s).
+- Testes de regressão por cópia de referência (`game/tests/regression/golden/`): 50 lutas com sementes fixas e uma partida roteirizada até o nível 30. Para atualizar depois de uma mudança intencional, rode `tools/regen_golden.sh`.
+- Teste de balanceamento: um jogador típico simulado em 20 sementes precisa ficar nas faixas do `balance.json` (vitória nas fases, nos chefes e missões até o nível 30).
+- Tempo de um comando (p95) no benchmark de desempenho (`command_p95_us`).
 - Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
 - Roadmap visual com as 6 etapas, status e diário de avanços (`docs/ROADMAP.md`).
 - Plano de implementação da Fundação, em 14 tarefas (`docs/superpowers/plans/2026-10-17-fundacao-godot.md`).
 
 ### Alterado
+- Balanceamento calibrado pela simulação: a `curva` dos chefes passa a seguir a força média do jogador típico (nível 1: 12 → 10; nível 30: 64 → 152), as fases ficam em 0,892× a 1,068× da curva (antes 0,822× a 0,998×), o chefe em 1,09× (antes 1,12×) e o XP das missões cresce 4 por nível (antes 5).
 - Milestones reorganizados por etapa: Fundação, Migração, Arte, Som, Contas e segurança e Lojas.
 - Limite de carregamento calibrado de 5 s para 12 s com a primeira medição real (10,2 MB em 4G levam cerca de 10 s); redução do export registrada na issue #15.
 - A Release de cada versão passa a ser criada automaticamente quando o número em `VERSAO` muda no `main`, sem precisar enviar a tag à mão.
