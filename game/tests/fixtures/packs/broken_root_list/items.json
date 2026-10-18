@@ -1,0 +1,39 @@
+{
+  "item_names": {
+    "cabeca": ["Chapéu de Couro", "Gorro Vermelho", "Cocar de Penas", "Chapéu de Palha", "Lenço de Chita"],
+    "corpo": ["Gibão de Vaqueiro", "Bata de Algodão", "Manto de Folhas", "Colete de Couro", "Poncho de Lã"],
+    "arma": [
+      "Peixeira",
+      "Estilingue",
+      "Zarabatana",
+      "Cajado de Jatobá",
+      "Facão",
+      "Arco de Pau-d’arco",
+      "Laço Trançado"
+    ],
+    "amuleto": [
+      "Figa de Arruda",
+      "Patuá",
+      "Fita do Bonfim",
+      "Pena de Gavião",
+      "Muiraquitã de Barro",
+      "Dente de Onça"
+    ]
+  },
+  "epithets": [
+    "da Lua Cheia",
+    "do Mangue",
+    "de Jurema",
+    "do Rio Negro",
+    "de Aroeira",
+    "da Serra",
+    "do Cerrado",
+    "do Velho Chico",
+    "do Pampa"
+  ],
+  "rarities": [
+    {"nome": "Comum", "mult_pm": 1000},
+    {"nome": "Rara", "mult_pm": 1500},
+    {"nome": "Lendária", "mult_pm": 2200}
+  ]
+}

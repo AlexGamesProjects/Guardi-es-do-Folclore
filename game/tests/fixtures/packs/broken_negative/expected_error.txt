@@ -1,0 +1,1 @@
+balance.json: item.price_pt: deve ser maior que 0 (recebido -10)

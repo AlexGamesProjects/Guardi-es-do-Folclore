@@ -1,0 +1,1 @@
+legends.json: (raiz): JSON inválido

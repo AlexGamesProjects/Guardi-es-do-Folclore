@@ -1,0 +1,1 @@
+manifest.json: schema_version: campo ausente
