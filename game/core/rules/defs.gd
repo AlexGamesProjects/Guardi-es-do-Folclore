@@ -186,6 +186,8 @@ class BalanceDef:
 	var mission: Dictionary = {}
 	var progress: Dictionary = {}
 	var arena: Dictionary = {}
+	## Origens do guardião: id → {nome, <atributo>: bônus}.
+	var origens: Dictionary = {}
 	var stage: Dictionary = {}
 	var item: Dictionary = {}
 	var rival: Dictionary = {}
@@ -212,6 +214,7 @@ class BalanceDef:
 		out.mission = Defs.normalize(d["mission"])
 		out.progress = Defs.normalize(d["progress"])
 		out.arena = Defs.normalize(d["arena"])
+		out.origens = Defs.normalize(d.get("origens", {}))
 		out.stage = Defs.normalize(d["stage"])
 		out.item = Defs.normalize(d["item"])
 		out.rival = Defs.normalize(d["rival"])

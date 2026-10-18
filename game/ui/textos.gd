@@ -19,6 +19,8 @@ const ERROS: Dictionary[String, String] = {
 	"EM_RECUPERACAO": "Seu guardião está se recuperando da última derrota. Espere um pouco.",
 	"MOCHILA_CHEIA": "A mochila está cheia. Venda ou equipe um item para abrir espaço.",
 	"CORAGEM_INSUFICIENTE": "Coragem insuficiente. Espere a coragem recarregar.",
+	"JA_CRIADO": "Seu guardião já foi criado.",
+	"ORIGEM_INVALIDA": "Escolha uma das origens da lista.",
 	"COMANDO_DESCONHECIDO": "Essa ação não existe nesta versão. Atualize o jogo.",
 }
 
