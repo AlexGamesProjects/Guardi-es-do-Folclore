@@ -31,10 +31,8 @@ func _run_with(executor: CommandExecutor) -> Dictionary:
 
 
 func test_executor_parity() -> void:
-	var started: int = Time.get_ticks_msec()
 	var local: Dictionary = await _run_with(LocalExecutor.new(_rules))
 	var delayed: Dictionary = await _run_with(DelayedExecutor.new(LocalExecutor.new(_rules), 500))
-	print("PARITY_MS=", Time.get_ticks_msec() - started)
 	assert_array(local["oks"]).is_equal(delayed["oks"])
 	assert_array(local["oks"]).is_equal([true, true, true, true, true])
 	assert_dict(local["state"]).is_equal(delayed["state"])

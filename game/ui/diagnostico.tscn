@@ -1,0 +1,288 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/diagnostico.gd" id="1_diag"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://ui/fundo.tres" id="3_fundo"]
+[ext_resource type="PackedScene" path="res://ui/mode_badge.tscn" id="4_badge"]
+
+[node name="Diagnostico" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_diag")
+
+[node name="Fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_fundo")
+expand_mode = 1
+
+[node name="Margem" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="Tela" type="VBoxContainer" parent="Margem"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Topo" type="HBoxContainer" parent="Margem/Tela"]
+layout_mode = 2
+
+[node name="Voltar" type="Button" parent="Margem/Tela/Topo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 64)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"BotaoPlano"
+theme_override_font_sizes/font_size = 28
+text = "< Menu"
+
+[node name="Vao" type="Control" parent="Margem/Tela/Topo"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ModeBadge" parent="Margem/Tela/Topo" instance=ExtResource("4_badge")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Rolagem" type="ScrollContainer" parent="Margem/Tela"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Coluna" type="VBoxContainer" parent="Margem/Tela/Rolagem"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="Guardiao" type="PanelContainer" parent="Margem/Tela/Rolagem/Coluna"]
+layout_mode = 2
+
+[node name="Caixa" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Rotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa"]
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "GUARDIÃO"
+
+[node name="LinhaNome" type="HBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa"]
+layout_mode = 2
+
+[node name="Nome" type="LineEdit" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/LinhaNome"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 88)
+size_flags_horizontal = 3
+placeholder_text = "Nome do guardião"
+
+[node name="SalvarNome" type="Button" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/LinhaNome"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(160, 88)
+text = "Salvar"
+
+[node name="Numeros" type="HBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Nivel" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NivelRotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Nivel"]
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "Nível"
+horizontal_alignment = 1
+
+[node name="NivelValor" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Nivel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Valor"
+text = "—"
+horizontal_alignment = 1
+
+[node name="Vintens" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="VintensRotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Vintens"]
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "Vinténs"
+horizontal_alignment = 1
+
+[node name="VintensValor" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Vintens"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Valor"
+text = "—"
+horizontal_alignment = 1
+
+[node name="Muir" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="MuirRotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Muir"]
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "Muiraquitãs"
+horizontal_alignment = 1
+
+[node name="MuirValor" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa/Numeros/Muir"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Valor"
+text = "—"
+horizontal_alignment = 1
+
+[node name="Atributos" type="Label" parent="Margem/Tela/Rolagem/Coluna/Guardiao/Caixa"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "—"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Recursos" type="PanelContainer" parent="Margem/Tela/Rolagem/Coluna"]
+layout_mode = 2
+
+[node name="Caixa" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Recursos"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EnergiaLinha" type="HBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+layout_mode = 2
+
+[node name="EnergiaRotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa/EnergiaLinha"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Energia"
+
+[node name="EnergiaValor" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa/EnergiaLinha"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Subtitulo"
+text = "—"
+
+[node name="EnergiaBarra" type="ProgressBar" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+show_percentage = false
+
+[node name="EnergiaRecarga" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "—"
+horizontal_alignment = 2
+
+[node name="Separador" type="HSeparator" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+layout_mode = 2
+
+[node name="CoragemLinha" type="HBoxContainer" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+layout_mode = 2
+
+[node name="CoragemRotulo" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa/CoragemLinha"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Coragem"
+
+[node name="CoragemValor" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa/CoragemLinha"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Subtitulo"
+text = "—"
+
+[node name="CoragemBarra" type="ProgressBar" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_type_variation = &"BarraCoragem"
+show_percentage = false
+
+[node name="CoragemRecarga" type="Label" parent="Margem/Tela/Rolagem/Coluna/Recursos/Caixa"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "—"
+horizontal_alignment = 2
+
+[node name="Acoes" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TreinarForca" type="Button" parent="Margem/Tela/Rolagem/Coluna/Acoes"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 96)
+text = "Treinar Força"
+
+[node name="MissaoRapida" type="Button" parent="Margem/Tela/Rolagem/Coluna/Acoes"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 96)
+text = "Missão rápida"
+
+[node name="EnfrentarFase" type="Button" parent="Margem/Tela/Rolagem/Coluna/Acoes"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 104)
+theme_type_variation = &"BotaoPrincipal"
+text = "Enfrentar fase 1"
+
+[node name="Espera" type="HBoxContainer" parent="Margem/Tela/Rolagem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+visible = false
+alignment = 1
+
+[node name="Giro" type="ColorRect" parent="Margem/Tela/Rolagem/Coluna/Espera"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(24, 24)
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.839, 0.635, 0.29, 1)
+
+[node name="EsperaTexto" type="Label" parent="Margem/Tela/Rolagem/Coluna/Espera"]
+layout_mode = 2
+theme_type_variation = &"Dica"
+theme_override_font_sizes/font_size = 28
+text = "Aguarde um instante..."
+
+[node name="Mensagem" type="Label" parent="Margem/Tela/Rolagem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Sucesso"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Avisos" type="VBoxContainer" parent="Margem/Tela/Rolagem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12

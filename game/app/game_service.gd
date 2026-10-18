@@ -45,6 +45,48 @@ func get_state() -> GameState:
 	return _state
 
 
+## Versão das regras em uso, ou "" antes do `setup`.
+func get_rules_version() -> String:
+	if _rules == null:
+		return ""
+	return _rules.rules_version
+
+
+## Versão do esquema do pacote de regras (`schema_version` do manifesto), ou 0 antes do `setup`.
+func get_schema_version() -> int:
+	if _rules == null:
+		return 0
+	return _rules.schema_version
+
+
+## Leitura de energia e coragem já recarregadas até agora, sem tocar no estado guardado.
+## Chaves (todas int): `energia`, `en_max`, `en_next_ms` (ms até o próximo +1, 0 se cheia),
+## `coragem`, `co_max`, `co_next_ms` (idem) e `now_ms` (o relógio do serviço).
+## Antes do `setup` devolve um Dictionary vazio.
+func stamina_view() -> Dictionary:
+	if _state == null or _rules == null or _clock == null:
+		return {}
+	var b: Defs.BalanceDef = _rules.balance
+	var now: int = _clock.now_ms()
+	var en: Dictionary = Stamina.regen(_state.energia, _state.en_upd_ms, now, b.en_max, b.en_ms)
+	var co: Dictionary = Stamina.regen(_state.coragem, _state.co_upd_ms, now, b.co_max, b.co_ms)
+	return {
+		"energia": int(en["cur"]),
+		"en_max": b.en_max,
+		"en_next_ms": _next_ms(int(en["cur"]), int(en["upd_ms"]), now, b.en_max, b.en_ms),
+		"coragem": int(co["cur"]),
+		"co_max": b.co_max,
+		"co_next_ms": _next_ms(int(co["cur"]), int(co["upd_ms"]), now, b.co_max, b.co_ms),
+		"now_ms": now,
+	}
+
+
+static func _next_ms(cur: int, upd_ms: int, now: int, max_v: int, step_ms: int) -> int:
+	if cur >= max_v:
+		return 0
+	return maxi(0, upd_ms + step_ms - now)
+
+
 func is_busy() -> bool:
 	return _busy
 
@@ -109,7 +151,7 @@ func save_now() -> bool:
 	if not _dirty or _save_service == null or _state == null:
 		return false
 	_last_save_ms = _clock.now_ms()
-	if _save_service.save(_state, _rules.rules_version):
+	if _save_service.save(_state, _rules.rules_version, _rules.schema_version):
 		_dirty = false
 		_save_failing = false
 		return true

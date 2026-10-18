@@ -52,11 +52,21 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
 - O progresso fica no `localStorage`, na chave `guardioes-folclore-v2`. Se o formato do save mudar, troque a chave e o campo `v`.
 
 ## Estrutura do repositório
-- `game/`: projeto Godot (`project.godot`, `main.tscn`, `main.gd`, `addons/gdUnit4/`, `tests/`).
-- `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `godot.sha256` e `gitleaks.sha256` (hash do binário do gitleaks usado no job `secrets` da CI).
+- `game/`: projeto Godot, em camadas. Cada camada só depende das de baixo:
+  - `core/`: regras puras (combate, progressão, energia, economia, sorteio `Rng` com semente). Só inteiros e pontos-base; sem `Node`, sem relógio e sem sorteio global. Um teste de arquitetura garante isso.
+  - `data/packs/base/`: pacote de regras versionado em JSON (`manifest`, `legends`, `acts`, `balance`, `items`, `rivals`), validado ao carregar.
+  - `state/`: `GameState`, `Command`, `CommandRouter`, handlers e save (`save/save_codec.gd`, `save/save_migrations.gd`).
+  - `app/`: autoloads `Boot` (inicialização), `GameService` (`await GameService.send(tipo, params)`), `PerfOverlay`, mais `SaveService`, `FileIO`, executores e relógios.
+  - `ui/`: telas (`menu`, `diagnostico`, `luta_teste`, `mode_badge`, `erro_regras`) e `theme.tres`. Telas não têm regra: só mandam comandos e mostram estado e eventos.
+  - `tests/`: `unit/`, `data/`, `architecture/`, `async/`, `fixtures/`, `regression/` (cópias de referência em `golden/`), `balance/`, `smoke/` e `support/`.
+- `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `regen_golden.sh`, `bench.gd`, medições (`measure_size.py`, `measure_load.py`, `check_budgets.py`), limites em `perf_budgets.json`, `godot.sha256` e `gitleaks.sha256`.
 - `legacy-web/`: a v0.2 em HTML, só manutenção de publicação.
-- `.github/workflows/`: `pages.yml` (publica `legacy-web/` na raiz) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
-- `docs/`: roadmap, notas de versão, especificação e plano da Fundação.
+- `.github/workflows/`: `ci.yml` (lint, testes, export, segredos e medições com comentário no PR), `pages.yml` (publica a v0.2 na raiz e o Godot em `/novo/`) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
+- `docs/`: roadmap, notas de versão, roteiro de teste no celular, especificação e plano da Fundação.
+
+**Testes de regressão:** depois de uma mudança intencional de regra ou de balanceamento, rode `tools/regen_golden.sh` e confira o diff das cópias de referência antes do commit.
+
+**Save do Godot:** JSON canônico com SHA-256, em `user://profiles/<perfil>.json` com reservas `.bak1` e `.bak2`. Se o formato mudar, suba `SaveCodec.SAVE_VERSION` e escreva a migração em `save_migrations.gd`.
 
 ## Estrutura do código da v0.2 (`legacy-web/index.html`, dentro do `<script>`)
 - **Constantes de ritmo:** `EN_MAX`/`EN_MS` (energia: 100, +1 a cada 30 s), `CO_MAX`/`CO_MS` (coragem: 5, +1 a cada 2 min), `FEIRA_MS`, `CHEFE_EN`, `CHEFE_ESPERA`.
@@ -72,18 +82,20 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
 - **Telas:** `telaMissoes`, `telaChefes`, `telaArena`, `telaFeira`, `telaMochila` e `telaBestiario`.
 - **Ações:** os cliques usam `data-act`, que chama a função correspondente no objeto `acoes`.
 
-## Fórmulas
-- Vida = 40 + Fôlego×8 + nível×12.
-- Dano = Força×1,7 + nível×2,5, variando de ±20%.
-- Crítico dobra o dano. A chance vem de Malícia contra o Fôlego do alvo, com teto de 40%.
-- Esquiva vem de Ginga contra a Força do atacante, com teto de 35%.
-- XP para subir de nível = 60 × nível^1,45.
-- Custo de treino = 8 × 1,11^(valor − 6).
-- Fase de chefe n (1–9): atributos = CURVA[nível] × (0,8 + 0,022n) × perfil. Chefe (fase 10): × 1,12.
+## Fórmulas (núcleo em inteiros; valores em `balance.json`)
+Sufixos: `_pm` = por mil (1000 = 1×), `_bp` = pontos-base (10000 = 100%), `_x10` = décimos.
+- Vida = `hp_base` 40 + Fôlego×8 + nível×12.
+- Dano = (Força×17 + nível×25) / 10, variando de 800 a 1200 por mil (±20%).
+- Crítico dobra o dano. A chance vem de Malícia contra o Fôlego do alvo, de 3% a 40%.
+- Esquiva vem de Ginga contra a Força do atacante, de 3% a 35%.
+- XP para subir de nível: tabela `xp_table` (60 × nível^1,45, arredondado).
+- Custo de treino: tabela `train_cost` (8 × 1,11^(valor − 6), arredondado).
+- Fase n da Torre (1–9): atributos = `curva`[nível] × (870 + 22n) / 1000 × perfil, ou seja, de 0,892× a 1,068×. Chefe (fase 10): × 1090 / 1000. Calibrado na v0.3.0 por `tests/balance` (fases 45–65% de vitória, chefes 20–40%, 425–575 missões até o nível 30).
+- XP de missão = 12 + 4 × nível, multiplicado pela dificuldade.
 
 ## Decisões de conteúdo
 - O Negrinho do Pastoreio é sempre aliado. Ele aparece só em tarefas e nunca como inimigo.
-- O herói ainda é um SVG simples (`heroiSVG`). Falta uma ilustração do protagonista, de preferência com opções de escolha.
+- Na v0.2 o herói é um SVG simples (`heroiSVG`); no Godot ainda não tem arte. Falta uma ilustração do protagonista, de preferência com opções de escolha.
 
 ## Próximos passos sugeridos
 - Arte do herói e de outras lendas (Mula sem Cabeça, Lobisomem, Caipora, Matinta Perera).

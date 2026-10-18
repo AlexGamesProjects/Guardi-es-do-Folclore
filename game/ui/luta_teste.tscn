@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/luta_teste.gd" id="1_luta"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://ui/fundo.tres" id="3_fundo"]
+[ext_resource type="PackedScene" path="res://ui/mode_badge.tscn" id="4_badge"]
+
+[node name="LutaTeste" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_luta")
+
+[node name="Fundo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fundo")
+expand_mode = 1
+
+[node name="Margem" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Coluna" type="VBoxContainer" parent="Margem"]
+layout_mode = 2
+
+[node name="ModeBadge" parent="Margem/Coluna" instance=ExtResource("4_badge")]
+layout_mode = 2
+
+[node name="Titulo" type="Label" parent="Margem/Coluna"]
+layout_mode = 2
+theme_type_variation = &"Subtitulo"
+theme_override_font_sizes/font_size = 44
+text = "Luta de teste"
+horizontal_alignment = 1
+
+[node name="Lutadores" type="PanelContainer" parent="Margem/Coluna"]
+layout_mode = 2
+
+[node name="Lados" type="VBoxContainer" parent="Margem/Coluna/Lutadores"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeroiNome" type="Label" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Guardião"
+
+[node name="HeroiBarra" type="ProgressBar" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_type_variation = &"BarraCoragem"
+value = 100.0
+show_percentage = false
+
+[node name="HeroiPV" type="Label" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "— PV"
+
+[node name="Contra" type="Label" parent="Margem/Coluna/Lutadores/Lados"]
+layout_mode = 2
+theme_type_variation = &"Subtitulo"
+theme_override_font_sizes/font_size = 28
+text = "contra"
+horizontal_alignment = 1
+
+[node name="InimigoNome" type="Label" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lenda"
+horizontal_alignment = 2
+
+[node name="InimigoBarra" type="ProgressBar" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_type_variation = &"BarraVida"
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="InimigoPV" type="Label" parent="Margem/Coluna/Lutadores/Lados"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Dica"
+text = "— PV"
+horizontal_alignment = 2
+
+[node name="Registro" type="PanelContainer" parent="Margem/Coluna"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Rolagem" type="ScrollContainer" parent="Margem/Coluna/Registro"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Linhas" type="VBoxContainer" parent="Margem/Coluna/Registro/Rolagem"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Voltar" type="Button" parent="Margem/Coluna"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "Voltar"

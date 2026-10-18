@@ -36,8 +36,10 @@ func _fresh(id: String, mode: String) -> Callable:
 
 func test_save_then_load_returns_same_state() -> void:
 	var s: GameState = _state("p1", "offline", 5)
-	assert_bool(_svc.save(s, _rules.rules_version)).is_true()
+	assert_bool(_svc.save(s, _rules.rules_version, _rules.schema_version)).is_true()
 	assert_bool(_io.exists(_p("p1", "tmp"))).is_false()
+	var env: Dictionary = JSON.parse_string(_io.read(_p("p1", "json")))
+	assert_int(int(env["schema_version"])).is_equal(_rules.schema_version)
 	var res: Dictionary = _svc.load("p1", "offline")
 	assert_str(res["warning"]).is_empty()
 	assert_dict((res["state"] as GameState).to_dict()).is_equal(s.to_dict())

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/mode_badge.gd" id="1_badge"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2_theme"]
+
+[node name="ModeBadge" type="PanelContainer"]
+size_flags_horizontal = 4
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_type_variation = &"Selo"
+script = ExtResource("1_badge")
+
+[node name="Linha" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Ponto" type="ColorRect" parent="Linha"]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.184, 0.604, 0.408, 1)
+
+[node name="Texto" type="Label" parent="Linha"]
+layout_mode = 2
+theme_type_variation = &"SeloTexto"
+text = "Offline · Jornada Solo"
