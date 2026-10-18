@@ -10,16 +10,21 @@ from pathlib import Path
 from PIL import Image
 
 RAIZ = Path(__file__).resolve().parent.parent / "game" / "assets" / "heroi"
-CONTORNO = (27, 18, 12, 255)
-PELE = (138, 90, 60, 255)
-PELE_SOMBRA = (110, 70, 46, 255)
-CABELO = (40, 26, 18, 255)
-CAMISA = (216, 201, 163, 255)
-CAMISA_SOMBRA = (184, 166, 126, 255)
-CALCA = (74, 59, 46, 255)
-CALCA_SOMBRA = (56, 44, 34, 255)
-PE = (52, 36, 26, 255)
-OLHO = (20, 14, 10, 255)
+CONTORNO = (12, 8, 6, 255)
+PELE = (166, 105, 82, 255)
+PELE_LUZ = (186, 126, 98, 255)
+PELE_SOMBRA = (113, 75, 64, 255)
+CABELO = (17, 13, 11, 255)
+CABELO_LUZ = (52, 40, 34, 255)
+CAMISA = (193, 164, 131, 255)
+CAMISA_LUZ = (212, 188, 156, 255)
+CAMISA_SOMBRA = (160, 132, 102, 255)
+CALCA = (70, 57, 60, 255)
+CALCA_SOMBRA = (46, 37, 40, 255)
+PE = (140, 88, 68, 255)
+OLHO = (16, 10, 8, 255)
+BRANCO = (236, 226, 210, 255)
+CINTO = (113, 75, 52, 255)
 T = (0, 0, 0, 0)
 
 
@@ -66,35 +71,90 @@ def salvar(img, pasta, nome):
 # ---------- corpo base ----------
 
 def cabeca():
-    img = tela(14, 14)
-    retangulo(img, 2, 3, 11, 12, PELE)
-    retangulo(img, 2, 10, 4, 12, PELE_SOMBRA)
-    retangulo(img, 2, 2, 11, 4, CABELO)
-    retangulo(img, 2, 5, 3, 8, CABELO)
-    img.putpixel((9, 7), OLHO)
-    img.putpixel((11, 9), PELE_SOMBRA)
-    retangulo(img, 8, 10, 10, 10, PELE_SOMBRA)
+    img = tela(17, 17)
+    # crânio e rosto (olhando para a direita)
+    retangulo(img, 3, 3, 13, 13, PELE)
+    retangulo(img, 4, 2, 12, 2, PELE)
+    retangulo(img, 3, 13, 12, 14, PELE)
+    retangulo(img, 11, 4, 13, 9, PELE_LUZ)
+    retangulo(img, 3, 10, 6, 14, PELE_SOMBRA)
+    img.putpixel((14, 8), PELE)          # nariz
+    img.putpixel((14, 9), PELE_SOMBRA)
+    # cabelo crespo: topo e nuca
+    retangulo(img, 3, 1, 12, 3, CABELO)
+    retangulo(img, 2, 2, 5, 9, CABELO)
+    for x, y in ((4, 0), (7, 0), (10, 0), (2, 1), (13, 2), (1, 4), (1, 7)):
+        img.putpixel((x, y), CABELO)
+    for x, y in ((5, 1), (8, 1), (11, 2), (3, 5)):
+        img.putpixel((x, y), CABELO_LUZ)
+    # orelha, olho, sobrancelha e boca
+    retangulo(img, 6, 7, 7, 9, PELE_SOMBRA)
+    img.putpixel((11, 7), BRANCO)
+    img.putpixel((12, 7), OLHO)
+    img.putpixel((12, 6), CABELO)
+    img.putpixel((11, 6), CABELO)
+    retangulo(img, 11, 11, 13, 11, PELE_SOMBRA)
     return contornar(img)
 
 
-def tronco(cor=CAMISA, sombra=CAMISA_SOMBRA, detalhe=None):
-    img = tela(14, 18)
-    retangulo(img, 2, 1, 11, 16, cor)
-    retangulo(img, 10, 1, 11, 16, sombra)
-    retangulo(img, 5, 1, 8, 2, PELE)
-    retangulo(img, 2, 14, 11, 14, (120, 90, 52, 255))  # cinto de corda
+def tronco(cor=CAMISA, sombra=CAMISA_SOMBRA, detalhe=None, luz=None):
+    img = tela(16, 21)
+    retangulo(img, 2, 1, 13, 18, cor)
+    retangulo(img, 2, 1, 4, 18, sombra)
+    if luz:
+        retangulo(img, 11, 2, 12, 15, luz)
+    retangulo(img, 9, 1, 12, 3, PELE)      # pescoço e gola em V
+    img.putpixel((10, 4), PELE)
+    retangulo(img, 2, 16, 13, 17, CINTO)   # cinto de corda
+    img.putpixel((12, 18), CINTO)
     if detalhe:
         detalhe(img)
     return contornar(img)
 
 
+def braco(manga=CAMISA, manga_sombra=CAMISA_SOMBRA, longa=False):
+    img = tela(7, 12)
+    retangulo(img, 1, 1, 5, 10, manga if longa else PELE)
+    retangulo(img, 1, 1, 5, 4 if not longa else 10, manga)
+    retangulo(img, 1, 1, 1, 10, manga_sombra if longa else PELE_SOMBRA)
+    retangulo(img, 1, 1, 1, 4, manga_sombra)
+    return contornar(img)
+
+
+def antebraco(manga=None, manga_sombra=None):
+    img = tela(7, 12)
+    retangulo(img, 1, 1, 5, 7, manga or PELE)
+    retangulo(img, 1, 1, 1, 7, manga_sombra or PELE_SOMBRA)
+    retangulo(img, 1, 8, 5, 10, PELE)      # mão
+    retangulo(img, 4, 8, 5, 9, PELE_LUZ)
+    img.putpixel((1, 10), PELE_SOMBRA)
+    return contornar(img)
+
+
+def coxa():
+    img = tela(8, 12)
+    retangulo(img, 1, 1, 6, 8, CALCA)      # bermuda
+    retangulo(img, 1, 1, 2, 8, CALCA_SOMBRA)
+    retangulo(img, 2, 9, 5, 10, PELE)
+    return contornar(img)
+
+
+def canela():
+    img = tela(11, 13)
+    retangulo(img, 2, 1, 5, 9, PELE)
+    retangulo(img, 2, 1, 2, 9, PELE_SOMBRA)
+    retangulo(img, 2, 9, 8, 11, PE)        # pé descalço para a frente
+    retangulo(img, 2, 11, 9, 11, PELE_SOMBRA)
+    return contornar(img)
+
+
 def salvar_base():
     salvar(cabeca(), "partes", "cabeca")
-    salvar(tronco(), "partes", "tronco")
-    salvar(membro(4, 9, CAMISA, CAMISA_SOMBRA), "partes", "braco")
-    salvar(membro(4, 9, CAMISA, CAMISA_SOMBRA, PELE, 3), "partes", "antebraco")
-    salvar(membro(5, 10, CALCA, CALCA_SOMBRA), "partes", "coxa")
-    salvar(membro(5, 10, CALCA, CALCA_SOMBRA, PE, 2), "partes", "canela")
+    salvar(tronco(luz=CAMISA_LUZ), "partes", "tronco")
+    salvar(braco(), "partes", "braco")
+    salvar(antebraco(), "partes", "antebraco")
+    salvar(coxa(), "partes", "coxa")
+    salvar(canela(), "partes", "canela")
 
 
 # ---------- roupas (slot corpo): tronco + braço + antebraço ----------
@@ -110,29 +170,35 @@ ROUPAS = {
 
 def detalhe_roupa(nome):
     def franjas(img):
-        for x in range(2, 12, 2):
-            img.putpixel((x, 16), (90, 58, 32, 255))
+        for x in range(2, 14, 2):
+            img.putpixel((x, 18), (90, 58, 32, 255))
+            img.putpixel((x, 19), (90, 58, 32, 255))
 
     def folhas(img):
-        for x, y in ((3, 4), (8, 6), (5, 9), (9, 11), (4, 13)):
+        for x, y in ((3, 4), (8, 6), (5, 9), (11, 11), (4, 13), (10, 3), (7, 15)):
             img.putpixel((x, y), (120, 180, 90, 255))
 
     def colete(img):
-        retangulo(img, 5, 3, 8, 13, CAMISA)
+        retangulo(img, 8, 3, 11, 15, CAMISA)
+        retangulo(img, 9, 5, 9, 14, CAMISA_SOMBRA)
 
     def listras(img):
-        for y in (5, 9, 12):
-            retangulo(img, 2, y, 11, y, (232, 184, 72, 255))
+        for y in (5, 9, 13):
+            retangulo(img, 2, y, 13, y, (232, 184, 72, 255))
 
     return {"gibao_vaqueiro": franjas, "manto_folhas": folhas, "colete_couro": colete,
             "poncho_la": listras}.get(nome)
 
 
+MANGA_LONGA = {"gibao_vaqueiro", "manto_folhas", "poncho_la"}
+
+
 def salvar_roupas():
     for nome, (cor, sombra) in ROUPAS.items():
+        longa = nome in MANGA_LONGA
         salvar(tronco(cor, sombra, detalhe_roupa(nome)), "itens", f"{nome}_tronco")
-        salvar(membro(4, 9, cor, sombra), "itens", f"{nome}_braco")
-        salvar(membro(4, 9, cor, sombra, PELE, 3), "itens", f"{nome}_antebraco")
+        salvar(braco(cor, sombra, longa), "itens", f"{nome}_braco")
+        salvar(antebraco(cor if longa else None, sombra if longa else None), "itens", f"{nome}_antebraco")
 
 
 # ---------- cabeça ----------

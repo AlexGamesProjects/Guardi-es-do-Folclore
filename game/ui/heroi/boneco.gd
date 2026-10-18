@@ -146,28 +146,28 @@ func _montar() -> void:
 	var quadril: Node2D = _novo_osso("Quadril", _raiz, Vector2(48, 66))
 	# Ordem de desenho: perna e braço de trás, tronco e cabeça, perna e braço da frente.
 	var coxa_t: Node2D = _novo_osso(
-		"CoxaTras", quadril, Vector2(-2, 0), "coxa", Vector2(-3.5, -1), -1
+		"CoxaTras", quadril, Vector2(-2, 0), "coxa", Vector2(-4, -1), -1
 	)
-	_novo_osso("CanelaTras", coxa_t, Vector2(0, 10), "canela", Vector2(-3.5, -1), -1)
-	var tronco: Node2D = _novo_osso("Tronco", quadril, Vector2(0, 1), "tronco", Vector2(-7, -18))
+	_novo_osso("CanelaTras", coxa_t, Vector2(0, 9), "canela", Vector2(-4, -1), -1)
+	var tronco: Node2D = _novo_osso("Tronco", quadril, Vector2(0, 2), "tronco", Vector2(-8, -19))
 	var braco_t: Node2D = _novo_osso(
-		"BracoTras", tronco, Vector2(-1, -15), "braco", Vector2(-3, -1), -2
+		"BracoTras", tronco, Vector2(-1, -16), "braco", Vector2(-3, -1), -2
 	)
 	_novo_osso("AntebracoTras", braco_t, Vector2(0, 9), "antebraco", Vector2(-3, -1), -2)
-	var cabeca: Node2D = _novo_osso("Cabeca", tronco, Vector2(1, -16), "cabeca", Vector2(-7, -13))
-	_pecas["cabeca"] = _nova_peca(cabeca, Vector2(0, -11), 2)
-	_pecas["amuleto"] = _nova_peca(tronco, Vector2(1, -11), 1)
+	var cabeca: Node2D = _novo_osso("Cabeca", tronco, Vector2(2, -17), "cabeca", Vector2(-8, -15))
+	_pecas["cabeca"] = _nova_peca(cabeca, Vector2(0, -13), 2)
+	_pecas["amuleto"] = _nova_peca(tronco, Vector2(3, -12), 1)
 	var coxa_f: Node2D = _novo_osso(
-		"CoxaFrente", quadril, Vector2(2, 0), "coxa", Vector2(-3.5, -1), 1
+		"CoxaFrente", quadril, Vector2(2, 0), "coxa", Vector2(-4, -1), 1
 	)
-	_novo_osso("CanelaFrente", coxa_f, Vector2(0, 10), "canela", Vector2(-3.5, -1), 1)
+	_novo_osso("CanelaFrente", coxa_f, Vector2(0, 9), "canela", Vector2(-4, -1), 1)
 	var braco_f: Node2D = _novo_osso(
-		"BracoFrente", tronco, Vector2(3, -15), "braco", Vector2(-3, -1), 3
+		"BracoFrente", tronco, Vector2(3, -16), "braco", Vector2(-3, -1), 3
 	)
 	var ante_f: Node2D = _novo_osso(
 		"AntebracoFrente", braco_f, Vector2(0, 9), "antebraco", Vector2(-3, -1), 3
 	)
-	_pecas["arma"] = _nova_peca(ante_f, Vector2(2, 9), 4)
+	_pecas["arma"] = _nova_peca(ante_f, Vector2(1, 10), 4)
 	for nome: String in ["CoxaTras", "CanelaTras", "BracoTras", "AntebracoTras"]:
 		_partes[nome].modulate = Color(0.72, 0.68, 0.66)
 
