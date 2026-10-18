@@ -70,3 +70,4 @@ func atualizar() -> void:
 			else:
 				b.text = "%s%s · enfrentar" % [chefe, stages[n].nome]
 				b.disabled = busy or falta > 0
+			b.theme_type_variation = &"BotaoPrincipal" if n == proxima else &"BotaoPlano"

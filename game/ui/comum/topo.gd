@@ -40,9 +40,12 @@ func _ready() -> void:
 	_xp.custom_minimum_size = Vector2(0, 10)
 	id.add_child(_xp)
 	var moedas := VBoxContainer.new()
+	moedas.custom_minimum_size = Vector2(230, 0)
 	l1.add_child(moedas)
 	_vint = _rotulo("Vintens", &"Valor", moedas)
 	_muir = _rotulo("Muiraquitas", &"Dica", moedas)
+	_vint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_muir.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	var l2 := HBoxContainer.new()
 	linhas.add_child(l2)
 	_energia = _rotulo("EnergiaValor", &"Valor", _par(l2, "Energia"))

@@ -38,9 +38,14 @@ func _ready() -> void:
 	_treino.hide()
 	_toast = Toast.new()
 	add_child(_toast)
-	_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	_toast.custom_minimum_size = Vector2(660, 0)
-	_toast.position.y -= 140
+	_toast.anchor_left = 0.0
+	_toast.anchor_right = 1.0
+	_toast.anchor_top = 1.0
+	_toast.anchor_bottom = 1.0
+	_toast.offset_left = 30
+	_toast.offset_right = -30
+	_toast.offset_bottom = -130
+	_toast.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	topo.heroi_tocado.connect(_abrir_treino)
 	_abas.escolhida.connect(abrir_aba)
 	var service: Node = get_node_or_null("/root/GameService")

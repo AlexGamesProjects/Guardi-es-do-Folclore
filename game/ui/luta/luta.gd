@@ -27,11 +27,15 @@ func _init() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	var fundo := ColorRect.new()
-	fundo.color = Color(0.05, 0.03, 0.02, 0.92)
+	fundo.color = Color(0.07, 0.045, 0.03, 1.0)
 	fundo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(fundo)
 	var caixa := VBoxContainer.new()
 	caixa.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	caixa.offset_left = 24
+	caixa.offset_right = -24
+	caixa.offset_top = 60
+	caixa.offset_bottom = -40
 	caixa.alignment = BoxContainer.ALIGNMENT_CENTER
 	caixa.add_theme_constant_override("separation", 24)
 	add_child(caixa)
