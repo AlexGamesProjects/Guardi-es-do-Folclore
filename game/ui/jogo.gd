@@ -65,9 +65,14 @@ func abrir_aba(id: String) -> void:
 	_cache[id].show()
 
 
-## Abre a camada de luta (Tarefa 4). Por enquanto só avisa quem escuta.
+## Abre a camada de luta por cima da aba e toca os eventos.
 func mostrar_luta(eventos: Array[Dictionary]) -> void:
 	luta_pedida.emit(eventos)
+	var luta := Luta.new()
+	luta.name = "Luta"
+	add_child(luta)
+	move_child(luta, _toast.get_index())
+	luta.tocar(eventos, Ajustes.velocidade())
 
 
 func _on_eventos(eventos: Array[Dictionary]) -> void:

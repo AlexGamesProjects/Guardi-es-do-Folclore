@@ -13,6 +13,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ### Adicionado
 - Casca do jogo no Godot (`ui/jogo.tscn`): topo fixo com herói, nível, XP, vinténs, muiraquitãs, energia e coragem; rodapé com as abas Missões, Torre, Arena, Feira e Mais; painel de treino ao tocar no herói; avisos e erros num Toast comum.
 - Textos de erro por contexto (feira, mochila, arena).
+- Aba Missões: 3 ofertas com lenda, dificuldade, energia e recompensa; missão em andamento com tempo restante, acelerar, concluir e renovar.
+- Aba Torre dos Chefes: 3 atos de 10 fases, com cadeado por nível e espera depois de perder para um chefe.
+- Luta animada por cima da aba: carta da lenda, vida, narração, ataque, crítico com tremor e flash, esquiva e derrota; velocidade 1×/2×/4× e Pular.
 - Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
 
 ### Corrigido

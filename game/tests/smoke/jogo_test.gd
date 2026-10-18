@@ -118,3 +118,19 @@ func test_textos_erro_por_contexto() -> void:
 	assert_str(feira).is_not_equal(treino)
 	assert_str(feira).contains("compra")
 	assert_str(Textos.erro("NAO_ENCONTRADO", "mochila")).contains("item")
+
+
+func test_luta_abre_por_cima_da_aba() -> void:
+	var state: GameState = _setup()
+	Fx.strong(state)
+	var runner: GdUnitSceneRunner = await _abrir()
+	(runner.find_child("Aba_torre") as Button).pressed.emit()
+	await runner.simulate_frames(2)
+	(runner.find_child("Fase_0_0") as Button).pressed.emit()
+	await runner.simulate_frames(4)
+	var luta: Luta = runner.find_child("Luta") as Luta
+	assert_object(luta).is_not_null()
+	luta.pular()
+	luta.fechar()
+	await runner.simulate_frames(2)
+	assert_object(runner.find_child("Luta")).is_null()
