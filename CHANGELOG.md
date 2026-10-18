@@ -11,6 +11,8 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Casca do jogo no Godot (`ui/jogo.tscn`): topo fixo com herói, nível, XP, vinténs, muiraquitãs, energia e coragem; rodapé com as abas Missões, Torre, Arena, Feira e Mais; painel de treino ao tocar no herói; avisos e erros num Toast comum.
+- Textos de erro por contexto (feira, mochila, arena).
 - Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
 
 ### Corrigido

@@ -22,6 +22,23 @@ const ERROS: Dictionary[String, String] = {
 	"COMANDO_DESCONHECIDO": "Essa ação não existe nesta versão. Atualize o jogo.",
 }
 
+## Textos que mudam conforme a tela que mandou o comando (o padrão acima vale para missão e treino).
+const ERROS_POR_CONTEXTO: Dictionary[String, Dictionary] = {
+	"feira":
+	{
+		"VINTENS_INSUFICIENTES": "Faltam vinténs para essa compra. Faça missões ou venda itens.",
+		"NAO_ENCONTRADO": "Esse item não está mais na feira. Renove a feira para ver outros.",
+	},
+	"mochila":
+	{
+		"NAO_ENCONTRADO": "Esse item não está mais na mochila.",
+	},
+	"arena":
+	{
+		"NAO_ENCONTRADO": "Esse rival não está mais na roda. Escolha outro.",
+	},
+}
+
 const AVISOS: Dictionary[String, String] = {
 	"SAVE_FALHOU":
 	"Não foi possível salvar o progresso neste aparelho. Libere espaço; o jogo tenta de novo sozinho.",
@@ -32,7 +49,9 @@ const AVISOS: Dictionary[String, String] = {
 }
 
 
-static func erro(code: String) -> String:
+static func erro(code: String, contexto: String = "geral") -> String:
+	if ERROS_POR_CONTEXTO.has(contexto) and ERROS_POR_CONTEXTO[contexto].has(code):
+		return str(ERROS_POR_CONTEXTO[contexto][code])
 	if ERROS.has(code):
 		return ERROS[code]
 	return "Não deu certo (%s). Tente de novo." % code
