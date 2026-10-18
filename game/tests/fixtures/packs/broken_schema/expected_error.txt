@@ -1,0 +1,1 @@
+manifest.json: schema_version: versão 99 não suportada

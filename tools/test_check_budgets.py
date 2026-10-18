@@ -68,3 +68,19 @@ def test_missing_baseline_file_is_ok(tmp_path):
         capture_output=True, text=True,
     )
     assert proc.returncode == 0
+
+
+def test_mode_label_is_ignored_as_metric(tmp_path):
+    metricas = {"download_gz_bytes": 5_000_000, "fights_10k_ms": 100, "mode": "offline"}
+    proc, relatorio = rodar(tmp_path, metricas, {"mode": "offline", "load_ms": 200})
+    assert proc.returncode == 0, proc.stderr
+    assert "❌" not in relatorio
+    assert "Modo medido: `offline`." in relatorio
+    assert not any(l.startswith("| mode") for l in relatorio.splitlines())
+
+
+def test_non_numeric_metric_is_dash(tmp_path):
+    proc, relatorio = rodar(tmp_path, {"load_ms": "rápido"})
+    assert proc.returncode == 0, proc.stderr
+    linha = next(l for l in relatorio.splitlines() if "load_ms" in l)
+    assert "—" in linha

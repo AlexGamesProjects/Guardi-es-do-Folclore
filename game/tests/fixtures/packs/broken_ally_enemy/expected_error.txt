@@ -1,0 +1,1 @@
+acts.json: acts[0].stages[2].legend_id: lenda 'negrinho' é aliada e não pode ser inimiga

@@ -1,0 +1,1 @@
+balance.json: combat.dodge_min_bp: maior que dodge_max_bp
