@@ -1,12 +1,8 @@
 extends Node2D
-
-const TITULO: String = "Guardiões do Folclore"
+## Cena inicial: entrega o controle ao `Boot`, que valida as regras e abre o menu.
 
 
 func _ready() -> void:
-	var versao: String = str(ProjectSettings.get_setting("application/config/version"))
-	var rotulo := Label.new()
-	rotulo.text = "%s %s" % [TITULO, versao]
-	rotulo.position = Vector2(40, 40)
-	add_child(rotulo)
-	print("GF_READY")
+	# Adiado: a troca de cena não pode acontecer no meio do `_ready` da cena atual.
+	var boot: Node = get_node("/root/Boot")
+	boot.call_deferred("start")
