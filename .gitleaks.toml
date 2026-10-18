@@ -1,0 +1,13 @@
+# Regras do gitleaks: usa o conjunto padrão e acrescenta só o que for necessário.
+title = "Guardiões do Folclore"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Saídas geradas, nunca versionadas"
+paths = [
+  '''^build/''',
+  '''^game/\.godot/''',
+  '''^game/reports/''',
+]

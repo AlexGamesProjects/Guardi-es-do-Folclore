@@ -11,7 +11,7 @@ Closes #
 - [ ] `CHANGELOG.md` atualizado em `[Não lançado]`
 - [ ] Testado no navegador em tela de computador e de celular
 - [ ] Números de balanceamento novos documentados (se houver)
-- [ ] Novas artes adicionadas em `assets/` em WebP 640×860
+- [ ] Novas artes adicionadas em `game/` (as da v0.2 ficam em `legacy-web/assets/`, WebP 640×860)
 
 ## Como testar
 1.

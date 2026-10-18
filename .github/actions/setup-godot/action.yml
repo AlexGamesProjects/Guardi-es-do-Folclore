@@ -1,0 +1,19 @@
+name: Preparar Godot
+description: Instala o Godot 4.7.2-stable e os templates de export, com cache.
+
+runs:
+  using: composite
+  steps:
+    - name: Restaurar cache do Godot
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      with:
+        path: |
+          ~/.local/bin/godot
+          ~/.local/share/godot/export_templates/4.7.2.stable
+        key: godot-${{ runner.os }}-${{ hashFiles('tools/godot.sha256') }}
+    - name: Instalar Godot e templates
+      shell: bash
+      run: tools/setup_godot.sh
+    - name: Colocar o Godot no PATH
+      shell: bash
+      run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"

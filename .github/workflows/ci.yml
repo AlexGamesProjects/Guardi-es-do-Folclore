@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Instalar gdtoolkit
+        run: pip install gdtoolkit==4.3.4
+      - name: Conferir formatação (gdformat)
+        run: gdformat --check $(git ls-files 'game/*.gd' ':!game/addons/**')
+      - name: Conferir estilo (gdlint)
+        # O gdlint lê o gdlintrc do diretório atual.
+        run: cd game && gdlint $(git ls-files '*.gd' ':!addons/**')
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: ./.github/actions/setup-godot
+      # O run_tests.sh falha se nenhum caso de teste for executado.
+      - name: Rodar testes
+        run: tools/run_tests.sh
+      # Os avisos de tipagem são erro; isto pega scripts sem tipo que nenhum teste carrega.
+      - name: Conferir scripts no parser do Godot
+        run: tools/check_scripts.sh
+
+  export-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: ./.github/actions/setup-godot
+      - name: Exportar para a web
+        run: |
+          mkdir -p build/web
+          godot --headless --path game --import || true
+          godot --headless --path game --export-release Web ../build/web/index.html
+          for f in index.html index.wasm index.pck; do
+            test -s "build/web/$f" || { echo "::error::build/web/$f não foi gerado"; exit 1; }
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: web-build
+          path: build/web
+          if-no-files-found: error
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      # Binário fixado e conferido contra tools/gitleaks.sha256. A gitleaks-action
+      # exige licença paga para organizações, por isso não é usada.
+      - name: Instalar gitleaks 8.30.1
+        run: |
+          VERSAO=8.30.1
+          ARQ="gitleaks_${VERSAO}_linux_x64.tar.gz"
+          curl -fsSL --retry 3 -o "$RUNNER_TEMP/$ARQ" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${VERSAO}/${ARQ}"
+          (cd "$RUNNER_TEMP" && sha256sum -c "$GITHUB_WORKSPACE/tools/gitleaks.sha256")
+          mkdir -p "$RUNNER_TEMP/gitleaks"
+          tar -xzf "$RUNNER_TEMP/$ARQ" -C "$RUNNER_TEMP/gitleaks" gitleaks
+          echo "$RUNNER_TEMP/gitleaks" >> "$GITHUB_PATH"
+      - name: Procurar segredos
+        run: gitleaks detect --source . --config .gitleaks.toml --redact --verbose
