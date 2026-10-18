@@ -43,6 +43,7 @@ func test_buy_errors_keep_state() -> void:
 	var offer: Dictionary = s.feira[0]
 	var before: Dictionary = s.to_dict()
 	assert_str(Fx.run(s, "comprar", {"item_id": 424242}, _rules).error).is_equal("NAO_ENCONTRADO")
+	assert_dict(s.to_dict()).is_equal(before)
 	s.vint = int(offer["preco"]) - 1
 	before = s.to_dict()
 	var poor: CommandResult = Fx.run(s, "comprar", {"item_id": offer["id"]}, _rules)

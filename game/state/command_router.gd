@@ -6,6 +6,15 @@ extends RefCounted
 ## MISSAO_EM_ANDAMENTO, MUIRAQUITAS_INSUFICIENTES, ATRIBUTO_INVALIDO, VINTENS_INSUFICIENTES,
 ## FASE_BLOQUEADA, NIVEL_INSUFICIENTE, EM_RECUPERACAO, MOCHILA_CHEIA, CORAGEM_INSUFICIENTE e
 ## COMANDO_DESCONHECIDO. O `cmd_counter` fica para o GameService.
+##
+## Catálogo de eventos (cada um é {"type": ..., ...}):
+## - missao_concluida {mission_id, c, luta, win}, xp_ganho {amount}, subiu_nivel {lvl},
+##   item_ganho {item_id, nome, rar, destino: mochila|equipado},
+##   vintens_ganhos {amount, origem: missao|fase|arena|venda|item_vendido},
+##   fase_vencida {act, n, boss}, ato_concluido {act}, honra_alterada {delta, honra}.
+## - Extras (R21): luta {contexto: missao|fase|arena, heroi {nome, lvl, hp},
+##   inimigo {nome, lvl, hp, legend_id}}, seguido dos eventos do combate (golpe, critico,
+##   esquiva, fim; atacante 0 = herói), e muiraquitas_ganhas {amount, origem: nivel|chefe}.
 
 static var _table: Dictionary = {}
 

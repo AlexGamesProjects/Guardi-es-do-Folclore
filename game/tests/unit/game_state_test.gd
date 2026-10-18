@@ -24,7 +24,7 @@ func test_new_game_defaults() -> void:
 	assert_dict(s.stats).is_equal({"for": 10, "fol": 10, "mal": 8, "gin": 8})
 	assert_int(s.fases.size()).is_equal(3)
 	assert_int(s.rng_seed).is_equal(123)
-	assert_int(s.cmd_counter).is_equal(0)
+	assert_int(s.cmd_counter).is_equal(1)
 	assert_int(s.chefe_espera_ms).is_equal(0)
 	assert_bool(s.ativa.is_empty()).is_true()
 	assert_array(s.mochila).is_empty()
@@ -43,6 +43,14 @@ func test_new_game_starts_with_weapon_and_filled_lists() -> void:
 	assert_int(s.feira.size()).is_equal(6)
 	assert_int(s.feira_upd_ms).is_equal(Fx.T0)
 	assert_int(s.uid).is_greater(12)
+
+
+func test_new_game_reserves_seed_index_zero() -> void:
+	var s: GameState = Fx.game(_rules, 123)
+	assert_int(s.cmd_counter).is_equal(1)
+	assert_int(Rng.derive_seed(s.rng_seed, s.cmd_counter)).is_not_equal(
+		Rng.derive_seed(s.rng_seed, 0)
+	)
 
 
 func test_new_game_is_deterministic_per_seed() -> void:

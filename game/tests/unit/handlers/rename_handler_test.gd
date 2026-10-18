@@ -21,6 +21,13 @@ func test_rename_sanitizes() -> void:
 	assert_str(_name_after("x".repeat(200))).is_equal("x".repeat(18))
 	assert_str(_name_after('Zé "Saci"\t🌿')).is_equal('Zé "Saci"🌿')
 	assert_str(_name_after("a\nb\r\nc")).is_equal("abc")
+	for hidden: String in ["\u00a0", "\u200b", "\u202e", "\ufeff", "\u00ad", "\u2060", "\u3000"]:
+		assert_str(_name_after(hidden)).is_equal("Jaci")
+		assert_str(_name_after(hidden + " " + hidden)).is_equal("Jaci")
+		assert_str(_name_after(hidden + "Ana" + hidden)).is_equal("Ana")
+	for format_char: String in ["\u200b", "\u202e", "\ufeff", "\u00ad", "\u2060"]:
+		assert_str(_name_after("A" + format_char + "na")).is_equal("Ana")
+	assert_str(_name_after("\u00a0🌿\u200b")).is_equal("🌿")
 	assert_str(_name_after("  " + "y".repeat(17) + "  z")).is_equal("y".repeat(17))
 
 

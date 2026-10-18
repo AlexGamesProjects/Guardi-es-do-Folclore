@@ -49,6 +49,7 @@ var chefe_espera_ms: int = 0
 var uid: int = 1
 var missoes: int = 0
 var rng_seed: int = 0
+## O índice 0 de `derive_seed(rng_seed, n)` é do `new_game`; o primeiro comando usa 1.
 var cmd_counter: int = 0
 
 
@@ -81,6 +82,7 @@ static func new_game(
 	s.uid += 1
 	s.equip[str(weapon["slot"])] = weapon
 	s.rng_seed = seed_value
+	s.cmd_counter = 1
 	Refill.ensure(s, now_ms, Rng.new(Rng.derive_seed(seed_value, 0)), rules)
 	return s
 

@@ -51,7 +51,8 @@
     "win_xp_base": 5,
     "win_xp_lvl": 2,
     "loss_honra_max": 4,
-    "history": 6
+    "history": 6,
+    "coragem": 1
   },
   "stage": {
     "mult_base_pm": 800,

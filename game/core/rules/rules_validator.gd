@@ -79,6 +79,7 @@ const BALANCE_SPEC: Dictionary = {
 		"win_xp_lvl": "nonneg",
 		"loss_honra_max": "nonneg",
 		"history": "pos",
+		"coragem": "pos",
 	},
 	"stage":
 	{

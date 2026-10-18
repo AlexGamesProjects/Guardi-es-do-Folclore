@@ -8,11 +8,11 @@ static func run(c: HandlerCtx) -> String:
 	var i: int = StateOps.index_of(s.rivais, c.arg_int("rival_id"))
 	if i < 0:
 		return "NAO_ENCONTRADO"
-	if not StateOps.spend_courage(c, 1):
+	var cfg: Dictionary = c.rules.balance.arena
+	if not StateOps.spend_courage(c, int(cfg["coragem"])):
 		return "CORAGEM_INSUFICIENTE"
 	var rival: Dictionary = s.rivais[i]
 	s.rivais.remove_at(i)
-	var cfg: Dictionary = c.rules.balance.arena
 	var enemy: Fighter = Fighter.make(str(rival["nome"]), int(rival["lvl"]), rival["st"])
 	var win: bool = StateOps.fight(c, enemy, "arena")
 	var delta: int

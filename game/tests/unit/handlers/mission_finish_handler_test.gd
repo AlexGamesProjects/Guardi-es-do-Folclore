@@ -26,6 +26,7 @@ func test_finish_errors() -> void:
 	var s: GameState = Fx.game(_rules)
 	var before: Dictionary = s.to_dict()
 	assert_str(Fx.run(s, "concluir_missao", {}, _rules).error).is_equal("SEM_MISSAO")
+	assert_dict(s.to_dict()).is_equal(before)
 	s.ativa = _active("negrinho", false)
 	s.ativa["fim_ms"] = Fx.T0 + 1
 	before = s.to_dict()
