@@ -2,6 +2,8 @@
 # Confere que todos os GDScripts do jogo (fora de addons/) passam no parser do Godot.
 # Como os avisos de tipagem são erro (untyped_declaration=2), um script sem tipos reprova aqui,
 # mesmo que nenhum teste o carregue.
+# Depende do --import feito antes por tools/run_tests.sh (rode aquele script primeiro,
+# senão o cache de classes do projeto pode estar vazio).
 #   GODOT_BIN  executável do Godot (padrão: ~/.local/bin/godot)
 set -euo pipefail
 

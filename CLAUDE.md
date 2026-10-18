@@ -41,6 +41,7 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
 **Godot e testes** (Linux x86_64):
 - `tools/setup_godot.sh` instala o Godot 4.7.2-stable em `$GODOT_BIN` (padrão `~/.local/bin/godot`) e os templates de export em `~/.local/share/godot/export_templates/4.7.2.stable/`. Confere o SHA-256 contra `tools/godot.sha256`. É idempotente.
 - `tools/run_tests.sh [res://caminho]` importa o projeto e roda o GdUnit4 sem tela (padrão: `res://tests`). Sai com código ≠ 0 se houver falha.
+- `tools/check_scripts.sh` confere cada GDScript fora de `addons/` no parser do Godot (`--check-only`), o que reprova código sem tipo mesmo que nenhum teste o carregue. Depende do `--import` feito antes pelo `run_tests.sh`.
 - Para abrir o jogo: `godot --path game` (ou abra `game/project.godot` no editor).
 - A versão do jogo fica em `game/project.godot`, `config/version`. Use `X.Y.Z-dev` durante o desenvolvimento; a Release só sai com `X.Y.Z` exato.
 - Avisos de variável sem tipo são erro (`untyped_declaration=2`): declare o tipo de tudo. O GdUnit4 (v6.2.1) fica vendorizado em `game/addons/gdUnit4/`.
@@ -52,7 +53,7 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
 
 ## Estrutura do repositório
 - `game/`: projeto Godot (`project.godot`, `main.tscn`, `main.gd`, `addons/gdUnit4/`, `tests/`).
-- `tools/`: `setup_godot.sh`, `run_tests.sh` e `godot.sha256`.
+- `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `godot.sha256` e `gitleaks.sha256` (hash do binário do gitleaks usado no job `secrets` da CI).
 - `legacy-web/`: a v0.2 em HTML, só manutenção de publicação.
 - `.github/workflows/`: `pages.yml` (publica `legacy-web/` na raiz) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
 - `docs/`: roadmap, notas de versão, especificação e plano da Fundação.

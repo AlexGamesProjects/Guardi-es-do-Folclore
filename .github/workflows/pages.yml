@@ -28,6 +28,10 @@ jobs:
           mkdir -p build/web
           godot --headless --path game --import || true
           godot --headless --path game --export-release Web ../build/web/index.html
+          # Se o export falhar ou sair vazio, o deploy inteiro falha e o site atual fica como está.
+          for f in index.html index.wasm index.pck; do
+            test -s "build/web/$f" || { echo "::error::build/web/$f não foi gerado"; exit 1; }
+          done
       - name: Montar site
         run: |
           mkdir _site
