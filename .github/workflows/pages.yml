@@ -34,10 +34,15 @@ jobs:
           done
       - name: Montar site
         run: |
-          mkdir _site
-          cp -r legacy-web/. _site/
-          mkdir _site/novo
-          cp -r build/web/. _site/novo/
+          mkdir -p _site/v02 _site/novo
+          cp -r build/web/. _site/
+          cp -r legacy-web/. _site/v02/
+          printf '%s\n' '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../">' \
+            '<link rel="canonical" href="../"><title>Guardiões do Folclore</title>' \
+            '<p>O jogo mudou de endereço: <a href="../">abrir o jogo</a>.</p>' > _site/novo/index.html
+          for f in index.html v02/index.html novo/index.html; do
+            test -s "_site/$f" || { echo "::error::_site/$f não foi gerado"; exit 1; }
+          done
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
