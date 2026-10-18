@@ -1,0 +1,60 @@
+{
+  "legends": [
+    {
+      "id": "saci",
+      "nome": "Saci-Pererê",
+      "lvl": 1,
+      "lugar": "Canavial da fazenda",
+      "ally": false,
+      "perf_pm": {"for": 900, "fol": 850, "mal": 1050, "gin": 1200},
+      "tarefas": [
+        "Desatar os nós que o Saci deu na crina dos cavalos",
+        "Achar o fumo que o Saci escondeu no paiol",
+        "Seguir o redemoinho até a porteira"
+      ],
+      "lutas": [
+        "Tomar o gorro vermelho do Saci",
+        "Prender o Saci numa garrafa",
+        "Pegar o Saci no meio do redemoinho"
+      ],
+      "lore": "Moleque de uma perna só, com gorro e short vermelhos e cachimbo na boca. Esconde objetos, dá nós em crinas e some dentro de um redemoinho. Quem tomar seu gorro ganha um desejo."
+    },
+    {
+      "id": "curupira",
+      "nome": "Curupira",
+      "lvl": 1,
+      "lugar": "Mata ao crepúsculo",
+      "ally": false,
+      "perf_pm": {"for": 1050, "fol": 950, "mal": 950, "gin": 1050},
+      "tarefas": [
+        "Seguir os rastros invertidos do Curupira",
+        "Deixar oferendas na beira da trilha",
+        "Tirar os caçadores da mata antes da noite"
+      ],
+      "lutas": ["Provar sua coragem ao Curupira", "Escapar das armadilhas do Curupira"],
+      "lore": "Menino guardião da floresta, de cabelos vermelhos e pés virados para trás. Suas pegadas apontam para o lado oposto, e assim ele confunde quem caça mais do que precisa ou fere a mata."
+    },
+    {
+      "id": "negrinho",
+      "nome": "Negrinho do Pastoreio",
+      "lvl": 1,
+      "lugar": "Campos do Sul",
+      "ally": true,
+      "perf_pm": {},
+      "tarefas": [
+        "Acender uma vela para achar o que se perdeu",
+        "Ajudar a reunir a tropilha ao pôr do sol",
+        "Guiar o gado de volta pela coxilha"
+      ],
+      "lutas": [],
+      "lore": "Na lenda gaúcha, o menino escravizado e castigado injustamente reaparece livre, montado a cavalo e pastoreando a tropilha. Quem perde alguma coisa acende uma vela e pede a ajuda dele."
+    },
+    {
+      "id": "cuca",
+      "nome": "Cuca",
+      "lvl": 4,
+      "lugar": "Casa de taipa",
+      "ally": false,
+      "perf_pm": {"for": 950, "fol": 1000, "mal": 1150, "gin": 900},
+      "tarefas": ["Proteger as crianças da vila até o amanhecer", "Fechar as janelas antes da tempestade"],
+      "lutas": ["Expulsar a Cuca da janela", "Quebrar o feitiço do caldeirão da Cuca

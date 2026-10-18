@@ -1,0 +1,58 @@
+{
+  "acts": [
+    {
+      "nome": "A Mata Encantada",
+      "de": 1,
+      "ate": 10,
+      "capa": "cuca",
+      "stages": [
+        {"nome": "Saci Ligeiro", "legend_id": "saci"},
+        {"nome": "Redemoinho do Saci", "legend_id": "saci"},
+        {"nome": "Rastros Trocados", "legend_id": "curupira"},
+        {"nome": "Gorro Encantado", "legend_id": "saci"},
+        {"nome": "Curupira Enfurecido", "legend_id": "curupira"},
+        {"nome": "Sombra na Janela", "legend_id": "cuca"},
+        {"nome": "Bando de Sacis", "legend_id": "saci"},
+        {"nome": "Guardião de Cabelos de Fogo", "legend_id": "curupira"},
+        {"nome": "Caldeirão da Cuca", "legend_id": "cuca"},
+        {"nome": "Cuca, a Bruxa do Brejo", "legend_id": "cuca"}
+      ]
+    },
+    {
+      "nome": "Rios e Brasas",
+      "de": 11,
+      "ate": 20,
+      "capa": "boitata",
+      "stages": [
+        {"nome": "Canto do Igarapé", "legend_id": "iara"},
+        {"nome": "Moço de Chapéu Branco", "legend_id": "boto"},
+        {"nome": "Correnteza Encantada", "legend_id": "iara"},
+        {"nome": "Festa do Boto", "legend_id": "boto"},
+        {"nome": "Fogo-Fátuo", "legend_id": "boitata"},
+        {"nome": "Iara do Luar", "legend_id": "iara"},
+        {"nome": "Boto Encantado", "legend_id": "boto"},
+        {"nome": "Rastro de Brasa", "legend_id": "boitata"},
+        {"nome": "Rainha das Águas", "legend_id": "iara"},
+        {"nome": "Boitatá, a Cobra de Fogo", "legend_id": "boitata"}
+      ]
+    },
+    {
+      "nome": "A Floresta Funda",
+      "de": 21,
+      "ate": 30,
+      "capa": "mapinguari",
+      "stages": [
+        {"nome": "Pegadas Gigantes", "legend_id": "mapinguari"},
+        {"nome": "Cuca da Tempestade", "legend_id": "cuca"},
+        {"nome": "Boitatá Ancestral", "legend_id": "boitata"},
+        {"nome": "Grito na Floresta", "legend_id": "mapinguari"},
+        {"nome": "Iara das Profundezas", "legend_id": "iara"},
+        {"nome": "Curupira Ancião", "legend_id": "curupira"},
+        {"nome": "Boto Sombrio", "legend_id": "boto"},
+        {"nome": "Fúria da Mata", "legend_id": "mapinguari"},
+        {"nome": "Olhos de Brasa", "legend_id": "boitata"},
+        {"nome": "Mapinguari, o Devorador", "legend_id": "mapinguari"}
+      ]
+    }
+  ]
+}
