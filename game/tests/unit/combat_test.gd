@@ -236,3 +236,19 @@ func test_damage_rounding_is_half_up() -> void:
 	)
 	_assert_only_plain_hits(down)
 	assert_int(down.events[0]["dano"]).is_equal(19)
+
+
+func test_turn_cutoff_compares_ratio_not_raw_hp() -> void:
+	# a: for 1, fol 20 -> vida máxima 40 + 160 + 12 = 212; dano (42*1000+5000)/10000 = 4.
+	# b: for 20, fol 0 -> vida máxima 40 + 0 + 12 = 52; dano 37. b começa (gin 50 contra 0).
+	# 3 golpes: b, a, b. hp_a = 212 - 74 = 138; hp_b = 52 - 4 = 48.
+	# Vida bruta: 138 > 48 (a "venceria"). Produto cruzado: 138*52 = 7176 < 48*212 = 10176,
+	# ou seja 65% da vida contra 92%: a perde.
+	var a := Fighter.make("A", 1, {"for": 1, "fol": 20, "mal": 10, "gin": 0})
+	var b := Fighter.make("B", 1, {"for": 20, "fol": 0, "mal": 10, "gin": 50})
+	var r: CombatResult = Combat.simulate(a, b, Rng.new(1), _fixed_cfg(3))
+	_assert_only_plain_hits(r)
+	assert_int(r.events.size()).is_equal(4)
+	assert_array(r.hp_final).is_equal(PackedInt32Array([138, 48]))
+	assert_bool(r.win).is_false()
+	assert_int(r.events[3]["vencedor"]).is_equal(1)
