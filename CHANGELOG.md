@@ -15,6 +15,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - CI a cada PR: lint, checagem de tipos, testes, export web sem threads, verificação de segredos e medições de download e carregamento, com relatório automático no PR.
 - Núcleo de regras em `game/core/`, só com números inteiros e sorteio por semente: combate, progressão, energia e coragem, itens com raridades, missões, fases da Torre dos Chefes e rivais. Um teste de arquitetura impede que o núcleo dependa de tela, relógio ou sorteio sem semente.
 - Pacote de regras versionado em `game/data/packs/base/` com todo o conteúdo da v0.2 e as constantes de balanceamento e de combate, validado ao carregar.
+- Estado do jogo, comandos e handlers em `game/state/`: `GameState`, `Command`, `CommandResult` e `CommandRouter`, que aplica cada jogada (missões, treino, Torre dos Chefes, feira, mochila, Arena e nome) sobre um clone e deixa o estado original intacto em caso de erro. Os números dos handlers (chance de item, venda, custos em muiraquitã, honra da Arena) vêm do `balance.json`.
 - Benchmark de 10 mil lutas no relatório de desempenho do PR (cerca de 0,44 s; limite de 2 s).
 - Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
