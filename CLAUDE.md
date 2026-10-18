@@ -58,7 +58,7 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
   - `state/`: `GameState`, `Command`, `CommandRouter`, handlers e save (`save/save_codec.gd`, `save/save_migrations.gd`).
   - `app/`: autoloads `Boot` (inicialização), `GameService` (`await GameService.send(tipo, params)`), `PerfOverlay`, mais `SaveService`, `FileIO`, executores e relógios.
   - `ui/`: telas (`menu`, `diagnostico`, `luta_teste`, `mode_badge`, `erro_regras`) e `theme.tres`. Telas não têm regra: só mandam comandos e mostram estado e eventos.
-  - `tests/`: `unit/`, `contract/`, `regression/` (cópias de referência em `golden/`), `balance/`, `smoke/` e `support/`.
+  - `tests/`: `unit/`, `data/`, `architecture/`, `async/`, `fixtures/`, `regression/` (cópias de referência em `golden/`), `balance/`, `smoke/` e `support/`.
 - `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `regen_golden.sh`, `bench.gd`, medições (`measure_size.py`, `measure_load.py`, `check_budgets.py`), limites em `perf_budgets.json`, `godot.sha256` e `gitleaks.sha256`.
 - `legacy-web/`: a v0.2 em HTML, só manutenção de publicação.
 - `.github/workflows/`: `ci.yml` (lint, testes, export, segredos e medições com comentário no PR), `pages.yml` (publica a v0.2 na raiz e o Godot em `/novo/`) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
