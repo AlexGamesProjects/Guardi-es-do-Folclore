@@ -1,8 +1,12 @@
 name: Criar Release da versão
 
+# Quando um merge no main traz um número novo em `const VERSAO` (index.html),
+# este workflow cria a tag vX.Y.Z e a Release com a nota de docs/versoes/vX.Y.Z.md.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths: ['index.html', 'docs/versoes/**', '.github/workflows/release.yml']
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,14 +16,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Criar Release com a nota da versão
+      - name: Ler versão do jogo
+        id: v
+        run: |
+          V=$(grep -oP "const VERSAO = '\K[0-9]+\.[0-9]+\.[0-9]+" index.html)
+          echo "tag=v$V" >> "$GITHUB_OUTPUT"
+          echo "Versão encontrada: v$V"
+      - name: Criar tag e Release se ainda não existirem
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ steps.v.outputs.tag }}
         run: |
-          NOTA="docs/versoes/${TAG}.md"
-          if [ -f "$NOTA" ]; then
-            gh release create "$TAG" --title "$TAG" --notes-file "$NOTA"
-          else
-            gh release create "$TAG" --title "$TAG" --generate-notes
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "A Release $TAG já existe. Nada a fazer."
+            exit 0
           fi
+          NOTA="docs/versoes/${TAG}.md"
+          if [ ! -f "$NOTA" ]; then
+            echo "::error::Falta a nota da versão em $NOTA"
+            exit 1
+          fi
+          TITULO=$(head -1 "$NOTA" | sed 's/^# *//')
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "$TITULO" --notes-file "$NOTA"

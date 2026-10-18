@@ -14,8 +14,9 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
    - Mova `[Não lançado]` para `[x.y.z] - AAAA-MM-DD` no CHANGELOG e atualize os links no fim do arquivo.
    - Escreva `docs/versoes/vX.Y.Z.md` com objetivo, o que entrou, números de balanceamento, decisões e pendências.
    - Atualize `docs/ROADMAP.md`.
-   - Crie e envie a tag `vX.Y.Z`. O workflow `release.yml` cria a Release usando a nota da versão.
+   - Não crie a tag manualmente. Quando o PR com o `VERSAO` novo entra no `main`, o workflow `release.yml` cria a tag `vX.Y.Z` e a Release com a nota da versão.
 6. **Publicação:** o workflow `pages.yml` publica o `main` no GitHub Pages a cada push.
+7. **Nunca faça push direto no `main`.** Tudo entra por PR revisado.
 
 **Diário de avanços:** a cada decisão importante ou entrega, acrescente uma linha no topo do "Diário de avanços" em `docs/ROADMAP.md` e atualize o status das etapas.
 
