@@ -1,3 +1,13 @@
 .DS_Store
 node_modules/
 *.log
+.superpowers/
+game/reports/
+game/.godot/
+build/
+__pycache__/
+.pytest_cache/
+metrics.json
+report.md
+baseline.json
+baseline/

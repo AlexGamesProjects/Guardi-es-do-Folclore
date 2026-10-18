@@ -10,11 +10,11 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
 4. **Pull request:** abra o PR para `main` usando o template, com "Closes #N", e espere a revisão da dona do projeto.
 5. **Fechar a versão,** quando o milestone estiver completo:
    - Escolha o número pelo SemVer: feature nova = MENOR, ajuste = CORREÇÃO.
-   - Atualize `const VERSAO` no `index.html`. Se o formato do save mudar, troque também a `KEY`.
+   - Atualize `config/version` em `game/project.godot` (de `X.Y.Z-dev` para `X.Y.Z`). Se o formato do save mudar, troque também a versão do save.
    - Mova `[Não lançado]` para `[x.y.z] - AAAA-MM-DD` no CHANGELOG e atualize os links no fim do arquivo.
    - Escreva `docs/versoes/vX.Y.Z.md` com objetivo, o que entrou, números de balanceamento, decisões e pendências.
    - Atualize `docs/ROADMAP.md`.
-   - Não crie a tag manualmente. Quando o PR com o `VERSAO` novo entra no `main`, o workflow `release.yml` cria a tag `vX.Y.Z` e a Release com a nota da versão.
+   - Não crie a tag manualmente. Quando o PR com o `config/version` novo entra no `main`, o workflow `release.yml` cria a tag `vX.Y.Z` e a Release com a nota da versão.
 6. **Publicação:** o workflow `pages.yml` publica o `main` no GitHub Pages a cada push.
 7. **Nunca faça push direto no `main`.** Tudo entra por PR revisado.
 
@@ -22,14 +22,43 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
 
 Commits em português, no imperativo: "Adiciona ato IV", "Corrige recarga da coragem".
 
+## Agentes por camada
+O Claude principal é o **líder do jogo**: coordena o trabalho, decide regras e balanceamento, despacha tarefas e confere cada entrega. A implementação fica com agentes especializados, definidos em `.claude/agents/`:
+
+| Agente | Camada |
+|---|---|
+| `infra-ci` | `tools/`, `.github/`, `project.godot`, export e publicação |
+| `nucleo-regras` | `game/core/`, `game/data/` e seus testes |
+| `estado-app` | `game/state/`, `game/app/`, save e inicialização |
+| `interface` | `game/ui/` e painel de desempenho |
+| `revisor` | Revisão independente de cada tarefa (somente leitura) |
+
+Cada tarefa do plano vai para o agente da camada dela e passa pelo `revisor` antes da próxima. Um agente que precisar mexer fora da própria camada para e avisa o líder.
+
 ## Como rodar
-- Tudo está em `index.html` (HTML, CSS e JS num arquivo só, sem build).
-- As ilustrações ficam em `assets/*.webp` (640×860, convertidas das artes originais).
-- Para testar: `npx serve .` ou `python3 -m http.server 8000` e abrir `http://localhost:8000`.
-  Abrir o arquivo direto (file://) também funciona.
+O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML continua em `legacy-web/` e é a que o GitHub Pages publica na raiz.
+
+**Godot e testes** (Linux x86_64):
+- `tools/setup_godot.sh` instala o Godot 4.7.2-stable em `$GODOT_BIN` (padrão `~/.local/bin/godot`) e os templates de export em `~/.local/share/godot/export_templates/4.7.2.stable/`. Confere o SHA-256 contra `tools/godot.sha256`. É idempotente.
+- `tools/run_tests.sh [res://caminho]` importa o projeto e roda o GdUnit4 sem tela (padrão: `res://tests`). Sai com código ≠ 0 se houver falha.
+- `tools/check_scripts.sh` confere cada GDScript fora de `addons/` no parser do Godot (`--check-only`), o que reprova código sem tipo mesmo que nenhum teste o carregue. Depende do `--import` feito antes pelo `run_tests.sh`.
+- Para abrir o jogo: `godot --path game` (ou abra `game/project.godot` no editor).
+- A versão do jogo fica em `game/project.godot`, `config/version`. Use `X.Y.Z-dev` durante o desenvolvimento; a Release só sai com `X.Y.Z` exato.
+- Avisos de variável sem tipo são erro (`untyped_declaration=2`): declare o tipo de tudo. O GdUnit4 (v6.2.1) fica vendorizado em `game/addons/gdUnit4/`.
+
+**v0.2 em HTML** (`legacy-web/`):
+- Tudo está em `legacy-web/index.html` (HTML, CSS e JS num arquivo só, sem build). As ilustrações ficam em `legacy-web/assets/*.webp` (640×860).
+- Para testar: `python3 -m http.server -d legacy-web 8000` e abrir `http://localhost:8000`. Abrir o arquivo direto (file://) também funciona.
 - O progresso fica no `localStorage`, na chave `guardioes-folclore-v2`. Se o formato do save mudar, troque a chave e o campo `v`.
 
-## Estrutura do código (dentro do `<script>`)
+## Estrutura do repositório
+- `game/`: projeto Godot (`project.godot`, `main.tscn`, `main.gd`, `addons/gdUnit4/`, `tests/`).
+- `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `godot.sha256` e `gitleaks.sha256` (hash do binário do gitleaks usado no job `secrets` da CI).
+- `legacy-web/`: a v0.2 em HTML, só manutenção de publicação.
+- `.github/workflows/`: `pages.yml` (publica `legacy-web/` na raiz) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
+- `docs/`: roadmap, notas de versão, especificação e plano da Fundação.
+
+## Estrutura do código da v0.2 (`legacy-web/index.html`, dentro do `<script>`)
 - **Constantes de ritmo:** `EN_MAX`/`EN_MS` (energia: 100, +1 a cada 30 s), `CO_MAX`/`CO_MS` (coragem: 5, +1 a cada 2 min), `FEIRA_MS`, `CHEFE_EN`, `CHEFE_ESPERA`.
 - **Dados:**
   - `CRI`: lendas, com nível de aparição, lugar, perfil de atributos (`perf`), frases de missão e texto do bestiário.
