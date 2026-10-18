@@ -14,6 +14,12 @@ const SEED_MASK: int = 0x7FFFFFFF
 var opener: Callable = Callable()
 ## Avisos do carregamento do perfil (`RESERVA_USADA`, `SAVE_RECRIADO` ou vazio).
 var last_warning: String = ""
+## Avisos coletados no `start`, para o menu ler (`SAVE_RECRIADO`, `SAVE_FALHOU`).
+## Um sinal emitido aqui não chegaria ao menu, que ainda não existe.
+var warnings: Array[String] = []
+
+var _started: bool = false
+var _result: bool = false
 
 
 func start(
@@ -21,13 +27,28 @@ func start(
 	save_root: String = "user://profiles",
 	io: FileIO = null
 ) -> bool:
+	# Segunda chamada: devolve o resultado da primeira, sem recarregar nem reconfigurar nada.
+	if _started:
+		return _result
+	_started = true
+	_result = _start(pack_dir, save_root, io)
+	return _result
+
+
+func _start(pack_dir: String, save_root: String, io: FileIO) -> bool:
 	var loaded: RulesLoadResult = RulesLoader.load_dir(pack_dir)
 	if not loaded.ok:
 		_open(ERROR_SCENE, loaded.errors)
 		return false
 	var rules: RulesPack = loaded.pack
 	var clock: Clock = SystemClock.new()
-	var saves := SaveService.new(io if io != null else FileIO.new(), save_root)
+	var file_io: FileIO = io if io != null else FileIO.new()
+	var saves := SaveService.new(file_io, save_root)
+	# O `SaveService` devolve SAVE_RECRIADO também para o primeiro perfil (nada no disco).
+	# Só é aviso de verdade se havia alguma cópia, ou seja, se elas estavam corrompidas.
+	var had_files: bool = false
+	for ext: String in ["json", "bak1", "bak2"]:
+		had_files = had_files or file_io.exists("%s/%s.%s" % [save_root, PROFILE_ID, ext])
 	var fresh: Callable = func() -> GameState:
 		return GameState.new_game(
 			PROFILE_ID, MODE, DEFAULT_NAME, _random_seed(), clock.now_ms(), rules
@@ -37,7 +58,10 @@ func start(
 	last_warning = str(res["warning"])
 	# Perfil novo (ou recriado): grava já, para ele aparecer em `list_profiles`.
 	if last_warning == "SAVE_RECRIADO":
-		saves.save(state, rules.rules_version)
+		if had_files:
+			warnings.append("SAVE_RECRIADO")
+		if not saves.save(state, rules.rules_version):
+			warnings.append("SAVE_FALHOU")
 	_game_service().setup(rules, LocalExecutor.new(rules), clock, state, saves)
 	_open(MENU_SCENE, PackedStringArray())
 	return true
