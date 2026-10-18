@@ -9,6 +9,8 @@ var acts: Array[Defs.ActDef] = []
 var balance: Defs.BalanceDef = null
 var item_names: Dictionary[String, PackedStringArray] = {}
 var epithets: PackedStringArray = PackedStringArray()
+## Nome-base do item → id do desenho que o guardião veste (`assets/heroi/itens`).
+var visuais: Dictionary[String, String] = {}
 var rarities: Array[Defs.RarityDef] = []
 var rival_first: PackedStringArray = PackedStringArray()
 var rival_last: PackedStringArray = PackedStringArray()
@@ -33,6 +35,9 @@ static func from_files(files: Dictionary) -> RulesPack:
 	for slot: Variant in names:
 		out.item_names[str(slot)] = PackedStringArray(names[slot])
 	out.epithets = PackedStringArray(items["epithets"])
+	var visuais: Dictionary = items.get("visuais", {})
+	for nome: Variant in visuais:
+		out.visuais[str(nome)] = str(visuais[nome])
 	var rarity_list: Array = items["rarities"]
 	for d: Variant in rarity_list:
 		out.rarities.append(Defs.RarityDef.from_dict(d))

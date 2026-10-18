@@ -11,6 +11,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Guardião articulado (`ui/heroi/boneco.gd`): 11 ossos com partes em pixel art desenhadas por código (`tools/gen_heroi.py`), animados no Godot (parado, ataque, crítico, golpe, esquiva, derrota, vitória e andar). Os 23 itens da feira têm desenho e aparecem no corpo (chapéu, roupa, arma e amuleto), com brilho verde nos raros e dourado pulsante nos lendários.
 - Tela de criação do guardião na primeira abertura: nome e origem, com o bônus visível. Perfis antigos ("legado") vão direto ao jogo.
 - Criação do guardião: comando `criar_guardiao` com nome e origem (Mata Atlântica +2 Ginga, Sertão +2 Fôlego, Amazônia +2 Malícia, Pampa +2 Força), uma vez só. As origens ficam em `balance.json` e são validadas ao carregar.
 - Casca do jogo no Godot (`ui/jogo.tscn`): topo fixo com herói, nível, XP, vinténs, muiraquitãs, energia e coragem; rodapé com as abas Missões, Torre, Arena, Feira e Mais; painel de treino ao tocar no herói; avisos e erros num Toast comum.
