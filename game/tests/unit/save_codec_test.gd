@@ -44,7 +44,7 @@ func _assert_no_float(value: Variant, path: String) -> void:
 
 func test_roundtrip_keeps_int_types() -> void:
 	var original: GameState = _rich_state()
-	var text: String = SaveCodec.encode(original, _rules.rules_version)
+	var text: String = SaveCodec.encode(original, _rules.rules_version, _rules.schema_version)
 	# O texto canônico não pode trazer inteiros escritos como 5.0.
 	var re := RegEx.new()
 	re.compile("[0-9]\\.0[,}\\]]")
@@ -52,6 +52,8 @@ func test_roundtrip_keeps_int_types() -> void:
 	var res: Dictionary = SaveCodec.decode(text, SaveMigrations.new())
 	assert_bool(res["ok"]).is_true()
 	assert_str(res["error"]).is_empty()
+	assert_int(res["schema_version"]).is_equal(_rules.schema_version)
+	assert_int(res["schema_version"]).is_equal(1)
 	var back: GameState = res["state"]
 	assert_dict(back.to_dict()).is_equal(original.to_dict())
 	assert_int(typeof(back.rng_seed)).is_equal(TYPE_INT)
@@ -63,13 +65,14 @@ func test_roundtrip_keeps_int_types() -> void:
 
 
 func test_envelope_has_expected_fields() -> void:
-	var text: String = SaveCodec.encode(_rich_state(), "rv-x")
+	var text: String = SaveCodec.encode(_rich_state(), "rv-x", 3)
 	var env: Dictionary = JSON.parse_string(text)
 	assert_array(env.keys()).contains_exactly_in_any_order(
-		["save_version", "rules_version", "profile", "state", "hash"]
+		["save_version", "rules_version", "schema_version", "profile", "state", "hash"]
 	)
 	assert_int(int(env["save_version"])).is_equal(SaveCodec.SAVE_VERSION)
 	assert_str(env["rules_version"]).is_equal("rv-x")
+	assert_int(int(env["schema_version"])).is_equal(3)
 	assert_dict(env["profile"]).is_equal({"id": "p1", "mode": "offline", "nome": 'Jaci "👍"'})
 	assert_int(str(env["hash"]).length()).is_equal(64)
 
@@ -115,3 +118,24 @@ func test_future_version_is_checked_before_hash() -> void:
 	env["hash"] = "hash-de-outro-esquema"
 	var res: Dictionary = SaveCodec.decode(JSON.stringify(env, "", true), SaveMigrations.new())
 	assert_str(res["error"]).is_equal("VERSAO_FUTURA")
+
+
+func test_envelope_without_schema_version_still_decodes() -> void:
+	# Saves gravados antes do campo existir: o hash cobre só o que o envelope traz.
+	var original: GameState = _rich_state()
+	var env: Dictionary = JSON.parse_string(SaveCodec.encode(original, "rv", 1))
+	env.erase("hash")
+	env.erase("schema_version")
+	env["hash"] = JSON.stringify(Defs.normalize(env), "", true).sha256_text()
+	var res: Dictionary = SaveCodec.decode(JSON.stringify(env, "", true), SaveMigrations.new())
+	assert_bool(res["ok"]).is_true()
+	assert_int(res["schema_version"]).is_equal(0)
+	assert_dict((res["state"] as GameState).to_dict()).is_equal(original.to_dict())
+
+
+func test_schema_version_edit_without_rehash_is_corrupt() -> void:
+	var text: String = SaveCodec.encode(_rich_state(), "rv", 1)
+	var edited: String = text.replace('"schema_version":1', '"schema_version":2')
+	assert_str(edited).is_not_equal(text)
+	var res: Dictionary = SaveCodec.decode(edited, SaveMigrations.new())
+	assert_str(res["error"]).is_equal("CORROMPIDO")

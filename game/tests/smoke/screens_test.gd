@@ -161,6 +161,7 @@ func test_five_taps_toggle_overlay() -> void:
 	assert_str(texto.text).contains("FPS")
 	assert_str(texto.text).contains("offline")
 	assert_str(texto.text).contains(_rules.rules_version)
+	assert_str(texto.text).contains("Esquema %d" % _rules.schema_version)
 	for i: int in 5:
 		versao.pressed.emit()
 	assert_bool(_overlay().call("is_open")).is_false()
@@ -245,6 +246,64 @@ func test_missao_rapida_runs_three_commands() -> void:
 	assert_bool((runner.find_child("MissaoRapida") as Button).disabled).is_false()
 
 
+func test_missao_rapida_without_muir_concludes_after_time() -> void:
+	_setup()
+	var state: GameState = _service().get_state() as GameState
+	Fx.strong(state)
+	state.muir = 0
+	var runner: GdUnitSceneRunner = scene_runner("res://ui/diagnostico.tscn")
+	await runner.simulate_frames(2)
+	var botao: Button = runner.find_child("MissaoRapida") as Button
+	var msg: Label = runner.find_child("Mensagem") as Label
+	# Primeiro toque: começa a missão; sem muiraquitãs para acelerar, ela continua ativa.
+	botao.pressed.emit()
+	await runner.await_func_on(msg, "get_text").wait_until(3000).is_not_equal("")
+	await runner.simulate_frames(2)
+	assert_bool((_service().get_state() as GameState).ativa.is_empty()).is_false()
+	# O tempo passa (a missão mais longa dura 90 s): o próximo toque conclui sem acelerar.
+	_clock.advance(120_000)
+	botao.pressed.emit()
+	await runner.await_func_on(self, "_missoes").wait_until(3000).is_equal(1)
+	await runner.simulate_frames(2)
+	var after: GameState = _service().get_state() as GameState
+	assert_bool(after.ativa.is_empty()).is_true()
+	assert_int(after.muir).is_equal(0)
+	assert_str(msg.text).starts_with("Missão concluída!")
+	assert_bool(botao.disabled).is_false()
+
+
+func test_missao_rapida_without_muir_shows_time_left() -> void:
+	_setup()
+	var state: GameState = _service().get_state() as GameState
+	state.muir = 0
+	var runner: GdUnitSceneRunner = scene_runner("res://ui/diagnostico.tscn")
+	await runner.simulate_frames(2)
+	var botao: Button = runner.find_child("MissaoRapida") as Button
+	var msg: Label = runner.find_child("Mensagem") as Label
+	botao.pressed.emit()
+	await runner.await_func_on(msg, "get_text").wait_until(3000).is_not_equal("")
+	await runner.simulate_frames(2)
+	var after: GameState = _service().get_state() as GameState
+	assert_bool(after.ativa.is_empty()).is_false()
+	assert_int(after.missoes).is_equal(0)
+	var restante: int = int(after.ativa["fim_ms"]) - _clock.now_ms()
+	assert_str(msg.text).is_equal(
+		(
+			"Faltam muiraquitãs para acelerar. A missão termina em %s; toque de novo depois."
+			% Textos.relogio(restante)
+		)
+	)
+	assert_bool(botao.disabled).is_false()
+	assert_bool(runner.get_property("_running")).is_false()
+	assert_bool(_service().call("is_busy")).is_false()
+	# Um toque ainda dentro do tempo repete o aviso, sem prender a tela.
+	_clock.advance(5000)
+	botao.pressed.emit()
+	await runner.simulate_frames(5)
+	assert_str(msg.text).contains(Textos.relogio(restante - 5000))
+	assert_bool(botao.disabled).is_false()
+
+
 func _missoes() -> int:
 	return (_service().get_state() as GameState).missoes
 
@@ -272,4 +331,18 @@ func test_save_warning_is_shown() -> void:
 	var avisos: Node = runner.find_child("Avisos")
 	assert_int(avisos.get_child_count()).is_equal(1)
 	var rotulo: Label = avisos.get_child(0).get_child(0) as Label
+	assert_str(rotulo.text).is_equal(Textos.aviso("SAVE_FALHOU"))
+
+
+func test_menu_shows_service_warning() -> void:
+	_setup()
+	var runner: GdUnitSceneRunner = scene_runner("res://ui/menu.tscn")
+	await runner.simulate_frames(1)
+	var avisos: Node = runner.find_child("Avisos")
+	var antes: int = avisos.get_child_count()
+	_service().emit_signal("warning", "SAVE_FALHOU")
+	_service().emit_signal("warning", "SAVE_FALHOU")
+	await runner.simulate_frames(1)
+	assert_int(avisos.get_child_count()).is_equal(antes + 1)
+	var rotulo: Label = avisos.get_child(antes).get_child(0) as Label
 	assert_str(rotulo.text).is_equal(Textos.aviso("SAVE_FALHOU"))

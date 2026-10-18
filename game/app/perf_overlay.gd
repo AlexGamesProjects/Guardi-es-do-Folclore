@@ -1,7 +1,8 @@
 extends CanvasLayer
 ## Autoload `PerfOverlay`: painel de desempenho escondido (5 toques na versão, no menu).
 ## A cada 500 ms mostra FPS (atual e o mínimo da janela), tempo médio por quadro, memória estática,
-## modo, `save_version` e `rules_version`. Só mede no aparelho; nada sai dele.
+## modo, `save_version`, `rules_version` e a `schema_version` do pacote de regras.
+## Só mede no aparelho; nada sai dele.
 ## A memória estática só é contada em builds de depuração; na de lançamento aparece indisponível.
 
 const INTERVAL_S: float = 0.5
@@ -77,17 +78,26 @@ func _refresh() -> void:
 	var service: Node = get_node_or_null("/root/GameService")
 	var mode: String = "—"
 	var rules_version: String = ""
+	var schema_version: int = 0
 	if service != null:
 		var state: GameState = service.call("get_state") as GameState
 		if state != null:
 			mode = state.mode
 		rules_version = str(service.call("get_rules_version"))
+		schema_version = int(service.call("get_schema_version"))
 	var lines: PackedStringArray = [
 		"FPS %d (mín. %d)" % [roundi(fps), roundi(worst_fps)],
 		"Quadro %.1f ms" % frame_ms if _frames > 0 else "Quadro —",
 		"Memória %.1f MB" % mem_mb if mem_mb > 0.0 else "Memória indisponível nesta build",
 		"Modo %s" % mode,
-		"Save v%d · Regras %s" % [SaveCodec.SAVE_VERSION, rules_version if rules_version else "—"],
+		(
+			"Save v%d · Regras %s · Esquema %s"
+			% [
+				SaveCodec.SAVE_VERSION,
+				rules_version if rules_version else "—",
+				str(schema_version) if schema_version > 0 else "—",
+			]
+		),
 	]
 	_texto.text = "\n".join(lines)
 	_reset_window()

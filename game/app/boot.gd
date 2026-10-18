@@ -60,7 +60,7 @@ func _start(pack_dir: String, save_root: String, io: FileIO) -> bool:
 	if last_warning == "SAVE_RECRIADO":
 		if had_files:
 			warnings.append("SAVE_RECRIADO")
-		if not saves.save(state, rules.rules_version):
+		if not saves.save(state, rules.rules_version, rules.schema_version):
 			warnings.append("SAVE_FALHOU")
 	_game_service().setup(rules, LocalExecutor.new(rules), clock, state, saves)
 	_open(MENU_SCENE, PackedStringArray())

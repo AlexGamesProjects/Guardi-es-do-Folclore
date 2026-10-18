@@ -1,16 +1,18 @@
 class_name SaveCodec
 extends RefCounted
-## Envelope do save: `{save_version, rules_version, profile, state, hash}`.
+## Envelope do save: `{save_version, rules_version, schema_version, profile, state, hash}`.
+## `schema_version` é a do manifesto do pacote de regras; envelopes antigos sem ela valem 0.
 ## O hash é o SHA-256 do JSON canônico (chaves ordenadas) do envelope sem o campo `hash`.
 ## Isso pega corrupção e edição ingênua; não impede um jogador de editar e recalcular o hash.
 
 const SAVE_VERSION: int = 1
 
 
-static func encode(state: GameState, rules_version: String) -> String:
+static func encode(state: GameState, rules_version: String, schema_version: int = 0) -> String:
 	var env: Dictionary = {
 		"save_version": SAVE_VERSION,
 		"rules_version": rules_version,
+		"schema_version": schema_version,
 		"profile": {"id": state.profile_id, "mode": state.mode, "nome": state.nome},
 		"state": state.to_dict(),
 	}
@@ -18,7 +20,8 @@ static func encode(state: GameState, rules_version: String) -> String:
 	return JSON.stringify(env, "", true)
 
 
-## Devolve `{ok, error: "CORROMPIDO"|"VERSAO_FUTURA"|"", state: GameState}`.
+## Devolve `{ok, error: "CORROMPIDO"|"VERSAO_FUTURA"|"", state: GameState, schema_version: int}`.
+## O hash cobre os campos que o envelope traz: um envelope sem `schema_version` continua válido.
 static func decode(text: String, migrations: SaveMigrations) -> Dictionary:
 	var json := JSON.new()
 	if json.parse(text) != OK or not json.data is Dictionary:
@@ -50,7 +53,9 @@ static func decode(text: String, migrations: SaveMigrations) -> Dictionary:
 		or str((profile as Dictionary).get("mode")) != state.mode
 	):
 		return _fail("CORROMPIDO")
-	return {"ok": true, "error": "", "state": state}
+	var schema: Variant = env.get("schema_version", 0)
+	var schema_version: int = schema if schema is int else 0
+	return {"ok": true, "error": "", "state": state, "schema_version": schema_version}
 
 
 static func _hash_of(env_without_hash: Dictionary) -> String:
@@ -58,4 +63,4 @@ static func _hash_of(env_without_hash: Dictionary) -> String:
 
 
 static func _fail(error: String) -> Dictionary:
-	return {"ok": false, "error": error, "state": null}
+	return {"ok": false, "error": error, "state": null, "schema_version": 0}

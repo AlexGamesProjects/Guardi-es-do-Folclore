@@ -18,11 +18,11 @@ func _init(io: FileIO, root: String = "user://profiles", migrations: SaveMigrati
 
 
 ## `true` se gravou. Em qualquer falha o `.json` anterior (e as reservas) continuam válidos.
-func save(state: GameState, rules_version: String) -> bool:
+func save(state: GameState, rules_version: String, schema_version: int = 0) -> bool:
 	if not _valid_id(state.profile_id):
 		return false
 	var id: String = state.profile_id
-	var text: String = SaveCodec.encode(state, rules_version)
+	var text: String = SaveCodec.encode(state, rules_version, schema_version)
 	var tmp: String = _path(id, "tmp")
 	# Confere o que ficou no disco antes de mexer em qualquer cópia boa.
 	if not _io.write(tmp, text) or _io.read(tmp) != text:
@@ -106,7 +106,7 @@ func list_profiles() -> Array[Dictionary]:
 func _decode(path: String) -> Dictionary:
 	var text: String = _io.read(path)
 	if text.is_empty():
-		return {"ok": false, "error": "AUSENTE", "state": null}
+		return {"ok": false, "error": "AUSENTE", "state": null, "schema_version": 0}
 	return SaveCodec.decode(text, _migrations)
 
 

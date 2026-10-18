@@ -221,8 +221,9 @@ func _on_treinar() -> void:
 	_end()
 
 
-## Missão rápida: começa a missão mais curta, acelera e conclui. Se já há uma em andamento,
-## segue dela. Para no primeiro erro e mostra o motivo.
+## Missão rápida: começa a missão mais curta (se não há uma em andamento) e tenta concluir.
+## Só acelera, com muiraquitãs, se a missão ainda estiver correndo. Sem muiraquitãs, avisa quanto
+## falta e deixa a missão ativa: um toque depois do fim do tempo a conclui.
 func _on_missao_rapida() -> void:
 	if _is_busy():
 		return
@@ -241,11 +242,23 @@ func _missao_rapida() -> void:
 		var started: CommandResult = await _send("iniciar_missao", {"mission_id": id})
 		if started == null:
 			return
-	var boosted: CommandResult = await _send("acelerar_missao")
-	if boosted == null:
-		return
-	var res: CommandResult = await _send("concluir_missao")
-	if res == null:
+	var res: CommandResult = await _service.call("send", "concluir_missao", {})
+	if res != null and not res.ok and res.error == "MISSAO_EM_ANDAMENTO":
+		var boosted: CommandResult = await _service.call("send", "acelerar_missao", {})
+		if boosted != null and not boosted.ok and boosted.error == "MUIRAQUITAS_INSUFICIENTES":
+			_show_error(
+				(
+					"Faltam muiraquitãs para acelerar. A missão termina em %s; toque de novo depois."
+					% Textos.relogio(_missao_restante_ms())
+				)
+			)
+			return
+		if boosted == null or not boosted.ok:
+			_show_error(Textos.erro("ERRO_EXECUTOR" if boosted == null else boosted.error))
+			return
+		res = await _service.call("send", "concluir_missao", {})
+	if res == null or not res.ok:
+		_show_error(Textos.erro("ERRO_EXECUTOR" if res == null else res.error))
 		return
 	var ganho: Dictionary = _sum_rewards(res.events)
 	var venceu: bool = true
@@ -263,6 +276,15 @@ func _missao_rapida() -> void:
 		_show_error("A lenda venceu a luta da missão. Treine e tente de novo.")
 	if _has_fight(res.events):
 		_open_luta(res.events)
+
+
+## Tempo até o fim da missão ativa, pelo relógio do serviço (0 se não há missão).
+func _missao_restante_ms() -> int:
+	var state: GameState = _state()
+	var view: Dictionary = _service.call("stamina_view")
+	if state == null or state.ativa.is_empty() or view.is_empty():
+		return 0
+	return maxi(0, int(state.ativa["fim_ms"]) - int(view["now_ms"]))
 
 
 func _on_enfrentar_fase() -> void:

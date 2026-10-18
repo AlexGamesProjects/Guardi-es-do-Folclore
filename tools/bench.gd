@@ -1,6 +1,7 @@
 extends SceneTree
 ## Mede 10 mil lutas (atributos 40) e 1000 comandos `treinar` aplicados pelo `CommandRouter`, e
-## acrescenta `fights_10k_ms` e `command_p95_us` (percentil 95, em µs) ao metrics.json.
+## acrescenta `fights_10k_ms` e `command_p95_us` (percentil 95, em µs) ao metrics.json, com a
+## etiqueta do modo medido em `mode` (hoje sempre "offline": o executor local).
 ##
 ## Fica em tools/ (e não em game/) porque é uma ferramenta de CI e não faz parte do jogo exportado.
 ## Por isso NÃO é coberto por gdformat, gdlint nem tools/check_scripts.sh, que só olham game/;
@@ -17,6 +18,8 @@ const P95_PERMILLE: int = 950
 ## Vinténs de sobra para que nenhum dos 1000 treinos falhe por falta de dinheiro.
 const BENCH_VINT: int = 1_000_000_000_000_000
 const BENCH_T0: int = 10_000_000
+## Etiqueta do modo: toda medida diz de qual modo veio (offline agora, online no futuro).
+const BENCH_MODE: String = "offline"
 
 
 func _init() -> void:
@@ -51,6 +54,7 @@ func _init() -> void:
 			data = Defs.normalize(parsed)
 	data["fights_10k_ms"] = elapsed_ms
 	data["command_p95_us"] = p95_us
+	data["mode"] = BENCH_MODE
 	var file: FileAccess = FileAccess.open(metrics_path, FileAccess.WRITE)
 	if file == null:
 		printerr("bench: não consegui escrever %s" % metrics_path)

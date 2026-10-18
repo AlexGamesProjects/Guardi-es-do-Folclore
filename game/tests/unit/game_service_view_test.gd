@@ -82,9 +82,16 @@ func test_view_does_not_change_stored_state() -> void:
 func test_safe_before_setup() -> void:
 	assert_dict(_svc.stamina_view()).is_empty()
 	assert_str(_svc.get_rules_version()).is_equal("")
+	assert_int(_svc.get_schema_version()).is_equal(0)
 
 
 func test_rules_version_after_setup() -> void:
 	_setup_service()
 	assert_str(_svc.get_rules_version()).is_equal(_rules.rules_version)
 	assert_str(_svc.get_rules_version()).is_not_empty()
+
+
+func test_schema_version_after_setup() -> void:
+	_setup_service()
+	assert_int(_svc.get_schema_version()).is_equal(_rules.schema_version)
+	assert_int(_svc.get_schema_version()).is_equal(1)

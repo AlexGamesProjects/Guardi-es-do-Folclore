@@ -27,7 +27,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
   - menu com Jornada Solo e Roda Online ("Em breve");
   - tela de diagnóstico com selo de modo, nome editável, energia e coragem com contagem regressiva ao vivo e botões de treino, missão rápida e fase da Torre;
   - luta de teste narrada evento a evento.
-- Painel de desempenho (FPS, tempo por quadro, memória, modo e versões), aberto com 5 toques na versão.
+- Painel de desempenho (FPS, tempo por quadro, memória, modo e versões do save, das regras e do esquema do pacote), aberto com 5 toques na versão. O save também guarda a `schema_version` do pacote de regras, e o benchmark grava o modo medido (`mode`) no `metrics.json`.
 - Roteiro de teste no celular em `docs/teste-celular.md`.
 - Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
@@ -40,6 +40,10 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Limite de carregamento calibrado de 5 s para 12 s com a primeira medição real (10,2 MB em 4G levam cerca de 10 s); redução do export registrada na issue #15.
 - `CLAUDE.md` atualizado com a estrutura em camadas e as fórmulas em inteiros.
 - A Release de cada versão passa a ser criada automaticamente quando o número em `VERSAO` muda no `main`, sem precisar enviar a tag à mão.
+
+### Corrigido
+- "Missão rápida" não trava mais quando os muiraquitãs acabam: o botão tenta concluir primeiro, só acelera se a missão ainda estiver correndo e, sem muiraquitãs, diz quanto tempo falta; um toque depois do fim conclui a missão.
+- O menu passa a mostrar os avisos do jogo que chegam enquanto ele está aberto, como a falha ao salvar.
 
 ## [0.2.0] - 2026-10-15
 

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Compara metrics.json com os limites e gera o relatório em Markdown.
 
-Sai com código 1 se alguma métrica exceder o limite. Métrica ausente vira "—"
-e não reprova. A baseline (main) é opcional.
+Sai com código 1 se alguma métrica exceder o limite. Métrica ausente (ou que não
+seja número) vira "—" e não reprova. A baseline (main) é opcional. Campos que não
+são limites, como a etiqueta `mode`, não entram na tabela; o modo aparece abaixo dela.
 """
 
 import argparse
@@ -32,7 +33,15 @@ def ler_json(caminho):
     return dados if isinstance(dados, dict) else {}
 
 
+def numero(valor):
+    """O valor, se for número (bool não conta); senão None."""
+    if isinstance(valor, bool) or not isinstance(valor, (int, float)):
+        return None
+    return valor
+
+
 def formatar(valor):
+    valor = numero(valor)
     if valor is None:
         return "—"
     return f"{int(valor):,}".replace(",", ".")
@@ -63,7 +72,7 @@ def main():
     estourou = False
     for chave, limite in limites.items():
         nome, unidade = ROTULOS.get(chave, (chave, ""))
-        pr = metricas.get(chave)
+        pr = numero(metricas.get(chave))
         if pr is None:
             situacao = "—"
         elif pr > limite:
@@ -76,6 +85,10 @@ def main():
             f"| {formatar(pr)} | ≤ {formatar(limite)} | {situacao} |"
         )
     linhas.append("")
+    modo = metricas.get("mode")
+    if isinstance(modo, str) and modo:
+        linhas.append(f"Modo medido: `{modo}`.")
+        linhas.append("")
     if estourou:
         linhas.append("**Algum limite foi excedido.**")
     Path(args.out).write_text("\n".join(linhas) + "\n", encoding="utf-8")
