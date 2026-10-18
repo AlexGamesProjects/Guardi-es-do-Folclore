@@ -25,6 +25,26 @@ const BALANCE_SPEC: Dictionary = {
 	"chefe_en": "pos",
 	"chefe_espera_ms": "pos",
 	"curva": "pos_arr:31",
+	"combat":
+	{
+		"hp_base": "pos",
+		"hp_per_fol": "pos",
+		"hp_per_lvl": "pos",
+		"dmg_for_x10": "pos",
+		"dmg_lvl_x10": "pos",
+		"dmg_var_min_pm": "pos",
+		"dmg_var_max_pm": "pos",
+		"dodge_num": "pos",
+		"dodge_min_bp": "pos",
+		"dodge_max_bp": "pos",
+		"crit_num": "pos",
+		"crit_min_bp": "pos",
+		"crit_max_bp": "pos",
+		"crit_mult": "pos",
+		"chance_pad": "pos",
+		"initiative_roll_max": "pos",
+		"max_turns": "pos",
+	},
 	"mission":
 	{
 		"dur_s": "pos_arr:3",
@@ -556,9 +576,28 @@ static func _check_ranks(errors: PackedStringArray, d: Dictionary) -> void:
 			previous = int(r["lvl"])
 
 
+## Seção `combat` completa (tipos e relações), com o mesmo formato de mensagem do balance.json.
+static func check_combat(errors: PackedStringArray, combat: Dictionary) -> void:
+	_check_spec(errors, "balance.json", "combat", combat, BALANCE_SPEC["combat"])
+	_check_combat_relations(errors, combat)
+
+
+static func _check_combat_relations(errors: PackedStringArray, combat: Dictionary) -> void:
+	for pair: Array in [
+		["dmg_var_min_pm", "dmg_var_max_pm"],
+		["dodge_min_bp", "dodge_max_bp"],
+		["crit_min_bp", "crit_max_bp"],
+	]:
+		if _is_int(combat.get(pair[0])) and _is_int(combat.get(pair[1])):
+			if int(combat[pair[0]]) > int(combat[pair[1]]):
+				_err(errors, "balance.json", _join("combat", pair[0]), "maior que %s" % pair[1])
+
+
 ## Relações entre campos que o esquema por tipo não cobre.
 static func _check_balance_relations(errors: PackedStringArray, d: Dictionary) -> void:
 	var file: String = "balance.json"
+	if d.get("combat") is Dictionary:
+		_check_combat_relations(errors, d["combat"])
 	if d.get("item") is Dictionary:
 		var item: Dictionary = d["item"]
 		var rare: Variant = item.get("rare_bp")

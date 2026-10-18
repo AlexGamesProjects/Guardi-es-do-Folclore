@@ -87,6 +87,25 @@
     "boss_win_bp": [2000, 4000],
     "lvl30_missions": [425, 575]
   },
+  "combat": {
+    "hp_base": 40,
+    "hp_per_fol": 8,
+    "hp_per_lvl": 12,
+    "dmg_for_x10": 17,
+    "dmg_lvl_x10": 25,
+    "dmg_var_min_pm": 800,
+    "dmg_var_max_pm": 1200,
+    "dodge_num": 5500,
+    "dodge_min_bp": 300,
+    "dodge_max_bp": 3500,
+    "crit_num": 6000,
+    "crit_min_bp": 300,
+    "crit_max_bp": 4000,
+    "crit_mult": 2,
+    "chance_pad": 30,
+    "initiative_roll_max": 5,
+    "max_turns": 40
+  },
   "xp_table": [
     0, 60, 164, 295, 448, 619, 806, 1008, 1224, 1451, 1691, 1942, 2203, 2474, 2754, 3044, 3343,
     3650, 3965, 4289, 4620, 4959, 5305, 5658, 6018, 6385, 6759, 7139, 7525, 7918, 8317, 8722, 9133,

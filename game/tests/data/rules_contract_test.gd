@@ -65,6 +65,58 @@ func test_sampled_values_match_v02() -> void:
 	assert_str(pack.acts[2].stages[9].legend_id).is_equal("mapinguari")
 
 
+func test_combat_section_values_and_types() -> void:
+	var c: Defs.CombatDef = _load_base().balance.combat
+	var expected: Dictionary = {
+		"hp_base": 40,
+		"hp_per_fol": 8,
+		"hp_per_lvl": 12,
+		"dmg_for_x10": 17,
+		"dmg_lvl_x10": 25,
+		"dmg_var_min_pm": 800,
+		"dmg_var_max_pm": 1200,
+		"dodge_num": 5500,
+		"dodge_min_bp": 300,
+		"dodge_max_bp": 3500,
+		"crit_num": 6000,
+		"crit_min_bp": 300,
+		"crit_max_bp": 4000,
+		"crit_mult": 2,
+		"chance_pad": 30,
+		"initiative_roll_max": 5,
+		"max_turns": 40,
+	}
+	for key: String in expected:
+		var v: Variant = c.get(key)
+		assert_int(typeof(v)).override_failure_message("%s deve ser int" % key).is_equal(TYPE_INT)
+		assert_int(int(v)).override_failure_message(key).is_equal(expected[key])
+	assert_bool(c.dmg_var_min_pm <= c.dmg_var_max_pm).is_true()
+	assert_bool(c.dodge_min_bp <= c.dodge_max_bp).is_true()
+	assert_bool(c.crit_min_bp <= c.crit_max_bp).is_true()
+
+
+func test_combat_section_rejects_missing_zero_and_inverted() -> void:
+	var good: Dictionary = {}
+	for key: String in RulesValidator.BALANCE_SPEC["combat"]:
+		good[key] = 1
+	good["dmg_var_max_pm"] = 2
+	good["dodge_max_bp"] = 2
+	good["crit_max_bp"] = 2
+	var ok: PackedStringArray = PackedStringArray()
+	RulesValidator.check_combat(ok, good)
+	assert_array(ok).is_empty()
+	var bad: Dictionary = good.duplicate()
+	bad.erase("max_turns")
+	bad["hp_base"] = 0
+	bad["crit_min_bp"] = 9
+	var errors: PackedStringArray = PackedStringArray()
+	RulesValidator.check_combat(errors, bad)
+	var joined: String = "\n".join(errors)
+	assert_str(joined).contains("balance.json: combat.max_turns: campo ausente")
+	assert_str(joined).contains("balance.json: combat.hp_base: deve ser maior que 0")
+	assert_str(joined).contains("balance.json: combat.crit_min_bp: maior que crit_max_bp")
+
+
 func test_negrinho_is_ally_and_never_in_stages() -> void:
 	var pack: RulesPack = _load_base()
 	assert_bool(pack.legends.has("negrinho")).is_true()
@@ -154,7 +206,7 @@ func test_broken_fixtures_fail_with_expected_error() -> void:
 			. is_true()
 		)
 		checked += 1
-	assert_int(checked).is_equal(10)
+	assert_int(checked).is_equal(11)
 
 
 func test_errors_accumulate_instead_of_stopping_at_first() -> void:

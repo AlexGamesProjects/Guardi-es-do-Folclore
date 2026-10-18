@@ -124,6 +124,50 @@ class RankDef:
 ## `xp_table[nível]` e `train_cost[valor]` têm o índice 0 sem uso (valem 0). As seções
 ## `mission`, `stage`, `item`, `rival`, `start` e `bands` guardam só inteiros (e listas ou
 ## dicionários deles); as chaves estão em `balance.json`.
+## Constantes do combate (seção `combat` do balance.json). Chances em pontos-base, variação em
+## permilagem, dano base em décimos.
+class CombatDef:
+	extends RefCounted
+	var hp_base: int = 0
+	var hp_per_fol: int = 0
+	var hp_per_lvl: int = 0
+	var dmg_for_x10: int = 0
+	var dmg_lvl_x10: int = 0
+	var dmg_var_min_pm: int = 0
+	var dmg_var_max_pm: int = 0
+	var dodge_num: int = 0
+	var dodge_min_bp: int = 0
+	var dodge_max_bp: int = 0
+	var crit_num: int = 0
+	var crit_min_bp: int = 0
+	var crit_max_bp: int = 0
+	var crit_mult: int = 0
+	var chance_pad: int = 0
+	var initiative_roll_max: int = 0
+	var max_turns: int = 0
+
+	static func from_dict(d: Dictionary) -> CombatDef:
+		var out := CombatDef.new()
+		out.hp_base = int(d["hp_base"])
+		out.hp_per_fol = int(d["hp_per_fol"])
+		out.hp_per_lvl = int(d["hp_per_lvl"])
+		out.dmg_for_x10 = int(d["dmg_for_x10"])
+		out.dmg_lvl_x10 = int(d["dmg_lvl_x10"])
+		out.dmg_var_min_pm = int(d["dmg_var_min_pm"])
+		out.dmg_var_max_pm = int(d["dmg_var_max_pm"])
+		out.dodge_num = int(d["dodge_num"])
+		out.dodge_min_bp = int(d["dodge_min_bp"])
+		out.dodge_max_bp = int(d["dodge_max_bp"])
+		out.crit_num = int(d["crit_num"])
+		out.crit_min_bp = int(d["crit_min_bp"])
+		out.crit_max_bp = int(d["crit_max_bp"])
+		out.crit_mult = int(d["crit_mult"])
+		out.chance_pad = int(d["chance_pad"])
+		out.initiative_roll_max = int(d["initiative_roll_max"])
+		out.max_turns = int(d["max_turns"])
+		return out
+
+
 class BalanceDef:
 	extends RefCounted
 	var en_max: int = 0
@@ -138,6 +182,7 @@ class BalanceDef:
 	var xp_table: PackedInt64Array = PackedInt64Array()
 	var train_cost: PackedInt64Array = PackedInt64Array()
 	var ranks: Array[RankDef] = []
+	var combat: CombatDef = null
 	var mission: Dictionary = {}
 	var stage: Dictionary = {}
 	var item: Dictionary = {}
@@ -161,6 +206,7 @@ class BalanceDef:
 		var raw_ranks: Array = d["ranks"]
 		for r: Variant in raw_ranks:
 			out.ranks.append(RankDef.from_dict(r))
+		out.combat = CombatDef.from_dict(d["combat"])
 		out.mission = Defs.normalize(d["mission"])
 		out.stage = Defs.normalize(d["stage"])
 		out.item = Defs.normalize(d["item"])
