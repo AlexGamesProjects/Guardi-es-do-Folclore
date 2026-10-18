@@ -27,6 +27,10 @@
     "luta_pm": 1300,
     "lenda_pm_por_lvl": 20,
     "luta_chance_bp": 6000,
+    "enemy_pm": [780, 950, 1120],
+    "enemy_noise_min_pm": 900,
+    "enemy_noise_max_pm": 1100,
+    "enemy_stat_min": 3,
     "xp_base": 12,
     "xp_lvl": 5,
     "vint_base": 10,
@@ -40,7 +44,9 @@
     "boss_xp_pm": 500,
     "vint_base": 40,
     "vint_lvl": 25,
-    "boss_vint_mult": 3
+    "boss_vint_mult": 3,
+    "boss_muir": 3,
+    "boss_rarity_min": 1
   },
   "item": {
     "pts_base": 4,

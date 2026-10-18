@@ -53,6 +53,10 @@ const BALANCE_SPEC: Dictionary = {
 		"luta_pm": "pos",
 		"lenda_pm_por_lvl": "nonneg",
 		"luta_chance_bp": "nonneg",
+		"enemy_pm": "pos_arr:3",
+		"enemy_noise_min_pm": "pos",
+		"enemy_noise_max_pm": "pos",
+		"enemy_stat_min": "pos",
 		"xp_base": "pos",
 		"xp_lvl": "pos",
 		"vint_base": "pos",
@@ -68,6 +72,8 @@ const BALANCE_SPEC: Dictionary = {
 		"vint_base": "pos",
 		"vint_lvl": "pos",
 		"boss_vint_mult": "pos",
+		"boss_muir": "nonneg",
+		"boss_rarity_min": "nonneg",
 	},
 	"item":
 	{
@@ -605,6 +611,14 @@ static func _check_balance_relations(errors: PackedStringArray, d: Dictionary) -
 		if _is_int(rare) and _is_int(legendary):
 			if int(legendary) > int(rare) or int(rare) > BP_FULL:
 				_err(errors, file, "item.rare_bp", "deve ficar entre legendary_bp e %d" % BP_FULL)
+	if d.get("mission") is Dictionary:
+		var mission: Dictionary = d["mission"]
+		if (
+			_is_int(mission.get("enemy_noise_min_pm"))
+			and _is_int(mission.get("enemy_noise_max_pm"))
+		):
+			if int(mission["enemy_noise_min_pm"]) > int(mission["enemy_noise_max_pm"]):
+				_err(errors, file, "mission.enemy_noise_min_pm", "maior que enemy_noise_max_pm")
 	if d.get("rival") is Dictionary:
 		var rival: Dictionary = d["rival"]
 		for pair: Array in [
