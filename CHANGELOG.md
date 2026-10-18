@@ -13,6 +13,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ### Adicionado
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
 - Roadmap visual com as 6 etapas, status e diário de avanços (`docs/ROADMAP.md`).
+- Plano de implementação da Fundação, em 14 tarefas (`docs/superpowers/plans/2026-10-17-fundacao-godot.md`).
 
 ### Alterado
 - Milestones reorganizados por etapa: Fundação, Migração, Arte, Som, Contas e segurança e Lojas.
