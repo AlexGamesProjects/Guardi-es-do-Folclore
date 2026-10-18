@@ -5,7 +5,7 @@ name: Criar Release da versão
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'docs/versoes/**']
+    paths: ['index.html', 'docs/versoes/**', '.github/workflows/release.yml']
   workflow_dispatch:
 
 permissions:
