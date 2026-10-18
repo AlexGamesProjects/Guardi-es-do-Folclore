@@ -10,6 +10,10 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+## [0.3.0] - 2026-10-18
+
+Nota completa: [docs/versoes/v0.3.0.md](docs/versoes/v0.3.0.md)
+
 ### Adicionado
 - Projeto Godot 4.7.2 em `game/`, com GdUnit4 6.2.1 e tipagem obrigatória. O jogo HTML v0.2 foi para `legacy-web/` e continua publicado na raiz do site.
 - CI a cada PR: lint, checagem de tipos, testes, export web sem threads, verificação de segredos e medições de download e carregamento, com relatório automático no PR.
@@ -80,6 +84,7 @@ Primeiro protótipo, publicado só como artefato e não versionado no repositór
 - Lutas automáticas, treino de atributos (Força, Fôlego, Malícia e Ginga), feira de itens, arena de duelos e bestiário.
 - 12 criaturas desenhadas em SVG no estilo de xilogravura de cordel.
 
-[Não lançado]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/compare/v0.2.0...HEAD
+[Não lançado]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.3.0
 [0.2.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.2.0
 [0.1.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.1.0
