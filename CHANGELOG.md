@@ -23,6 +23,12 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Testes de regressão por cópia de referência (`game/tests/regression/golden/`): 50 lutas com sementes fixas e uma partida roteirizada até o nível 30. Para atualizar depois de uma mudança intencional, rode `tools/regen_golden.sh`.
 - Teste de balanceamento: um jogador típico simulado em 20 sementes precisa ficar nas faixas do `balance.json` (vitória nas fases, nos chefes e missões até o nível 30).
 - Tempo de um comando (p95) no benchmark de desempenho (`command_p95_us`).
+- Casca jogável no Godot, com o visual de madeira e latão da v0.2:
+  - menu com Jornada Solo e Roda Online ("Em breve");
+  - tela de diagnóstico com selo de modo, nome editável, energia e coragem com contagem regressiva ao vivo e botões de treino, missão rápida e fase da Torre;
+  - luta de teste narrada evento a evento.
+- Painel de desempenho (FPS, tempo por quadro, memória, modo e versões), aberto com 5 toques na versão.
+- Roteiro de teste no celular em `docs/teste-celular.md`.
 - Agentes por camada em `.claude/agents/` (infra-ci, nucleo-regras, estado-app, interface, revisor).
 - Especificação da etapa 1, Fundação em Godot (`docs/superpowers/specs/2026-10-17-fundacao-godot-design.md`).
 - Roadmap visual com as 6 etapas, status e diário de avanços (`docs/ROADMAP.md`).
@@ -32,6 +38,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Balanceamento calibrado pela simulação: a `curva` dos chefes passa a seguir a força média do jogador típico (nível 1: 12 → 10; nível 30: 64 → 152), as fases ficam em 0,892× a 1,068× da curva (antes 0,822× a 0,998×), o chefe em 1,09× (antes 1,12×) e o XP das missões cresce 4 por nível (antes 5).
 - Milestones reorganizados por etapa: Fundação, Migração, Arte, Som, Contas e segurança e Lojas.
 - Limite de carregamento calibrado de 5 s para 12 s com a primeira medição real (10,2 MB em 4G levam cerca de 10 s); redução do export registrada na issue #15.
+- `CLAUDE.md` atualizado com a estrutura em camadas e as fórmulas em inteiros.
 - A Release de cada versão passa a ser criada automaticamente quando o número em `VERSAO` muda no `main`, sem precisar enviar a tag à mão.
 
 ## [0.2.0] - 2026-10-15

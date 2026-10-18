@@ -43,7 +43,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 |---|---|---|---|---|---|
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
-| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Em execução (grupos A, B e C prontos) | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
+| 🟡 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Em execução (grupos A–D prontos; falta o teste no celular) | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
 | ⚪ | 2. Migração | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Planejado | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
 | ⚪ | 3. Arte | v0.5.0 | Sprites animados do PixelLab, cartas pintadas, herói com opções | Planejado | [v0.5.0 · Arte](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
 | ⚪ | 4. Som | v0.6.0 | Efeitos, ambientes e narração (ElevenLabs), trilha (Suno) | Planejado | [v0.6.0 · Som](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/4) |
@@ -55,14 +55,15 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 ### 1. Fundação (v0.3.0) · [especificação](superpowers/specs/2026-10-17-fundacao-godot-design.md)
 - [x] Especificação aprovada ([#9](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/9))
 - [x] Plano de implementação ([plano](superpowers/plans/2026-10-17-fundacao-godot.md))
-- [ ] Projeto Godot em camadas (`core/`, `data/`, `state/`, `app/`, `ui/`)
+- [x] Projeto Godot em camadas (`core/`, `data/`, `state/`, `app/`, `ui/`)
 - [x] Regras da v0.2 no núcleo, em aritmética inteira, com testes unitários
 - [x] Pacote de regras versionado e validado
 - [x] Comandos assíncronos e executor local
-- [ ] Testes de regressão, balanceamento, arquitetura, assíncronos e fumaça
+- [x] Testes de regressão, balanceamento, arquitetura, assíncronos e fumaça
 - [x] CI com relatório de desempenho e limites
 - [x] Save com migrações, reservas e perfis offline/online
-- [ ] Casca mínima jogável e painel de desempenho, publicados em `/novo/`
+- [x] Casca mínima jogável e painel de desempenho, publicados em `/novo/`
+- [ ] Teste no celular ([roteiro](teste-celular.md)) e fechamento da v0.3.0
 
 ### 2. Migração (v0.4.0)
 - [ ] Telas de missões, chefes, arena, feira, mochila e bestiário no Godot
@@ -101,6 +102,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 18/10/2026 | Fundação, grupo D pronto (PR D): casca jogável com o visual da v0.2, selo de modo, painel de desempenho (5 toques na versão), 236 testes. Decisão: o fechamento da v0.3.0 vai num PR separado, depois do teste no celular em `/novo/` |
 | 18/10/2026 | Fundação, grupo C pronto (PR C): comandos assíncronos, save com integridade e reservas, perfis por modo, inicialização com validação das regras, testes de regressão e de balanceamento (218 testes). Balanceamento calibrado pela simulação: fases 57% de vitória, chefes 29%, 525 missões até o nível 30 (antes 99%, 98% e 433) |
 | 18/10/2026 | Fundação, grupo B pronto (PR #17): núcleo de regras em inteiros com sorteio por semente, pacote de regras com o conteúdo da v0.2, 90 testes. Decisões: constantes de combate no pacote de regras; item do chefe mantém 50% de chance de lendário, como na v0.2 |
 | 18/10/2026 | Fundação, grupo A pronto (PR #14): projeto Godot 4.7.2, CI completa e medições. Primeira medição: download 10,2 MB e carregamento de cerca de 10 s em 4G; limite calibrado para 12 s e otimização registrada na issue #15. Desenvolvimento passa a usar agentes por camada |
