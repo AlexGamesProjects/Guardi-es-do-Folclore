@@ -1,0 +1,5689 @@
+[
+  {
+    "a": {
+      "lvl": 10,
+      "nome": "A",
+      "stats": {
+        "fol": 90,
+        "for": 78,
+        "gin": 48,
+        "mal": 11
+      }
+    },
+    "b": {
+      "lvl": 12,
+      "nome": "B",
+      "stats": {
+        "fol": 56,
+        "for": 24,
+        "gin": 58,
+        "mal": 67
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 80,
+        "hp": [
+          800,
+          632
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 129,
+        "hp": [
+          800,
+          503
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          800,
+          503
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 180,
+        "hp": [
+          800,
+          323
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          800,
+          323
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 127,
+        "hp": [
+          800,
+          196
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 84,
+        "hp": [
+          716,
+          196
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          716,
+          196
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          716,
+          196
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 152,
+        "hp": [
+          716,
+          44
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          716,
+          44
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 158,
+        "hp": [
+          716,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      716,
+      0
+    ],
+    "seed": 1,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 30,
+      "nome": "A",
+      "stats": {
+        "fol": 76,
+        "for": 78,
+        "gin": 62,
+        "mal": 74
+      }
+    },
+    "b": {
+      "lvl": 1,
+      "nome": "B",
+      "stats": {
+        "fol": 89,
+        "for": 34,
+        "gin": 29,
+        "mal": 13
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 166,
+        "hp": [
+          1008,
+          598
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 65,
+        "hp": [
+          943,
+          598
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 478,
+        "hp": [
+          943,
+          120
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 67,
+        "hp": [
+          876,
+          120
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 196,
+        "hp": [
+          876,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      876,
+      0
+    ],
+    "seed": 2,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 22,
+      "nome": "A",
+      "stats": {
+        "fol": 30,
+        "for": 69,
+        "gin": 25,
+        "mal": 36
+      }
+    },
+    "b": {
+      "lvl": 17,
+      "nome": "B",
+      "stats": {
+        "fol": 28,
+        "for": 45,
+        "gin": 17,
+        "mal": 66
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 142,
+        "hp": [
+          544,
+          326
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 142,
+        "hp": [
+          402,
+          326
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 148,
+        "hp": [
+          402,
+          178
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 234,
+        "hp": [
+          168,
+          178
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 140,
+        "hp": [
+          168,
+          38
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 284,
+        "hp": [
+          0,
+          38
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      38
+    ],
+    "seed": 3,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 22,
+      "nome": "A",
+      "stats": {
+        "fol": 50,
+        "for": 89,
+        "gin": 27,
+        "mal": 38
+      }
+    },
+    "b": {
+      "lvl": 24,
+      "nome": "B",
+      "stats": {
+        "fol": 39,
+        "for": 39,
+        "gin": 90,
+        "mal": 35
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 230,
+        "hp": [
+          474,
+          640
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 183,
+        "hp": [
+          474,
+          457
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 151,
+        "hp": [
+          323,
+          457
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 346,
+        "hp": [
+          323,
+          111
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          323,
+          111
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 231,
+        "hp": [
+          323,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      323,
+      0
+    ],
+    "seed": 4,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 3,
+      "nome": "A",
+      "stats": {
+        "fol": 52,
+        "for": 90,
+        "gin": 36,
+        "mal": 34
+      }
+    },
+    "b": {
+      "lvl": 26,
+      "nome": "B",
+      "stats": {
+        "fol": 56,
+        "for": 53,
+        "gin": 40,
+        "mal": 87
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 364,
+        "hp": [
+          492,
+          436
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 165,
+        "hp": [
+          327,
+          436
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          327,
+          436
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 143,
+        "hp": [
+          184,
+          436
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          184,
+          436
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 144,
+        "hp": [
+          40,
+          436
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 173,
+        "hp": [
+          40,
+          263
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          40,
+          263
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 170,
+        "hp": [
+          40,
+          93
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          40,
+          93
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 148,
+        "hp": [
+          40,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      40,
+      0
+    ],
+    "seed": 5,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 26,
+      "nome": "A",
+      "stats": {
+        "fol": 89,
+        "for": 13,
+        "gin": 38,
+        "mal": 71
+      }
+    },
+    "b": {
+      "lvl": 6,
+      "nome": "B",
+      "stats": {
+        "fol": 25,
+        "for": 13,
+        "gin": 23,
+        "mal": 8
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          1064,
+          312
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 31,
+        "hp": [
+          1033,
+          312
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          1033,
+          312
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 41,
+        "hp": [
+          992,
+          312
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          992,
+          312
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 31,
+        "hp": [
+          961,
+          312
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 99,
+        "hp": [
+          961,
+          213
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          921,
+          213
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 81,
+        "hp": [
+          921,
+          132
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 70,
+        "hp": [
+          851,
+          132
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          851,
+          132
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 38,
+        "hp": [
+          813,
+          132
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 96,
+        "hp": [
+          813,
+          36
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 44,
+        "hp": [
+          769,
+          36
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          769,
+          36
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          769,
+          36
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 79,
+        "hp": [
+          769,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      769,
+      0
+    ],
+    "seed": 6,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 20,
+      "nome": "A",
+      "stats": {
+        "fol": 27,
+        "for": 29,
+        "gin": 12,
+        "mal": 47
+      }
+    },
+    "b": {
+      "lvl": 21,
+      "nome": "B",
+      "stats": {
+        "fol": 35,
+        "for": 9,
+        "gin": 8,
+        "mal": 41
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          496,
+          572
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 74,
+        "hp": [
+          422,
+          572
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 80,
+        "hp": [
+          422,
+          492
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 65,
+        "hp": [
+          357,
+          492
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 105,
+        "hp": [
+          357,
+          387
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 116,
+        "hp": [
+          241,
+          387
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 103,
+        "hp": [
+          241,
+          284
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 64,
+        "hp": [
+          177,
+          284
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 117,
+        "hp": [
+          177,
+          167
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 72,
+        "hp": [
+          105,
+          167
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 114,
+        "hp": [
+          105,
+          53
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 68,
+        "hp": [
+          37,
+          53
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 100,
+        "hp": [
+          37,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      37,
+      0
+    ],
+    "seed": 7,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 26,
+      "nome": "A",
+      "stats": {
+        "fol": 45,
+        "for": 73,
+        "gin": 71,
+        "mal": 49
+      }
+    },
+    "b": {
+      "lvl": 28,
+      "nome": "B",
+      "stats": {
+        "fol": 9,
+        "for": 36,
+        "gin": 49,
+        "mal": 70
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 430,
+        "hp": [
+          712,
+          18
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 123,
+        "hp": [
+          589,
+          18
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 173,
+        "hp": [
+          589,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      589,
+      0
+    ],
+    "seed": 8,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 20,
+      "nome": "A",
+      "stats": {
+        "fol": 9,
+        "for": 26,
+        "gin": 29,
+        "mal": 24
+      }
+    },
+    "b": {
+      "lvl": 20,
+      "nome": "B",
+      "stats": {
+        "fol": 32,
+        "for": 28,
+        "gin": 81,
+        "mal": 49
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 101,
+        "hp": [
+          251,
+          536
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 98,
+        "hp": [
+          251,
+          438
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 110,
+        "hp": [
+          141,
+          438
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          141,
+          438
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          141,
+          438
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 94,
+        "hp": [
+          141,
+          344
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 103,
+        "hp": [
+          38,
+          344
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 93,
+        "hp": [
+          38,
+          251
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 158,
+        "hp": [
+          0,
+          251
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      251
+    ],
+    "seed": 9,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 8,
+      "nome": "A",
+      "stats": {
+        "fol": 24,
+        "for": 66,
+        "gin": 17,
+        "mal": 73
+      }
+    },
+    "b": {
+      "lvl": 5,
+      "nome": "B",
+      "stats": {
+        "fol": 80,
+        "for": 74,
+        "gin": 79,
+        "mal": 89
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 134,
+        "hp": [
+          194,
+          740
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 148,
+        "hp": [
+          194,
+          592
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 132,
+        "hp": [
+          62,
+          592
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 152,
+        "hp": [
+          62,
+          440
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 222,
+        "hp": [
+          0,
+          440
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      440
+    ],
+    "seed": 10,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 18,
+      "nome": "A",
+      "stats": {
+        "fol": 21,
+        "for": 64,
+        "gin": 24,
+        "mal": 59
+      }
+    },
+    "b": {
+      "lvl": 9,
+      "nome": "B",
+      "stats": {
+        "fol": 46,
+        "for": 64,
+        "gin": 21,
+        "mal": 31
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          424,
+          516
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 113,
+        "hp": [
+          311,
+          516
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          311,
+          516
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          311,
+          516
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 141,
+        "hp": [
+          311,
+          375
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 108,
+        "hp": [
+          203,
+          375
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 284,
+        "hp": [
+          203,
+          91
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 132,
+        "hp": [
+          71,
+          91
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 143,
+        "hp": [
+          71,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      71,
+      0
+    ],
+    "seed": 11,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 7,
+      "nome": "A",
+      "stats": {
+        "fol": 76,
+        "for": 64,
+        "gin": 36,
+        "mal": 33
+      }
+    },
+    "b": {
+      "lvl": 6,
+      "nome": "B",
+      "stats": {
+        "fol": 90,
+        "for": 67,
+        "gin": 34,
+        "mal": 36
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          732,
+          832
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 109,
+        "hp": [
+          623,
+          832
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 127,
+        "hp": [
+          623,
+          705
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 121,
+        "hp": [
+          502,
+          705
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 139,
+        "hp": [
+          502,
+          566
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 214,
+        "hp": [
+          288,
+          566
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 144,
+        "hp": [
+          288,
+          422
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 106,
+        "hp": [
+          182,
+          422
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 133,
+        "hp": [
+          182,
+          289
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 150,
+        "hp": [
+          32,
+          289
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          32,
+          289
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 119,
+        "hp": [
+          0,
+          289
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      289
+    ],
+    "seed": 12,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 21,
+      "nome": "A",
+      "stats": {
+        "fol": 60,
+        "for": 30,
+        "gin": 3,
+        "mal": 49
+      }
+    },
+    "b": {
+      "lvl": 14,
+      "nome": "B",
+      "stats": {
+        "fol": 79,
+        "for": 71,
+        "gin": 85,
+        "mal": 49
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 156,
+        "hp": [
+          616,
+          840
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 121,
+        "hp": [
+          616,
+          719
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 132,
+        "hp": [
+          484,
+          719
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 105,
+        "hp": [
+          484,
+          614
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 149,
+        "hp": [
+          335,
+          614
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 91,
+        "hp": [
+          335,
+          523
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 316,
+        "hp": [
+          19,
+          523
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 113,
+        "hp": [
+          19,
+          410
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          19,
+          410
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 188,
+        "hp": [
+          19,
+          222
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 146,
+        "hp": [
+          0,
+          222
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      222
+    ],
+    "seed": 13,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 1,
+      "nome": "A",
+      "stats": {
+        "fol": 46,
+        "for": 51,
+        "gin": 7,
+        "mal": 88
+      }
+    },
+    "b": {
+      "lvl": 22,
+      "nome": "B",
+      "stats": {
+        "fol": 11,
+        "for": 77,
+        "gin": 69,
+        "mal": 20
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 206,
+        "hp": [
+          214,
+          392
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          214,
+          392
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 392,
+        "hp": [
+          0,
+          392
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      392
+    ],
+    "seed": 14,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 10,
+      "nome": "A",
+      "stats": {
+        "fol": 7,
+        "for": 29,
+        "gin": 49,
+        "mal": 55
+      }
+    },
+    "b": {
+      "lvl": 30,
+      "nome": "B",
+      "stats": {
+        "fol": 41,
+        "for": 42,
+        "gin": 52,
+        "mal": 11
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 153,
+        "hp": [
+          63,
+          728
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          63,
+          728
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 141,
+        "hp": [
+          0,
+          728
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      728
+    ],
+    "seed": 15,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 26,
+      "nome": "A",
+      "stats": {
+        "fol": 43,
+        "for": 74,
+        "gin": 16,
+        "mal": 65
+      }
+    },
+    "b": {
+      "lvl": 2,
+      "nome": "B",
+      "stats": {
+        "fol": 52,
+        "for": 76,
+        "gin": 22,
+        "mal": 30
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 114,
+        "hp": [
+          582,
+          480
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          582,
+          480
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          582,
+          480
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 169,
+        "hp": [
+          582,
+          311
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          582,
+          311
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 192,
+        "hp": [
+          582,
+          119
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 161,
+        "hp": [
+          421,
+          119
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 224,
+        "hp": [
+          421,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      421,
+      0
+    ],
+    "seed": 16,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 27,
+      "nome": "A",
+      "stats": {
+        "fol": 21,
+        "for": 66,
+        "gin": 36,
+        "mal": 14
+      }
+    },
+    "b": {
+      "lvl": 18,
+      "nome": "B",
+      "stats": {
+        "fol": 87,
+        "for": 61,
+        "gin": 81,
+        "mal": 31
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 140,
+        "hp": [
+          392,
+          952
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 177,
+        "hp": [
+          392,
+          775
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 278,
+        "hp": [
+          114,
+          775
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          114,
+          775
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 139,
+        "hp": [
+          0,
+          775
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      775
+    ],
+    "seed": 17,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 25,
+      "nome": "A",
+      "stats": {
+        "fol": 68,
+        "for": 67,
+        "gin": 45,
+        "mal": 20
+      }
+    },
+    "b": {
+      "lvl": 21,
+      "nome": "B",
+      "stats": {
+        "fol": 19,
+        "for": 50,
+        "gin": 38,
+        "mal": 50
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 211,
+        "hp": [
+          884,
+          233
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 111,
+        "hp": [
+          773,
+          233
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          773,
+          233
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 128,
+        "hp": [
+          645,
+          233
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 352,
+        "hp": [
+          645,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      645,
+      0
+    ],
+    "seed": 18,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 9,
+      "nome": "A",
+      "stats": {
+        "fol": 6,
+        "for": 54,
+        "gin": 4,
+        "mal": 86
+      }
+    },
+    "b": {
+      "lvl": 30,
+      "nome": "B",
+      "stats": {
+        "fol": 15,
+        "for": 90,
+        "gin": 34,
+        "mal": 69
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 193,
+        "hp": [
+          3,
+          520
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 101,
+        "hp": [
+          3,
+          419
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 524,
+        "hp": [
+          0,
+          419
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      419
+    ],
+    "seed": 19,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 5,
+      "nome": "A",
+      "stats": {
+        "fol": 38,
+        "for": 49,
+        "gin": 3,
+        "mal": 51
+      }
+    },
+    "b": {
+      "lvl": 24,
+      "nome": "B",
+      "stats": {
+        "fol": 69,
+        "for": 75,
+        "gin": 33,
+        "mal": 40
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 190,
+        "hp": [
+          214,
+          880
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 78,
+        "hp": [
+          214,
+          802
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 185,
+        "hp": [
+          29,
+          802
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 77,
+        "hp": [
+          29,
+          725
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 166,
+        "hp": [
+          0,
+          725
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      725
+    ],
+    "seed": 20,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 7,
+      "nome": "A",
+      "stats": {
+        "fol": 81,
+        "for": 84,
+        "gin": 72,
+        "mal": 35
+      }
+    },
+    "b": {
+      "lvl": 17,
+      "nome": "B",
+      "stats": {
+        "fol": 15,
+        "for": 11,
+        "gin": 24,
+        "mal": 73
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 191,
+        "hp": [
+          772,
+          173
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 98,
+        "hp": [
+          674,
+          173
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 128,
+        "hp": [
+          674,
+          45
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 66,
+        "hp": [
+          608,
+          45
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          608,
+          45
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 124,
+        "hp": [
+          484,
+          45
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 160,
+        "hp": [
+          484,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      484,
+      0
+    ],
+    "seed": 21,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 23,
+      "nome": "A",
+      "stats": {
+        "fol": 12,
+        "for": 30,
+        "gin": 16,
+        "mal": 28
+      }
+    },
+    "b": {
+      "lvl": 16,
+      "nome": "B",
+      "stats": {
+        "fol": 47,
+        "for": 64,
+        "gin": 90,
+        "mal": 77
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 154,
+        "hp": [
+          258,
+          608
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          258,
+          608
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 346,
+        "hp": [
+          0,
+          608
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      608
+    ],
+    "seed": 22,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 2,
+      "nome": "A",
+      "stats": {
+        "fol": 68,
+        "for": 75,
+        "gin": 43,
+        "mal": 24
+      }
+    },
+    "b": {
+      "lvl": 1,
+      "nome": "B",
+      "stats": {
+        "fol": 64,
+        "for": 19,
+        "gin": 83,
+        "mal": 10
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 33,
+        "hp": [
+          575,
+          564
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          575,
+          564
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 31,
+        "hp": [
+          544,
+          564
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          544,
+          564
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          504,
+          564
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 107,
+        "hp": [
+          504,
+          457
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 33,
+        "hp": [
+          471,
+          457
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 282,
+        "hp": [
+          471,
+          175
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 28,
+        "hp": [
+          443,
+          175
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 149,
+        "hp": [
+          443,
+          26
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          443,
+          26
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 248,
+        "hp": [
+          443,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      443,
+      0
+    ],
+    "seed": 23,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 21,
+      "nome": "A",
+      "stats": {
+        "fol": 60,
+        "for": 80,
+        "gin": 63,
+        "mal": 28
+      }
+    },
+    "b": {
+      "lvl": 22,
+      "nome": "B",
+      "stats": {
+        "fol": 89,
+        "for": 41,
+        "gin": 36,
+        "mal": 35
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 214,
+        "hp": [
+          772,
+          802
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 112,
+        "hp": [
+          660,
+          802
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 153,
+        "hp": [
+          660,
+          649
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 147,
+        "hp": [
+          513,
+          649
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 162,
+        "hp": [
+          513,
+          487
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 138,
+        "hp": [
+          375,
+          487
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 217,
+        "hp": [
+          375,
+          270
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          375,
+          270
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 173,
+        "hp": [
+          375,
+          97
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 272,
+        "hp": [
+          103,
+          97
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 210,
+        "hp": [
+          103,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      103,
+      0
+    ],
+    "seed": 24,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 18,
+      "nome": "A",
+      "stats": {
+        "fol": 68,
+        "for": 16,
+        "gin": 33,
+        "mal": 46
+      }
+    },
+    "b": {
+      "lvl": 12,
+      "nome": "B",
+      "stats": {
+        "fol": 75,
+        "for": 15,
+        "gin": 42,
+        "mal": 5
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          800,
+          784
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 69,
+        "hp": [
+          800,
+          715
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 56,
+        "hp": [
+          744,
+          715
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 156,
+        "hp": [
+          744,
+          559
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 65,
+        "hp": [
+          679,
+          559
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 140,
+        "hp": [
+          679,
+          419
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 66,
+        "hp": [
+          613,
+          419
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 77,
+        "hp": [
+          613,
+          342
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 55,
+        "hp": [
+          558,
+          342
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          558,
+          342
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 50,
+        "hp": [
+          508,
+          342
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          508,
+          342
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          508,
+          342
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 58,
+        "hp": [
+          508,
+          284
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 52,
+        "hp": [
+          456,
+          284
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 70,
+        "hp": [
+          456,
+          214
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 52,
+        "hp": [
+          404,
+          214
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 144,
+        "hp": [
+          404,
+          70
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          404,
+          70
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 85,
+        "hp": [
+          404,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      404,
+      0
+    ],
+    "seed": 25,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 10,
+      "nome": "A",
+      "stats": {
+        "fol": 63,
+        "for": 63,
+        "gin": 77,
+        "mal": 73
+      }
+    },
+    "b": {
+      "lvl": 21,
+      "nome": "B",
+      "stats": {
+        "fol": 21,
+        "for": 70,
+        "gin": 33,
+        "mal": 62
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 147,
+        "hp": [
+          664,
+          313
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          664,
+          313
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 131,
+        "hp": [
+          664,
+          182
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          664,
+          182
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 107,
+        "hp": [
+          664,
+          75
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          664,
+          75
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 218,
+        "hp": [
+          664,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      664,
+      0
+    ],
+    "seed": 26,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 12,
+      "nome": "A",
+      "stats": {
+        "fol": 12,
+        "for": 85,
+        "gin": 5,
+        "mal": 8
+      }
+    },
+    "b": {
+      "lvl": 19,
+      "nome": "B",
+      "stats": {
+        "fol": 83,
+        "for": 68,
+        "gin": 36,
+        "mal": 43
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 342,
+        "hp": [
+          0,
+          932
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      932
+    ],
+    "seed": 27,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 10,
+      "nome": "A",
+      "stats": {
+        "fol": 29,
+        "for": 40,
+        "gin": 41,
+        "mal": 80
+      }
+    },
+    "b": {
+      "lvl": 9,
+      "nome": "B",
+      "stats": {
+        "fol": 25,
+        "for": 10,
+        "gin": 89,
+        "mal": 7
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          392,
+          348
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 107,
+        "hp": [
+          392,
+          241
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 44,
+        "hp": [
+          348,
+          241
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 99,
+        "hp": [
+          348,
+          142
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          348,
+          142
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 87,
+        "hp": [
+          348,
+          55
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 33,
+        "hp": [
+          315,
+          55
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          315,
+          55
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          275,
+          55
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          275,
+          55
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 47,
+        "hp": [
+          228,
+          55
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 93,
+        "hp": [
+          228,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      228,
+      0
+    ],
+    "seed": 28,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 4,
+      "nome": "A",
+      "stats": {
+        "fol": 29,
+        "for": 68,
+        "gin": 30,
+        "mal": 29
+      }
+    },
+    "b": {
+      "lvl": 29,
+      "nome": "B",
+      "stats": {
+        "fol": 56,
+        "for": 41,
+        "gin": 20,
+        "mal": 11
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 111,
+        "hp": [
+          320,
+          725
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 340,
+        "hp": [
+          0,
+          725
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      725
+    ],
+    "seed": 29,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 11,
+      "nome": "A",
+      "stats": {
+        "fol": 90,
+        "for": 3,
+        "gin": 37,
+        "mal": 84
+      }
+    },
+    "b": {
+      "lvl": 18,
+      "nome": "B",
+      "stats": {
+        "fol": 3,
+        "for": 87,
+        "gin": 13,
+        "mal": 19
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 76,
+        "hp": [
+          892,
+          204
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 172,
+        "hp": [
+          720,
+          204
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 68,
+        "hp": [
+          720,
+          136
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 209,
+        "hp": [
+          511,
+          136
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 33,
+        "hp": [
+          511,
+          103
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 229,
+        "hp": [
+          282,
+          103
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 28,
+        "hp": [
+          282,
+          75
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 386,
+        "hp": [
+          0,
+          75
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      75
+    ],
+    "seed": 30,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 23,
+      "nome": "A",
+      "stats": {
+        "fol": 54,
+        "for": 76,
+        "gin": 53,
+        "mal": 73
+      }
+    },
+    "b": {
+      "lvl": 13,
+      "nome": "B",
+      "stats": {
+        "fol": 29,
+        "for": 11,
+        "gin": 68,
+        "mal": 28
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 56,
+        "hp": [
+          692,
+          428
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 324,
+        "hp": [
+          692,
+          104
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 56,
+        "hp": [
+          636,
+          104
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          636,
+          104
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 88,
+        "hp": [
+          548,
+          104
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 209,
+        "hp": [
+          548,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      548,
+      0
+    ],
+    "seed": 31,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 6,
+      "nome": "A",
+      "stats": {
+        "fol": 84,
+        "for": 46,
+        "gin": 33,
+        "mal": 26
+      }
+    },
+    "b": {
+      "lvl": 7,
+      "nome": "B",
+      "stats": {
+        "fol": 55,
+        "for": 31,
+        "gin": 72,
+        "mal": 29
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 56,
+        "hp": [
+          728,
+          564
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 109,
+        "hp": [
+          728,
+          455
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          728,
+          455
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 86,
+        "hp": [
+          728,
+          369
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          728,
+          369
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 204,
+        "hp": [
+          728,
+          165
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 68,
+        "hp": [
+          660,
+          165
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          660,
+          165
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 74,
+        "hp": [
+          586,
+          165
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          586,
+          165
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 81,
+        "hp": [
+          505,
+          165
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 85,
+        "hp": [
+          505,
+          80
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 78,
+        "hp": [
+          427,
+          80
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          427,
+          80
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 66,
+        "hp": [
+          361,
+          80
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 106,
+        "hp": [
+          361,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      361,
+      0
+    ],
+    "seed": 32,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 4,
+      "nome": "A",
+      "stats": {
+        "fol": 88,
+        "for": 23,
+        "gin": 78,
+        "mal": 68
+      }
+    },
+    "b": {
+      "lvl": 10,
+      "nome": "B",
+      "stats": {
+        "fol": 39,
+        "for": 13,
+        "gin": 53,
+        "mal": 72
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 46,
+        "hp": [
+          792,
+          426
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          792,
+          426
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 53,
+        "hp": [
+          792,
+          373
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          752,
+          373
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 43,
+        "hp": [
+          752,
+          330
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 82,
+        "hp": [
+          670,
+          330
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 50,
+        "hp": [
+          670,
+          280
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 76,
+        "hp": [
+          594,
+          280
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 54,
+        "hp": [
+          594,
+          226
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          554,
+          226
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 98,
+        "hp": [
+          554,
+          128
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 41,
+        "hp": [
+          513,
+          128
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 55,
+        "hp": [
+          513,
+          73
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          513,
+          73
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          513,
+          73
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 46,
+        "hp": [
+          467,
+          73
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 88,
+        "hp": [
+          467,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      467,
+      0
+    ],
+    "seed": 33,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 13,
+      "nome": "A",
+      "stats": {
+        "fol": 80,
+        "for": 25,
+        "gin": 20,
+        "mal": 82
+      }
+    },
+    "b": {
+      "lvl": 5,
+      "nome": "B",
+      "stats": {
+        "fol": 66,
+        "for": 3,
+        "gin": 51,
+        "mal": 49
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 17,
+        "hp": [
+          819,
+          628
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 61,
+        "hp": [
+          819,
+          567
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          819,
+          567
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 73,
+        "hp": [
+          819,
+          494
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 20,
+        "hp": [
+          799,
+          494
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 67,
+        "hp": [
+          799,
+          427
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 36,
+        "hp": [
+          763,
+          427
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          763,
+          427
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 19,
+        "hp": [
+          744,
+          427
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 178,
+        "hp": [
+          744,
+          249
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 21,
+        "hp": [
+          723,
+          249
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 76,
+        "hp": [
+          723,
+          173
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 18,
+        "hp": [
+          705,
+          173
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 130,
+        "hp": [
+          705,
+          43
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 18,
+        "hp": [
+          687,
+          43
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 86,
+        "hp": [
+          687,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      687,
+      0
+    ],
+    "seed": 34,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 5,
+      "nome": "A",
+      "stats": {
+        "fol": 9,
+        "for": 17,
+        "gin": 17,
+        "mal": 17
+      }
+    },
+    "b": {
+      "lvl": 30,
+      "nome": "B",
+      "stats": {
+        "fol": 30,
+        "for": 19,
+        "gin": 41,
+        "mal": 71
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 184,
+        "hp": [
+          0,
+          640
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      640
+    ],
+    "seed": 35,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 7,
+      "nome": "A",
+      "stats": {
+        "fol": 18,
+        "for": 75,
+        "gin": 5,
+        "mal": 76
+      }
+    },
+    "b": {
+      "lvl": 8,
+      "nome": "B",
+      "stats": {
+        "fol": 26,
+        "for": 49,
+        "gin": 9,
+        "mal": 59
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 87,
+        "hp": [
+          181,
+          344
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 240,
+        "hp": [
+          181,
+          104
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 97,
+        "hp": [
+          84,
+          104
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 134,
+        "hp": [
+          84,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      84,
+      0
+    ],
+    "seed": 36,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 9,
+      "nome": "A",
+      "stats": {
+        "fol": 40,
+        "for": 21,
+        "gin": 50,
+        "mal": 80
+      }
+    },
+    "b": {
+      "lvl": 4,
+      "nome": "B",
+      "stats": {
+        "fol": 90,
+        "for": 76,
+        "gin": 51,
+        "mal": 6
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 114,
+        "hp": [
+          354,
+          808
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 57,
+        "hp": [
+          354,
+          751
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 242,
+        "hp": [
+          112,
+          751
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          112,
+          751
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 133,
+        "hp": [
+          0,
+          751
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      751
+    ],
+    "seed": 37,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 26,
+      "nome": "A",
+      "stats": {
+        "fol": 64,
+        "for": 7,
+        "gin": 30,
+        "mal": 55
+      }
+    },
+    "b": {
+      "lvl": 30,
+      "nome": "B",
+      "stats": {
+        "fol": 89,
+        "for": 44,
+        "gin": 88,
+        "mal": 39
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          864,
+          1112
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 184,
+        "hp": [
+          864,
+          928
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 127,
+        "hp": [
+          737,
+          928
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 180,
+        "hp": [
+          737,
+          748
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 164,
+        "hp": [
+          573,
+          748
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 162,
+        "hp": [
+          573,
+          586
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 320,
+        "hp": [
+          253,
+          586
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          253,
+          586
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 161,
+        "hp": [
+          92,
+          586
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 77,
+        "hp": [
+          92,
+          509
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 161,
+        "hp": [
+          0,
+          509
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      509
+    ],
+    "seed": 38,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 14,
+      "nome": "A",
+      "stats": {
+        "fol": 36,
+        "for": 23,
+        "gin": 67,
+        "mal": 27
+      }
+    },
+    "b": {
+      "lvl": 5,
+      "nome": "B",
+      "stats": {
+        "fol": 22,
+        "for": 21,
+        "gin": 72,
+        "mal": 82
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 51,
+        "hp": [
+          445,
+          276
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 74,
+        "hp": [
+          445,
+          202
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 50,
+        "hp": [
+          395,
+          202
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          395,
+          202
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 53,
+        "hp": [
+          342,
+          202
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          342,
+          202
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 94,
+        "hp": [
+          248,
+          202
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 85,
+        "hp": [
+          248,
+          117
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 51,
+        "hp": [
+          197,
+          117
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          197,
+          117
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 40,
+        "hp": [
+          157,
+          117
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 64,
+        "hp": [
+          157,
+          53
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 100,
+        "hp": [
+          57,
+          53
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 85,
+        "hp": [
+          57,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      57,
+      0
+    ],
+    "seed": 39,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 7,
+      "nome": "A",
+      "stats": {
+        "fol": 44,
+        "for": 27,
+        "gin": 69,
+        "mal": 24
+      }
+    },
+    "b": {
+      "lvl": 19,
+      "nome": "B",
+      "stats": {
+        "fol": 63,
+        "for": 30,
+        "gin": 34,
+        "mal": 28
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 67,
+        "hp": [
+          476,
+          705
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          476,
+          705
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 51,
+        "hp": [
+          476,
+          654
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 98,
+        "hp": [
+          378,
+          654
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 52,
+        "hp": [
+          378,
+          602
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          378,
+          602
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          378,
+          602
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          378,
+          602
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 72,
+        "hp": [
+          378,
+          530
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          378,
+          530
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 57,
+        "hp": [
+          378,
+          473
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 230,
+        "hp": [
+          148,
+          473
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 68,
+        "hp": [
+          148,
+          405
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          148,
+          405
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 70,
+        "hp": [
+          148,
+          335
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 118,
+        "hp": [
+          30,
+          335
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 144,
+        "hp": [
+          30,
+          191
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 102,
+        "hp": [
+          0,
+          191
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      191
+    ],
+    "seed": 40,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 17,
+      "nome": "A",
+      "stats": {
+        "fol": 74,
+        "for": 17,
+        "gin": 44,
+        "mal": 55
+      }
+    },
+    "b": {
+      "lvl": 15,
+      "nome": "B",
+      "stats": {
+        "fol": 86,
+        "for": 54,
+        "gin": 42,
+        "mal": 81
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 78,
+        "hp": [
+          836,
+          830
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 131,
+        "hp": [
+          705,
+          830
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 61,
+        "hp": [
+          705,
+          769
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 212,
+        "hp": [
+          493,
+          769
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 134,
+        "hp": [
+          493,
+          635
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 135,
+        "hp": [
+          358,
+          635
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 73,
+        "hp": [
+          358,
+          562
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 129,
+        "hp": [
+          229,
+          562
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 140,
+        "hp": [
+          229,
+          422
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 121,
+        "hp": [
+          108,
+          422
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 69,
+        "hp": [
+          108,
+          353
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 131,
+        "hp": [
+          0,
+          353
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      353
+    ],
+    "seed": 41,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 21,
+      "nome": "A",
+      "stats": {
+        "fol": 72,
+        "for": 88,
+        "gin": 83,
+        "mal": 17
+      }
+    },
+    "b": {
+      "lvl": 21,
+      "nome": "B",
+      "stats": {
+        "fol": 82,
+        "for": 43,
+        "gin": 3,
+        "mal": 24
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 238,
+        "hp": [
+          868,
+          710
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          868,
+          710
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 175,
+        "hp": [
+          868,
+          535
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          868,
+          535
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 215,
+        "hp": [
+          868,
+          320
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 115,
+        "hp": [
+          753,
+          320
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 163,
+        "hp": [
+          753,
+          157
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          753,
+          157
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 199,
+        "hp": [
+          753,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      753,
+      0
+    ],
+    "seed": 42,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 25,
+      "nome": "A",
+      "stats": {
+        "fol": 41,
+        "for": 22,
+        "gin": 5,
+        "mal": 7
+      }
+    },
+    "b": {
+      "lvl": 23,
+      "nome": "B",
+      "stats": {
+        "fol": 63,
+        "for": 9,
+        "gin": 87,
+        "mal": 87
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 140,
+        "hp": [
+          528,
+          820
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          528,
+          820
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 66,
+        "hp": [
+          462,
+          820
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 117,
+        "hp": [
+          462,
+          703
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 86,
+        "hp": [
+          376,
+          703
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          376,
+          703
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 86,
+        "hp": [
+          290,
+          703
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          290,
+          703
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 65,
+        "hp": [
+          225,
+          703
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 93,
+        "hp": [
+          225,
+          610
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 80,
+        "hp": [
+          145,
+          610
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 115,
+        "hp": [
+          145,
+          495
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 73,
+        "hp": [
+          72,
+          495
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          72,
+          495
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 156,
+        "hp": [
+          0,
+          495
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      495
+    ],
+    "seed": 43,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 18,
+      "nome": "A",
+      "stats": {
+        "fol": 75,
+        "for": 77,
+        "gin": 5,
+        "mal": 32
+      }
+    },
+    "b": {
+      "lvl": 13,
+      "nome": "B",
+      "stats": {
+        "fol": 16,
+        "for": 51,
+        "gin": 54,
+        "mal": 76
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 111,
+        "hp": [
+          745,
+          324
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 354,
+        "hp": [
+          745,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      745,
+      0
+    ],
+    "seed": 44,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 25,
+      "nome": "A",
+      "stats": {
+        "fol": 8,
+        "for": 31,
+        "gin": 72,
+        "mal": 69
+      }
+    },
+    "b": {
+      "lvl": 7,
+      "nome": "B",
+      "stats": {
+        "fol": 18,
+        "for": 54,
+        "gin": 89,
+        "mal": 16
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 116,
+        "hp": [
+          288,
+          268
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          288,
+          268
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 95,
+        "hp": [
+          193,
+          268
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 124,
+        "hp": [
+          193,
+          144
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          193,
+          144
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          193,
+          144
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 94,
+        "hp": [
+          99,
+          144
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 130,
+        "hp": [
+          99,
+          14
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          99,
+          14
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          99,
+          14
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 202,
+        "hp": [
+          0,
+          14
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      14
+    ],
+    "seed": 45,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 2,
+      "nome": "A",
+      "stats": {
+        "fol": 21,
+        "for": 27,
+        "gin": 71,
+        "mal": 44
+      }
+    },
+    "b": {
+      "lvl": 4,
+      "nome": "B",
+      "stats": {
+        "fol": 12,
+        "for": 7,
+        "gin": 60,
+        "mal": 78
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          232,
+          184
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          232,
+          184
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 51,
+        "hp": [
+          232,
+          133
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 24,
+        "hp": [
+          208,
+          133
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 59,
+        "hp": [
+          208,
+          74
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 18,
+        "hp": [
+          190,
+          74
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          190,
+          74
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 48,
+        "hp": [
+          142,
+          74
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 88,
+        "hp": [
+          142,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      142,
+      0
+    ],
+    "seed": 46,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 23,
+      "nome": "A",
+      "stats": {
+        "fol": 57,
+        "for": 46,
+        "gin": 51,
+        "mal": 43
+      }
+    },
+    "b": {
+      "lvl": 30,
+      "nome": "B",
+      "stats": {
+        "fol": 18,
+        "for": 28,
+        "gin": 15,
+        "mal": 27
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 306,
+        "hp": [
+          772,
+          238
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          772,
+          238
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 244,
+        "hp": [
+          772,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      772,
+      0
+    ],
+    "seed": 47,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 7,
+      "nome": "A",
+      "stats": {
+        "fol": 51,
+        "for": 72,
+        "gin": 43,
+        "mal": 24
+      }
+    },
+    "b": {
+      "lvl": 3,
+      "nome": "B",
+      "stats": {
+        "fol": 65,
+        "for": 23,
+        "gin": 51,
+        "mal": 86
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 100,
+        "hp": [
+          432,
+          596
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 119,
+        "hp": [
+          432,
+          477
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 51,
+        "hp": [
+          381,
+          477
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 138,
+        "hp": [
+          381,
+          339
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 55,
+        "hp": [
+          326,
+          339
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 149,
+        "hp": [
+          326,
+          190
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 106,
+        "hp": [
+          220,
+          190
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 264,
+        "hp": [
+          220,
+          0
+        ],
+        "type": "critico"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      220,
+      0
+    ],
+    "seed": 48,
+    "win": true
+  },
+  {
+    "a": {
+      "lvl": 1,
+      "nome": "A",
+      "stats": {
+        "fol": 72,
+        "for": 16,
+        "gin": 70,
+        "mal": 48
+      }
+    },
+    "b": {
+      "lvl": 14,
+      "nome": "B",
+      "stats": {
+        "fol": 84,
+        "for": 76,
+        "gin": 48,
+        "mal": 10
+      }
+    },
+    "events": [
+      {
+        "atacante": 0,
+        "dano": 30,
+        "hp": [
+          628,
+          850
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          628,
+          850
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 24,
+        "hp": [
+          628,
+          826
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          628,
+          826
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 29,
+        "hp": [
+          628,
+          797
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 146,
+        "hp": [
+          482,
+          797
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          482,
+          797
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 167,
+        "hp": [
+          315,
+          797
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 60,
+        "hp": [
+          315,
+          737
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 138,
+        "hp": [
+          177,
+          737
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 29,
+        "hp": [
+          177,
+          708
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 136,
+        "hp": [
+          41,
+          708
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 33,
+        "hp": [
+          41,
+          675
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 170,
+        "hp": [
+          0,
+          675
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 1
+      }
+    ],
+    "hp_final": [
+      0,
+      675
+    ],
+    "seed": 49,
+    "win": false
+  },
+  {
+    "a": {
+      "lvl": 19,
+      "nome": "A",
+      "stats": {
+        "fol": 10,
+        "for": 25,
+        "gin": 35,
+        "mal": 82
+      }
+    },
+    "b": {
+      "lvl": 10,
+      "nome": "B",
+      "stats": {
+        "fol": 69,
+        "for": 5,
+        "gin": 61,
+        "mal": 31
+      }
+    },
+    "events": [
+      {
+        "atacante": 1,
+        "dano": 27,
+        "hp": [
+          321,
+          712
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          321,
+          712
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 31,
+        "hp": [
+          290,
+          712
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 100,
+        "hp": [
+          290,
+          612
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 31,
+        "hp": [
+          259,
+          612
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 99,
+        "hp": [
+          259,
+          513
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 72,
+        "hp": [
+          187,
+          513
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 0,
+        "dano": 95,
+        "hp": [
+          187,
+          418
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 32,
+        "hp": [
+          155,
+          418
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 77,
+        "hp": [
+          155,
+          341
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 1,
+        "dano": 29,
+        "hp": [
+          126,
+          341
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 0,
+        "hp": [
+          126,
+          341
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 1,
+        "dano": 33,
+        "hp": [
+          93,
+          341
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 154,
+        "hp": [
+          93,
+          187
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 30,
+        "hp": [
+          63,
+          187
+        ],
+        "type": "golpe"
+      },
+      {
+        "atacante": 0,
+        "dano": 158,
+        "hp": [
+          63,
+          29
+        ],
+        "type": "critico"
+      },
+      {
+        "atacante": 1,
+        "dano": 0,
+        "hp": [
+          63,
+          29
+        ],
+        "type": "esquiva"
+      },
+      {
+        "atacante": 0,
+        "dano": 94,
+        "hp": [
+          63,
+          0
+        ],
+        "type": "golpe"
+      },
+      {
+        "type": "fim",
+        "vencedor": 0
+      }
+    ],
+    "hp_final": [
+      63,
+      0
+    ],
+    "seed": 50,
+    "win": true
+  }
+]

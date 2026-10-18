@@ -1,0 +1,963 @@
+{
+  "commands": 1502,
+  "levels": {
+    "10": {
+      "ativa": {},
+      "chefe_espera_ms": 17895000,
+      "cmd_counter": 342,
+      "co_upd_ms": 21030000,
+      "coragem": 5,
+      "duelos": [],
+      "en_upd_ms": 21030000,
+      "energia": 100,
+      "equip": {
+        "amuleto": {
+          "id": 167,
+          "nome": "Dente de Onça de Aroeira",
+          "preco": 482,
+          "rar": 1,
+          "slot": "amuleto",
+          "st": {
+            "gin": 11,
+            "mal": 17
+          }
+        },
+        "arma": {
+          "id": 133,
+          "nome": "Zarabatana",
+          "preco": 279,
+          "rar": 0,
+          "slot": "arma",
+          "st": {
+            "for": 11,
+            "gin": 6
+          }
+        },
+        "cabeca": {
+          "id": 158,
+          "nome": "Gorro Vermelho",
+          "preco": 310,
+          "rar": 0,
+          "slot": "cabeca",
+          "st": {
+            "gin": 11,
+            "mal": 7
+          }
+        },
+        "corpo": {
+          "id": 120,
+          "nome": "Manto de Folhas",
+          "preco": 234,
+          "rar": 0,
+          "slot": "corpo",
+          "st": {
+            "fol": 9,
+            "for": 6
+          }
+        }
+      },
+      "fases": [
+        9,
+        0,
+        0
+      ],
+      "feira": [
+        {
+          "id": 196,
+          "nome": "Chapéu de Couro de Aroeira",
+          "preco": 482,
+          "rar": 1,
+          "slot": "cabeca",
+          "st": {
+            "fol": 11,
+            "gin": 17
+          }
+        },
+        {
+          "id": 197,
+          "nome": "Bata de Algodão",
+          "preco": 310,
+          "rar": 0,
+          "slot": "corpo",
+          "st": {
+            "fol": 11,
+            "gin": 7
+          }
+        },
+        {
+          "id": 198,
+          "nome": "Arco de Pau-d’arco",
+          "preco": 310,
+          "rar": 0,
+          "slot": "arma",
+          "st": {
+            "fol": 7,
+            "for": 11
+          }
+        },
+        {
+          "id": 199,
+          "nome": "Figa de Arruda",
+          "preco": 310,
+          "rar": 0,
+          "slot": "amuleto",
+          "st": {
+            "for": 7,
+            "mal": 11
+          }
+        },
+        {
+          "id": 200,
+          "nome": "Cocar de Penas",
+          "preco": 310,
+          "rar": 0,
+          "slot": "cabeca",
+          "st": {
+            "for": 7,
+            "gin": 11
+          }
+        },
+        {
+          "id": 201,
+          "nome": "Gorro Vermelho",
+          "preco": 310,
+          "rar": 0,
+          "slot": "cabeca",
+          "st": {
+            "fol": 7,
+            "gin": 11
+          }
+        }
+      ],
+      "feira_upd_ms": 20685000,
+      "honra": 0,
+      "lvl": 10,
+      "missoes": 90,
+      "mochila": [],
+      "mode": "offline",
+      "muir": 21,
+      "nome": "Jaci",
+      "ofertas": [
+        {
+          "c": "saci",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 0,
+          "id": 3,
+          "luta": false,
+          "vint": 16,
+          "xp": 16
+        },
+        {
+          "c": "curupira",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 1,
+          "id": 21,
+          "luta": false,
+          "vint": 22,
+          "xp": 20
+        },
+        {
+          "c": "negrinho",
+          "d": 2,
+          "dur": 90,
+          "en": 15,
+          "f": 1,
+          "id": 203,
+          "luta": false,
+          "vint": 157,
+          "xp": 118
+        }
+      ],
+      "profile_id": "sim",
+      "rivais": [
+        {
+          "cor": "#7a5fa0",
+          "honra": 30,
+          "id": 5,
+          "lvl": 2,
+          "nome": "Quinca Tempestade",
+          "st": {
+            "fol": 13,
+            "for": 18,
+            "gin": 9,
+            "mal": 9
+          }
+        },
+        {
+          "cor": "#e59aa0",
+          "honra": 2,
+          "id": 6,
+          "lvl": 3,
+          "nome": "Tonho Carcará",
+          "st": {
+            "fol": 12,
+            "for": 15,
+            "gin": 10,
+            "mal": 8
+          }
+        },
+        {
+          "cor": "#9b6b43",
+          "honra": 31,
+          "id": 7,
+          "lvl": 1,
+          "nome": "Biu Pé-Ligeiro",
+          "st": {
+            "fol": 8,
+            "for": 13,
+            "gin": 7,
+            "mal": 6
+          }
+        }
+      ],
+      "rng_seed": 7,
+      "stats": {
+        "fol": 36,
+        "for": 36,
+        "gin": 36,
+        "mal": 36
+      },
+      "uid": 204,
+      "vint": 122,
+      "vistos": {
+        "cuca": true,
+        "curupira": true,
+        "iara": true,
+        "negrinho": true,
+        "saci": true
+      },
+      "vitorias": {
+        "cuca": 13,
+        "curupira": 6,
+        "iara": 1,
+        "saci": 9
+      },
+      "xp": 20
+    },
+    "20": {
+      "ativa": {},
+      "chefe_espera_ms": 55190000,
+      "cmd_counter": 880,
+      "co_upd_ms": 59530000,
+      "coragem": 5,
+      "duelos": [],
+      "en_upd_ms": 59530000,
+      "energia": 100,
+      "equip": {
+        "amuleto": {
+          "id": 540,
+          "nome": "Patuá do Rio Negro",
+          "preco": 1482,
+          "rar": 2,
+          "slot": "amuleto",
+          "st": {
+            "gin": 26,
+            "mal": 39
+          }
+        },
+        "arma": {
+          "id": 697,
+          "nome": "Laço Trançado do Rio Negro",
+          "preco": 1915,
+          "rar": 2,
+          "slot": "arma",
+          "st": {
+            "fol": 30,
+            "for": 46
+          }
+        },
+        "cabeca": {
+          "id": 680,
+          "nome": "Chapéu de Palha do Mangue",
+          "preco": 1915,
+          "rar": 2,
+          "slot": "cabeca",
+          "st": {
+            "for": 30,
+            "gin": 46
+          }
+        },
+        "corpo": {
+          "id": 250,
+          "nome": "Gibão de Vaqueiro do Rio Negro",
+          "preco": 902,
+          "rar": 2,
+          "slot": "corpo",
+          "st": {
+            "fol": 29,
+            "mal": 19
+          }
+        }
+      },
+      "fases": [
+        10,
+        9,
+        0
+      ],
+      "feira": [
+        {
+          "id": 732,
+          "nome": "Cocar de Penas",
+          "preco": 857,
+          "rar": 0,
+          "slot": "cabeca",
+          "st": {
+            "gin": 21,
+            "mal": 13
+          }
+        },
+        {
+          "id": 733,
+          "nome": "Poncho de Lã",
+          "preco": 857,
+          "rar": 0,
+          "slot": "corpo",
+          "st": {
+            "fol": 21,
+            "gin": 13
+          }
+        },
+        {
+          "id": 734,
+          "nome": "Peixeira",
+          "preco": 857,
+          "rar": 0,
+          "slot": "arma",
+          "st": {
+            "for": 21,
+            "gin": 13
+          }
+        },
+        {
+          "id": 735,
+          "nome": "Figa de Arruda do Velho Chico",
+          "preco": 1310,
+          "rar": 1,
+          "slot": "amuleto",
+          "st": {
+            "for": 20,
+            "mal": 32
+          }
+        },
+        {
+          "id": 736,
+          "nome": "Muiraquitã de Barro do Pampa",
+          "preco": 1310,
+          "rar": 1,
+          "slot": "amuleto",
+          "st": {
+            "fol": 20,
+            "mal": 32
+          }
+        },
+        {
+          "id": 737,
+          "nome": "Peixeira",
+          "preco": 857,
+          "rar": 0,
+          "slot": "arma",
+          "st": {
+            "for": 21,
+            "gin": 13
+          }
+        }
+      ],
+      "feira_upd_ms": 59330000,
+      "honra": 0,
+      "lvl": 20,
+      "missoes": 277,
+      "mochila": [],
+      "mode": "offline",
+      "muir": 34,
+      "nome": "Jaci",
+      "ofertas": [
+        {
+          "c": "saci",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 0,
+          "id": 3,
+          "luta": false,
+          "vint": 16,
+          "xp": 16
+        },
+        {
+          "c": "curupira",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 1,
+          "id": 21,
+          "luta": false,
+          "vint": 22,
+          "xp": 20
+        },
+        {
+          "c": "saci",
+          "d": 1,
+          "dur": 45,
+          "en": 10,
+          "f": 2,
+          "id": 739,
+          "luta": false,
+          "vint": 202,
+          "xp": 144
+        }
+      ],
+      "profile_id": "sim",
+      "rivais": [
+        {
+          "cor": "#7a5fa0",
+          "honra": 30,
+          "id": 5,
+          "lvl": 2,
+          "nome": "Quinca Tempestade",
+          "st": {
+            "fol": 13,
+            "for": 18,
+            "gin": 9,
+            "mal": 9
+          }
+        },
+        {
+          "cor": "#e59aa0",
+          "honra": 2,
+          "id": 6,
+          "lvl": 3,
+          "nome": "Tonho Carcará",
+          "st": {
+            "fol": 12,
+            "for": 15,
+            "gin": 10,
+            "mal": 8
+          }
+        },
+        {
+          "cor": "#9b6b43",
+          "honra": 31,
+          "id": 7,
+          "lvl": 1,
+          "nome": "Biu Pé-Ligeiro",
+          "st": {
+            "fol": 8,
+            "for": 13,
+            "gin": 7,
+            "mal": 6
+          }
+        }
+      ],
+      "rng_seed": 7,
+      "stats": {
+        "fol": 55,
+        "for": 55,
+        "gin": 54,
+        "mal": 55
+      },
+      "uid": 740,
+      "vint": 248,
+      "vistos": {
+        "boitata": true,
+        "boto": true,
+        "cuca": true,
+        "curupira": true,
+        "iara": true,
+        "negrinho": true,
+        "saci": true
+      },
+      "vitorias": {
+        "boitata": 8,
+        "boto": 14,
+        "cuca": 24,
+        "curupira": 19,
+        "iara": 17,
+        "saci": 22
+      },
+      "xp": 113
+    },
+    "30": {
+      "ativa": {},
+      "chefe_espera_ms": 95615000,
+      "cmd_counter": 1502,
+      "co_upd_ms": 114905000,
+      "coragem": 5,
+      "duelos": [],
+      "en_upd_ms": 114905000,
+      "energia": 100,
+      "equip": {
+        "amuleto": {
+          "id": 1453,
+          "nome": "Pena de Gavião da Lua Cheia",
+          "preco": 3685,
+          "rar": 2,
+          "slot": "amuleto",
+          "st": {
+            "fol": 44,
+            "mal": 67
+          }
+        },
+        "arma": {
+          "id": 1027,
+          "nome": "Laço Trançado de Aroeira",
+          "preco": 2716,
+          "rar": 2,
+          "slot": "arma",
+          "st": {
+            "fol": 37,
+            "for": 56
+          }
+        },
+        "cabeca": {
+          "id": 1156,
+          "nome": "Chapéu de Couro do Mangue",
+          "preco": 2910,
+          "rar": 2,
+          "slot": "cabeca",
+          "st": {
+            "for": 38,
+            "gin": 59
+          }
+        },
+        "corpo": {
+          "id": 1358,
+          "nome": "Colete de Couro da Lua Cheia",
+          "preco": 3467,
+          "rar": 2,
+          "slot": "corpo",
+          "st": {
+            "fol": 65,
+            "for": 42
+          }
+        }
+      },
+      "fases": [
+        10,
+        10,
+        9
+      ],
+      "feira": [
+        {
+          "id": 1489,
+          "nome": "Chapéu de Couro da Lua Cheia",
+          "preco": 2523,
+          "rar": 1,
+          "slot": "cabeca",
+          "st": {
+            "gin": 46,
+            "mal": 30
+          }
+        },
+        {
+          "id": 1490,
+          "nome": "Gibão de Vaqueiro da Serra",
+          "preco": 2523,
+          "rar": 1,
+          "slot": "corpo",
+          "st": {
+            "fol": 46,
+            "for": 30
+          }
+        },
+        {
+          "id": 1491,
+          "nome": "Zarabatana de Jurema",
+          "preco": 2523,
+          "rar": 1,
+          "slot": "arma",
+          "st": {
+            "for": 46,
+            "mal": 30
+          }
+        },
+        {
+          "id": 1492,
+          "nome": "Fita do Bonfim de Aroeira",
+          "preco": 2523,
+          "rar": 1,
+          "slot": "amuleto",
+          "st": {
+            "gin": 30,
+            "mal": 46
+          }
+        },
+        {
+          "id": 1493,
+          "nome": "Gibão de Vaqueiro",
+          "preco": 1660,
+          "rar": 0,
+          "slot": "corpo",
+          "st": {
+            "fol": 30,
+            "for": 20
+          }
+        },
+        {
+          "id": 1494,
+          "nome": "Muiraquitã de Barro",
+          "preco": 1660,
+          "rar": 0,
+          "slot": "amuleto",
+          "st": {
+            "for": 20,
+            "mal": 30
+          }
+        }
+      ],
+      "feira_upd_ms": 114860000,
+      "honra": 0,
+      "lvl": 30,
+      "missoes": 526,
+      "mochila": [],
+      "mode": "offline",
+      "muir": 47,
+      "nome": "Jaci",
+      "ofertas": [
+        {
+          "c": "saci",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 0,
+          "id": 3,
+          "luta": false,
+          "vint": 16,
+          "xp": 16
+        },
+        {
+          "c": "curupira",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 1,
+          "id": 21,
+          "luta": false,
+          "vint": 22,
+          "xp": 20
+        },
+        {
+          "c": "boitata",
+          "d": 2,
+          "dur": 90,
+          "en": 15,
+          "f": 1,
+          "id": 1495,
+          "luta": false,
+          "vint": 565,
+          "xp": 393
+        }
+      ],
+      "profile_id": "sim",
+      "rivais": [
+        {
+          "cor": "#7a5fa0",
+          "honra": 30,
+          "id": 5,
+          "lvl": 2,
+          "nome": "Quinca Tempestade",
+          "st": {
+            "fol": 13,
+            "for": 18,
+            "gin": 9,
+            "mal": 9
+          }
+        },
+        {
+          "cor": "#e59aa0",
+          "honra": 2,
+          "id": 6,
+          "lvl": 3,
+          "nome": "Tonho Carcará",
+          "st": {
+            "fol": 12,
+            "for": 15,
+            "gin": 10,
+            "mal": 8
+          }
+        },
+        {
+          "cor": "#9b6b43",
+          "honra": 31,
+          "id": 7,
+          "lvl": 1,
+          "nome": "Biu Pé-Ligeiro",
+          "st": {
+            "fol": 8,
+            "for": 13,
+            "gin": 7,
+            "mal": 6
+          }
+        }
+      ],
+      "rng_seed": 7,
+      "stats": {
+        "fol": 64,
+        "for": 64,
+        "gin": 64,
+        "mal": 64
+      },
+      "uid": 1496,
+      "vint": 3283,
+      "vistos": {
+        "boitata": true,
+        "boto": true,
+        "cuca": true,
+        "curupira": true,
+        "iara": true,
+        "mapinguari": true,
+        "negrinho": true,
+        "saci": true
+      },
+      "vitorias": {
+        "boitata": 17,
+        "boto": 29,
+        "cuca": 41,
+        "curupira": 32,
+        "iara": 33,
+        "mapinguari": 9,
+        "saci": 41
+      },
+      "xp": 176
+    },
+    "5": {
+      "ativa": {},
+      "chefe_espera_ms": 10915000,
+      "cmd_counter": 113,
+      "co_upd_ms": 11275000,
+      "coragem": 5,
+      "duelos": [],
+      "en_upd_ms": 11275000,
+      "energia": 100,
+      "equip": {
+        "amuleto": {
+          "id": 27,
+          "nome": "Muiraquitã de Barro",
+          "preco": 112,
+          "rar": 0,
+          "slot": "amuleto",
+          "st": {
+            "fol": 3,
+            "mal": 6
+          }
+        },
+        "arma": {
+          "id": 26,
+          "nome": "Peixeira do Cerrado",
+          "preco": 161,
+          "rar": 1,
+          "slot": "arma",
+          "st": {
+            "for": 8,
+            "mal": 5
+          }
+        },
+        "cabeca": {
+          "id": 37,
+          "nome": "Cocar de Penas",
+          "preco": 132,
+          "rar": 0,
+          "slot": "cabeca",
+          "st": {
+            "gin": 6,
+            "mal": 4
+          }
+        },
+        "corpo": {
+          "id": 31,
+          "nome": "Bata de Algodão do Pampa",
+          "preco": 161,
+          "rar": 1,
+          "slot": "corpo",
+          "st": {
+            "fol": 8,
+            "mal": 5
+          }
+        }
+      },
+      "fases": [
+        4,
+        0,
+        0
+      ],
+      "feira": [
+        {
+          "id": 45,
+          "nome": "Chapéu de Palha da Lua Cheia",
+          "preco": 211,
+          "rar": 1,
+          "slot": "cabeca",
+          "st": {
+            "for": 6,
+            "gin": 10
+          }
+        },
+        {
+          "id": 46,
+          "nome": "Poncho de Lã",
+          "preco": 132,
+          "rar": 0,
+          "slot": "corpo",
+          "st": {
+            "fol": 6,
+            "for": 4
+          }
+        },
+        {
+          "id": 47,
+          "nome": "Arco de Pau-d’arco",
+          "preco": 132,
+          "rar": 0,
+          "slot": "arma",
+          "st": {
+            "fol": 4,
+            "for": 6
+          }
+        },
+        {
+          "id": 48,
+          "nome": "Fita do Bonfim",
+          "preco": 132,
+          "rar": 0,
+          "slot": "amuleto",
+          "st": {
+            "gin": 4,
+            "mal": 6
+          }
+        },
+        {
+          "id": 49,
+          "nome": "Peixeira do Mangue",
+          "preco": 211,
+          "rar": 1,
+          "slot": "arma",
+          "st": {
+            "fol": 6,
+            "for": 10
+          }
+        },
+        {
+          "id": 50,
+          "nome": "Patuá",
+          "preco": 132,
+          "rar": 0,
+          "slot": "amuleto",
+          "st": {
+            "fol": 4,
+            "mal": 6
+          }
+        }
+      ],
+      "feira_upd_ms": 11275000,
+      "honra": 0,
+      "lvl": 5,
+      "missoes": 21,
+      "mochila": [],
+      "mode": "offline",
+      "muir": 16,
+      "nome": "Jaci",
+      "ofertas": [
+        {
+          "c": "saci",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 0,
+          "id": 3,
+          "luta": false,
+          "vint": 16,
+          "xp": 16
+        },
+        {
+          "c": "curupira",
+          "d": 0,
+          "dur": 20,
+          "en": 6,
+          "f": 1,
+          "id": 21,
+          "luta": false,
+          "vint": 22,
+          "xp": 20
+        },
+        {
+          "c": "negrinho",
+          "d": 1,
+          "dur": 45,
+          "en": 10,
+          "f": 0,
+          "id": 44,
+          "luta": false,
+          "vint": 55,
+          "xp": 46
+        }
+      ],
+      "profile_id": "sim",
+      "rivais": [
+        {
+          "cor": "#7a5fa0",
+          "honra": 30,
+          "id": 5,
+          "lvl": 2,
+          "nome": "Quinca Tempestade",
+          "st": {
+            "fol": 13,
+            "for": 18,
+            "gin": 9,
+            "mal": 9
+          }
+        },
+        {
+          "cor": "#e59aa0",
+          "honra": 2,
+          "id": 6,
+          "lvl": 3,
+          "nome": "Tonho Carcará",
+          "st": {
+            "fol": 12,
+            "for": 15,
+            "gin": 10,
+            "mal": 8
+          }
+        },
+        {
+          "cor": "#9b6b43",
+          "honra": 31,
+          "id": 7,
+          "lvl": 1,
+          "nome": "Biu Pé-Ligeiro",
+          "st": {
+            "fol": 8,
+            "for": 13,
+            "gin": 7,
+            "mal": 6
+          }
+        }
+      ],
+      "rng_seed": 7,
+      "stats": {
+        "fol": 21,
+        "for": 22,
+        "gin": 21,
+        "mal": 21
+      },
+      "uid": 51,
+      "vint": 106,
+      "vistos": {
+        "cuca": true,
+        "curupira": true,
+        "negrinho": true,
+        "saci": true
+      },
+      "vitorias": {
+        "cuca": 1,
+        "curupira": 3,
+        "saci": 5
+      },
+      "xp": 61
+    }
+  },
+  "missions_to_30": 526,
+  "seed": 7
+}

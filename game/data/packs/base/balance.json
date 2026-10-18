@@ -8,8 +8,8 @@
   "chefe_en": 12,
   "chefe_espera_ms": 90000,
   "curva": [
-    12, 13, 16, 19, 23, 27, 30, 33, 35, 38, 40, 42, 44, 46, 48, 49, 51, 52, 53, 55, 56, 57, 58, 59,
-    60, 61, 62, 63, 64, 64, 65
+    10, 15, 20, 25, 31, 37, 43, 48, 54, 59, 67, 73, 77, 82, 87, 91, 94, 99, 104, 110, 116, 119, 123,
+    127, 131, 137, 141, 144, 148, 152, 155
   ],
   "ranks": [
     {"lvl": 1, "nome": "Aprendiz da Mata"},
@@ -32,7 +32,7 @@
     "enemy_noise_max_pm": 1100,
     "enemy_stat_min": 3,
     "xp_base": 12,
-    "xp_lvl": 5,
+    "xp_lvl": 4,
     "vint_base": 10,
     "vint_lvl": 6,
     "offers": 3,
@@ -55,9 +55,9 @@
     "coragem": 1
   },
   "stage": {
-    "mult_base_pm": 800,
+    "mult_base_pm": 870,
     "mult_step_pm": 22,
-    "boss_pm": 1120,
+    "boss_pm": 1090,
     "xp_pm": 180,
     "boss_xp_pm": 500,
     "vint_base": 40,

@@ -33,7 +33,7 @@ func test_stage_enemy_stats() -> void:
 	var e: Fighter = Stages.enemy(0, 0, _rules)
 	var legend: Defs.LegendDef = _rules.legends[_rules.acts[0].stages[0].legend_id]
 	for k: String in Defs.STAT_KEYS:
-		var raw: int = 12 * 822 * legend.perf_pm[k]
+		var raw: int = 10 * 892 * legend.perf_pm[k]
 		assert_int(e.stats[k]).is_equal((raw + 500000) / 1000000)
 	assert_int(e.lvl).is_equal(1)
 	assert_str(e.legend_id).is_equal(legend.id)
@@ -45,7 +45,7 @@ func test_boss_enemy_uses_boss_multiplier() -> void:
 	var legend: Defs.LegendDef = _rules.legends[_rules.acts[0].stages[9].legend_id]
 	var base: int = _rules.balance.curva[9]  # nível 10
 	for k: String in Defs.STAT_KEYS:
-		assert_int(e.stats[k]).is_equal((base * 1120 * legend.perf_pm[k] + 500000) / 1000000)
+		assert_int(e.stats[k]).is_equal((base * 1090 * legend.perf_pm[k] + 500000) / 1000000)
 	assert_int(e.lvl).is_equal(10)
 
 
