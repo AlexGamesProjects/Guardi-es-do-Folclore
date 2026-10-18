@@ -10,6 +10,12 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Corrigido
+- O teste da versão aceita qualquer número no formato X.Y.Z ou X.Y.Z-dev. Antes ele exigia `0.3.0-dev` e quebrou a CI depois do lançamento.
+
+### Alterado
+- A versão em desenvolvimento passa a ser `0.4.0-dev`.
+
 ## [0.3.0] - 2026-10-18
 
 Nota completa: [docs/versoes/v0.3.0.md](docs/versoes/v0.3.0.md)
