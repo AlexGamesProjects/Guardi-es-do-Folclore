@@ -184,6 +184,8 @@ class BalanceDef:
 	var ranks: Array[RankDef] = []
 	var combat: CombatDef = null
 	var mission: Dictionary = {}
+	var progress: Dictionary = {}
+	var arena: Dictionary = {}
 	var stage: Dictionary = {}
 	var item: Dictionary = {}
 	var rival: Dictionary = {}
@@ -208,6 +210,8 @@ class BalanceDef:
 			out.ranks.append(RankDef.from_dict(r))
 		out.combat = CombatDef.from_dict(d["combat"])
 		out.mission = Defs.normalize(d["mission"])
+		out.progress = Defs.normalize(d["progress"])
+		out.arena = Defs.normalize(d["arena"])
 		out.stage = Defs.normalize(d["stage"])
 		out.item = Defs.normalize(d["item"])
 		out.rival = Defs.normalize(d["rival"])

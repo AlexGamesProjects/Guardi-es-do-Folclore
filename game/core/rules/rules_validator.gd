@@ -61,6 +61,24 @@ const BALANCE_SPEC: Dictionary = {
 		"xp_lvl": "pos",
 		"vint_base": "pos",
 		"vint_lvl": "pos",
+		"offers": "pos",
+		"drop_bp": "nonneg",
+		"defeat_xp_pm": "nonneg",
+		"skip_muir": "nonneg",
+		"reroll_muir": "nonneg",
+	},
+	"progress": {"levelup_muir": "nonneg"},
+	"arena":
+	{
+		"win_honra_min": "nonneg",
+		"win_honra_base": "nonneg",
+		"win_honra_lvl": "nonneg",
+		"win_vint_base": "nonneg",
+		"win_vint_lvl": "nonneg",
+		"win_xp_base": "nonneg",
+		"win_xp_lvl": "nonneg",
+		"loss_honra_max": "nonneg",
+		"history": "pos",
 	},
 	"stage":
 	{
@@ -86,6 +104,8 @@ const BALANCE_SPEC: Dictionary = {
 		"rare_bp": "pos",
 		"legendary_bp": "pos",
 		"shop_size": "pos",
+		"sell_pm": "nonneg",
+		"reroll_muir": "nonneg",
 		"primary": "primary_map",
 	},
 	"rival":
