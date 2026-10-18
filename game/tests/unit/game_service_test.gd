@@ -24,11 +24,10 @@ func _collect(results: Array, type: String, params: Dictionary) -> void:
 	results.append(await _svc.send(type, params))
 
 
-func _wait_for(results: Array, count: int) -> void:
-	var guard: int = 0
-	while results.size() < count and guard < 600:
+func _wait_for(results: Array, count: int, limit_ms: int = 3000) -> void:
+	var started: int = Time.get_ticks_msec()
+	while results.size() < count and Time.get_ticks_msec() - started < limit_ms:
 		await get_tree().process_frame
-		guard += 1
 
 
 func test_second_send_while_busy_is_rejected() -> void:
@@ -45,7 +44,7 @@ func test_second_send_while_busy_is_rejected() -> void:
 	assert_bool(rejected.ok).is_false()
 	assert_str(rejected.error).is_equal("OCUPADO")
 	assert_bool(accepted.ok).is_true()
-	var now_state: GameState = _svc.get("state")
+	var now_state: GameState = _svc.get_state()
 	assert_int(now_state.stats["for"]).is_equal(before_for + 1)
 	assert_int(now_state.cmd_counter).is_equal(2)
 
@@ -77,7 +76,7 @@ func test_events_emitted_on_success() -> void:
 	assert_bool(res.ok).is_true()
 	assert_int(got.size()).is_equal(1)
 	assert_int(states.size()).is_equal(1)
-	assert_object(states[0]).is_same(_svc.get("state"))
+	assert_object(states[0]).is_same(_svc.get_state())
 
 
 func test_failure_keeps_state_and_emits_no_state_change() -> void:
@@ -86,7 +85,7 @@ func test_failure_keeps_state_and_emits_no_state_change() -> void:
 	_svc.state_changed.connect(func(st: GameState) -> void: states.append(st))
 	var res: CommandResult = await _svc.send("treinar", {"stat": "sorte"})
 	assert_bool(res.ok).is_false()
-	assert_object(_svc.get("state")).is_same(s)
+	assert_object(_svc.get_state()).is_same(s)
 	assert_int(s.cmd_counter).is_equal(1)
 	assert_int(states.size()).is_equal(0)
 	assert_bool(_svc.is_busy()).is_false()
@@ -103,6 +102,41 @@ func test_command_gets_seed_clock_and_rules_version() -> void:
 	assert_str(cmd.rules_version).is_equal(_rules.rules_version)
 	await _svc.send("treinar", {"stat": "for"})
 	assert_int(probe.last.seed).is_equal(Rng.derive_seed(s.rng_seed, 2))
+
+
+func test_null_from_executor_becomes_error_and_releases_busy() -> void:
+	var s: GameState = _setup_service(NullExecutor.new())
+	var res: CommandResult = await _svc.send("treinar", {"stat": "for"})
+	assert_bool(res.ok).is_false()
+	assert_str(res.error).is_equal("ERRO_EXECUTOR")
+	assert_object(_svc.get_state()).is_same(s)
+	assert_bool(_svc.is_busy()).is_false()
+
+
+func test_listener_can_chain_send_from_state_changed() -> void:
+	_setup_service(LocalExecutor.new(_rules))
+	var chained: Array = []
+	_svc.state_changed.connect(
+		func(_st: GameState) -> void:
+			if chained.is_empty():
+				chained.append(await _svc.send("treinar", {"stat": "for"}))
+	)
+	var s: GameState = _svc.get_state()
+	var before_for: int = s.stats["for"]
+	await _svc.send("treinar", {"stat": "for"})
+	await _wait_for(chained, 1)
+	assert_int(chained.size()).is_equal(1)
+	var inner: CommandResult = chained[0]
+	assert_str(inner.error).is_not_equal("OCUPADO")
+	assert_bool(inner.ok).is_true()
+	assert_int((_svc.get_state() as GameState).stats["for"]).is_equal(before_for + 2)
+
+
+class NullExecutor:
+	extends CommandExecutor
+
+	func execute(_state: GameState, _cmd: Command) -> CommandResult:
+		return null
 
 
 class ProbeExecutor:

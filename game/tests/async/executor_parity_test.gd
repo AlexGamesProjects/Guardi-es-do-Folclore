@@ -26,7 +26,7 @@ func _run_with(executor: CommandExecutor) -> Dictionary:
 	var oks: Array[bool] = []
 	for r: CommandResult in results:
 		oks.append(r.ok)
-	var final_state: GameState = svc.get("state")
+	var final_state: GameState = svc.get_state()
 	return {"state": final_state.to_dict(), "oks": oks}
 
 
@@ -36,5 +36,5 @@ func test_executor_parity() -> void:
 	var delayed: Dictionary = await _run_with(DelayedExecutor.new(LocalExecutor.new(_rules), 500))
 	print("PARITY_MS=", Time.get_ticks_msec() - started)
 	assert_array(local["oks"]).is_equal(delayed["oks"])
-	assert_bool((local["oks"] as Array)[0]).is_true()
+	assert_array(local["oks"]).is_equal([true, true, true, true, true])
 	assert_dict(local["state"]).is_equal(delayed["state"])
