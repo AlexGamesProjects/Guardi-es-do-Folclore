@@ -167,13 +167,22 @@ func test_list_profiles_empty_when_no_folder() -> void:
 
 
 func test_load_with_unsafe_id_starts_fresh_without_touching_disk() -> void:
-	_svc.save(_state("x", "offline", 5), "rv")
+	# Um save válido, com honra distinta, no lugar exato a que "../x" aponta fora da raiz.
+	DirAccess.make_dir_recursive_absolute(_root)
 	var outside: String = "%s/../x.json" % _root
-	var res: Dictionary = _svc.load("../x", "offline", _fresh("../x", "offline"))
+	var planted: GameState = _state("../x", "offline", 777)
+	assert_bool(_io.write(outside, SaveCodec.encode(planted, "rv"))).is_true()
+	var planted_text: String = _io.read(outside)
+	var spy := SpyFileIO.new()
+	var svc := SaveService.new(spy, _root)
+	var res: Dictionary = svc.load("../x", "offline", _fresh("../x", "offline"))
 	assert_str(res["warning"]).is_equal("SAVE_RECRIADO")
+	assert_int((res["state"] as GameState).honra).is_not_equal(777)
 	assert_int((res["state"] as GameState).honra).is_equal(0)
-	assert_bool(_io.exists(outside)).is_false()
-	assert_bool(_io.exists(_p("x", "json"))).is_true()
+	assert_int(spy.calls.size()).is_equal(0)
+	assert_str(_io.read(outside)).is_equal(planted_text)
+	assert_bool(_io.exists("%s/../x.json.futuro" % _root)).is_false()
+	_io.remove(outside)
 
 
 func test_id_with_trailing_newline_is_rejected() -> void:
@@ -200,3 +209,24 @@ class TmpRenameFailsIO:
 		if from.ends_with(".tmp"):
 			return false
 		return super.rename(from, to)
+
+
+class SpyFileIO:
+	extends FileIO
+	var calls: Array[String] = []
+
+	func read(path: String) -> String:
+		calls.append("read " + path)
+		return super.read(path)
+
+	func rename(from: String, to: String) -> bool:
+		calls.append("rename " + from)
+		return super.rename(from, to)
+
+	func write(path: String, text: String) -> bool:
+		calls.append("write " + path)
+		return super.write(path, text)
+
+	func remove(path: String) -> bool:
+		calls.append("remove " + path)
+		return super.remove(path)
