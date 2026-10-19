@@ -11,6 +11,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 ## [Não lançado]
 
 ### Adicionado
+- Sprites animados em pixel art do Curupira, da Cuca, do Boto e do Mapinguari (PixelLab): parado, ataque, golpe, esquiva e derrota.
 - Palco de duelo: a luta acontece num cenário com a pintura da lenda ao fundo e chão de terra e capim; os dois lutadores de pé se enfrentam, o atacante avança e golpeia, o dano sobe em números (dourados no crítico), a esquiva mostra "Esquivou!" e o vencedor comemora. Vidas no placar do topo.
 - A Mochila mostra o guardião vestindo o que está equipado.
 - Guardião articulado (`ui/heroi/boneco.gd`): 11 ossos com partes em pixel art desenhadas por código (`tools/gen_heroi.py`), animados no Godot (parado, ataque, crítico, golpe, esquiva, derrota, vitória e andar). Os 23 itens da feira têm desenho e aparecem no corpo (chapéu, roupa, arma e amuleto), com brilho verde nos raros e dourado pulsante nos lendários.
