@@ -35,5 +35,6 @@
     {"nome": "Comum", "mult_pm": 1000},
     {"nome": "Rara", "mult_pm": 1500},
     {"nome": "Lendária", "mult_pm": 2200}
-  ]
+  ],
+  "visuais": {"Chapéu de Couro": "chapeu_couro", "Gorro Vermelho": "gorro_vermelho", "Cocar de Penas": "cocar_penas", "Chapéu de Palha": "chapeu_palha", "Lenço de Chita": "lenco_chita", "Gibão de Vaqueiro": "gibao_vaqueiro", "Bata de Algodão": "bata_algodao", "Manto de Folhas": "manto_folhas", "Colete de Couro": "colete_couro", "Poncho de Lã": "poncho_la", "Peixeira": "peixeira", "Estilingue": "estilingue", "Zarabatana": "zarabatana", "Cajado de Jatobá": "cajado_jatoba", "Facão": "facao", "Arco de Pau-d’arco": "arco_pau_darco", "Laço Trançado": "laco_trancado", "Figa de Arruda": "figa_arruda", "Patuá": "patua", "Fita do Bonfim": "fita_bonfim", "Pena de Gavião": "pena_gaviao", "Muiraquitã de Barro": "muiraquita_barro", "Dente de Onça": "dente_onca"}
 }

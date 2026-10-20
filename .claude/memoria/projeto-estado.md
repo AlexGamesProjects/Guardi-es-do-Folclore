@@ -3,14 +3,13 @@ name: projeto-estado
 description: Onde o projeto está — versão, PRs abertos, próxima tarefa do plano
 type: project
 ---
-- v0.3.0 lançada em 18/10/2026. Main em 0.4.0-dev.
-- v0.4.0 em execução direta (sem agentes). Plano `docs/superpowers/plans/2026-10-18-migracao-v0.4.0.md`.
-- Feito (branch `feat/v0.4-casca`, PR #30): Tarefas 1–9 e o código da Tarefa 10 (SpriteLib).
-- Troca do site guardada na branch `feat/v0.4-site` (entra no PR de fechamento).
-- Em andamento: piloto de pixel art no PixelLab (plano trial, 1 job por vez, ~13 min cada).
-  - Herói `c0a26aec-76a8-4eb8-96b3-a04c7271830e` (east): parado ✓, ataque (rodando), faltam golpe (taking-punch), derrota (falling-back-death), esquiva (v3 "dodging backward").
-  - Saci `5f0d6f83-cda7-43ce-9121-3906b74d07ff` (west): criado, faltam as 5 animações. Saiu com duas pernas.
-  - Sprites vão em `game/assets/sprites/<id>/<acao>.png` (tira horizontal de quadros quadrados).
-- Depois: dona aprova o estilo → Tarefa 11 (outras lendas) → Tarefa 12 (site, teste em emulação, fechar v0.4.0).
+- v0.3.0 lançada em 18/10/2026. Main em 0.4.0-dev, com as Tarefas 1–9 do plano da v0.4.0 (PR #30).
+- PR #31 (`feat/v0.4-boneco`): palco de duelo e guardião articulado (spec `docs/superpowers/specs/2026-10-18-palco-duelo-boneco-design.md`). Arte do herói gerada por `tools/gen_heroi.py`.
+- A troca do site (Godot na raiz, v0.2 em /v02/) está na branch `feat/v0.4-site` e entra no PR de fechamento.
+- Página de teste (artifact "Guardiões do Folclore", https://claude.ai/artifact/PSCoqUjQ2emVicxqfLBK7q): o build web vai como motor.gz.wasm (wasm em gzip) e dados.pck.wasm, com um shim de fetch. Atualizar ao fim de cada entrega.
+- Sprites das lendas no PixelLab (registro em `docs/arte/pixellab.md`):
+  - no jogo: Saci, Curupira, Cuca, Boto e Mapinguari;
+  - faltam: Iara (sereia) e Boitatá (cobra), que esperam o bônus diário e uma solução que não seja humanoide.
+- Fechamento da v0.4.0: Tarefa 12 do plano (site, teste em emulação, nota).
 **Why:** retomar sem reler a conversa.
-**How to apply:** ao iniciar, ler isto, o ledger `.superpowers/sdd/2026-10-18-migracao-v0.4.0/progress.md` (se existir) e `git log --oneline -10`.
+**How to apply:** ao iniciar, ler isto e `git log --oneline -10`.
