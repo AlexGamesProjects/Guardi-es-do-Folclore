@@ -10,8 +10,12 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+## [0.4.0] - 2026-10-23
+
+Nota completa: [docs/versoes/v0.4.0.md](docs/versoes/v0.4.0.md)
+
 ### Adicionado
-- Sprites animados em pixel art do Curupira, da Cuca, do Boto e do Mapinguari (PixelLab): parado, ataque, golpe, esquiva e derrota.
+- Sprites animados em pixel art (PixelLab) do Saci, do Curupira, da Cuca, da Iara, do Boto e do Mapinguari: parado, ataque, golpe, esquiva e derrota. As lendas sem sprite, como o Boitatá, lutam com a carta de pé.
 - Palco de duelo: a luta acontece num cenário com a pintura da lenda ao fundo e chão de terra e capim; os dois lutadores de pé se enfrentam, o atacante avança e golpeia, o dano sobe em números (dourados no crítico), a esquiva mostra "Esquivou!" e o vencedor comemora. Vidas no placar do topo.
 - A Mochila mostra o guardião vestindo o que está equipado.
 - Guardião articulado (`ui/heroi/boneco.gd`): 11 ossos com partes em pixel art desenhadas por código (`tools/gen_heroi.py`), animados no Godot (parado, ataque, crítico, golpe, esquiva, derrota, vitória e andar). Os 23 itens da feira têm desenho e aparecem no corpo (chapéu, roupa, arma e amuleto), com brilho verde nos raros e dourado pulsante nos lendários.
@@ -29,8 +33,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Especificação da v0.4.0, Migração (`docs/superpowers/specs/2026-10-18-migracao-v0.4.0-design.md`).
 
 ### Alterado
+- O jogo em Godot passa a ser publicado na raiz do site. A v0.2 em HTML fica em `/v02/`, e o endereço antigo `/novo/` redireciona para a raiz.
+- Roteiro de teste no celular atualizado para as abas, com o passo a passo da emulação no Chrome do PC.
 - Save do Godot na versão 2: o guardião ganha o campo `origem`. A migração 1→2 marca os perfis antigos como "legado", que não passam pela criação.
-- A versão em desenvolvimento passa a ser `0.4.0-dev`.
 
 ### Corrigido
 - O teste da versão aceita qualquer número no formato X.Y.Z ou X.Y.Z-dev. Antes ele exigia `0.3.0-dev` e quebrou a CI depois do lançamento.
@@ -109,7 +114,8 @@ Primeiro protótipo, publicado só como artefato e não versionado no repositór
 - Lutas automáticas, treino de atributos (Força, Fôlego, Malícia e Ginga), feira de itens, arena de duelos e bestiário.
 - 12 criaturas desenhadas em SVG no estilo de xilogravura de cordel.
 
-[Não lançado]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/compare/v0.3.0...HEAD
+[Não lançado]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.4.0
 [0.3.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.3.0
 [0.2.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.2.0
 [0.1.0]: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/releases/tag/v0.1.0

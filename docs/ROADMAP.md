@@ -2,7 +2,7 @@
 
 Visão geral das etapas do Guardiões do Folclore, do protótipo às lojas. Cada etapa vira um **milestone** no GitHub, e cada tarefa vira uma **issue** dentro dele.
 
-**Atualizado em:** 18/10/2026
+**Atualizado em:** 23/10/2026
 
 ```mermaid
 flowchart LR
@@ -11,10 +11,11 @@ flowchart LR
         v01["v0.1<br/>Protótipo HTML"]:::feito
         v02["v0.2<br/>Torre dos Chefes<br/>e ilustrações"]:::feito
         e1["Etapa 1 · v0.3.0<br/>Fundação em Godot"]:::feito
+        e2["Etapa 2 · v0.4.0<br/>Migração do jogo"]:::feito
     end
     subgraph A["Em andamento"]
         direction TB
-        e2["Etapa 2 · v0.4.0<br/>Migração do jogo"]:::andamento
+        e21["v0.4.1<br/>Tempos, economia<br/>e esqueleto único"]:::andamento
     end
     subgraph P["Planejado"]
         direction TB
@@ -27,7 +28,7 @@ flowchart LR
         e6["Etapa 6<br/>Lojas<br/>Android, iOS e Steam"]:::futuro
     end
 
-    v01 --> v02 --> e1 --> e2 --> e3 --> e4 --> e5 --> e6
+    v01 --> v02 --> e1 --> e2 --> e21 --> e3 --> e4 --> e5 --> e6
 
     classDef feito fill:#2f9a68,stroke:#14532d,color:#ffffff
     classDef andamento fill:#d6a24a,stroke:#7a5420,color:#140d08
@@ -41,11 +42,10 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 
 | | Etapa | Versão | Objetivo | Status | Milestone |
 |---|---|---|---|---|---|
-| 18/10/2026 | Especificação da v0.4.0 escrita: todas as telas com abas no rodapé, criação do guardião com origem regional (save versão 2), lutas em pixel art do PixelLab (adiantadas da etapa 3, começando pelo piloto do herói e do Saci) e o Godot na raiz do site. Tempos reais e economia ficam para a v0.4.1 |
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
 | 🟢 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Concluído | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
-| 🟡 | **2. Migração** | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Próxima | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
+| 🟢 | **2. Migração** | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Concluído | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
 | ⚪ | 3. Arte | v0.5.0 | Sprites animados do PixelLab, cartas pintadas, herói com opções | Planejado | [v0.5.0 · Arte](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
 | ⚪ | 4. Som | v0.6.0 | Efeitos, ambientes e narração (ElevenLabs), trilha (Suno) | Planejado | [v0.6.0 · Som](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/4) |
 | 🔵 | 5. Contas e segurança | a definir | Login, save na nuvem, Roda Online, servidor validando comandos, LGPD | Futuro | [Contas e segurança](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/5) |
@@ -67,13 +67,16 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 - [x] Fechamento da v0.3.0 ([nota](versoes/v0.3.0.md)); teste no celular adiado para a v0.4.0 ([#24](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/24))
 
 ### 2. Migração (v0.4.0)
-- [ ] Telas de missões, chefes, arena, feira, mochila e bestiário no Godot
-- [ ] Interface vertical e por toque
-- [ ] Tela de criação do guardião ([#2](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/2))
-- [ ] Tempos de missão para jogo real ([#5](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/5))
-- [ ] Revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7))
-- [ ] Teste no celular ([roteiro](teste-celular.md), [#24](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/24))
-- [ ] O jogo em Godot substitui o HTML na raiz do site
+- [x] Telas de missões, chefes, arena, feira, mochila e bestiário no Godot
+- [x] Interface vertical e por toque
+- [x] Tela de criação do guardião ([#2](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/2))
+- [ ] Tempos de missão para jogo real ([#5](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/5)): passa para a v0.4.1
+- [ ] Revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7)): passa para a v0.4.1
+- [ ] Teste no celular, adiado ([roteiro](teste-celular.md), [#24](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/24))
+- [x] O jogo em Godot substitui o HTML na raiz do site
+- [x] Palco de duelo, guardião articulado com itens e sprites de 6 lendas
+- [x] Fechamento da v0.4.0 ([nota](versoes/v0.4.0.md))
+- [ ] Esqueleto único para as lendas, na v0.4.1 ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32))
 
 ### 3. Arte (v0.5.0)
 - [ ] Sprites animados das lendas no combate: ataque, crítico, esquiva, golpe recebido e derrota
@@ -104,6 +107,8 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 23/10/2026 | **v0.4.0 lançada: Migração do jogo.** O Godot vai para a raiz do site e a v0.2 para `/v02/`. Todas as telas com abas, criação do guardião, palco de duelo com o guardião articulado vestindo os itens e sprites de 6 lendas. Decidido um esqueleto único para as lendas na v0.4.1 (#32). O teste no celular foi adiado de novo (#24) |
+| 18/10/2026 | Especificação da v0.4.0 escrita: todas as telas com abas no rodapé, criação do guardião com origem regional (save versão 2), lutas em pixel art do PixelLab (adiantadas da etapa 3, começando pelo piloto do herói e do Saci) e o Godot na raiz do site. Tempos reais e economia ficam para a v0.4.1 |
 | 18/10/2026 | **v0.3.0 lançada: Fundação em Godot.** O repositório ficou público para o GitHub Pages funcionar sem plano pago. O jogo novo está em `/novo/`. O teste no celular foi adiado para a v0.4.0 (#24), porque a casca ainda é simples |
 | 18/10/2026 | Fundação, grupo D pronto (PR D): casca jogável com o visual da v0.2, selo de modo, painel de desempenho (5 toques na versão), 236 testes. Decisão: o fechamento da v0.3.0 vai num PR separado, depois do teste no celular em `/novo/` |
 | 18/10/2026 | Fundação, grupo C pronto (PR C): comandos assíncronos, save com integridade e reservas, perfis por modo, inicialização com validação das regras, testes de regressão e de balanceamento (218 testes). Balanceamento calibrado pela simulação: fases 57% de vitória, chefes 29%, 525 missões até o nível 30 (antes 99%, 98% e 433) |

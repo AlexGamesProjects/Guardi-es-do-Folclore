@@ -1,27 +1,34 @@
 # Roteiro de teste no celular
 
-Este roteiro confere se o jogo novo em Godot roda bem no celular. Leva uns 5 minutos.
+Confere se o jogo roda bem no celular. Leva uns 5 minutos.
 
-**Endereço:** https://alexgamesprojects.github.io/Guardi-es-do-Folclore/novo/
+**Endereço:** https://alexgamesprojects.github.io/Guardi-es-do-Folclore/
+A v0.2 em HTML fica em `/v02/`.
+
+## Como testar sem celular (emulação no Chrome do PC)
+1. Abra o endereço e aperte **F12**.
+2. Ligue a barra de aparelhos com **Ctrl+Shift+M** e escolha **Pixel 7**.
+3. Em **Network**, escolha **Fast 4G**. Em **Performance**, na engrenagem, escolha **CPU: 4× slowdown**.
+4. Recarregue com **Ctrl+Shift+R** e anote quanto tempo o jogo leva para abrir.
+
+O FPS real só um aparelho mostra; a emulação no PC não mede isso.
 
 ## Passos
-1. Abra o endereço acima no navegador do celular e espere carregar. Anote mais ou menos quanto tempo levou.
-2. No menu, toque **5 vezes seguidas** no número da versão, no rodapé. Abre o painel de desempenho, com FPS, tempo por quadro, modo e versões.
-3. Toque em **Jornada Solo**. No topo deve aparecer o selo "Offline · Jornada Solo".
-4. Toque em **Enfrentar fase** três vezes, esperando cada luta terminar. Observe o FPS no painel durante as lutas.
-5. Toque em **Missão rápida** e em **Treinar Força** uma vez cada.
-6. Feche a aba, abra o endereço de novo e confira se o nível, os vinténs e as fases continuam iguais (o save funcionou).
+1. Toque em **Jornada Solo**. Na primeira vez, crie o guardião: escolha um nome e uma origem, e toque em "Começar a jornada".
+2. Toque 5 vezes na versão, em **Mais → Ajustes**, e veja o painel de desempenho (FPS e tempo por quadro).
+3. Em **Missões**, comece uma missão, espere ou acelere, e conclua.
+4. Em **Torre**, enfrente a fase 1. Confira se a luta aparece no palco, com os dois lutadores, os números de dano e o resultado.
+5. Toque no herói, no topo, e treine um atributo.
+6. Compre um item na **Feira** e equipe na **Mochila**. O guardião deve aparecer vestido.
+7. Desafie um rival na **Arena**.
+8. Feche a aba e abra de novo. O progresso deve continuar igual.
 
 ## O que anotar
 | Item | Resultado |
 |---|---|
-| Modelo do aparelho | |
-| Navegador e versão | |
-| Tempo de carregamento (aprox.) | |
-| FPS médio durante as lutas | |
-| FPS mínimo visto | |
+| Aparelho e navegador (ou "emulação Pixel 7") | |
+| Tempo de carregamento | |
+| FPS médio e mínimo nas lutas | |
 | Os toques responderam bem? | |
 | O progresso voltou depois de reabrir? | |
 | Algo estranho (texto cortado, botão pequeno, travada) | |
-
-Mande as respostas no chat. Elas entram na nota da versão em `docs/versoes/v0.3.0.md`.

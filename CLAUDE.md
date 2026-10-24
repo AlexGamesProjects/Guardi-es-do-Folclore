@@ -36,7 +36,7 @@ O Claude principal é o **líder do jogo**: coordena o trabalho, decide regras e
 Cada tarefa do plano vai para o agente da camada dela e passa pelo `revisor` antes da próxima. Um agente que precisar mexer fora da própria camada para e avisa o líder.
 
 ## Como rodar
-O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML continua em `legacy-web/` e é a que o GitHub Pages publica na raiz.
+O jogo é um projeto Godot 4.7.2 em `game/` (GDScript), publicado na raiz do GitHub Pages. A v0.2 em HTML continua em `legacy-web/`, publicada em `/v02/`.
 
 **Godot e testes** (Linux x86_64):
 - `tools/setup_godot.sh` instala o Godot 4.7.2-stable em `$GODOT_BIN` (padrão `~/.local/bin/godot`) e os templates de export em `~/.local/share/godot/export_templates/4.7.2.stable/`. Confere o SHA-256 contra `tools/godot.sha256`. É idempotente.
@@ -57,11 +57,17 @@ O jogo novo é um projeto Godot 4.7.2 em `game/` (GDScript). A v0.2 em HTML cont
   - `data/packs/base/`: pacote de regras versionado em JSON (`manifest`, `legends`, `acts`, `balance`, `items`, `rivals`), validado ao carregar.
   - `state/`: `GameState`, `Command`, `CommandRouter`, handlers e save (`save/save_codec.gd`, `save/save_migrations.gd`).
   - `app/`: autoloads `Boot` (inicialização), `GameService` (`await GameService.send(tipo, params)`), `PerfOverlay`, mais `SaveService`, `FileIO`, executores e relógios.
-  - `ui/`: telas (`menu`, `diagnostico`, `luta_teste`, `mode_badge`, `erro_regras`) e `theme.tres`. Telas não têm regra: só mandam comandos e mostram estado e eventos.
+  - `ui/`: telas e `theme.tres`. Telas não têm regra: só mandam comandos e leem as regras (`GameService.get_rules()`).
+    - Telas soltas: `menu`, `criacao`, `jogo` (casca com topo e abas), `diagnostico`, `luta_teste`, `mode_badge` e `erro_regras`.
+    - `abas/`: `missoes`, `torre`, `arena`, `feira`, `mochila`, `mais`, `bestiario` e `ajustes`.
+    - `comum/`: `AbaBase`, topo, barra de abas, Toast, treino, `SpriteLib` e cartas.
+    - `luta/`: palco de duelo (`Luta`) e `Lutador`.
+    - `heroi/`: guardião articulado (`Boneco`, `HeroiPoses`, `HeroiVisual`).
+  - `assets/`: `cartas/` (pinturas), `sprites/<lenda>/<acao>.png` (tiras do PixelLab) e `heroi/` (partes e itens gerados por `tools/gen_heroi.py`).
   - `tests/`: `unit/`, `data/`, `architecture/`, `async/`, `fixtures/`, `regression/` (cópias de referência em `golden/`), `balance/`, `smoke/` e `support/`.
 - `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `regen_golden.sh`, `bench.gd`, medições (`measure_size.py`, `measure_load.py`, `check_budgets.py`), limites em `perf_budgets.json`, `godot.sha256` e `gitleaks.sha256`.
 - `legacy-web/`: a v0.2 em HTML, só manutenção de publicação.
-- `.github/workflows/`: `ci.yml` (lint, testes, export, segredos e medições com comentário no PR), `pages.yml` (publica a v0.2 na raiz e o Godot em `/novo/`) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
+- `.github/workflows/`: `ci.yml` (lint, testes, export, segredos e medições com comentário no PR), `pages.yml` (publica o Godot na raiz e a v0.2 em `/v02/`) e `release.yml` (cria a Release quando `config/version` vira `X.Y.Z`).
 - `docs/`: roadmap, notas de versão, roteiro de teste no celular, especificação e plano da Fundação.
 
 **Testes de regressão:** depois de uma mudança intencional de regra ou de balanceamento, rode `tools/regen_golden.sh` e confira o diff das cópias de referência antes do commit.
@@ -95,7 +101,7 @@ Sufixos: `_pm` = por mil (1000 = 1×), `_bp` = pontos-base (10000 = 100%), `_x10
 
 ## Decisões de conteúdo
 - O Negrinho do Pastoreio é sempre aliado. Ele aparece só em tarefas e nunca como inimigo.
-- Na v0.2 o herói é um SVG simples (`heroiSVG`); no Godot ainda não tem arte. Falta uma ilustração do protagonista, de preferência com opções de escolha.
+- Na v0.2 o herói é um SVG simples (`heroiSVG`); no Godot é o boneco articulado (`ui/heroi/`), que veste os itens. Falta dar opções de escolha de visual.
 
 ## Próximos passos sugeridos
 - Arte do herói e de outras lendas (Mula sem Cabeça, Lobisomem, Caipora, Matinta Perera).
