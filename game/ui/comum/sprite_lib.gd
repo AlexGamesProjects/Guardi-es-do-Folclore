@@ -41,6 +41,26 @@ static func frames(id: String) -> SpriteFrames:
 	return out
 
 
+## Linha logo abaixo dos pés num quadro (o fundo dos pixels opacos), para pôr a lenda no chão:
+## cada tira tem uma folga diferente embaixo. Padrão: primeiro quadro de "parado"; `quadro` -1 é
+## o último. Sem sprite, devolve -1.
+static func pes(id: String, acao: String = "parado", quadro: int = 0) -> int:
+	var sf: SpriteFrames = frames(id)
+	if sf == null:
+		return -1
+	var nome: StringName = StringName(acao)
+	if not sf.has_animation(nome):
+		nome = &"parado" if sf.has_animation(&"parado") else sf.get_animation_names()[0]
+	var n: int = sf.get_frame_count(nome)
+	var i: int = clampi(quadro if quadro >= 0 else n - 1, 0, n - 1)
+	var tex: Texture2D = sf.get_frame_texture(nome, i)
+	var img: Image = tex.get_image()
+	if img == null:
+		return tex.get_height()
+	var uso: Rect2i = img.get_used_rect()
+	return uso.end.y if uso.size.y > 0 else tex.get_height()
+
+
 static func limpar_cache() -> void:
 	_cache.clear()
 

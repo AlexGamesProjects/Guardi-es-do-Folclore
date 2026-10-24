@@ -117,6 +117,8 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 24/10/2026 | A dona aprova o esqueleto único do Saci: as outras lendas seguem o mesmo caminho (#32). Luta com 1 s por troca, botão 1×/2×/4× e Pular no palco. Para a v0.5.0: finalizações nas animações (#36) e cenários de fundo dinâmicos, sem a pintura (#37) |
+| 24/10/2026 | Primeira sessão no PC da dona (Godot 4.7.2 e `gh` locais). Protótipo do esqueleto único com o Saci (#32): 6 partes recortadas de 1 quadro e 7 animações comuns. A comparação com a tira fica em Ajustes → "Esqueleto único (teste)"; a dona decide se o projeto segue |
 | 23/10/2026 | A etapa 3 (Arte) passa a sair em sub-versões v0.4.1 a v0.4.4, cada uma com o seu milestone, misturando refinamento de arte, layout e funções novas; a v0.5.0 fecha a etapa. O `main` volta para `0.4.1-dev` |
 | 23/10/2026 | **v0.4.0 lançada: Migração do jogo.** O Godot vai para a raiz do site e a v0.2 para `/v02/`. Todas as telas com abas, criação do guardião, palco de duelo com o guardião articulado vestindo os itens e sprites de 6 lendas. Decidido um esqueleto único para as lendas na v0.4.1 (#32). O teste no celular foi adiado de novo (#24) |
 | 18/10/2026 | Especificação da v0.4.0 escrita: todas as telas com abas no rodapé, criação do guardião com origem regional (save versão 2), lutas em pixel art do PixelLab (adiantadas da etapa 3, começando pelo piloto do herói e do Saci) e o Godot na raiz do site. Tempos reais e economia ficam para a v0.4.1 |

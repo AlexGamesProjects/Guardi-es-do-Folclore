@@ -10,6 +10,9 @@ const ACOES: Array[String] = [
 ]
 const ALTURA_CARTA: float = 300.0
 const ESCALA_HEROI: int = 6
+const ESCALA_SPRITE: int = 4
+## Tempo da barra de vida descendo depois de um golpe.
+const VIDA_S: float = 0.35
 
 ## Ações tocadas, em ordem (os testes leem).
 var historico: Array[String] = []
@@ -21,6 +24,7 @@ var rotulo_pv: Label
 var _corpo: Control
 var _boneco: Boneco
 var _sprite: AnimatedSprite2D
+var _tw_vida: Tween
 
 
 func _init() -> void:
@@ -66,11 +70,9 @@ func preparar(
 			_sprite.name = "Sprite"
 			_sprite.sprite_frames = frames
 			_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			_sprite.scale = Vector2(4, 4)
-			var lado: float = (
-				frames.get_frame_texture(frames.get_animation_names()[0], 0).get_height()
-			)
-			_sprite.position = Vector2(0, -lado * 2 + 16)
+			_sprite.scale = Vector2(ESCALA_SPRITE, ESCALA_SPRITE)
+			_sprite.set_meta("id", sprite_id)
+			_sprite.position = Vector2(0, _y_no_chao("parado", 0))
 			_corpo.add_child(_sprite)
 		else:
 			var carta := TextureRect.new()
@@ -91,9 +93,17 @@ func preparar(
 	animar("parado")
 
 
-func vida(hp: int) -> void:
+## Atualiza a vida; `animado` faz a barra descer aos poucos.
+func vida(hp: int, animado: bool = false) -> void:
 	if barra != null:
-		barra.value = hp
+		if _tw_vida != null:
+			_tw_vida.kill()
+			_tw_vida = null
+		if animado and barra.is_inside_tree():
+			_tw_vida = barra.create_tween()
+			_tw_vida.tween_property(barra, "value", float(hp), VIDA_S).set_trans(Tween.TRANS_QUAD)
+		else:
+			barra.value = hp
 	if rotulo_pv != null:
 		rotulo_pv.text = "%d PV" % hp
 
@@ -130,10 +140,25 @@ func animar(acao: String) -> void:
 			tw.kill()
 
 
+## Altura do sprite (centrado) para a linha dos pés de um quadro ficar no chão.
+func _y_no_chao(acao: String, quadro: int) -> float:
+	var sf: SpriteFrames = _sprite.sprite_frames
+	var lado: float = sf.get_frame_texture(sf.get_animation_names()[0], 0).get_height()
+	var pes: int = SpriteLib.pes(str(_sprite.get_meta("id")), acao, quadro)
+	return (lado / 2.0 - pes) * ESCALA_SPRITE
+
+
 func _tocar_sprite(acao: String) -> void:
 	var nome: String = "ataque" if acao == "critico" else "parado" if acao == "vitoria" else acao
 	if _sprite.sprite_frames.has_animation(nome):
 		_sprite.play(nome)
+		# Na derrota o corpo deitado tem outra folga embaixo: desce junto com a queda.
+		var y: float = _y_no_chao("derrota", -1) if nome == "derrota" else _y_no_chao("parado", 0)
+		if nome == "derrota" and is_inside_tree():
+			var dur: float = _sprite.sprite_frames.get_frame_count(&"derrota") / SpriteLib.FPS
+			create_tween().tween_property(_sprite, "position:y", y, dur)
+		else:
+			_sprite.position.y = y
 		if nome != "parado" and nome != "derrota" and _sprite.sprite_frames.has_animation("parado"):
 			if not _sprite.animation_finished.is_connected(_voltar_parado):
 				_sprite.animation_finished.connect(_voltar_parado)

@@ -2,16 +2,20 @@ class_name Luta
 extends Control
 ## Palco de duelo por cima da aba: fundo com a pintura da lenda, chão, os dois lutadores de pé,
 ## placar com as vidas no topo e números de dano. Toca os eventos do núcleo (luta, golpe,
-## critico, esquiva, fim): o atacante avança, golpeia e volta. Velocidade 1×/2×/4× e Pular.
+## critico, esquiva, fim): o atacante avança, golpeia e volta. Botões 1×/2×/4× e Pular.
 ## A luta já foi resolvida no núcleo: pular ou pausar o app não muda o resultado.
 
 signal terminou(resultado: Dictionary)
 
-const INTERVALO_S: float = 0.6
+## Duração de cada troca (corrida, golpe, pausa e volta), em 1×.
+const INTERVALO_S: float = 1.0
 const CHAO: float = 0.72
 const POS_HEROI: float = 0.27
 const POS_INIMIGO: float = 0.73
-const ALCANCE: float = 150.0
+## Distância entre os centros dos dois no golpe: o atacante para na frente do alvo.
+const ALCANCE: float = 180.0
+## Quanto o alvo recua no contato.
+const RECUO: float = 16.0
 const COR_DANO: Color = Color("efe7d4")
 const COR_CRITICO: Color = Color("f2c14e")
 
@@ -27,12 +31,16 @@ var _velocidade: int = 1
 var _nomes: Array[String] = ["", ""]
 var _vitoria: bool = false
 var _premios: Array[String] = []
+## Impacto do golpe em andamento, aplicado quando o atacante encosta no alvo.
+var _impacto: Callable = Callable()
 var _timer: Timer
+var _velocidade_b: Button
 var _fundo: TextureRect
 var _palco: Control
 var _narracao: Label
 var _resultado: PanelContainer
 var _resultado_texto: Label
+var _resultado_premios: Label
 var _flash: ColorRect
 var _placar_nomes: Array[Label] = []
 
@@ -90,6 +98,17 @@ func _init() -> void:
 	pular_b.offset_bottom = -42
 	pular_b.pressed.connect(pular)
 	add_child(pular_b)
+	_velocidade_b = AbaBase.botao("Velocidade", "1×")
+	_velocidade_b.anchor_left = 1.0
+	_velocidade_b.anchor_right = 1.0
+	_velocidade_b.anchor_top = 1.0
+	_velocidade_b.anchor_bottom = 1.0
+	_velocidade_b.offset_left = -150
+	_velocidade_b.offset_right = -24
+	_velocidade_b.offset_top = -130
+	_velocidade_b.offset_bottom = -42
+	_velocidade_b.pressed.connect(trocar_velocidade)
+	add_child(_velocidade_b)
 	_resultado = AbaBase.cartao()
 	_resultado.name = "Resultado"
 	_resultado.anchor_left = 0.0
@@ -100,11 +119,18 @@ func _init() -> void:
 	_resultado.offset_right = -30
 	_resultado.offset_top = -330
 	_resultado.offset_bottom = -30
+	# Com muitos prêmios o cartão cresce para cima, sem empurrar o Continuar para fora da tela.
+	_resultado.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	var rcaixa := VBoxContainer.new()
 	_resultado.add_child(rcaixa)
 	_resultado_texto = AbaBase.rotulo("", &"Titulo", "ResultadoTexto")
 	_resultado_texto.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_resultado_texto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	rcaixa.add_child(_resultado_texto)
+	_resultado_premios = AbaBase.rotulo("", &"Valor", "ResultadoPremios")
+	_resultado_premios.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_resultado_premios.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	rcaixa.add_child(_resultado_premios)
 	var ok := AbaBase.botao("Fechar", "Continuar", true)
 	ok.pressed.connect(fechar)
 	rcaixa.add_child(ok)
@@ -124,6 +150,7 @@ func _init() -> void:
 ## Começa a tocar `eventos` (a partir do evento `luta`) na `velocidade` 1, 2 ou 4.
 func tocar(eventos: Array[Dictionary], velocidade: int) -> void:
 	_velocidade = clampi(velocidade, 1, 4)
+	_velocidade_b.text = "%d×" % _velocidade
 	_fila.clear()
 	var achou: bool = false
 	for ev: Dictionary in eventos:
@@ -143,8 +170,20 @@ func intervalo_s() -> float:
 	return INTERVALO_S / _velocidade
 
 
+## Passa para a próxima velocidade (1× → 2× → 4× → 1×) e guarda a escolha nos Ajustes; vale a
+## partir da próxima troca.
+func trocar_velocidade() -> void:
+	var i: int = Ajustes.VELOCIDADES.find(_velocidade)
+	_velocidade = Ajustes.VELOCIDADES[(i + 1) % Ajustes.VELOCIDADES.size()]
+	_velocidade_b.text = "%d×" % _velocidade
+	Ajustes.definir_velocidade(_velocidade)
+	if not _timer.is_stopped():
+		_timer.wait_time = intervalo_s()
+
+
 ## Toca o resto de uma vez, sem animação, e mostra o resultado.
 func pular() -> void:
+	_descarregar()
 	while not _fila.is_empty():
 		_aplicar(_fila.pop_front(), false)
 	_terminar()
@@ -156,10 +195,13 @@ func fechar() -> void:
 
 
 func resultado_texto() -> String:
-	return _resultado_texto.text
+	if _premios.is_empty():
+		return _resultado_texto.text
+	return _resultado_texto.text + "\n" + _resultado_premios.text
 
 
 func _passo() -> void:
+	_descarregar()
 	if _fila.is_empty():
 		_terminar()
 		return
@@ -171,9 +213,10 @@ func _terminar() -> void:
 		return
 	terminada = true
 	_timer.stop()
-	var linhas: Array[String] = ["Vitória!" if _vitoria else "Derrota! Treine e tente de novo."]
-	linhas.append_array(_premios)
-	_resultado_texto.text = "\n".join(linhas)
+	_velocidade_b.hide()
+	_resultado_texto.text = "Vitória!" if _vitoria else "Derrota! Treine e tente de novo."
+	_resultado_premios.text = "\n".join(_premios)
+	_resultado_premios.visible = not _premios.is_empty()
 	_resultado.show()
 
 
@@ -185,24 +228,31 @@ func _aplicar(ev: Dictionary, animado: bool = true) -> void:
 			var a: int = int(ev["atacante"])
 			var critico: bool = str(ev["type"]) == "critico"
 			var hp: Array = ev["hp"]
-			_lado(a).animar("critico" if critico else "ataque")
-			_lado(1 - a).animar("golpe")
-			heroi.vida(int(hp[0]))
-			inimigo.vida(int(hp[1]))
-			_numero(_lado(1 - a), "−%d" % int(ev["dano"]), critico, animado)
-			if animado:
-				_avancar(_lado(a), _lado(1 - a))
-				if critico:
-					_tremor()
+			var dano: String = "−%d" % int(ev["dano"])
+			_golpear(
+				a,
+				animado,
+				func() -> void:
+					_lado(a).animar("critico" if critico else "ataque")
+					_lado(1 - a).animar("golpe")
+					heroi.vida(int(hp[0]), animado)
+					inimigo.vida(int(hp[1]), animado)
+					_numero(_lado(1 - a), dano, critico, animado)
+					if animado and critico:
+						_tremor()
+			)
 			var texto: String = "%s acerta %s" % [_nomes[a], _nomes[1 - a]]
 			_narracao.text = ("Golpe crítico! " + texto) if critico else texto
 		"esquiva":
 			var a2: int = int(ev["atacante"])
-			_lado(a2).animar("ataque")
-			_lado(1 - a2).animar("esquiva")
-			_numero(_lado(1 - a2), "Esquivou!", false, animado)
-			if animado:
-				_avancar(_lado(a2), _lado(1 - a2))
+			_golpear(
+				a2,
+				animado,
+				func() -> void:
+					_lado(a2).animar("ataque")
+					_lado(1 - a2).animar("esquiva")
+					_numero(_lado(1 - a2), "Esquivou!", false, animado)
+			)
 			_narracao.text = "%s esquiva" % _nomes[1 - a2]
 		"fim":
 			_vitoria = int(ev["vencedor"]) == 0
@@ -288,24 +338,41 @@ func _lado(i: int) -> Lutador:
 	return heroi if i == 0 else inimigo
 
 
-## O atacante corre até perto do alvo, o alvo recua um pouco, e os dois voltam.
+## Um ataque: animado, o atacante corre até o alvo e `impacto` (animações, vida e número)
+## acontece só no contato; sem animação, o impacto é aplicado na hora.
+func _golpear(a: int, animado: bool, impacto: Callable) -> void:
+	_descarregar()
+	if not animado or not is_inside_tree():
+		impacto.call()
+		return
+	_impacto = impacto
+	_avancar(_lado(a), _lado(1 - a))
+
+
+## Aplica o impacto pendente, se houver (no contato, ao pular ou antes do próximo evento).
+func _descarregar() -> void:
+	if _impacto.is_valid():
+		var f: Callable = _impacto
+		_impacto = Callable()
+		f.call()
+
+
+## O atacante corre até a frente do alvo, golpeia, segura um instante e volta; o alvo recua no
+## contato.
 func _avancar(atacante: Lutador, alvo: Lutador) -> void:
 	avancos += 1
-	if not is_inside_tree():
-		return
 	_posicionar()
 	var origem: float = atacante.position.x
 	var destino: float = alvo.position.x - ALCANCE * atacante.direcao
 	var t: float = intervalo_s()
-	var tw: Tween = create_tween()
-	tw.tween_property(atacante, "position:x", destino, t * 0.3).set_trans(Tween.TRANS_QUAD)
-	tw.tween_interval(t * 0.25)
-	tw.tween_property(atacante, "position:x", origem, t * 0.3).set_trans(Tween.TRANS_QUAD)
 	var alvo_x: float = alvo.position.x
-	var tw2: Tween = create_tween()
-	tw2.tween_interval(t * 0.3)
-	tw2.tween_property(alvo, "position:x", alvo_x - 12.0 * alvo.direcao, t * 0.1)
-	tw2.tween_property(alvo, "position:x", alvo_x, t * 0.25)
+	var tw: Tween = create_tween()
+	tw.tween_property(atacante, "position:x", destino, t * 0.3).set_trans(Tween.TRANS_SINE)
+	tw.tween_callback(_descarregar)
+	tw.tween_property(alvo, "position:x", alvo_x - RECUO * alvo.direcao, t * 0.08)
+	tw.tween_interval(t * 0.17)
+	tw.tween_property(atacante, "position:x", origem, t * 0.3).set_trans(Tween.TRANS_SINE)
+	tw.parallel().tween_property(alvo, "position:x", alvo_x, t * 0.3).set_trans(Tween.TRANS_SINE)
 
 
 func _numero(alvo: Lutador, texto: String, critico: bool, animado: bool) -> void:
