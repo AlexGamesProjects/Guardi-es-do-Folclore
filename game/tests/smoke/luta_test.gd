@@ -86,7 +86,7 @@ func test_velocidade_4x_mais_rapida() -> void:
 	luta.queue_free()
 
 
-func test_botao_velocidade_alterna_1x_e_2x() -> void:
+func test_botao_velocidade_alterna_1x_2x_4x() -> void:
 	var luta: Luta = _luta()
 	luta.tocar(EVENTOS, 1)
 	var b: Button = luta.find_child("Velocidade", true, false) as Button
@@ -95,6 +95,9 @@ func test_botao_velocidade_alterna_1x_e_2x() -> void:
 	assert_str(b.text).is_equal("2×")
 	assert_float(luta.intervalo_s()).is_equal_approx(Luta.INTERVALO_S / 2.0, 0.001)
 	assert_int(Ajustes.velocidade()).is_equal(2)
+	b.pressed.emit()
+	assert_str(b.text).is_equal("4×")
+	assert_int(Ajustes.velocidade()).is_equal(4)
 	b.pressed.emit()
 	assert_float(luta.intervalo_s()).is_equal_approx(Luta.INTERVALO_S, 0.001)
 	assert_int(Ajustes.velocidade()).is_equal(1)

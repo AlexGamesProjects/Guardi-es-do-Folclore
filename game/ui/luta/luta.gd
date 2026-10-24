@@ -2,7 +2,7 @@ class_name Luta
 extends Control
 ## Palco de duelo por cima da aba: fundo com a pintura da lenda, chão, os dois lutadores de pé,
 ## placar com as vidas no topo e números de dano. Toca os eventos do núcleo (luta, golpe,
-## critico, esquiva, fim): o atacante avança, golpeia e volta. Botões 1×/2× e Pular.
+## critico, esquiva, fim): o atacante avança, golpeia e volta. Botões 1×/2×/4× e Pular.
 ## A luta já foi resolvida no núcleo: pular ou pausar o app não muda o resultado.
 
 signal terminou(resultado: Dictionary)
@@ -170,9 +170,11 @@ func intervalo_s() -> float:
 	return INTERVALO_S / _velocidade
 
 
-## Alterna 1× e 2× no meio da luta e guarda a escolha nos Ajustes; vale a partir da próxima troca.
+## Passa para a próxima velocidade (1× → 2× → 4× → 1×) e guarda a escolha nos Ajustes; vale a
+## partir da próxima troca.
 func trocar_velocidade() -> void:
-	_velocidade = 1 if _velocidade > 1 else 2
+	var i: int = Ajustes.VELOCIDADES.find(_velocidade)
+	_velocidade = Ajustes.VELOCIDADES[(i + 1) % Ajustes.VELOCIDADES.size()]
 	_velocidade_b.text = "%d×" % _velocidade
 	Ajustes.definir_velocidade(_velocidade)
 	if not _timer.is_stopped():
