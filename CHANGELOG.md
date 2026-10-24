@@ -10,6 +10,10 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Adicionado
+- Protótipo do esqueleto único (#32): o Saci montado em 6 partes recortadas do quadro parado do PixelLab, presas a um Skeleton2D e animadas por um AnimationPlayer com a biblioteca comum `ui/luta/esqueleto_anims.tres` (parado, ataque, crítico, golpe, esquiva, derrota e vitória), editável na linha do tempo do editor. A tela "Esqueleto único (teste)", nos Ajustes, mostra a tira atual ao lado do esqueleto, com um botão por ação.
+- `tools/recortar_lenda.gd`: recorta o quadro parado de uma lenda em partes a partir de `assets/esqueleto/<id>/rig.json` (polígonos, pivôs e ordem de desenho) e grava as partes e a `montagem.json`.
+
 ### Alterado
 - A versão em desenvolvimento passa a ser `0.4.1-dev`. A etapa de arte sai em sub-versões (v0.4.1 a v0.4.4), cada uma com o seu milestone.
 

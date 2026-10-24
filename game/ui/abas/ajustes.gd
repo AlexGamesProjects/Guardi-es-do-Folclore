@@ -23,6 +23,11 @@ func _montar(corpo: VBoxContainer) -> void:
 		func() -> void: get_tree().change_scene_to_file("res://ui/diagnostico.tscn")
 	)
 	corpo.add_child(diag)
+	var esq := botao("CompararEsqueleto", "Esqueleto único (teste)")
+	esq.pressed.connect(
+		func() -> void: get_tree().change_scene_to_file("res://ui/comparar_esqueleto.tscn")
+	)
+	corpo.add_child(esq)
 	if OS.has_feature("web"):
 		var v02 := botao("VersaoClassica", "Versão clássica (v0.2)")
 		v02.pressed.connect(func() -> void: OS.shell_open(LINK_V02))
