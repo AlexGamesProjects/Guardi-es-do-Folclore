@@ -9,7 +9,7 @@ Repositório: https://github.com/AlexGamesProjects/Guardi-es-do-Folclore
 3. **Durante o trabalho:** registre cada mudança em `CHANGELOG.md`, na seção `[Não lançado]`, nas categorias Adicionado, Alterado, Corrigido ou Removido.
 4. **Pull request:** abra o PR para `main` usando o template, com "Closes #N", e espere a revisão da dona do projeto.
 5. **Fechar a versão,** quando o milestone estiver completo:
-   - Escolha o número pelo SemVer: feature nova = MENOR, ajuste = CORREÇÃO.
+   - Escolha o número pelo SemVer: feature nova = MENOR, ajuste = CORREÇÃO. Exceção: a etapa 3 (Arte) sai em sub-versões `0.4.x` (v0.4.1 a v0.4.4), mesmo com funções novas, e a v0.5.0 fecha a etapa.
    - Atualize `config/version` em `game/project.godot` (de `X.Y.Z-dev` para `X.Y.Z`). Se o formato do save mudar, troque também a versão do save.
    - Mova `[Não lançado]` para `[x.y.z] - AAAA-MM-DD` no CHANGELOG e atualize os links no fim do arquivo.
    - Escreva `docs/versoes/vX.Y.Z.md` com objetivo, o que entrou, números de balanceamento, decisões e pendências.
