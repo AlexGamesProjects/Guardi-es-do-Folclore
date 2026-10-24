@@ -12,6 +12,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ### Adicionado
 - Protótipo do esqueleto único (#32): o Saci montado em 6 partes recortadas do quadro parado do PixelLab, presas a um Skeleton2D e animadas por um AnimationPlayer com a biblioteca comum `ui/luta/esqueleto_anims.tres` (parado, ataque, crítico, golpe, esquiva, derrota e vitória), editável na linha do tempo do editor. A tela "Esqueleto único (teste)", nos Ajustes, mostra a tira atual ao lado do esqueleto, com um botão por ação.
+- Esqueleto único também para o Curupira, a Cuca, a Iara, o Boto e o Mapinguari (#32): um `rig.json` por lenda, com as mesmas 6 partes e as mesmas animações do Saci. A cauda da Iara faz o papel das pernas. A tela "Esqueleto único (teste)" ganha um botão por lenda.
 - `tools/recortar_lenda.gd`: recorta o quadro parado de uma lenda em partes a partir de `assets/esqueleto/<id>/rig.json` (polígonos, pivôs e ordem de desenho) e grava as partes e a `montagem.json`.
 
 ### Alterado

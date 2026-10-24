@@ -1,0 +1,20 @@
+{
+	"fonte": "res://assets/sprites/curupira/parado.png",
+	"quadro": 0,
+	"pes": [58, 88],
+	"partes": [
+		{"osso": "Cabeca", "pai": "Tronco", "pivo": [55, 41], "z": 2,
+			"poligono": [[38, 14], [72, 14], [72, 42], [38, 42]]},
+		{"osso": "Bracos", "pai": "Tronco", "pivo": [56, 46], "z": 3,
+			"poligono": [[38, 42], [51, 42], [51, 44], [57, 49], [57, 58], [50, 63], [38, 63]]},
+		{"osso": "PernaFrente", "pai": "Quadril", "pivo": [51, 71], "z": 0,
+			"poligono": [[42, 70], [55, 70], [56, 73], [56, 90], [42, 90]]},
+		{"osso": "PernaTras", "pai": "Quadril", "pivo": [60, 72], "z": -1,
+			"poligono": [[56, 73], [60, 71], [74, 71], [74, 90], [56, 90]]},
+		{"osso": "Quadril", "pai": "", "pivo": [56, 64], "z": 1,
+			"poligono": [[40, 61], [74, 61], [74, 90], [40, 90]]},
+		{"osso": "Tronco", "pai": "Quadril", "pivo": [56, 61], "z": 0,
+			"poligono": [[40, 42], [70, 42], [70, 61], [40, 61]],
+			"preencher": [[50, 42], [62, 42], [62, 61], [50, 61]]}
+	]
+}

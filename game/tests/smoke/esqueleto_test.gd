@@ -1,8 +1,17 @@
 extends GdUnitTestSuite
-## Esqueleto único (#32): o Saci montado das partes recortadas, as animações comuns e a tela de
+## Esqueleto único (#32): as lendas montadas das partes recortadas, as animações comuns e a
 ## comparação com a tira.
 
 const OSSOS: Array[String] = ["Quadril", "Tronco", "Cabeca", "Bracos", "PernaFrente", "PernaTras"]
+## Lenda → lado do quadro de origem.
+const LADOS: Dictionary[String, int] = {
+	"saci": 104,
+	"curupira": 104,
+	"cuca": 100,
+	"iara": 112,
+	"boto": 112,
+	"mapinguari": 128,
+}
 
 var _log: MotorErros
 
@@ -23,14 +32,18 @@ func _saci() -> Esqueleto:
 	return e
 
 
-func test_monta_os_seis_ossos_do_saci() -> void:
-	var e: Esqueleto = _saci()
-	for nome: String in OSSOS:
-		assert_object(e.osso(nome)).override_failure_message(nome).is_not_null()
-		assert_object(e.osso(nome).get_node("Arte").get("texture")).is_not_null()
-	assert_int(e.lado).is_equal(104)
+func test_monta_os_seis_ossos_de_cada_lenda() -> void:
+	for id: String in LADOS:
+		var e := Esqueleto.new()
+		add_child(e)
+		assert_bool(e.montar(id)).override_failure_message(id).is_true()
+		for nome: String in OSSOS:
+			var o: Bone2D = e.osso(nome)
+			assert_object(o).override_failure_message(id + " " + nome).is_not_null()
+			assert_object(o.get_node("Arte").get("texture")).is_not_null()
+		assert_int(e.lado).override_failure_message(id).is_equal(LADOS[id])
+		e.queue_free()
 	assert_array(_log.errors).is_empty()
-	e.queue_free()
 
 
 func test_lenda_sem_montagem_nao_monta() -> void:
@@ -79,5 +92,20 @@ func test_tela_de_comparacao_abre_com_botoes() -> void:
 		var b: Button = tela.find_child("Acao_" + acao, true, false) as Button
 		assert_object(b).override_failure_message(acao).is_not_null()
 		b.pressed.emit()
+	assert_array(_log.errors).is_empty()
+	tela.queue_free()
+
+
+func test_tela_de_comparacao_troca_de_lenda() -> void:
+	var tela: Control = (load("res://ui/comparar_esqueleto.tscn") as PackedScene).instantiate()
+	add_child(tela)
+	await await_idle_frame()
+	for id: String in LADOS:
+		(tela.find_child("Lenda_" + id, true, false) as Button).pressed.emit()
+		await await_idle_frame()
+		assert_str(tela.get("lenda")).is_equal(id)
+		var e: Esqueleto = tela.find_child("Esqueleto", true, false) as Esqueleto
+		assert_int(e.lado).override_failure_message(id).is_equal(LADOS[id])
+		(tela.find_child("Acao_ataque", true, false) as Button).pressed.emit()
 	assert_array(_log.errors).is_empty()
 	tela.queue_free()

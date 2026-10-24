@@ -1,0 +1,20 @@
+{
+	"fonte": "res://assets/sprites/boto/parado.png",
+	"quadro": 0,
+	"pes": [60, 94],
+	"partes": [
+		{"osso": "Cabeca", "pai": "Tronco", "pivo": [56, 44], "z": 2,
+			"poligono": [[40, 16], [72, 16], [72, 44], [40, 44]]},
+		{"osso": "Bracos", "pai": "Tronco", "pivo": [58, 49], "z": 3,
+			"poligono": [[43, 44], [53, 44], [53, 47], [59, 49], [61, 57], [56, 66], [43, 66]]},
+		{"osso": "PernaFrente", "pai": "Quadril", "pivo": [54, 76], "z": 0,
+			"poligono": [[44, 75], [59, 75], [59, 96], [44, 96]]},
+		{"osso": "PernaTras", "pai": "Quadril", "pivo": [62, 76], "z": -1,
+			"poligono": [[59, 75], [78, 75], [78, 96], [59, 96]]},
+		{"osso": "Quadril", "pai": "", "pivo": [58, 69], "z": 1,
+			"poligono": [[44, 66], [70, 66], [70, 96], [44, 96]]},
+		{"osso": "Tronco", "pai": "Quadril", "pivo": [58, 66], "z": 0,
+			"poligono": [[42, 44], [70, 44], [70, 66], [42, 66]],
+			"preencher": [[53, 46], [64, 46], [64, 66], [53, 66]]}
+	]
+}

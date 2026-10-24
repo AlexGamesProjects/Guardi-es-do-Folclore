@@ -1,9 +1,16 @@
 extends Control
-## Protótipo do esqueleto único (#32): a tira atual do PixelLab ao lado do esqueleto, com um
-## botão por ação, para a dona comparar. Aberta pelos Ajustes (ou com F6 no editor).
+## Esqueleto único (#32): a tira atual do PixelLab ao lado do esqueleto, com um botão por lenda e
+## um por ação, para a dona comparar. Aberta pelos Ajustes (ou com F6 no editor).
 
 const JOGO_SCENE: String = "res://ui/jogo.tscn"
-const LENDA: String = "saci"
+const LENDAS: Dictionary[String, String] = {
+	"saci": "Saci",
+	"curupira": "Curupira",
+	"cuca": "Cuca",
+	"iara": "Iara",
+	"boto": "Boto",
+	"mapinguari": "Mapinguari",
+}
 const ROTULOS: Dictionary[String, String] = {
 	"parado": "Parado",
 	"ataque": "Ataque",
@@ -14,8 +21,11 @@ const ROTULOS: Dictionary[String, String] = {
 	"vitoria": "Vitória",
 }
 
+var lenda: String = ""
 var _sprite: AnimatedSprite2D
 var _esqueleto: Esqueleto
+var _titulo: Label
+var _palco: VBoxContainer
 
 
 func _ready() -> void:
@@ -31,23 +41,26 @@ func _ready() -> void:
 	voltar.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	voltar.pressed.connect(func() -> void: get_tree().change_scene_to_file(JOGO_SCENE))
 	tela.add_child(voltar)
-	var titulo := Label.new()
-	titulo.text = "Esqueleto único · Saci"
-	titulo.theme_type_variation = &"Titulo"
-	titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	tela.add_child(titulo)
-	var palco := VBoxContainer.new()
-	palco.alignment = BoxContainer.ALIGNMENT_CENTER
-	palco.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	palco.add_theme_constant_override("separation", 24)
-	tela.add_child(palco)
-	palco.add_child(_coluna("Tira atual (7 gerações)", _montar_tira()))
-	_esqueleto = Esqueleto.new()
-	_esqueleto.name = "Esqueleto"
-	_esqueleto.escala = 3
-	_esqueleto.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	_esqueleto.montar(LENDA)
-	palco.add_child(_coluna("Esqueleto (1 geração)", _esqueleto))
+	_titulo = Label.new()
+	_titulo.theme_type_variation = &"Titulo"
+	_titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	tela.add_child(_titulo)
+	var lendas := GridContainer.new()
+	lendas.columns = 3
+	lendas.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	tela.add_child(lendas)
+	for id: String in LENDAS:
+		var l := Button.new()
+		l.name = "Lenda_" + id
+		l.text = LENDAS[id]
+		l.custom_minimum_size = Vector2(200, 56)
+		l.pressed.connect(mostrar.bind(id))
+		lendas.add_child(l)
+	_palco = VBoxContainer.new()
+	_palco.alignment = BoxContainer.ALIGNMENT_CENTER
+	_palco.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_palco.add_theme_constant_override("separation", 24)
+	tela.add_child(_palco)
 	var botoes := GridContainer.new()
 	botoes.columns = 4
 	botoes.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -57,8 +70,36 @@ func _ready() -> void:
 		b.name = "Acao_" + acao
 		b.text = ROTULOS[acao]
 		b.custom_minimum_size = Vector2(150, 64)
-		b.pressed.connect(_animar.bind(acao))
+		b.pressed.connect(animar.bind(acao))
 		botoes.add_child(b)
+	mostrar("saci")
+
+
+## Troca a lenda mostrada nas duas colunas.
+func mostrar(id: String) -> void:
+	lenda = id
+	_titulo.text = "Esqueleto único · %s" % LENDAS[id]
+	for filho: Node in _palco.get_children():
+		_palco.remove_child(filho)
+		filho.queue_free()
+	_sprite = null
+	_palco.add_child(_coluna("Tira atual (7 gerações)", _montar_tira()))
+	_esqueleto = Esqueleto.new()
+	_esqueleto.name = "Esqueleto"
+	_esqueleto.escala = 3
+	_esqueleto.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_esqueleto.montar(id)
+	_palco.add_child(_coluna("Esqueleto (1 geração)", _esqueleto))
+
+
+func animar(acao: String) -> void:
+	_esqueleto.animar(acao)
+	if _sprite == null:
+		return
+	# A tira não tem crítico nem vitória: usa ataque e parado, como o Lutador.
+	var nome: String = "ataque" if acao == "critico" else "parado" if acao == "vitoria" else acao
+	if _sprite.sprite_frames.has_animation(nome):
+		_sprite.play(nome)
 
 
 func _coluna(texto: String, corpo: Control) -> VBoxContainer:
@@ -74,7 +115,7 @@ func _coluna(texto: String, corpo: Control) -> VBoxContainer:
 
 func _montar_tira() -> Control:
 	var caixa := Control.new()
-	var frames: SpriteFrames = SpriteLib.frames(LENDA)
+	var frames: SpriteFrames = SpriteLib.frames(lenda)
 	if frames == null:
 		return caixa
 	var lado: float = frames.get_frame_texture(&"parado", 0).get_height()
@@ -93,13 +134,3 @@ func _montar_tira() -> Control:
 	caixa.add_child(_sprite)
 	_sprite.play(&"parado")
 	return caixa
-
-
-func _animar(acao: String) -> void:
-	_esqueleto.animar(acao)
-	if _sprite == null:
-		return
-	# A tira não tem crítico nem vitória: usa ataque e parado, como o Lutador.
-	var nome: String = "ataque" if acao == "critico" else "parado" if acao == "vitoria" else acao
-	if _sprite.sprite_frames.has_animation(nome):
-		_sprite.play(nome)

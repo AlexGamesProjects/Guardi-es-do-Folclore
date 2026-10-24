@@ -1,0 +1,87 @@
+{
+	"lado": 100,
+	"partes": [
+		{
+			"canto": [
+				41,
+				23
+			],
+			"osso": "Cabeca",
+			"pai": "Tronco",
+			"pivo": [
+				54.0,
+				38.0
+			],
+			"z": 2.0
+		},
+		{
+			"canto": [
+				34,
+				39
+			],
+			"osso": "Bracos",
+			"pai": "Tronco",
+			"pivo": [
+				55.0,
+				44.0
+			],
+			"z": 3.0
+		},
+		{
+			"canto": [
+				43,
+				66
+			],
+			"osso": "PernaFrente",
+			"pai": "Quadril",
+			"pivo": [
+				50.0,
+				67.0
+			],
+			"z": 0.0
+		},
+		{
+			"canto": [
+				57,
+				70
+			],
+			"osso": "PernaTras",
+			"pai": "Quadril",
+			"pivo": [
+				58.0,
+				71.0
+			],
+			"z": -1.0
+		},
+		{
+			"canto": [
+				48,
+				61
+			],
+			"osso": "Quadril",
+			"pai": "",
+			"pivo": [
+				54.0,
+				65.0
+			],
+			"z": 1.0
+		},
+		{
+			"canto": [
+				49,
+				38
+			],
+			"osso": "Tronco",
+			"pai": "Quadril",
+			"pivo": [
+				55.0,
+				62.0
+			],
+			"z": 0.0
+		}
+	],
+	"pes": [
+		56.0,
+		86.0
+	]
+}
