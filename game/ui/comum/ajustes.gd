@@ -3,7 +3,7 @@ extends RefCounted
 ## Preferências deste aparelho (fora do save): velocidade da luta.
 
 const ARQUIVO: String = "user://ajustes.cfg"
-const VELOCIDADES: Array[int] = [1, 2, 4]
+const VELOCIDADES: Array[int] = [1, 2]
 
 
 static func velocidade() -> int:

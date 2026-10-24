@@ -16,6 +16,7 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ### Alterado
 - Luta no ritmo do Hero Zero: o atacante corre até a frente do alvo e o impacto (golpe, recuo, número de dano e vida) acontece só no contato; a barra de vida desce aos poucos; cada troca passa de 0,6 s para 1 s.
+- Botão 1×/2× na própria luta, ao lado do Pular: troca a velocidade no meio do duelo e guarda a escolha. A velocidade 4× sai (também dos Ajustes); quem estava em 4× volta para 1×.
 - No PC, a janela abre em 432×768 (mesma proporção do celular), para caber em telas baixas.
 - A versão em desenvolvimento passa a ser `0.4.1-dev`. A etapa de arte sai em sub-versões (v0.4.1 a v0.4.4), cada uma com o seu milestone.
 

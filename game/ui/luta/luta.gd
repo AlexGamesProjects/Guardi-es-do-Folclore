@@ -2,7 +2,7 @@ class_name Luta
 extends Control
 ## Palco de duelo por cima da aba: fundo com a pintura da lenda, chão, os dois lutadores de pé,
 ## placar com as vidas no topo e números de dano. Toca os eventos do núcleo (luta, golpe,
-## critico, esquiva, fim): o atacante avança, golpeia e volta. Velocidade 1×/2×/4× e Pular.
+## critico, esquiva, fim): o atacante avança, golpeia e volta. Botões 1×/2× e Pular.
 ## A luta já foi resolvida no núcleo: pular ou pausar o app não muda o resultado.
 
 signal terminou(resultado: Dictionary)
@@ -34,6 +34,7 @@ var _premios: Array[String] = []
 ## Impacto do golpe em andamento, aplicado quando o atacante encosta no alvo.
 var _impacto: Callable = Callable()
 var _timer: Timer
+var _velocidade_b: Button
 var _fundo: TextureRect
 var _palco: Control
 var _narracao: Label
@@ -97,6 +98,17 @@ func _init() -> void:
 	pular_b.offset_bottom = -42
 	pular_b.pressed.connect(pular)
 	add_child(pular_b)
+	_velocidade_b = AbaBase.botao("Velocidade", "1×")
+	_velocidade_b.anchor_left = 1.0
+	_velocidade_b.anchor_right = 1.0
+	_velocidade_b.anchor_top = 1.0
+	_velocidade_b.anchor_bottom = 1.0
+	_velocidade_b.offset_left = -150
+	_velocidade_b.offset_right = -24
+	_velocidade_b.offset_top = -130
+	_velocidade_b.offset_bottom = -42
+	_velocidade_b.pressed.connect(trocar_velocidade)
+	add_child(_velocidade_b)
 	_resultado = AbaBase.cartao()
 	_resultado.name = "Resultado"
 	_resultado.anchor_left = 0.0
@@ -138,6 +150,7 @@ func _init() -> void:
 ## Começa a tocar `eventos` (a partir do evento `luta`) na `velocidade` 1, 2 ou 4.
 func tocar(eventos: Array[Dictionary], velocidade: int) -> void:
 	_velocidade = clampi(velocidade, 1, 4)
+	_velocidade_b.text = "%d×" % _velocidade
 	_fila.clear()
 	var achou: bool = false
 	for ev: Dictionary in eventos:
@@ -155,6 +168,15 @@ func tocar(eventos: Array[Dictionary], velocidade: int) -> void:
 
 func intervalo_s() -> float:
 	return INTERVALO_S / _velocidade
+
+
+## Alterna 1× e 2× no meio da luta e guarda a escolha nos Ajustes; vale a partir da próxima troca.
+func trocar_velocidade() -> void:
+	_velocidade = 1 if _velocidade > 1 else 2
+	_velocidade_b.text = "%d×" % _velocidade
+	Ajustes.definir_velocidade(_velocidade)
+	if not _timer.is_stopped():
+		_timer.wait_time = intervalo_s()
 
 
 ## Toca o resto de uma vez, sem animação, e mostra o resultado.
@@ -189,6 +211,7 @@ func _terminar() -> void:
 		return
 	terminada = true
 	_timer.stop()
+	_velocidade_b.hide()
 	_resultado_texto.text = "Vitória!" if _vitoria else "Derrota! Treine e tente de novo."
 	_resultado_premios.text = "\n".join(_premios)
 	_resultado_premios.visible = not _premios.is_empty()

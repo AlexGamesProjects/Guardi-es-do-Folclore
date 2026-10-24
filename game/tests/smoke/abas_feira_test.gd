@@ -111,8 +111,8 @@ func test_ajustes_guarda_velocidade() -> void:
 	var runner: GdUnitSceneRunner = await _abrir("res://ui/abas/mais.tscn")
 	(runner.find_child("AbrirAjustes") as Button).pressed.emit()
 	await runner.simulate_frames(2)
-	(runner.find_child("Velocidade_4") as Button).pressed.emit()
-	assert_int(Ajustes.velocidade()).is_equal(4)
+	(runner.find_child("Velocidade_2") as Button).pressed.emit()
+	assert_int(Ajustes.velocidade()).is_equal(2)
 
 
 func test_mais_abre_mochila_e_volta() -> void:
