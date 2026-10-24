@@ -10,6 +10,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Alterado
+- A versão em desenvolvimento passa a ser `0.4.1-dev`. A etapa de arte sai em sub-versões (v0.4.1 a v0.4.4), cada uma com o seu milestone.
+
 ## [0.4.0] - 2026-10-23
 
 Nota completa: [docs/versoes/v0.4.0.md](docs/versoes/v0.4.0.md)

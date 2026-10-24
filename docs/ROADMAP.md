@@ -15,11 +15,10 @@ flowchart LR
     end
     subgraph A["Em andamento"]
         direction TB
-        e21["v0.4.1<br/>Tempos, economia<br/>e esqueleto único"]:::andamento
+        e3["Etapa 3 · série v0.4.x<br/>Refinamento de arte,<br/>layout e funções"]:::andamento
     end
     subgraph P["Planejado"]
         direction TB
-        e3["Etapa 3 · v0.5.0<br/>Arte (PixelLab)"]:::planejado
         e4["Etapa 4 · v0.6.0<br/>Som (ElevenLabs e Suno)"]:::planejado
     end
     subgraph X["Futuro"]
@@ -28,7 +27,7 @@ flowchart LR
         e6["Etapa 6<br/>Lojas<br/>Android, iOS e Steam"]:::futuro
     end
 
-    v01 --> v02 --> e1 --> e2 --> e21 --> e3 --> e4 --> e5 --> e6
+    v01 --> v02 --> e1 --> e2 --> e3 --> e4 --> e5 --> e6
 
     classDef feito fill:#2f9a68,stroke:#14532d,color:#ffffff
     classDef andamento fill:#d6a24a,stroke:#7a5420,color:#140d08
@@ -46,7 +45,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
 | 🟢 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Concluído | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
 | 🟢 | **2. Migração** | v0.4.0 | Todas as telas e mecânicas no Godot, interface para celular | Concluído | [v0.4.0 · Migração](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/2) |
-| ⚪ | 3. Arte | v0.5.0 | Sprites animados do PixelLab, cartas pintadas, herói com opções | Planejado | [v0.5.0 · Arte](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
+| 🟡 | **3. Arte** | v0.4.1–v0.4.4 → v0.5.0 | Refinamento de arte em sub-versões, com layout e funções novas; a v0.5.0 fecha a etapa | Em andamento | [v0.4.1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/7) · [v0.4.2](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/8) · [v0.4.3](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/9) · [v0.4.4](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/10) · [v0.5.0](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/3) |
 | ⚪ | 4. Som | v0.6.0 | Efeitos, ambientes e narração (ElevenLabs), trilha (Suno) | Planejado | [v0.6.0 · Som](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/4) |
 | 🔵 | 5. Contas e segurança | a definir | Login, save na nuvem, Roda Online, servidor validando comandos, LGPD | Futuro | [Contas e segurança](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/5) |
 | 🔵 | 6. Lojas | a definir | Publicação em Android, iOS e Steam | Futuro | [Lojas](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/6) |
@@ -70,19 +69,31 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 - [x] Telas de missões, chefes, arena, feira, mochila e bestiário no Godot
 - [x] Interface vertical e por toque
 - [x] Tela de criação do guardião ([#2](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/2))
-- [ ] Tempos de missão para jogo real ([#5](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/5)): passa para a v0.4.1
-- [ ] Revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7)): passa para a v0.4.1
+- [ ] Tempos de missão para jogo real ([#5](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/5)): passa para a v0.4.2
+- [ ] Revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7)): passa para a v0.4.3
 - [ ] Teste no celular, adiado ([roteiro](teste-celular.md), [#24](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/24))
 - [x] O jogo em Godot substitui o HTML na raiz do site
 - [x] Palco de duelo, guardião articulado com itens e sprites de 6 lendas
 - [x] Fechamento da v0.4.0 ([nota](versoes/v0.4.0.md))
-- [ ] Esqueleto único para as lendas, na v0.4.1 ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32))
 
-### 3. Arte (v0.5.0)
-- [ ] Sprites animados das lendas no combate: ataque, crítico, esquiva, golpe recebido e derrota
-- [ ] Herói ilustrado com opções ([#1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/1))
-- [ ] Novas lendas: Mula sem Cabeça, Lobisomem, Caipora e Matinta Perera ([#3](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/3), [#4](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/4))
-- [ ] Estimativa de custo de gerações do PixelLab aprovada antes de gerar
+### 3. Arte (série v0.4.x, fechada pela v0.5.0)
+Entregas pequenas, uma por sub-versão, cada uma com o seu milestone.
+- **v0.4.1 · Esqueleto único** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/7)):
+  - [ ] protótipo com o Saci, comparado com a tira atual ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32));
+  - [ ] todas as lendas no esqueleto, incluindo o Boitatá;
+  - [ ] export web menor ([#15](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/15)).
+- **v0.4.2 · Layout** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/8)):
+  - [ ] revisão do layout das telas ([#34](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/34));
+  - [ ] tempos de missão para jogo real ([#5](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/5));
+  - [ ] teste no celular ([#24](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/24)).
+- **v0.4.3 · Economia** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/9)):
+  - [ ] revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7));
+  - [ ] missões diárias e recompensa por login ([#6](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/6)).
+- **v0.4.4 · Guardião e lendas** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/10)):
+  - [ ] visual do guardião com opções ([#1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/1));
+  - [ ] novas lendas: Mula sem Cabeça, Lobisomem, Caipora e Matinta Perera ([#3](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/3), [#4](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/4)).
+- **v0.5.0 · Arte completa:** revisão geral e fechamento da etapa.
+- [ ] Estimativa de custo de gerações do PixelLab aprovada antes de gerar.
 
 ### 4. Som (v0.6.0)
 - [ ] Efeitos de combate e ambientes em loop (ElevenLabs)
@@ -98,7 +109,6 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 - [ ] Builds de Android, iOS e Steam
 
 ### Sem etapa definida
-- [ ] Missões diárias e recompensa por login ([#6](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/6))
 - [ ] Ato IV da Torre dos Chefes (níveis 31–40)
 
 ## Diário de avanços
@@ -107,6 +117,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 23/10/2026 | A etapa 3 (Arte) passa a sair em sub-versões v0.4.1 a v0.4.4, cada uma com o seu milestone, misturando refinamento de arte, layout e funções novas; a v0.5.0 fecha a etapa. O `main` volta para `0.4.1-dev` |
 | 23/10/2026 | **v0.4.0 lançada: Migração do jogo.** O Godot vai para a raiz do site e a v0.2 para `/v02/`. Todas as telas com abas, criação do guardião, palco de duelo com o guardião articulado vestindo os itens e sprites de 6 lendas. Decidido um esqueleto único para as lendas na v0.4.1 (#32). O teste no celular foi adiado de novo (#24) |
 | 18/10/2026 | Especificação da v0.4.0 escrita: todas as telas com abas no rodapé, criação do guardião com origem regional (save versão 2), lutas em pixel art do PixelLab (adiantadas da etapa 3, começando pelo piloto do herói e do Saci) e o Godot na raiz do site. Tempos reais e economia ficam para a v0.4.1 |
 | 18/10/2026 | **v0.3.0 lançada: Fundação em Godot.** O repositório ficou público para o GitHub Pages funcionar sem plano pago. O jogo novo está em `/novo/`. O teste no celular foi adiado para a v0.4.0 (#24), porque a casca ainda é simples |
