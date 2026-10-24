@@ -15,7 +15,13 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - `tools/recortar_lenda.gd`: recorta o quadro parado de uma lenda em partes a partir de `assets/esqueleto/<id>/rig.json` (polígonos, pivôs e ordem de desenho) e grava as partes e a `montagem.json`.
 
 ### Alterado
+- Luta no ritmo do Hero Zero: o atacante corre até a frente do alvo e o impacto (golpe, recuo, número de dano e vida) acontece só no contato; a barra de vida desce aos poucos; cada troca passa de 0,6 s para 1 s.
+- No PC, a janela abre em 432×768 (mesma proporção do celular), para caber em telas baixas.
 - A versão em desenvolvimento passa a ser `0.4.1-dev`. A etapa de arte sai em sub-versões (v0.4.1 a v0.4.4), cada uma com o seu milestone.
+
+### Corrigido
+- As lendas não flutuam mais: a altura vem da linha dos pés no desenho de cada tira, de pé e caída na derrota.
+- O botão Continuar do fim da luta sumia em telas baixas ou com muitos prêmios; o cartão de resultado agora cresce para cima, com os prêmios em letra menor.
 
 ## [0.4.0] - 2026-10-23
 
