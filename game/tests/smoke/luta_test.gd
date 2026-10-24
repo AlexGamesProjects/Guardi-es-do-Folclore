@@ -59,14 +59,13 @@ func test_pular_vai_ao_resultado() -> void:
 
 func test_continuar_cabe_na_tela_com_muitos_premios() -> void:
 	var eventos: Array[Dictionary] = EVENTOS.duplicate()
-	eventos.append_array(
-		[
-			{"type": "xp_ganho", "amount": 120},
-			{"type": "muiraquitas_ganhas", "amount": 3},
-			{"type": "subiu_nivel", "lvl": 2},
-			{"type": "item_ganho", "nome": "Chapéu de couro do Sertão Bravo"},
-		]
-	)
+	var premios: Array[Dictionary] = [
+		{"type": "xp_ganho", "amount": 120},
+		{"type": "muiraquitas_ganhas", "amount": 3},
+		{"type": "subiu_nivel", "lvl": 2},
+		{"type": "item_ganho", "nome": "Chapéu de couro do Sertão Bravo"},
+	]
+	eventos.append_array(premios)
 	var luta: Luta = _luta()
 	luta.size = Vector2(720, 1280)
 	luta.tocar(eventos, 1)
@@ -170,7 +169,7 @@ func test_lenda_pisa_no_chao() -> void:
 	var luta: Luta = _luta()
 	luta.tocar(EVENTOS, 4)
 	var sprite: AnimatedSprite2D = luta.inimigo.find_child("Sprite", true, false)
-	assert_float(sprite.position.y + (104 / 2.0 - 87) * -4).is_equal_approx(0.0, 0.01)
+	assert_float(sprite.position.y - (104 / 2.0 - 87) * 4).is_equal_approx(0.0, 0.01)
 	luta.queue_free()
 
 

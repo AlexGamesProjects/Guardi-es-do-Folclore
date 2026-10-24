@@ -52,7 +52,8 @@ static func pes(id: String, acao: String = "parado", quadro: int = 0) -> int:
 	if not sf.has_animation(nome):
 		nome = &"parado" if sf.has_animation(&"parado") else sf.get_animation_names()[0]
 	var n: int = sf.get_frame_count(nome)
-	var tex: Texture2D = sf.get_frame_texture(nome, clampi(quadro if quadro >= 0 else n - 1, 0, n - 1))
+	var i: int = clampi(quadro if quadro >= 0 else n - 1, 0, n - 1)
+	var tex: Texture2D = sf.get_frame_texture(nome, i)
 	var img: Image = tex.get_image()
 	if img == null:
 		return tex.get_height()
