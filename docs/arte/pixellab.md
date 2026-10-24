@@ -20,8 +20,9 @@ Plano: trial (40 gerações + bônus diário). Uma geração por vez, com 2 a 15
 | 18/10/2026 | Cuca (`819f616d`) | criação, mais 4 animações por template e a esquiva em v3, oeste | standard/template/v3 | 6 | `cuca/*.png` |
 | 18/10/2026 | Boto (`c5f07c0e`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `boto/*.png` |
 | 18/10/2026 | Mapinguari (`bb039c89`) | criação (proporção heroica), mais 4 animações por template e a esquiva em v3 (quadro de 128 px, 2 gerações), oeste | standard/template/v3 | 7 | `mapinguari/*.png` |
+| 19/10/2026 | Iara (`ec517eff`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `iara/*.png` |
 
-**Saldo:** 2 das 40 gerações do trial. Faltam a Iara (sereia) e o Boitatá (cobra de fogo), que esperam o bônus diário e um formato que não seja humanoide.
+**Saldo:** 2 das 40 gerações do trial. A Iara saiu do bônus diário de 19/10. Falta o Boitatá (cobra de fogo), que não é humanoide; ele espera o esqueleto único da v0.4.1 (#32).
 
 **Prompt do herói:** "young Brazilian folklore guardian hero, brown skin, straw hat, simple linen shirt, rope belt, holding a wooden slingshot, barefoot, earthy brown and brass palette".
 
