@@ -27,9 +27,11 @@ func test_todo_nome_base_tem_visual_e_arquivo() -> void:
 		for nome: String in _rules.item_names[slot]:
 			var visual: String = HeroiVisual.para_item({"nome": nome, "slot": slot}, _rules)
 			assert_str(visual).is_not_empty()
-			var arquivo: String = (
-				"res://assets/heroi/itens/%s_tronco.png" % visual
-				if slot == "corpo"
-				else "res://assets/heroi/itens/%s.png" % visual
-			)
-			assert_bool(ResourceLoader.exists(arquivo)).override_failure_message(arquivo).is_true()
+			if slot == "corpo":
+				# Roupa é troca de cor no corpo do guardião.
+				var tem: bool = Guardiao.ROUPA_ITEM.has(visual)
+				assert_bool(tem).override_failure_message(visual).is_true()
+			else:
+				var arquivo: String = "res://assets/heroi/itens/%s.png" % visual
+				var ok: bool = ResourceLoader.exists(arquivo)
+				assert_bool(ok).override_failure_message(arquivo).is_true()

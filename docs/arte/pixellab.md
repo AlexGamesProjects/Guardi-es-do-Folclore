@@ -21,9 +21,12 @@ Plano: trial (40 gerações + bônus diário). Uma geração por vez, com 2 a 15
 | 18/10/2026 | Boto (`c5f07c0e`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `boto/*.png` |
 | 18/10/2026 | Mapinguari (`bb039c89`) | criação (proporção heroica), mais 4 animações por template e a esquiva em v3 (quadro de 128 px, 2 gerações), oeste | standard/template/v3 | 7 | `mapinguari/*.png` |
 | 19/10/2026 | Iara (`ec517eff`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `iara/*.png` |
+| 25/10/2026 | Guardião base (`f47bbf45`) | criação (careca, mãos vazias, roupa cinza para troca de cores), mais 4 animações por template e a esquiva em v3, leste | standard/template/v3 | 6 | `arte/pixellab/guardiao/*.png` (preparadas por `tools/preparar_guardiao.gd`) |
 
-**Saldo:** 2 das 40 gerações do trial. A Iara saiu do bônus diário de 19/10. Falta o Boitatá (cobra de fogo), que não é humanoide; ele sai em tiras do PixelLab na v0.4.1, como as outras lendas (o esqueleto único foi reprovado).
+**Saldo:** as 40 gerações do trial acabaram; desde então, só o bônus diário (+5 por noite, até 20). A Iara saiu do bônus de 19/10, e o guardião base, do de 25/10 (restaram 14). Falta o Boitatá (cobra de fogo), que não é humanoide; ele sai em tiras do PixelLab na v0.4.1, como as outras lendas (o esqueleto único foi reprovado).
 
 **Prompt do herói:** "young Brazilian folklore guardian hero, brown skin, straw hat, simple linen shirt, rope belt, holding a wooden slingshot, barefoot, earthy brown and brass palette".
+
+**Prompt do guardião base:** "young Brazilian folklore guardian hero, bald head, calm neutral face, plain sleeveless light grey tunic, plain grey trousers, rope belt, barefoot, empty hands, no hat, no accessories, flat simple colors, medium brown skin". A pele saiu mais clara que o pedido; não importa, porque o jogo troca as cores.
 
 **Prompt do Saci:** "Saci-Pererê from Brazilian folklore, mischievous dark-skinned boy with a single leg, red pointed cap, red shorts, smoking a small clay pipe, playful grin". O modelo humanoide desenhou duas pernas.

@@ -4,4 +4,4 @@
 - [feedback-economia-portugues.md](feedback-economia-portugues.md) — pt-BR, poucos tokens, execução direta
 - [projeto-estado.md](projeto-estado.md) — versão atual e próxima tarefa do plano
 - [referencia-ferramentas.md](referencia-ferramentas.md) — GitHub, Pages, PixelLab, comandos
-- [feedback-sprites-pixellab.md](feedback-sprites-pixellab.md) — gerar lendas aos poucos no PixelLab grátis; dona anexa o zip; lendas em tiras de 7 animações (esqueleto reprovado)
+- [feedback-sprites-pixellab.md](feedback-sprites-pixellab.md) — gerar lendas aos poucos no PixelLab grátis (gero direto no PC); lendas em tiras de 7 animações (esqueleto reprovado)
