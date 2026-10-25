@@ -191,18 +191,19 @@ func test_alcance_e_pico_do_ataque_medidos_no_desenho() -> void:
 
 
 func test_golpe_encosta_no_corpo_do_alvo() -> void:
-	var luta: Luta = _luta()
-	luta.size = Vector2(720, 1280)
-	luta.tocar(EVENTOS, 4)
-	luta.heroi.preparar("Jaci", 1, 100, null, "saci")
-	var d: float = luta.distancia_golpe(luta.inimigo, luta.heroi)
-	assert_float(d).is_equal_approx(
-		luta.inimigo.alcance() + luta.heroi.frente() - Luta.SOBREPOR, 0.01
-	)
+	var luta: Luta = auto_free(Luta.new())
+	var atacante: Lutador = auto_free(Lutador.new())
+	atacante.direcao = -1
+	atacante.preparar("Saci", 1, 80, null, "saci")
+	var alvo: Lutador = auto_free(Lutador.new())
+	alvo.direcao = 1
+	alvo.preparar("Curupira", 1, 80, null, "curupira")
+	var d: float = luta.distancia_golpe(atacante, alvo)
+	assert_float(d).is_equal_approx(atacante.alcance() + alvo.frente() - Luta.SOBREPOR, 0.01)
 	# Sem desenho para medir (o boneco), fica a distância fixa.
-	luta.heroi.preparar("Jaci", 1, 100, null, "heroi")
-	assert_float(luta.distancia_golpe(luta.heroi, luta.inimigo)).is_equal(Luta.ALCANCE)
-	luta.queue_free()
+	var boneco: Lutador = auto_free(Lutador.new())
+	boneco.preparar("Jaci", 1, 100, null, "heroi")
+	assert_float(luta.distancia_golpe(boneco, atacante)).is_equal(Luta.ALCANCE)
 
 
 func test_ataque_chega_no_punho_esticado_no_contato() -> void:
