@@ -117,6 +117,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 24/10/2026 | Esqueleto único nas outras 5 lendas (Curupira, Cuca, Iara, Boto, Mapinguari), aprovado pela dona na tela de comparação. Guardião personalizável (#1, v0.4.4): rosto em blocos (formato, pele, olhos, sobrancelhas, nariz, boca, cabelo, barba), itens por cima, personalização na criação e editor no jogo, como no Hero Zero |
 | 24/10/2026 | A dona aprova o esqueleto único do Saci: as outras lendas seguem o mesmo caminho (#32). Luta com 1 s por troca, botão 1×/2×/4× e Pular no palco. Para a v0.5.0: finalizações nas animações (#36) e cenários de fundo dinâmicos, sem a pintura (#37) |
 | 24/10/2026 | Primeira sessão no PC da dona (Godot 4.7.2 e `gh` locais). Protótipo do esqueleto único com o Saci (#32): 6 partes recortadas de 1 quadro e 7 animações comuns. A comparação com a tira fica em Ajustes → "Esqueleto único (teste)"; a dona decide se o projeto segue |
 | 23/10/2026 | A etapa 3 (Arte) passa a sair em sub-versões v0.4.1 a v0.4.4, cada uma com o seu milestone, misturando refinamento de arte, layout e funções novas; a v0.5.0 fecha a etapa. O `main` volta para `0.4.1-dev` |
