@@ -3,6 +3,8 @@ extends Control
 ## um por ação, para a dona comparar. Aberta pelos Ajustes (ou com F6 no editor).
 
 const JOGO_SCENE: String = "res://ui/jogo.tscn"
+## Ampliação das duas colunas: em 2× até o Mapinguari (128 px) deixa os botões na tela.
+const ESCALA: int = 2
 const LENDAS: Dictionary[String, String] = {
 	"saci": "Saci",
 	"curupira": "Curupira",
@@ -44,16 +46,19 @@ func _ready() -> void:
 	_titulo = Label.new()
 	_titulo.theme_type_variation = &"Titulo"
 	_titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_titulo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	tela.add_child(_titulo)
 	var lendas := GridContainer.new()
 	lendas.columns = 3
-	lendas.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	lendas.size_flags_horizontal = Control.SIZE_FILL
 	tela.add_child(lendas)
 	for id: String in LENDAS:
 		var l := Button.new()
 		l.name = "Lenda_" + id
 		l.text = LENDAS[id]
-		l.custom_minimum_size = Vector2(200, 56)
+		l.custom_minimum_size = Vector2(0, 56)
+		l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		l.clip_text = true
 		l.pressed.connect(mostrar.bind(id))
 		lendas.add_child(l)
 	_palco = VBoxContainer.new()
@@ -63,13 +68,15 @@ func _ready() -> void:
 	tela.add_child(_palco)
 	var botoes := GridContainer.new()
 	botoes.columns = 4
-	botoes.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	botoes.size_flags_horizontal = Control.SIZE_FILL
 	tela.add_child(botoes)
 	for acao: String in ROTULOS:
 		var b := Button.new()
 		b.name = "Acao_" + acao
 		b.text = ROTULOS[acao]
-		b.custom_minimum_size = Vector2(150, 64)
+		b.custom_minimum_size = Vector2(0, 64)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.clip_text = true
 		b.pressed.connect(animar.bind(acao))
 		botoes.add_child(b)
 	mostrar("saci")
@@ -78,7 +85,7 @@ func _ready() -> void:
 ## Troca a lenda mostrada nas duas colunas.
 func mostrar(id: String) -> void:
 	lenda = id
-	_titulo.text = "Esqueleto único · %s" % LENDAS[id]
+	_titulo.text = LENDAS[id]
 	for filho: Node in _palco.get_children():
 		_palco.remove_child(filho)
 		filho.queue_free()
@@ -86,7 +93,7 @@ func mostrar(id: String) -> void:
 	_palco.add_child(_coluna("Tira atual (7 gerações)", _montar_tira()))
 	_esqueleto = Esqueleto.new()
 	_esqueleto.name = "Esqueleto"
-	_esqueleto.escala = 3
+	_esqueleto.escala = ESCALA
 	_esqueleto.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_esqueleto.montar(id)
 	_palco.add_child(_coluna("Esqueleto (1 geração)", _esqueleto))
@@ -119,12 +126,12 @@ func _montar_tira() -> Control:
 	if frames == null:
 		return caixa
 	var lado: float = frames.get_frame_texture(&"parado", 0).get_height()
-	caixa.custom_minimum_size = Vector2(lado, lado) * 3
+	caixa.custom_minimum_size = Vector2(lado, lado) * ESCALA
 	caixa.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_sprite = AnimatedSprite2D.new()
 	_sprite.sprite_frames = frames
 	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_sprite.scale = Vector2(3, 3)
+	_sprite.scale = Vector2(ESCALA, ESCALA)
 	_sprite.position = caixa.custom_minimum_size / 2
 	_sprite.animation_finished.connect(
 		func() -> void:

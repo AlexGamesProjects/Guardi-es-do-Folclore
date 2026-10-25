@@ -106,6 +106,12 @@ func test_tela_de_comparacao_troca_de_lenda() -> void:
 		assert_str(tela.get("lenda")).is_equal(id)
 		var e: Esqueleto = tela.find_child("Esqueleto", true, false) as Esqueleto
 		assert_int(e.lado).override_failure_message(id).is_equal(LADOS[id])
+		# Todos os botões cabem na tela, mesmo com a lenda maior.
+		await await_idle_frame()
+		var vis: Rect2 = tela.get_viewport_rect()
+		for b: Node in tela.find_children("*_*", "Button", true, false):
+			var r: Rect2 = (b as Control).get_global_rect()
+			assert_bool(vis.encloses(r)).override_failure_message(id + " " + b.name).is_true()
 		(tela.find_child("Acao_ataque", true, false) as Button).pressed.emit()
 	assert_array(_log.errors).is_empty()
 	tela.queue_free()
