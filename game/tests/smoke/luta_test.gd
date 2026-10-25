@@ -178,3 +178,50 @@ func test_heroi_usa_boneco_articulado() -> void:
 	luta.tocar(EVENTOS, 4)
 	assert_object(luta.heroi.find_child("Boneco", true, false)).is_not_null()
 	luta.queue_free()
+
+
+func test_alcance_e_pico_do_ataque_medidos_no_desenho() -> void:
+	# A lenda olha para a esquerda: o punho esticado é o quadro que mais avança para lá.
+	var punho: int = SpriteLib.alcance("saci", "ataque", -1)
+	var parado: int = SpriteLib.alcance("saci", "parado", -1)
+	assert_int(punho).is_greater(parado)
+	var pico: int = SpriteLib.pico("saci", "ataque", -1)
+	assert_int(pico).is_greater(0)
+	assert_int(SpriteLib.alcance("nao_existe", "ataque", 1)).is_equal(-1)
+
+
+func test_golpe_encosta_no_corpo_do_alvo() -> void:
+	var luta: Luta = auto_free(Luta.new())
+	var atacante: Lutador = auto_free(Lutador.new())
+	atacante.direcao = -1
+	atacante.preparar("Saci", 1, 80, null, "saci")
+	var alvo: Lutador = auto_free(Lutador.new())
+	alvo.direcao = 1
+	alvo.preparar("Curupira", 1, 80, null, "curupira")
+	var d: float = luta.distancia_golpe(atacante, alvo)
+	assert_float(d).is_equal_approx(atacante.alcance() + alvo.frente() - Luta.SOBREPOR, 0.01)
+	# Sem desenho para medir (o boneco), fica a distância fixa.
+	var boneco: Lutador = auto_free(Lutador.new())
+	boneco.preparar("Jaci", 1, 100, null, "heroi")
+	assert_float(luta.distancia_golpe(boneco, atacante)).is_equal(Luta.ALCANCE)
+
+
+func test_ataque_chega_no_punho_esticado_no_contato() -> void:
+	var luta: Luta = _luta()
+	luta.size = Vector2(720, 1280)
+	var eventos: Array[Dictionary] = [EVENTOS[0], EVENTOS[2], EVENTOS[4]]
+	luta.tocar(eventos, 1)
+	# O Saci corre no crítico a partir de 1 intervalo; no contato (30%) o soco está no pico.
+	await get_tree().create_timer(Luta.INTERVALO_S * (1.0 + Luta.CORRIDA + 0.1)).timeout
+	var sprite: AnimatedSprite2D = luta.inimigo.find_child("Sprite", true, false)
+	assert_str(str(sprite.animation)).is_equal("ataque")
+	assert_int(sprite.frame).is_equal(SpriteLib.pico("saci", "ataque", -1))
+	luta.queue_free()
+
+
+func test_lutadores_tem_sombra_nos_pes() -> void:
+	var luta: Luta = _luta()
+	luta.tocar(EVENTOS, 4)
+	assert_object(luta.heroi.find_child("Sombra", false, false)).is_not_null()
+	assert_object(luta.inimigo.find_child("Sombra", false, false)).is_not_null()
+	luta.queue_free()

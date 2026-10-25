@@ -17,6 +17,8 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - A versão em desenvolvimento passa a ser `0.4.1-dev`. A etapa de arte sai em sub-versões (v0.4.1 a v0.4.4), cada uma com o seu milestone.
 
 ### Corrigido
+- Os lutadores pisam dentro da faixa de capim, com uma sombra nos pés, em vez de pararem em cima dela.
+- Os golpes encostam no alvo: o atacante para na distância medida nos desenhos (punho esticado até a frente do corpo do outro) e a animação de ataque começa na corrida, chegando ao punho esticado no contato e segurando a pose até recuar.
 - As lendas não flutuam mais: a altura vem da linha dos pés no desenho de cada tira, de pé e caída na derrota.
 - O botão Continuar do fim da luta sumia em telas baixas ou com muitos prêmios; o cartão de resultado agora cresce para cima, com os prêmios em letra menor.
 
