@@ -61,6 +61,39 @@ static func pes(id: String, acao: String = "parado", quadro: int = 0) -> int:
 	return uso.end.y if uso.size.y > 0 else tex.get_height()
 
 
+## Até onde o desenho vai à frente do centro do quadro, em pixels do quadro, no quadro que mais
+## avança da ação (o punho esticado no ataque). `frente` 1 olha para a direita, -1 para a
+## esquerda. Sem sprite ou sem a ação, devolve -1.
+static func alcance(id: String, acao: String, frente: int) -> int:
+	return _ponta(id, acao, frente).x
+
+
+## Índice do quadro que mais avança da ação (o do punho esticado); -1 sem sprite ou sem a ação.
+static func pico(id: String, acao: String, frente: int) -> int:
+	return _ponta(id, acao, frente).y
+
+
+## (alcance, quadro) do quadro que mais avança à frente do centro.
+static func _ponta(id: String, acao: String, frente: int) -> Vector2i:
+	var sf: SpriteFrames = frames(id)
+	var nome: StringName = StringName(acao)
+	if sf == null or not sf.has_animation(nome):
+		return Vector2i(-1, -1)
+	var melhor := Vector2i(-1, -1)
+	for i: int in sf.get_frame_count(nome):
+		var img: Image = sf.get_frame_texture(nome, i).get_image()
+		if img == null:
+			continue
+		var uso: Rect2i = img.get_used_rect()
+		if uso.size.x == 0:
+			continue
+		var meio: int = img.get_width() / 2
+		var vai: int = uso.end.x - meio if frente > 0 else meio - uso.position.x
+		if vai > melhor.x:
+			melhor = Vector2i(vai, i)
+	return melhor
+
+
 static func limpar_cache() -> void:
 	_cache.clear()
 

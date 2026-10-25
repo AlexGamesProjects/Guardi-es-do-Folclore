@@ -25,10 +25,15 @@ var _corpo: Control
 var _boneco: Boneco
 var _sprite: AnimatedSprite2D
 var _tw_vida: Tween
+## Quadro em que o ataque para até `recolher` (-1: nenhum).
+var _segurar: int = -1
 
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var sombra := Sombra.new()
+	sombra.name = "Sombra"
+	add_child(sombra)
 	_corpo = Control.new()
 	_corpo.name = "Corpo"
 	_corpo.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -108,16 +113,23 @@ func vida(hp: int, animado: bool = false) -> void:
 		rotulo_pv.text = "%d PV" % hp
 
 
-## Toca uma ação: parado, ataque, critico, golpe, esquiva, derrota ou vitoria.
-func animar(acao: String) -> void:
+## Toca uma ação: parado, ataque, critico, golpe, esquiva, derrota ou vitoria. Com `contato_s`
+## > 0 (ataque ou crítico começando na corrida), o sprite chega ao punho esticado nesse tempo e
+## segura a pose até `recolher`; o boneco só começa o golpe nesse tempo.
+func animar(acao: String, contato_s: float = 0.0) -> void:
 	if not ACOES.has(acao):
 		return
 	historico.append(acao)
 	if _boneco != null:
-		_boneco.animar(acao)
+		if contato_s > 0.0 and is_inside_tree():
+			create_tween().tween_callback(_boneco.animar.bind(acao)).set_delay(contato_s)
+		else:
+			_boneco.animar(acao)
 		return
 	if _sprite != null:
 		_tocar_sprite(acao)
+		if contato_s > 0.0 and (acao == "ataque" or acao == "critico"):
+			_mirar(contato_s)
 	if not is_inside_tree():
 		return
 	var tw: Tween = create_tween()
@@ -140,6 +152,23 @@ func animar(acao: String) -> void:
 			tw.kill()
 
 
+## Até onde o punho chega à frente dos pés no ataque, em pixels de tela; -1 sem sprite.
+func alcance() -> float:
+	return _medida("ataque")
+
+
+## Até onde o corpo parado vai à frente dos pés (o lado que o atacante encosta); -1 sem sprite.
+func frente() -> float:
+	return _medida("parado")
+
+
+func _medida(acao: String) -> float:
+	if _sprite == null:
+		return -1.0
+	var px: int = SpriteLib.alcance(str(_sprite.get_meta("id")), acao, direcao)
+	return -1.0 if px < 0 else float(px * ESCALA_SPRITE)
+
+
 ## Altura do sprite (centrado) para a linha dos pés de um quadro ficar no chão.
 func _y_no_chao(acao: String, quadro: int) -> float:
 	var sf: SpriteFrames = _sprite.sprite_frames
@@ -150,6 +179,8 @@ func _y_no_chao(acao: String, quadro: int) -> float:
 
 func _tocar_sprite(acao: String) -> void:
 	var nome: String = "ataque" if acao == "critico" else "parado" if acao == "vitoria" else acao
+	_segurar = -1
+	_sprite.speed_scale = 1.0
 	if _sprite.sprite_frames.has_animation(nome):
 		_sprite.play(nome)
 		# Na derrota o corpo deitado tem outra folga embaixo: desce junto com a queda.
@@ -164,6 +195,46 @@ func _tocar_sprite(acao: String) -> void:
 				_sprite.animation_finished.connect(_voltar_parado)
 
 
+## Acerta o ritmo do ataque para o quadro do punho esticado aparecer em `contato_s` e para nele.
+func _mirar(contato_s: float) -> void:
+	var pico: int = SpriteLib.pico(str(_sprite.get_meta("id")), "ataque", direcao)
+	if pico <= 0:
+		return
+	_sprite.speed_scale = pico / (SpriteLib.FPS * contato_s)
+	_segurar = pico
+	if not _sprite.frame_changed.is_connected(_ao_trocar_quadro):
+		_sprite.frame_changed.connect(_ao_trocar_quadro)
+
+
+func _ao_trocar_quadro() -> void:
+	if _segurar >= 0 and _sprite.frame == _segurar:
+		_sprite.pause()
+
+
+## Solta a pose do golpe segurada por `animar(..., contato_s)` e volta ao parado.
+func recolher() -> void:
+	if _sprite == null or _segurar < 0:
+		return
+	_segurar = -1
+	_sprite.speed_scale = 1.0
+	_voltar_parado()
+
+
 func _voltar_parado() -> void:
 	if _sprite != null and str(_sprite.animation) != "derrota":
 		_sprite.play("parado")
+
+
+## Sombra oval nos pés: assenta o corpo no chão.
+class Sombra:
+	extends Control
+
+	const LARGURA: float = 96.0
+	const ALTURA: float = 18.0
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, ALTURA / LARGURA))
+		draw_circle(Vector2.ZERO, LARGURA / 2.0, Color(0, 0, 0, 0.35))

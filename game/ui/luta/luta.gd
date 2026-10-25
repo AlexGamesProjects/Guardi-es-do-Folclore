@@ -12,8 +12,15 @@ const INTERVALO_S: float = 1.0
 const CHAO: float = 0.72
 const POS_HEROI: float = 0.27
 const POS_INIMIGO: float = 0.73
-## Distância entre os centros dos dois no golpe: o atacante para na frente do alvo.
+## Quanto os pés descem abaixo da linha do chão, para pisarem na faixa de capim e não em cima.
+const PISO: float = 8.0
+## Distância entre os centros dos dois no golpe quando não dá para medir o desenho (boneco ou
+## carta): o atacante para na frente do alvo.
 const ALCANCE: float = 180.0
+## Quanto o punho entra no corpo do alvo, para o golpe parecer contato.
+const SOBREPOR: float = 8.0
+## Fração da troca gasta na corrida até o contato.
+const CORRIDA: float = 0.3
 ## Quanto o alvo recua no contato.
 const RECUO: float = 16.0
 const COR_DANO: Color = Color("efe7d4")
@@ -232,8 +239,8 @@ func _aplicar(ev: Dictionary, animado: bool = true) -> void:
 			_golpear(
 				a,
 				animado,
+				"critico" if critico else "ataque",
 				func() -> void:
-					_lado(a).animar("critico" if critico else "ataque")
 					_lado(1 - a).animar("golpe")
 					heroi.vida(int(hp[0]), animado)
 					inimigo.vida(int(hp[1]), animado)
@@ -248,8 +255,8 @@ func _aplicar(ev: Dictionary, animado: bool = true) -> void:
 			_golpear(
 				a2,
 				animado,
+				"ataque",
 				func() -> void:
-					_lado(a2).animar("ataque")
 					_lado(1 - a2).animar("esquiva")
 					_numero(_lado(1 - a2), "Esquivou!", false, animado)
 			)
@@ -330,22 +337,25 @@ func _montar_placar() -> void:
 func _posicionar() -> void:
 	var w: float = size.x if size.x > 0 else 720.0
 	var h: float = size.y if size.y > 0 else 1280.0
-	heroi.position = Vector2(w * POS_HEROI, h * CHAO)
-	inimigo.position = Vector2(w * POS_INIMIGO, h * CHAO)
+	heroi.position = Vector2(w * POS_HEROI, h * CHAO + PISO)
+	inimigo.position = Vector2(w * POS_INIMIGO, h * CHAO + PISO)
 
 
 func _lado(i: int) -> Lutador:
 	return heroi if i == 0 else inimigo
 
 
-## Um ataque: animado, o atacante corre até o alvo e `impacto` (animações, vida e número)
-## acontece só no contato; sem animação, o impacto é aplicado na hora.
-func _golpear(a: int, animado: bool, impacto: Callable) -> void:
+## Um ataque: animado, o atacante corre até o alvo já golpeando (`acao`), com o punho esticado
+## no contato, e `impacto` (reação do alvo, vida e número) acontece só no contato; sem animação,
+## tudo é aplicado na hora.
+func _golpear(a: int, animado: bool, acao: String, impacto: Callable) -> void:
 	_descarregar()
 	if not animado or not is_inside_tree():
+		_lado(a).animar(acao)
 		impacto.call()
 		return
 	_impacto = impacto
+	_lado(a).animar(acao, intervalo_s() * CORRIDA)
 	_avancar(_lado(a), _lado(1 - a))
 
 
@@ -363,16 +373,27 @@ func _avancar(atacante: Lutador, alvo: Lutador) -> void:
 	avancos += 1
 	_posicionar()
 	var origem: float = atacante.position.x
-	var destino: float = alvo.position.x - ALCANCE * atacante.direcao
+	var destino: float = alvo.position.x - distancia_golpe(atacante, alvo) * atacante.direcao
 	var t: float = intervalo_s()
 	var alvo_x: float = alvo.position.x
 	var tw: Tween = create_tween()
-	tw.tween_property(atacante, "position:x", destino, t * 0.3).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(atacante, "position:x", destino, t * CORRIDA).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(_descarregar)
 	tw.tween_property(alvo, "position:x", alvo_x - RECUO * alvo.direcao, t * 0.08)
 	tw.tween_interval(t * 0.17)
+	tw.tween_callback(atacante.recolher)
 	tw.tween_property(atacante, "position:x", origem, t * 0.3).set_trans(Tween.TRANS_SINE)
 	tw.parallel().tween_property(alvo, "position:x", alvo_x, t * 0.3).set_trans(Tween.TRANS_SINE)
+
+
+## Distância entre os pés dos dois no golpe: o punho esticado do atacante encosta na frente do
+## corpo do alvo, medidos nos desenhos. Sem desenho para medir, usa ALCANCE.
+func distancia_golpe(atacante: Lutador, alvo: Lutador) -> float:
+	var punho: float = atacante.alcance()
+	var corpo: float = alvo.frente()
+	if punho < 0 or corpo < 0:
+		return ALCANCE
+	return punho + corpo - SOBREPOR
 
 
 func _numero(alvo: Lutador, texto: String, critico: bool, animado: bool) -> void:
