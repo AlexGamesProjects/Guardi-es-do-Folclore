@@ -4,17 +4,17 @@ extends AbaBase
 
 var _equipados: VBoxContainer
 var _lista: VBoxContainer
-var _boneco: Boneco
+var _guardiao: Guardiao
 
 
 func _montar(corpo: VBoxContainer) -> void:
 	contexto = "mochila"
 	corpo.add_child(rotulo("Mochila", &"Titulo"))
-	_boneco = Boneco.new()
-	_boneco.name = "BonecoMochila"
-	_boneco.escala = 3
-	_boneco.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	corpo.add_child(_boneco)
+	_guardiao = Guardiao.new()
+	_guardiao.name = "GuardiaoMochila"
+	_guardiao.escala = 3
+	_guardiao.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	corpo.add_child(_guardiao)
 	corpo.add_child(rotulo("Equipado", &"Subtitulo"))
 	_equipados = VBoxContainer.new()
 	corpo.add_child(_equipados)
@@ -30,7 +30,7 @@ func atualizar() -> void:
 	if s == null or r == null or _lista == null:
 		return
 	var busy: bool = ocupado()
-	_boneco.vestir(s.equip, r)
+	_guardiao.vestir(s.equip, r)
 	for caixa: VBoxContainer in [_equipados, _lista]:
 		for filho: Node in caixa.get_children():
 			caixa.remove_child(filho)

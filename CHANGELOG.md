@@ -10,7 +10,12 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Adicionado
+- Guardião em camadas (`ui/heroi/guardiao.gd`): o corpo é animado nas tiras do PixelLab, com as mesmas animações das lendas (parado, ataque, crítico, golpe, esquiva, derrota e vitória), e a pele e a roupa trocam de cor por shader. A cabeça é montada em blocos (`ui/heroi/guardiao_rosto.gd`) e encaixada no pescoço de cada quadro: formato do rosto, olhos e cor dos olhos, sobrancelhas, nariz, boca, cabelo e cor do cabelo, e barba, com 5 tons de pele e 5 cores de roupa. O chapéu gira com a cabeça (o cabelo se ajusta embaixo dele), a arma fica no punho e o amuleto no peito; as roupas da feira mudam a cor da roupa.
+- Ferramenta `tools/preparar_guardiao.gd`: a partir das tiras do PixelLab (`arte/pixellab/guardiao/`), recorta a cabeça como molde, acha a cabeça (posição e giro) e a mão em cada quadro e tira a cabeça das tiras do corpo.
+
 ### Alterado
+- O guardião da luta e da Mochila é o guardião em camadas, no mesmo tamanho de pixel das lendas (4×), com o golpe medido no desenho como o delas.
 - Luta no ritmo do Hero Zero: o atacante corre até a frente do alvo e o impacto (golpe, recuo, número de dano e vida) acontece só no contato; a barra de vida desce aos poucos; cada troca passa de 0,6 s para 1 s.
 - Botão de velocidade na própria luta, ao lado do Pular: cada toque passa de 1× para 2×, 4× e volta, no meio do duelo, e guarda a escolha.
 - No PC, a janela abre em 432×768 (mesma proporção do celular), para caber em telas baixas.
@@ -21,6 +26,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 - Os golpes encostam no alvo: o atacante para na distância medida nos desenhos (punho esticado até a frente do corpo do outro) e a animação de ataque começa na corrida, chegando ao punho esticado no contato e segurando a pose até recuar.
 - As lendas não flutuam mais: a altura vem da linha dos pés no desenho de cada tira, de pé e caída na derrota.
 - O botão Continuar do fim da luta sumia em telas baixas ou com muitos prêmios; o cartão de resultado agora cresce para cima, com os prêmios em letra menor.
+
+### Removido
+- Boneco articulado (`Boneco` e `HeroiPoses`) e as partes do corpo e das roupas desenhadas por `tools/gen_heroi.py`, que agora só desenha chapéus, armas e amuletos.
 
 ## [0.4.0] - 2026-10-23
 

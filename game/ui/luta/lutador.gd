@@ -1,15 +1,14 @@
 class_name Lutador
 extends Control
 ## Um corpo no palco de duelo, de pé sobre o chão (a origem deste nó fica nos pés).
-## O herói é o guardião articulado (Boneco, vestindo o que está equipado); a lenda usa o sprite
-## do PixelLab (SpriteLib) e, sem ele, a carta recortada de pé. A barra de vida fica no placar
-## do palco e é ligada em `barra`. `animar` é a porta única para as animações.
+## O herói é o Guardiao (corpo em tiras e cabeça em blocos, vestindo o que está equipado); a lenda
+## usa o sprite do PixelLab (SpriteLib) e, sem ele, a carta recortada de pé. A barra de vida fica
+## no placar do palco e é ligada em `barra`. `animar` é a porta única para as animações.
 
 const ACOES: Array[String] = [
 	"parado", "ataque", "critico", "golpe", "esquiva", "derrota", "vitoria"
 ]
 const ALTURA_CARTA: float = 300.0
-const ESCALA_HEROI: int = 6
 const ESCALA_SPRITE: int = 4
 ## Tempo da barra de vida descendo depois de um golpe.
 const VIDA_S: float = 0.35
@@ -22,7 +21,7 @@ var direcao: int = 1
 var barra: ProgressBar
 var rotulo_pv: Label
 var _corpo: Control
-var _boneco: Boneco
+var _guardiao: Guardiao
 var _sprite: AnimatedSprite2D
 var _tw_vida: Tween
 ## Quadro em que o ataque para até `recolher` (-1: nenhum).
@@ -40,7 +39,8 @@ func _init() -> void:
 	add_child(_corpo)
 
 
-## Prepara o corpo. `equip`/`rules` vestem o herói; `textura` é a carta da lenda (ou null).
+## Prepara o corpo. `equip`/`rules` vestem o herói e `visual` monta o rosto dele; `textura` é a
+## carta da lenda (ou null).
 func preparar(
 	nome: String,
 	lvl: int,
@@ -48,7 +48,8 @@ func preparar(
 	textura: Texture2D,
 	sprite_id: String = "",
 	equip: Dictionary = {},
-	rules: RulesPack = null
+	rules: RulesPack = null,
+	visual: Dictionary = {}
 ) -> void:
 	set_meta("nome", "%s · nível %d" % [nome, lvl])
 	if barra != null:
@@ -57,17 +58,17 @@ func preparar(
 	for filho: Node in _corpo.get_children():
 		_corpo.remove_child(filho)
 		filho.queue_free()
-	_boneco = null
+	_guardiao = null
 	_sprite = null
 	if sprite_id == "heroi":
-		_boneco = Boneco.new()
-		_boneco.name = "Boneco"
-		_boneco.escala = ESCALA_HEROI
-		_boneco.size = Vector2(Boneco.LADO, Boneco.LADO) * ESCALA_HEROI
-		# Os pés do boneco ficam em y = 88 do quadro de 96.
-		_boneco.position = Vector2(-Boneco.LADO / 2.0, -88.0) * ESCALA_HEROI
-		_corpo.add_child(_boneco)
-		_boneco.vestir(equip, rules)
+		_guardiao = Guardiao.new()
+		_guardiao.name = "Guardiao"
+		_guardiao.escala = ESCALA_SPRITE
+		_guardiao.size = Vector2(Guardiao.LADO, Guardiao.LADO) * ESCALA_SPRITE
+		_guardiao.position = Vector2(-Guardiao.LADO / 2.0, -Guardiao.PES) * ESCALA_SPRITE
+		_corpo.add_child(_guardiao)
+		_guardiao.aplicar_visual(visual)
+		_guardiao.vestir(equip, rules)
 	else:
 		var frames: SpriteFrames = SpriteLib.frames(sprite_id)
 		if frames != null:
@@ -115,18 +116,14 @@ func vida(hp: int, animado: bool = false) -> void:
 
 ## Toca uma ação: parado, ataque, critico, golpe, esquiva, derrota ou vitoria. Com `contato_s`
 ## > 0 (ataque ou crítico começando na corrida), o sprite chega ao punho esticado nesse tempo e
-## segura a pose até `recolher`; o boneco só começa o golpe nesse tempo.
+## segura a pose até `recolher` (o guardião faz o mesmo por dentro).
 func animar(acao: String, contato_s: float = 0.0) -> void:
 	if not ACOES.has(acao):
 		return
 	historico.append(acao)
-	if _boneco != null:
-		if contato_s > 0.0 and is_inside_tree():
-			create_tween().tween_callback(_boneco.animar.bind(acao)).set_delay(contato_s)
-		else:
-			_boneco.animar(acao)
-		return
-	if _sprite != null:
+	if _guardiao != null:
+		_guardiao.animar(acao, contato_s)
+	elif _sprite != null:
 		_tocar_sprite(acao)
 		if contato_s > 0.0 and (acao == "ataque" or acao == "critico"):
 			_mirar(contato_s)
@@ -141,7 +138,7 @@ func animar(acao: String, contato_s: float = 0.0) -> void:
 			tw.tween_property(_corpo, "modulate:a", 0.5, 0.08)
 			tw.tween_property(_corpo, "modulate:a", 1.0, 0.16)
 		"derrota":
-			if _sprite == null:
+			if _sprite == null and _guardiao == null:
 				tw.tween_property(_corpo, "rotation_degrees", -80.0 * direcao, 0.35)
 			else:
 				tw.kill()
@@ -163,9 +160,12 @@ func frente() -> float:
 
 
 func _medida(acao: String) -> float:
-	if _sprite == null:
+	var id: String = Guardiao.ID if _guardiao != null else ""
+	if _sprite != null:
+		id = str(_sprite.get_meta("id"))
+	if id == "":
 		return -1.0
-	var px: int = SpriteLib.alcance(str(_sprite.get_meta("id")), acao, direcao)
+	var px: int = SpriteLib.alcance(id, acao, direcao)
 	return -1.0 if px < 0 else float(px * ESCALA_SPRITE)
 
 
@@ -213,6 +213,9 @@ func _ao_trocar_quadro() -> void:
 
 ## Solta a pose do golpe segurada por `animar(..., contato_s)` e volta ao parado.
 func recolher() -> void:
+	if _guardiao != null:
+		_guardiao.recolher()
+		return
 	if _sprite == null or _segurar < 0:
 		return
 	_segurar = -1
@@ -220,8 +223,10 @@ func recolher() -> void:
 	_voltar_parado()
 
 
+## Volta ao parado no fim da ação, menos na derrota e com o golpe seguro (o pico pode ser o último
+## quadro, que termina a animação).
 func _voltar_parado() -> void:
-	if _sprite != null and str(_sprite.animation) != "derrota":
+	if _sprite != null and str(_sprite.animation) != "derrota" and _segurar < 0:
 		_sprite.play("parado")
 
 

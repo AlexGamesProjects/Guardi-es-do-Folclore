@@ -173,10 +173,10 @@ func test_lenda_pisa_no_chao() -> void:
 	luta.queue_free()
 
 
-func test_heroi_usa_boneco_articulado() -> void:
+func test_heroi_usa_guardiao_em_camadas() -> void:
 	var luta: Luta = _luta()
 	luta.tocar(EVENTOS, 4)
-	assert_object(luta.heroi.find_child("Boneco", true, false)).is_not_null()
+	assert_object(luta.heroi.find_child("Guardiao", true, false)).is_not_null()
 	luta.queue_free()
 
 
@@ -200,10 +200,14 @@ func test_golpe_encosta_no_corpo_do_alvo() -> void:
 	alvo.preparar("Curupira", 1, 80, null, "curupira")
 	var d: float = luta.distancia_golpe(atacante, alvo)
 	assert_float(d).is_equal_approx(atacante.alcance() + alvo.frente() - Luta.SOBREPOR, 0.01)
-	# Sem desenho para medir (o boneco), fica a distância fixa.
-	var boneco: Lutador = auto_free(Lutador.new())
-	boneco.preparar("Jaci", 1, 100, null, "heroi")
-	assert_float(luta.distancia_golpe(boneco, atacante)).is_equal(Luta.ALCANCE)
+	# O guardião também é medido no desenho.
+	var heroi: Lutador = auto_free(Lutador.new())
+	heroi.preparar("Jaci", 1, 100, null, "heroi")
+	assert_float(heroi.alcance()).is_greater(0.0)
+	# Sem desenho para medir (lenda só com a carta), fica a distância fixa.
+	var carta: Lutador = auto_free(Lutador.new())
+	carta.preparar("Boitatá", 1, 100, null, "")
+	assert_float(luta.distancia_golpe(heroi, carta)).is_equal(Luta.ALCANCE)
 
 
 func test_ataque_chega_no_punho_esticado_no_contato() -> void:

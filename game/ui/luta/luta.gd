@@ -14,8 +14,8 @@ const POS_HEROI: float = 0.27
 const POS_INIMIGO: float = 0.73
 ## Quanto os pés descem abaixo da linha do chão, para pisarem na faixa de capim e não em cima.
 const PISO: float = 8.0
-## Distância entre os centros dos dois no golpe quando não dá para medir o desenho (boneco ou
-## carta): o atacante para na frente do alvo.
+## Distância entre os centros dos dois no golpe quando não dá para medir o desenho (lenda só com
+## a carta): o atacante para na frente do alvo.
 const ALCANCE: float = 180.0
 ## Quanto o punho entra no corpo do alvo, para o golpe parecer contato.
 const SOBREPOR: float = 8.0

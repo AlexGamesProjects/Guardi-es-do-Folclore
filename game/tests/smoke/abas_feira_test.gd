@@ -126,12 +126,12 @@ func test_mais_abre_mochila_e_volta() -> void:
 	assert_bool((runner.find_child("AbrirMochila") as Control).is_visible_in_tree()).is_true()
 
 
-func test_mochila_mostra_boneco_vestido() -> void:
+func test_mochila_mostra_guardiao_vestido() -> void:
 	var state: GameState = _setup()
 	state.equip["cabeca"] = {
 		"id": 77, "nome": "Gorro Vermelho", "slot": "cabeca", "rar": 0, "st": {}
 	}
 	var runner: GdUnitSceneRunner = await _abrir("res://ui/abas/mochila.tscn")
-	var b: Boneco = runner.find_child("BonecoMochila") as Boneco
+	var b: Guardiao = runner.find_child("GuardiaoMochila") as Guardiao
 	assert_object(b).is_not_null()
 	assert_str(b.peca("cabeca").texture.resource_path).ends_with("gorro_vermelho.png")
