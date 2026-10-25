@@ -10,10 +10,6 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
-### Adicionado
-- Protótipo do esqueleto único (#32): o Saci montado em 6 partes recortadas do quadro parado do PixelLab, presas a um Skeleton2D e animadas por um AnimationPlayer com a biblioteca comum `ui/luta/esqueleto_anims.tres` (parado, ataque, crítico, golpe, esquiva, derrota e vitória), editável na linha do tempo do editor. A tela "Esqueleto único (teste)", nos Ajustes, mostra a tira atual ao lado do esqueleto, com um botão por ação.
-- `tools/recortar_lenda.gd`: recorta o quadro parado de uma lenda em partes a partir de `assets/esqueleto/<id>/rig.json` (polígonos, pivôs e ordem de desenho) e grava as partes e a `montagem.json`.
-
 ### Alterado
 - Luta no ritmo do Hero Zero: o atacante corre até a frente do alvo e o impacto (golpe, recuo, número de dano e vida) acontece só no contato; a barra de vida desce aos poucos; cada troca passa de 0,6 s para 1 s.
 - Botão de velocidade na própria luta, ao lado do Pular: cada toque passa de 1× para 2×, 4× e volta, no meio do duelo, e guarda a escolha.

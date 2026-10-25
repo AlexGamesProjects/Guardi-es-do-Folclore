@@ -78,9 +78,11 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 
 ### 3. Arte (série v0.4.x, fechada pela v0.5.0)
 Entregas pequenas, uma por sub-versão, cada uma com o seu milestone.
-- **v0.4.1 · Esqueleto único** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/7)):
-  - [ ] protótipo com o Saci, comparado com a tira atual ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32));
-  - [ ] todas as lendas no esqueleto, incluindo o Boitatá;
+- **v0.4.1 · Luta e guardião** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/7)):
+  - [x] ~~esqueleto único~~ testado nas 6 lendas e reprovado: as lendas ficam com as 7 animações desenhadas ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32));
+  - [x] luta no ritmo do Hero Zero, com velocidade 1×/2×/4× e Pular no palco;
+  - [ ] guardião em camadas: corpo animado em tiras e cabeça em blocos por cima, com os itens ([#1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/1));
+  - [ ] Boitatá em tiras do PixelLab;
   - [ ] export web menor ([#15](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/15)).
 - **v0.4.2 · Layout** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/8)):
   - [ ] revisão do layout das telas ([#34](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/34));
@@ -90,7 +92,7 @@ Entregas pequenas, uma por sub-versão, cada uma com o seu milestone.
   - [ ] revisão da economia ([#7](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/7));
   - [ ] missões diárias e recompensa por login ([#6](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/6)).
 - **v0.4.4 · Guardião e lendas** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/10)):
-  - [ ] visual do guardião com opções ([#1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/1));
+  - [ ] mais opções de rosto e roupas para o guardião;
   - [ ] novas lendas: Mula sem Cabeça, Lobisomem, Caipora e Matinta Perera ([#3](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/3), [#4](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/4)).
 - **v0.5.0 · Arte completa:** revisão geral e fechamento da etapa.
 - [ ] Estimativa de custo de gerações do PixelLab aprovada antes de gerar.
@@ -117,6 +119,7 @@ Registro cronológico das decisões e entregas. A entrada mais recente fica no t
 
 | Data | Avanço |
 |---|---|
+| 24/10/2026 | **Esqueleto único reprovado.** Montado nas 6 lendas e comparado na tela de teste, ele ficou feio: partes rígidas de 1 quadro destoam no combate. As lendas ficam com as 7 animações desenhadas do PixelLab (#32 fechada; registro na branch `feat/esqueleto-lendas`). O guardião personalizável (#1) vem para a v0.4.1, em camadas: corpo animado em tiras, com a cabeça em blocos (rosto, cabelo, barba) e os itens encaixados em pontos marcados em cada quadro |
 | 24/10/2026 | A dona aprova o esqueleto único do Saci: as outras lendas seguem o mesmo caminho (#32). Luta com 1 s por troca, botão 1×/2×/4× e Pular no palco. Para a v0.5.0: finalizações nas animações (#36) e cenários de fundo dinâmicos, sem a pintura (#37) |
 | 24/10/2026 | Primeira sessão no PC da dona (Godot 4.7.2 e `gh` locais). Protótipo do esqueleto único com o Saci (#32): 6 partes recortadas de 1 quadro e 7 animações comuns. A comparação com a tira fica em Ajustes → "Esqueleto único (teste)"; a dona decide se o projeto segue |
 | 23/10/2026 | A etapa 3 (Arte) passa a sair em sub-versões v0.4.1 a v0.4.4, cada uma com o seu milestone, misturando refinamento de arte, layout e funções novas; a v0.5.0 fecha a etapa. O `main` volta para `0.4.1-dev` |

@@ -10,4 +10,4 @@ type: feedback
 **Why:** a dona prefere o caminho grátis e fazer aos poucos.
 **How to apply:** ao gerar uma lenda nova, seguir esses passos e registrar o custo em `docs/arte/pixellab.md`.
 
-**Decisão de 19/10/2026:** a dona aprovou trocar as tiras por um esqueleto único (Skeleton2D + AnimationPlayer) a partir da v0.4.1. Antes, um protótipo com o Saci para ela comparar (issue #32). A Iara ainda sai em tiras na v0.4.0.
+**Decisão de 24/10/2026:** as lendas ficam com as 7 animações desenhadas (tiras do PixelLab). O esqueleto único (#32) foi testado nas 6 lendas e reprovado pela dona: partes rígidas de 1 quadro ficam feias e destoam no combate. Registro na branch `feat/esqueleto-lendas`. O guardião também terá o corpo em tiras, com a cabeça em blocos por cima (#1).

@@ -22,7 +22,7 @@ Plano: trial (40 gerações + bônus diário). Uma geração por vez, com 2 a 15
 | 18/10/2026 | Mapinguari (`bb039c89`) | criação (proporção heroica), mais 4 animações por template e a esquiva em v3 (quadro de 128 px, 2 gerações), oeste | standard/template/v3 | 7 | `mapinguari/*.png` |
 | 19/10/2026 | Iara (`ec517eff`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `iara/*.png` |
 
-**Saldo:** 2 das 40 gerações do trial. A Iara saiu do bônus diário de 19/10. Falta o Boitatá (cobra de fogo), que não é humanoide; ele espera o esqueleto único da v0.4.1 (#32).
+**Saldo:** 2 das 40 gerações do trial. A Iara saiu do bônus diário de 19/10. Falta o Boitatá (cobra de fogo), que não é humanoide; ele sai em tiras do PixelLab na v0.4.1, como as outras lendas (o esqueleto único foi reprovado).
 
 **Prompt do herói:** "young Brazilian folklore guardian hero, brown skin, straw hat, simple linen shirt, rope belt, holding a wooden slingshot, barefoot, earthy brown and brass palette".
 
