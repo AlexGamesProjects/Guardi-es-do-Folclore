@@ -1,6 +1,6 @@
 extends AbaBase
-## Criação do guardião: nome e uma das 4 origens (cada uma dá +2 num atributo). Manda
-## `criar_guardiao` e, dando certo, abre o jogo.
+## Criação do guardião: nome, visual (EditorVisual) e uma das 4 origens (cada uma dá +2 num
+## atributo). Manda `criar_guardiao` e, dando certo, abre o jogo.
 
 const JOGO_SCENE: String = "res://ui/jogo.tscn"
 const FUNDO: Texture2D = preload("res://ui/fundo.tres")
@@ -11,6 +11,7 @@ var _nome: LineEdit
 var _origem: String = ""
 var _botoes: Dictionary[String, Button] = {}
 var _criar: Button
+var _editor: EditorVisual
 
 
 func _montar(corpo: VBoxContainer) -> void:
@@ -25,6 +26,9 @@ func _montar(corpo: VBoxContainer) -> void:
 	if r != null:
 		_nome.max_length = int(r.balance.start.get("nome_max", 18))
 	corpo.add_child(_nome)
+	corpo.add_child(rotulo("Como você é?", &"Subtitulo"))
+	_editor = EditorVisual.new()
+	corpo.add_child(_editor)
 	corpo.add_child(rotulo("De onde você vem?", &"Subtitulo"))
 	if r == null:
 		return
@@ -64,7 +68,8 @@ func _criar_guardiao() -> void:
 	if _origem == "":
 		return
 	var nome: String = _nome.text if _nome.text.strip_edges() != "" else _nome.placeholder_text
-	var res: CommandResult = await enviar("criar_guardiao", {"nome": nome, "origem": _origem})
+	var params: Dictionary = {"nome": nome, "origem": _origem, "visual": _editor.visual()}
+	var res: CommandResult = await enviar("criar_guardiao", params)
 	if res != null and res.ok:
 		abrir_cena.call(JOGO_SCENE)
 

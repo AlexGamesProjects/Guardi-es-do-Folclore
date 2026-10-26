@@ -1,13 +1,15 @@
 extends Control
-## Aba Mais: menu para Mochila, Bestiário e Ajustes. Cada tela abre no lugar do menu, com Voltar.
+## Aba Mais: menu para Guardião (visual), Mochila, Bestiário e Ajustes. Cada tela abre no lugar
+## do menu, com Voltar.
 
 const TELAS: Dictionary[String, String] = {
+	"Guardiao": "res://ui/abas/visual.tscn",
 	"Mochila": "res://ui/abas/mochila.tscn",
 	"Bestiario": "res://ui/abas/bestiario.tscn",
 	"Ajustes": "res://ui/abas/ajustes.tscn",
 }
 const ROTULOS: Dictionary[String, String] = {
-	"Mochila": "Mochila", "Bestiario": "Bestiário", "Ajustes": "Ajustes"
+	"Guardiao": "Guardião", "Mochila": "Mochila", "Bestiario": "Bestiário", "Ajustes": "Ajustes"
 }
 
 var _menu: VBoxContainer

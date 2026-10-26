@@ -36,6 +36,7 @@ static func _handlers() -> Dictionary:
 			"desafiar": DuelHandler.run,
 			"renomear": RenameHandler.run,
 			"criar_guardiao": CreateHandler.run,
+			"mudar_visual": VisualHandler.run,
 		}
 	return _table
 

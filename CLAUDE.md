@@ -62,7 +62,7 @@ O jogo é um projeto Godot 4.7.2 em `game/` (GDScript), publicado na raiz do Git
     - `abas/`: `missoes`, `torre`, `arena`, `feira`, `mochila`, `mais`, `bestiario` e `ajustes`.
     - `comum/`: `AbaBase`, topo, barra de abas, Toast, treino, `SpriteLib` e cartas.
     - `luta/`: palco de duelo (`Luta`) e `Lutador`.
-    - `heroi/`: guardião articulado (`Boneco`, `HeroiPoses`, `HeroiVisual`).
+    - `heroi/`: guardião em camadas (`Guardiao`, `GuardiaoRosto`, `EditorVisual`, `HeroiVisual`).
   - `assets/`: `cartas/` (pinturas), `sprites/<lenda>/<acao>.png` (tiras do PixelLab) e `heroi/` (partes e itens gerados por `tools/gen_heroi.py`).
   - `tests/`: `unit/`, `data/`, `architecture/`, `async/`, `fixtures/`, `regression/` (cópias de referência em `golden/`), `balance/`, `smoke/` e `support/`.
 - `tools/`: `setup_godot.sh`, `run_tests.sh`, `check_scripts.sh`, `regen_golden.sh`, `bench.gd`, medições (`measure_size.py`, `measure_load.py`, `check_budgets.py`), limites em `perf_budgets.json`, `godot.sha256` e `gitleaks.sha256`.
@@ -101,7 +101,7 @@ Sufixos: `_pm` = por mil (1000 = 1×), `_bp` = pontos-base (10000 = 100%), `_x10
 
 ## Decisões de conteúdo
 - O Negrinho do Pastoreio é sempre aliado. Ele aparece só em tarefas e nunca como inimigo.
-- Na v0.2 o herói é um SVG simples (`heroiSVG`); no Godot é o boneco articulado (`ui/heroi/`), que veste os itens. Falta dar opções de escolha de visual.
+- Na v0.2 o herói é um SVG simples (`heroiSVG`); no Godot é o guardião em camadas (`ui/heroi/`): corpo do PixelLab, cabeça em blocos e cores escolhidas pelo jogador (`GameState.visual`), vestindo os itens.
 
 ## Próximos passos sugeridos
 - Arte do herói e de outras lendas (Mula sem Cabeça, Lobisomem, Caipora, Matinta Perera).

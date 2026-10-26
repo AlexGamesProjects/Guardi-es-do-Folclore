@@ -30,6 +30,7 @@ func atualizar() -> void:
 	if s == null or r == null or _lista == null:
 		return
 	var busy: bool = ocupado()
+	_guardiao.aplicar_visual(s.visual)
 	_guardiao.vestir(s.equip, r)
 	for caixa: VBoxContainer in [_equipados, _lista]:
 		for filho: Node in caixa.get_children():

@@ -26,6 +26,8 @@ var mode: String = "offline"
 var nome: String = ""
 ## Origem escolhida na criação ("" = ainda não criado; "legado" = perfil de antes da v0.4.0).
 var origem: String = ""
+## Rosto e cores do guardião, um índice por bloco (ver VisualRules).
+var visual: Dictionary = VisualRules.PADRAO.duplicate()
 var lvl: int = 1
 var xp: int = 0
 var vint: int = 0
@@ -113,6 +115,7 @@ func to_dict() -> Dictionary:
 		"mode": mode,
 		"nome": nome,
 		"origem": origem,
+		"visual": visual.duplicate(),
 		"lvl": lvl,
 		"xp": xp,
 		"vint": vint,
@@ -149,6 +152,7 @@ static func from_dict(d: Dictionary) -> GameState:
 	s.mode = str(d.get("mode", "offline"))
 	s.nome = str(d.get("nome", ""))
 	s.origem = str(d.get("origem", ""))
+	s.visual = VisualRules.sanitize(d.get("visual", {}))
 	for key: String in _INT_FIELDS:
 		s.set(key, int(d.get(key, s.get(key))))
 	var st: Dictionary = d.get("stats", {})

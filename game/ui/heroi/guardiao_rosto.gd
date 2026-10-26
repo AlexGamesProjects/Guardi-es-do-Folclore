@@ -42,19 +42,7 @@ const CORES_CABELO: Array[Array] = [
 const ROUPAS: Array[Color] = [
 	Color("b9b8b9"), Color("b08a5e"), Color("6a7fb0"), Color("6f9a5a"), Color("c0583c")
 ]
-const VISUAL_PADRAO: Dictionary = {
-	"pele": 1,
-	"rosto": 0,
-	"olhos": 0,
-	"cor_olhos": 0,
-	"sobrancelhas": 0,
-	"nariz": 0,
-	"boca": 0,
-	"cabelo": 1,
-	"cor_cabelo": 0,
-	"barba": 0,
-	"roupa": 0,
-}
+const VISUAL_PADRAO: Dictionary = VisualRules.PADRAO
 
 const CONTORNO: Color = Color("0b0a0a")
 const BRANCO_OLHO: Color = Color("e4e0dd")
@@ -92,13 +80,9 @@ static var _molde: Image
 static var _cache: Dictionary[String, ImageTexture] = {}
 
 
-## Visual completo: o padrão com o que vier em `v` por cima (índices fora da lista voltam ao 0).
+## Visual completo: o padrão com o que vier em `v` por cima (ver VisualRules.sanitize).
 static func normalizar(v: Dictionary) -> Dictionary:
-	var out: Dictionary = VISUAL_PADRAO.duplicate()
-	for bloco: String in OPCOES:
-		var i: int = int(v.get(bloco, out[bloco]))
-		out[bloco] = i if i >= 0 and i < OPCOES[bloco].size() else 0
-	return out
+	return VisualRules.sanitize(v)
 
 
 static func cor_pele(v: Dictionary) -> Color:

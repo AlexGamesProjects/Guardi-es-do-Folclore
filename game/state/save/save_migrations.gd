@@ -10,7 +10,11 @@ var _target: int = 0
 
 ## `target_version` negativo significa `SaveCodec.SAVE_VERSION`. Só os testes usam outro valor.
 func _init(steps: Dictionary = {}, target_version: int = -1) -> void:
-	_steps = steps if not steps.is_empty() else {1: SaveMigrations.v1_para_v2}
+	_steps = (
+		steps
+		if not steps.is_empty()
+		else {1: SaveMigrations.v1_para_v2, 2: SaveMigrations.v2_para_v3}
+	)
 	_target = target_version
 
 
@@ -20,6 +24,15 @@ static func v1_para_v2(env: Dictionary) -> Dictionary:
 	var st: Variant = out.get("state")
 	if st is Dictionary:
 		(st as Dictionary)["origem"] = "legado"
+	return out
+
+
+## 2→3 (v0.4.1): o guardião ganha `visual` (rosto e cores); perfis antigos ficam com o padrão.
+static func v2_para_v3(env: Dictionary) -> Dictionary:
+	var out: Dictionary = env.duplicate(true)
+	var st: Variant = out.get("state")
+	if st is Dictionary:
+		(st as Dictionary)["visual"] = VisualRules.PADRAO.duplicate()
 	return out
 
 

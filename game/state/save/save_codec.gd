@@ -5,7 +5,7 @@ extends RefCounted
 ## O hash é o SHA-256 do JSON canônico (chaves ordenadas) do envelope sem o campo `hash`.
 ## Isso pega corrupção e edição ingênua; não impede um jogador de editar e recalcular o hash.
 
-const SAVE_VERSION: int = 2
+const SAVE_VERSION: int = 3
 
 
 static func encode(state: GameState, rules_version: String, schema_version: int = 0) -> String:
