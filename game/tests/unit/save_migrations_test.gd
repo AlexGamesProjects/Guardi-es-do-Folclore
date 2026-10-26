@@ -41,7 +41,7 @@ func test_decode_runs_migration_on_fixture() -> void:
 
 func test_missing_step_is_corrupt() -> void:
 	var raw: String = FileAccess.get_file_as_string(FIXTURE)
-	var res: Dictionary = SaveCodec.decode(raw, SaveMigrations.new({}, 3))
+	var res: Dictionary = SaveCodec.decode(raw, SaveMigrations.new({}, SaveCodec.SAVE_VERSION + 1))
 	assert_str(res["error"]).is_equal("CORROMPIDO")
 
 

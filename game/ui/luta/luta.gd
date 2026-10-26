@@ -285,7 +285,8 @@ func _comecar(ev: Dictionary) -> void:
 	var state: GameState = null if service == null else service.call("get_state")
 	var rules: RulesPack = null if service == null else service.call("get_rules")
 	var equip: Dictionary = {} if state == null else state.equip
-	heroi.preparar(_nomes[0], int(h["lvl"]), int(h["hp"]), null, "heroi", equip, rules)
+	var visual: Dictionary = {} if state == null else state.visual
+	heroi.preparar(_nomes[0], int(h["lvl"]), int(h["hp"]), null, "heroi", equip, rules, visual)
 	var lenda: String = str(i.get("legend_id", ""))
 	var carta: Texture2D = CartaLib.textura(lenda)
 	inimigo.preparar(_nomes[1], int(i["lvl"]), int(i["hp"]), carta, lenda)

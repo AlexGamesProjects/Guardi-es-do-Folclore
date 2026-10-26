@@ -231,6 +231,19 @@
         "negrinho": true,
         "saci": true
       },
+      "visual": {
+        "barba": 0,
+        "boca": 0,
+        "cabelo": 1,
+        "cor_cabelo": 0,
+        "cor_olhos": 0,
+        "nariz": 0,
+        "olhos": 0,
+        "pele": 1,
+        "rosto": 0,
+        "roupa": 0,
+        "sobrancelhas": 0
+      },
       "vitorias": {
         "cuca": 13,
         "curupira": 6,
@@ -470,6 +483,19 @@
         "iara": true,
         "negrinho": true,
         "saci": true
+      },
+      "visual": {
+        "barba": 0,
+        "boca": 0,
+        "cabelo": 1,
+        "cor_cabelo": 0,
+        "cor_olhos": 0,
+        "nariz": 0,
+        "olhos": 0,
+        "pele": 1,
+        "rosto": 0,
+        "roupa": 0,
+        "sobrancelhas": 0
       },
       "vitorias": {
         "boitata": 8,
@@ -714,6 +740,19 @@
         "negrinho": true,
         "saci": true
       },
+      "visual": {
+        "barba": 0,
+        "boca": 0,
+        "cabelo": 1,
+        "cor_cabelo": 0,
+        "cor_olhos": 0,
+        "nariz": 0,
+        "olhos": 0,
+        "pele": 1,
+        "rosto": 0,
+        "roupa": 0,
+        "sobrancelhas": 0
+      },
       "vitorias": {
         "boitata": 17,
         "boto": 29,
@@ -953,6 +992,19 @@
         "curupira": true,
         "negrinho": true,
         "saci": true
+      },
+      "visual": {
+        "barba": 0,
+        "boca": 0,
+        "cabelo": 1,
+        "cor_cabelo": 0,
+        "cor_olhos": 0,
+        "nariz": 0,
+        "olhos": 0,
+        "pele": 1,
+        "rosto": 0,
+        "roupa": 0,
+        "sobrancelhas": 0
       },
       "vitorias": {
         "cuca": 1,

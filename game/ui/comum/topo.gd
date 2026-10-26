@@ -4,6 +4,8 @@ extends PanelContainer
 
 signal heroi_tocado
 
+## Botão do herói: mostra o rosto do guardião (GuardiaoRosto) ao lado de "Treinar".
+var _rosto: Button
 var _nome: Label
 var _nivel: Label
 var _xp: ProgressBar
@@ -26,7 +28,11 @@ func _ready() -> void:
 	heroi.name = "Heroi"
 	heroi.text = "Treinar"
 	heroi.theme_type_variation = &"BotaoPlano"
-	heroi.custom_minimum_size = Vector2(150, 88)
+	heroi.custom_minimum_size = Vector2(190, 88)
+	heroi.expand_icon = true
+	heroi.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	heroi.add_theme_constant_override("icon_max_width", 64)
+	_rosto = heroi
 	heroi.pressed.connect(func() -> void: heroi_tocado.emit())
 	l1.add_child(heroi)
 	var id := VBoxContainer.new()
@@ -70,6 +76,7 @@ func atualizar() -> void:
 		return
 	var rules: RulesPack = service.call("get_rules")
 	_nome.text = state.nome
+	_rosto.icon = GuardiaoRosto.textura(state.visual)
 	_nivel.text = "Nível %d" % state.lvl
 	if rules != null:
 		var tabela: PackedInt64Array = rules.balance.xp_table

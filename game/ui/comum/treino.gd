@@ -7,6 +7,7 @@ const NOMES: Dictionary[String, String] = {
 }
 
 var _botoes: Dictionary[String, Button] = {}
+var _guardiao: Guardiao
 
 
 func _ready() -> void:
@@ -19,6 +20,11 @@ func _ready() -> void:
 	titulo.text = "Treino"
 	titulo.theme_type_variation = &"Titulo"
 	caixa.add_child(titulo)
+	_guardiao = Guardiao.new()
+	_guardiao.name = "GuardiaoTreino"
+	_guardiao.escala = 2
+	_guardiao.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	caixa.add_child(_guardiao)
 	for stat: String in Defs.STAT_KEYS:
 		var botao := Button.new()
 		botao.name = "Treinar_" + stat
@@ -45,6 +51,9 @@ func atualizar() -> void:
 	var state: GameState = null if service == null else service.call("get_state")
 	var rules: RulesPack = null if service == null else service.call("get_rules")
 	var busy: bool = service != null and bool(service.call("is_busy"))
+	if state != null and rules != null:
+		_guardiao.aplicar_visual(state.visual)
+		_guardiao.vestir(state.equip, rules)
 	for stat: String in _botoes:
 		var botao: Button = _botoes[stat]
 		if state == null or rules == null:
