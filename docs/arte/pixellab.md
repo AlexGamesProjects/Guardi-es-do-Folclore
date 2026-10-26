@@ -21,9 +21,12 @@ Plano: trial (40 gerações + bônus diário). Uma geração por vez, com 2 a 15
 | 18/10/2026 | Boto (`c5f07c0e`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `boto/*.png` |
 | 18/10/2026 | Mapinguari (`bb039c89`) | criação (proporção heroica), mais 4 animações por template e a esquiva em v3 (quadro de 128 px, 2 gerações), oeste | standard/template/v3 | 7 | `mapinguari/*.png` |
 | 19/10/2026 | Iara (`ec517eff`) | criação, mais 4 animações por template e a esquiva em v3 (quadro de 112 px, 2 gerações), oeste | standard/template/v3 | 7 | `iara/*.png` |
+| 26/10/2026 | Boitatá | imagem base de 112 px (pixflux, vista lateral, olhando para a direita) e 5 animações por animate_image (parado 8 quadros; ataque, golpe, esquiva e derrota 6 quadros, mais o quadro inicial), espelhadas por `tools/montar_tiras.gd` | pixflux/animate_image | 11 | `arte/pixellab/boitata/` → `boitata/*.png` |
 
-**Saldo:** 2 das 40 gerações do trial. A Iara saiu do bônus diário de 19/10. Falta o Boitatá (cobra de fogo), que não é humanoide; ele sai em tiras do PixelLab na v0.4.1, como as outras lendas (o esqueleto único foi reprovado).
+**Saldo:** as 40 gerações do trial acabaram; desde então, só o bônus diário (+5 por noite, até 20). A Iara saiu do bônus de 19/10. O Boitatá (cobra de fogo) não é humanoide e o modo personagem só desenha figuras humanas: saiu de uma imagem base (pixflux, 1 geração) animada com animate_image (2 por ação), do bônus de 26/10 (restaram 8).
 
 **Prompt do herói:** "young Brazilian folklore guardian hero, brown skin, straw hat, simple linen shirt, rope belt, holding a wooden slingshot, barefoot, earthy brown and brass palette".
 
 **Prompt do Saci:** "Saci-Pererê from Brazilian folklore, mischievous dark-skinned boy with a single leg, red pointed cap, red shorts, smoking a small clay pipe, playful grin". O modelo humanoide desenhou duas pernas.
+
+**Prompt do Boitatá:** "Boitatá, giant fire serpent from Brazilian folklore, coiled body on the ground with the front half raised up like a cobra ready to strike, body made of glowing orange and red flames with ember scales, big burning yellow-white eyes, facing left, full body visible, side view" (saiu olhando para a direita; as tiras são espelhadas).

@@ -66,3 +66,15 @@ func test_tamanho_sprites_abaixo_200kb() -> void:
 			if arq.ends_with(".png"):
 				var f := FileAccess.open("%s/%s/%s" % [raiz, pasta, arq], FileAccess.READ)
 				assert_int(f.get_length()).is_less(200_000)
+
+
+func test_toda_lenda_inimiga_tem_as_cinco_tiras() -> void:
+	var rules: RulesPack = Fx.rules()
+	for id: String in rules.legends:
+		if (rules.legends[id] as Defs.LegendDef).ally:
+			continue
+		var frames: SpriteFrames = SpriteLib.frames(id)
+		assert_object(frames).override_failure_message(id).is_not_null()
+		for acao: String in SpriteLib.ACOES:
+			var tem: bool = frames.has_animation(acao)
+			assert_bool(tem).override_failure_message("%s/%s" % [id, acao]).is_true()
