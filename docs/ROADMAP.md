@@ -41,6 +41,7 @@ Legenda: 🟢 concluído · 🟡 em andamento · ⚪ planejado · 🔵 futuro
 
 | | Etapa | Versão | Objetivo | Status | Milestone |
 |---|---|---|---|---|---|
+| 26/10/2026 | **Boitatá em tiras (#44).** A cobra de fogo ganha as 5 animações do PixelLab (imagem base animada, 11 gerações do bônus diário), e todas as lendas inimigas passam a lutar com sprite. Falta só o export menor (#15) para fechar a v0.4.1 |
 | 🟢 | Protótipo | v0.1.0 | Primeira versão jogável em HTML | Concluído | — |
 | 🟢 | Torre dos Chefes | v0.2.0 | Ilustrações, chefes até o nível 30, combate animado | Concluído | — |
 | 🟢 | **1. Fundação** | v0.3.0 | Godot, núcleo testável, CI com limites, save com migrações, perfis offline/online | Concluído | [v0.3.0 · Fundação](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/1) |
@@ -82,7 +83,7 @@ Entregas pequenas, uma por sub-versão, cada uma com o seu milestone.
   - [x] ~~esqueleto único~~ testado nas 6 lendas e reprovado: as lendas ficam com as 7 animações desenhadas ([#32](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/32));
   - [x] luta no ritmo do Hero Zero, com velocidade 1×/2×/4× e Pular no palco;
   - [ ] guardião em camadas: corpo animado em tiras e cabeça em blocos por cima, com os itens ([#1](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/1));
-  - [ ] Boitatá em tiras do PixelLab;
+  - [x] Boitatá em tiras do PixelLab ([#44](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/44));
   - [ ] export web menor ([#15](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/15)).
 - **v0.4.2 · Layout** ([milestone](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/milestone/8)):
   - [ ] revisão do layout das telas ([#34](https://github.com/AlexGamesProjects/Guardi-es-do-Folclore/issues/34));

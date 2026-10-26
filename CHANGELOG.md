@@ -10,6 +10,9 @@ Cada versão tem uma nota detalhada em [`docs/versoes/`](docs/versoes/).
 
 ## [Não lançado]
 
+### Adicionado
+- Boitatá em tiras do PixelLab (parado, ataque, golpe, esquiva e derrota): a última lenda inimiga que ainda lutava com a carta recortada. Ferramenta `tools/montar_tiras.gd` junta os quadros soltos em tiras (e espelha, para a lenda olhar para o guardião).
+
 ### Alterado
 - Luta no ritmo do Hero Zero: o atacante corre até a frente do alvo e o impacto (golpe, recuo, número de dano e vida) acontece só no contato; a barra de vida desce aos poucos; cada troca passa de 0,6 s para 1 s.
 - Botão de velocidade na própria luta, ao lado do Pular: cada toque passa de 1× para 2×, 4× e volta, no meio do duelo, e guarda a escolha.
