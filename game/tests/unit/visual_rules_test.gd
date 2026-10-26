@@ -55,5 +55,6 @@ func test_criar_guardiao_grava_o_visual() -> void:
 
 func test_criar_sem_visual_fica_no_padrao() -> void:
 	var s: GameState = Fx.game(_rules)
-	var res: CommandResult = Fx.run(s, "criar_guardiao", {"nome": "Jaci", "origem": "pampa"}, _rules)
+	var params: Dictionary = {"nome": "Jaci", "origem": "pampa"}
+	var res: CommandResult = Fx.run(s, "criar_guardiao", params, _rules)
 	assert_dict(res.state.visual).is_equal(VisualRules.PADRAO)
